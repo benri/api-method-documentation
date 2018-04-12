@@ -444,6 +444,21 @@
           computed: '_computeHasReturns(returns)'
         },
         /**
+         * Computed value of AMF security definition from `method`
+         * property.
+         */
+        security: {
+          type: Object,
+          computed: '_computeSecurity(method)'
+        },
+        /**
+         * Computed value, true if `returns` has values.
+         */
+        hasSecurity: {
+          type: Boolean,
+          computed: '_computeHasSecurity(security)'
+        },
+        /**
          * If set it will renders the view in the narrow layout.
          */
         narrow: {
@@ -736,6 +751,24 @@
      */
     _computeHasReturns(returns) {
       return !!(returns && returns.length);
+    }
+    /**
+     * Computes value for `security` property
+     *
+     * @param {Object} method AMF `supportedOperation` model
+     * @return {Array<Object>|undefined}
+     */
+    _computeSecurity(method) {
+      return method && method['http://raml.org/vocabularies/security#security'];
+    }
+    /**
+     * Computes value for `hasSecurity` property.
+     *
+     * @param {?Array<Object>} security Current value of `security` property
+     * @return {Boolean}
+     */
+    _computeHasSecurity(security) {
+      return !!(security && security.length);
     }
     /**
      * "Try it" button click handler. Dispatches `tryit-requested` custom event
