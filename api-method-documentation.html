@@ -2,19 +2,22 @@
 <link rel="import" href="../polymer/lib/elements/dom-if.html">
 <link rel="import" href="../raml-aware/raml-aware.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../api-annotation-document/api-annotation-document.html">
 <link rel="import" href="../api-body-document/api-body-document.html">
 <link rel="import" href="../api-parameters-document/api-parameters-document.html">
 <link rel="import" href="../api-headers-document/api-headers-document.html">
+<link rel="import" href="../api-responses-document/api-responses-document.html">
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../markdown-styles/markdown-styles.html">
 <link rel="import" href="../marked-element/marked-element.html">
-<link rel="import" href="../api-annotation-document/api-annotation-document.html">
+
 <dom-module id="api-method-documentation">
   <template>
     <style include="markdown-styles"></style>
     <style>
     :host {
       display: block;
+      padding-bottom: 24px;
       @apply --arc-font-body1;
       @apply --api-method-documentation;
     }
@@ -69,6 +72,7 @@
     .method-value {
       text-transform: uppercase;
       font-weight: var(--raml-docs-method-viewer-http-method-font-weight, 500);
+      white-space: nowrap;
     }
 
     .action-button {
@@ -95,6 +99,23 @@
       color: rgba(0, 0, 0, 0.74);
       @apply --arc-font-body1;
       @apply --raml-docs-method-viewer-content-section;
+    }
+
+    :host([narrow]) .title-area {
+      margin-bottom: 24px;
+    }
+
+    :host([narrow]) h1 {
+      font-size: 20px;
+      margin: 0;
+    }
+
+    :host([narrow]) h2 {
+      font-size: 18px;
+    }
+
+    :host([narrow]) h3 {
+      font-size: 17px;
     }
     </style>
     <template is="dom-if" if="[[aware]]">
@@ -136,17 +157,45 @@
         <api-parameters-document amf-model="[[amfModel]]" query-opened base-uri-parameters="[[serverVariables]]" endpoint-parameters="[[endpointVariables]]" query-parameters="[[queryParameters]]"></api-parameters-document>
       </template>
 
+      <template is="dom-if" if="[[hasHeaders]]">
+        <api-headers-document opened amf-model="[[amfModel]]" headers="[[headers]]"></api-headers-document>
+      </template>
+
       <template is="dom-if" if="[[hasPayload]]">
         <api-body-document amf-model="[[amfModel]]" body="[[payload]]" opened></api-body-document>
       </template>
     </section>
 
+    <template is="dom-if" if="[[hasReturns]]">
+      <section class="response-documentation">
+        <h2>Response</h2>
+        <api-responses-document amf-model="[[amfModel]]" returns="[[returns]]"></api-responses-document>
+      </section>
+    </template>
+
+    <template is="dom-if" if="[[!noTryIt]]">
+      <div class="bottom action">
+        <paper-button class="action-button" on-tap="_tryIt">Try it</paper-button>
+      </div>
+    </template>
   </template>
   <script>
   /**
    * `api-method-documentation`
    *
-   * ## Updatin API's base URI
+   * Renders documentation for a method for an endpoint.
+   *
+   * This element works with [AMF](https://github.com/mulesoft/amf) data model.
+   * To properly compute all the information relevant to method documentation
+   * set the following properties:
+   *
+   * - amfModel - as AMF's WebApi data model
+   * - endpoint - As AMF's EndPoint data model
+   * - method - As AMF's SupportedOperation property
+   *
+   * When set, this will automatically populate the wiew with data.
+   *
+   * ## Updating API's base URI
    *
    * By default the component render the documentation as it is defined
    * in the AMF model. Sometimes, however, you may need to replace the base URI
@@ -267,7 +316,7 @@
          */
         endpointUri: {
           type: String,
-          computed: '_computeEndpointUri(amfServer, endpoint, baseUri)'
+          computed: '_computeEndpointUri(server, endpoint, baseUri)'
         },
         /**
          * Computed value of method description from `method` property.
@@ -288,17 +337,17 @@
          * Computed value of `http://www.w3.org/ns/hydra/core#expects`
          * of AMF model from current `method`
          */
-        amfExpects: {
+        expects: {
           type: Object,
-          computed: '_computeAmfExpects(method)'
+          computed: '_computeExpects(method)'
         },
         /**
          * Computed value of the `http://raml.org/vocabularies/http#server`
          * from `amfModel`
          */
-        amfServer: {
+        server: {
           type: Object,
-          computed: '_computeAmfServer(amfModel)'
+          computed: '_computeServer(amfModel)'
         },
         /**
          * API base URI parameters defined in AMF api model
@@ -307,7 +356,7 @@
          */
         serverVariables: {
           type: Array,
-          computed: '_computeServerVariables(amfServer)'
+          computed: '_computeServerVariables(server)'
         },
         /**
          * Endpoint's path parameters.
@@ -331,7 +380,7 @@
          */
         queryParameters: {
           type: Array,
-          computed: '_computeQueryParameters(amfExpects)'
+          computed: '_computeQueryParameters(expects)'
         },
         /**
          * Computed value if server definition of API model has defined
@@ -350,12 +399,12 @@
           computed: '_computeHasParameters(hasQueryParameters, hasPathParameters)'
         },
         /**
-         * Computed value of AMF payload definition from `amfExpects`
+         * Computed value of AMF payload definition from `expects`
          * property.
          */
         payload: {
           type: Object,
-          computed: '_computePayload(amfExpects)'
+          computed: '_computePayload(expects)'
         },
         /**
          * Computed value, true if `payload` has values.
@@ -363,6 +412,43 @@
         hasPayload: {
           type: Boolean,
           computed: '_computeHasPayload(payload)'
+        },
+        /**
+         * Computed value of AMF payload definition from `expects`
+         * property.
+         */
+        headers: {
+          type: Object,
+          computed: '_computeHeaders(expects)'
+        },
+        /**
+         * Computed value, true if `payload` has values.
+         */
+        hasHeaders: {
+          type: Boolean,
+          computed: '_computeHasHeaders(headers)'
+        },
+        /**
+         * Computed value of AMF response definition from `returns`
+         * property.
+         */
+        returns: {
+          type: Object,
+          computed: '_computeReturns(method)'
+        },
+        /**
+         * Computed value, true if `returns` has values.
+         */
+        hasReturns: {
+          type: Boolean,
+          computed: '_computeHasReturns(returns)'
+        },
+        /**
+         * If set it will renders the view in the narrow layout.
+         */
+        narrow: {
+          type: Boolean,
+          reflectToAttribute: true
         }
       };
     }
@@ -443,13 +529,13 @@
     /**
      * Computes endpoint's URI based on `amfModel` and `endpoint` models.
      *
-     * @param {Object} amfServer Server model of AMF API.
+     * @param {Object} server Server model of AMF API.
      * @param {Object} endpoint Endpoint model
      * @param {?String} baseUri Current value of `baseUri` property
      * @return {String} Endpoint's URI
      */
-    _computeEndpointUri(amfServer, endpoint, baseUri) {
-      let base = this._getBaseUri(baseUri, amfServer);
+    _computeEndpointUri(server, endpoint, baseUri) {
+      let base = this._getBaseUri(baseUri, server);
       if (base && base[base.length - 1] === '/') {
         base = base.substr(0, base.length - 1);
       }
@@ -461,10 +547,10 @@
      * `ApiBaseUri` key or `amfModel` value (in this order).
      *
      * @param {String} baseUri Value of `baseUri` property
-     * @param {Object} amfServer AMF API model for Server.
+     * @param {Object} server AMF API model for Server.
      * @return {String} Base uri value. Can be empty string.
      */
-    _getBaseUri(baseUri, amfServer) {
+    _getBaseUri(baseUri, server) {
       if (baseUri) {
         return baseUri;
       }
@@ -472,24 +558,24 @@
       if (value) {
         return value;
       }
-      return this._getAmfBaseUri(amfServer) || '';
+      return this._getAmfBaseUri(server) || '';
     }
     /**
      * Computes base URI from AMF model.
      *
-     * @param {Object} amfServer AMF API model for Server.
+     * @param {Object} server AMF API model for Server.
      * @return {String|undefined} Base uri value if exists.
      */
-    _getAmfBaseUri(amfServer) {
-      return this._getValue(amfServer, 'http://raml.org/vocabularies/http#url');
+    _getAmfBaseUri(server) {
+      return this._getValue(server, 'http://raml.org/vocabularies/http#url');
     }
     /**
-     * Computes value for `amfServer` property that is later used with other computations.
+     * Computes value for `server` property that is later used with other computations.
      *
      * @param {Array|Object} model AMF model for an API
      * @return {Object} The server model
      */
-    _computeAmfServer(model) {
+    _computeServer(model) {
       if (!model) {
         return;
       }
@@ -500,7 +586,7 @@
       if (!enc) {
         return;
       }
-      const api = enc.find((item) => item['@id'] === 'file://demo/api.raml#/web-api');
+      const api = enc.find((item) => item['@type'] && item['@type'].indexOf('http://schema.org/WebAPI') !== -1);
       if (!api) {
         return;
       }
@@ -528,12 +614,12 @@
       return (method && 'http://raml.org/vocabularies/document#customDomainProperties' in method);
     }
     /**
-     * Computes value for the `amfExpects` property.
+     * Computes value for the `expects` property.
      *
      * @param {Object} method AMF `supportedOperation` model
      * @return {Object}
      */
-    _computeAmfExpects(method) {
+    _computeExpects(method) {
       if (this._hasType(method, 'http://www.w3.org/ns/hydra/core#Operation')) {
         const expects = method['http://www.w3.org/ns/hydra/core#expects'];
         if (expects) {
@@ -600,7 +686,7 @@
     /**
      * Computes value for the `payload` property
      *
-     * @param {Object} expects Current value of `amfExpects` property.
+     * @param {Object} expects Current value of `expects` property.
      * @return {Array<Object>|undefined} Payload model if defined.
      */
     _computePayload(expects) {
@@ -615,6 +701,55 @@
     _computeHasPayload(payload) {
       return !!(payload && payload.length);
     }
+    /**
+     * Computes value for the `headers` property
+     *
+     * @param {Object} expects Current value of `expects` property.
+     * @return {Array<Object>|undefined} Headers model if defined.
+     */
+    _computeHeaders(expects) {
+      return expects && expects['http://raml.org/vocabularies/http#header'];
+    }
+    /**
+     * Computes value for `hasHeaders` property
+     *
+     * @param {?Array<Object>} headers Current value of `headers` property
+     * @return {Boolean}
+     */
+    _computeHasHeaders(headers) {
+      return !!(headers && headers.length);
+    }
+    /**
+     * Computes value for `returns` property
+     *
+     * @param {Object} method AMF `supportedOperation` model
+     * @return {Array<Object>|undefined}
+     */
+    _computeReturns(method) {
+      return method && method['http://www.w3.org/ns/hydra/core#returns'];
+    }
+    /**
+     * Computes value for `hasReturns` property.
+     *
+     * @param {?Array<Object>} returns Current value of `returns` property
+     * @return {Boolean}
+     */
+    _computeHasReturns(returns) {
+      return !!(returns && returns.length);
+    }
+    /**
+     * "Try it" button click handler. Dispatches `tryit-requested` custom event
+     */
+    _tryIt() {
+      this.dispatchEvent(new CustomEvent('tryit-requested', {
+        bubbles: true
+      }));
+    }
+
+    /**
+     * Dispatched when the user requested the "Try it" view.
+     * @event tryit-requested
+     */
   }
   window.customElements.define(apiMethodDocumentation.is, apiMethodDocumentation);
   </script>

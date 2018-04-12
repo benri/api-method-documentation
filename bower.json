@@ -23,7 +23,8 @@
     "api-headers-document": "advanced-rest-client/api-headers-document#2.0.0-preview",
     "marked-element": "PolymerElements/marked-element#^2.4.0",
     "markdown-styles": "advanced-rest-client/markdown-styles#^2.0.2",
-    "api-annotation-document": "advanced-rest-client/api-annotation-document#2.0.0-preview"
+    "api-annotation-document": "advanced-rest-client/api-annotation-document#2.0.0-preview",
+    "api-responses-document": "advanced-rest-client/api-responses-document#2.0.0-preview"
   },
   "devDependencies": {
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
@@ -31,7 +32,11 @@
     "iron-test-helpers": "PolymerElements/iron-test-helpers#^2.0.0",
     "web-component-tester": "Polymer/web-component-tester#^6.0.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0",
-    "api-navigation": "advanced-rest-client/api-navigation#2.0.0-preview"
+    "api-navigation": "advanced-rest-client/api-navigation#2.0.0-preview",
+    "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu#^2.0.3",
+    "paper-listbox": "PolymerElements/paper-listbox#^2.0.0",
+    "paper-item": "PolymerElements/paper-item#^2.1.0",
+    "web-animations-js": "web-animations/web-animations-js#^2.3"
   },
   "repository": {
     "type": "git",
