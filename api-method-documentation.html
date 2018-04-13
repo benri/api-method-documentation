@@ -88,6 +88,7 @@
     .bottom.action {
       @apply --layout-horizontal;
       @apply --layout-end-justified;
+      margin-top: 20px;
     }
 
     marked-element {
@@ -124,7 +125,7 @@
     <div class="title-area">
       <h1 class="title">
         <template is="dom-if" if="[[parentName]]">
-          <span>[[parentName]]:</span>
+          <span class="parent-name">[[parentName]]:</span>
         </template>
         <span class="method-name">[[methodName]]</span>
       </h1>
