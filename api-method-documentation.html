@@ -28,12 +28,10 @@
 
     h1 {
       @apply --arc-font-headline;
-      @apply --raml-docs-method-viewer-content-section;
     }
 
     h2 {
       @apply --arc-font-title;
-      @apply --raml-docs-method-viewer-content-section;
     }
 
     .title-area {
@@ -46,43 +44,38 @@
     }
 
     .method-name {
-      font-weight: var(--raml-docs-method-viewer-title-method-font-weight, 500);
+      font-weight: var(--api-method-documentation-title-method-font-weight, 500);
     }
 
     .url-area {
       @apply --layout-horizontal;
       @apply --arc-font-code1;
-      font-size: 16px;
+      font-size: var(--api-method-documentation-url-font-size, 16px);
       margin-bottom: 40px;
-      background: #424242;
+      background: var(--api-method-documentation-url-background-color, #424242);
+      color: var(--api-method-documentation-url-font-color, #fff);
       padding: 8px;
-      color: #fff;
       border-radius: 2px;
-      @apply --raml-docs-method-viewer-content-section;
     }
 
     .url-value {
-      font-style: var(--raml-docs-method-viewer-url-font-style, italic);
       margin-left: 12px;
       word-break: break-all;
-
-      @apply --raml-docs-method-viewer-url;
     }
 
     .method-value {
       text-transform: uppercase;
-      font-weight: var(--raml-docs-method-viewer-http-method-font-weight, 500);
       white-space: nowrap;
     }
 
     .action-button {
-      background-color: var(--primary-color);
-      color: var(--primary-action-color, #fff);
-      @apply --action-button;
+      background-color: var(--api-method-documentation-try-it-background-color, var(--primary-color));
+      color: var(--api-method-documentation-try-it-color, var(--primary-action-color, #fff));
     }
 
     .action-button:hover {
-      @apply --action-button-hover;
+      background-color: var(--api-method-documentation-try-it-background-color-hover, var(--primary-color));
+      color: var(--api-method-documentation-try-it-color-hover, var(--primary-action-color, #fff));
     }
 
     .bottom.action {
@@ -99,7 +92,6 @@
       margin-bottom: 28px;
       color: rgba(0, 0, 0, 0.74);
       @apply --arc-font-body1;
-      @apply --raml-docs-method-viewer-content-section;
     }
 
     :host([narrow]) .title-area {
@@ -238,6 +230,17 @@
    * Custom property | Description | Default
    * ----------------|-------------|----------
    * `--api-method-documentation` | Mixin applied to this elment | `{}`
+   * `--arc-font-headline` | Theme mixin, Applied to H1 element | `{}`
+   * `--arc-font-title` | Theme mixin, applied to h2 element | `{}`
+   * `--api-method-documentation-title-method-font-weight` | Font weight of method name title. | `500`
+   * `--arc-font-code1` | Theme mixin, applied to the URL area | `{}`
+   * `--api-method-documentation-url-font-size` | Font size of endpoin URL | `16px`
+   * `--api-method-documentation-url-background-color` | Background color of the URL section | `#424242`
+   * `--api-method-documentation-url-font-color` | Font color of the URL area | `#fff`
+   * `--api-method-documentation-try-it-background-color` | Background color of the Try it button | `--primary-color`
+   * `--api-method-documentation-try-it-color` | Color of the Try it button | `--primary-action-color` or `#fff`
+   * `--api-method-documentation-try-it-background-color-hover` | Background color of the Try it button when hovered | `--primary-color`
+   * `--api-method-documentation-try-it-color-hover` | Color of the Try it button when hovered | `--primary-action-color` or `#fff`
    *
    * @customElement
    * @polymer
