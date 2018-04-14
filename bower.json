@@ -36,7 +36,8 @@
     "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu#^2.0.3",
     "paper-listbox": "PolymerElements/paper-listbox#^2.0.0",
     "paper-item": "PolymerElements/paper-item#^2.1.0",
-    "web-animations-js": "web-animations/web-animations-js#^2.3"
+    "web-animations-js": "web-animations/web-animations-js#^2.3",
+    "paper-toast": "PolymerElements/paper-toast#^2.1.0"
   },
   "repository": {
     "type": "git",

@@ -17,6 +17,7 @@
     <link rel="import" href="../../paper-item/paper-item.html">
     <link rel="import" href="../../paper-listbox/paper-listbox.html">
     <link rel="import" href="../../neon-animation/web-animations.html">
+    <link rel="import" href="../../paper-toast/paper-toast.html">
     <link rel="import" href="../api-method-documentation.html">
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
@@ -110,6 +111,7 @@
             <p>Select a HTTP method in the navigation to see the demo.</p>
           </template>
         </div>
+        <paper-toast text="Try it event detected" id="tryItToast"></paper-toast>
       </template>
     </dom-bind>
     <script>
@@ -152,8 +154,12 @@
         app.endpoint = endpoint;
         app.method = methods.find((item) => item['@id'] === id);
       };
+      app._tryitRequested = function() {
+        app.$.tryItToast.opened = true;
+      };
       window.addEventListener('WebComponentsReady', () => app._load());
       window.addEventListener('api-navigation-selection-changed', app._navChanged);
+      window.addEventListener('tryit-requested', app._tryitRequested);
     })(document.getElementById('demo'));
   </script>
   </body>

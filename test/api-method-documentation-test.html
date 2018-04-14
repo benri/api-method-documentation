@@ -123,7 +123,12 @@
       test('Try it button click dispatches event', (done) => {
         const element = fixture('Basic');
         flush(() => {
-          element.addEventListener('tryit-requested', () => {
+          element.addEventListener('tryit-requested', (e) => {
+            const type = typeof e.composed;
+            if (type !== 'undefied') {
+              assert.isTrue(e.composed);
+            }
+            assert.isTrue(e.bubbles);
             done();
           });
           const button = element.shadowRoot.querySelector('.action-button');
