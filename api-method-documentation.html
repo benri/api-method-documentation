@@ -22,10 +22,6 @@
       @apply --api-method-documentation;
     }
 
-    [hidden] {
-      display: none !important;
-    }
-
     h1 {
       @apply --arc-font-headline;
     }
@@ -89,9 +85,9 @@
     }
 
     .markdown-body {
-      margin-bottom: 28px;
-      color: rgba(0, 0, 0, 0.74);
       @apply --arc-font-body1;
+      margin-bottom: 28px;
+      color: var(--api-method-documentation-descxription-color, rgba(0, 0, 0, 0.74));
     }
 
     :host([narrow]) .title-area {
