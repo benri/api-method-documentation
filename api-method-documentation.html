@@ -10,7 +10,8 @@
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../markdown-styles/markdown-styles.html">
 <link rel="import" href="../marked-element/marked-element.html">
-
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../arc-icons/arc-icons.html">
 <dom-module id="api-method-documentation">
   <template>
     <style include="markdown-styles"></style>
@@ -106,6 +107,63 @@
     :host([narrow]) h3 {
       font-size: 17px;
     }
+
+    .method-label {
+      display: inline-block;
+      margin: 0 8px;
+      padding: 2px 8px;
+      background-color: var(--api-method-documentation-method-label-background-color, transparent);
+      text-transform: uppercase;
+      border-radius: var(--api-method-documentation-method-label-border-radius, 3px);
+      font-weight: var(--method-display-font-weigth, 400);
+    }
+
+    .method-label[data-method="get"] {
+      background-color: var(--method-label-get-background-color);
+      color: var(--method-label-get-color);
+    }
+
+    .method-label[data-method="post"] {
+      background-color: var(--method-label-post-background-color);
+      color: var(--method-label-post-color);
+    }
+
+    .method-label[data-method="delete"] {
+      background-color: var(--method-label-delete-background-color);
+      color: var(--method-label-delete-color);
+    }
+
+    .method-label[data-method="put"] {
+      background-color: var(--method-label-put-background-color);
+      color: var(--method-label-put-color);
+    }
+
+    .method-label[data-method="patch"] {
+      background-color: var(--method-label-patch-background-color);
+      color: var(--method-label-patch-color);
+    }
+
+    .bottom-nav,
+    .bottom-link {
+      @apply --layout-horizontal;
+      @apply --layout-center;
+    }
+
+    .bottom-nav {
+      padding: 32px 0;
+      margin: 16px 0;
+      border-top: 1px var(--api-method-documentation-bottom-navigation-border-color, #546E7A) solid;
+      color: var(--api-method-documentation-bottom-navigation-color, #546E7A);
+      font-size: 18px;
+    }
+
+    .bottom-link {
+      cursor: pointer;
+    }
+
+    .nav-separator {
+      @apply --layout-flex;
+    }
     </style>
     <template is="dom-if" if="[[aware]]">
       <raml-aware raml="{{amfModel}}" scope="[[aware]]"></raml-aware>
@@ -115,11 +173,12 @@
         <template is="dom-if" if="[[parentName]]">
           <span class="parent-name">[[parentName]]:</span>
         </template>
+        <span class="method-label" data-method$="[[httpMethod]]">[[httpMethod]]</span>
         <span class="method-name">[[methodName]]</span>
       </h1>
       <template is="dom-if" if="[[!noTryIt]]">
         <div class="action">
-          <paper-button class="action-button" on-tap="_tryIt">Try it</paper-button>
+          <paper-button class="action-button" on-tap="_tryIt" raised>Try it</paper-button>
         </div>
       </template>
     </div>
@@ -162,10 +221,22 @@
       </section>
     </template>
 
-    <template is="dom-if" if="[[!noTryIt]]">
-      <div class="bottom action">
-        <paper-button class="action-button" on-tap="_tryIt">Try it</paper-button>
-      </div>
+    <template is="dom-if" if="[[hasPagination]]">
+      <section class="bottom-nav">
+        <template is="dom-if" if="[[hasPreviousLink]]">
+          <div class="bottom-link previous" on-tap="_navigatePrevious">
+            <paper-icon-button icon="arc:chevron-left"></paper-icon-button>
+            <span class="nav-label">[[previous.label]]</span>
+          </div>
+        </template>
+        <div class="nav-separator"></div>
+        <template is="dom-if" if="[[hasNextLink]]">
+          <div class="bottom-link next" on-tap="_navigateNext">
+            <span class="nav-label">[[next.label]]</span>
+            <paper-icon-button icon="arc:chevron-right"></paper-icon-button>
+          </div>
+        </template>
+      </section>
     </template>
   </template>
   <script>
@@ -237,6 +308,8 @@
    * `--api-method-documentation-try-it-color` | Color of the Try it button | `--primary-action-color` or `#fff`
    * `--api-method-documentation-try-it-background-color-hover` | Background color of the Try it button when hovered | `--primary-color`
    * `--api-method-documentation-try-it-color-hover` | Color of the Try it button when hovered | `--primary-action-color` or `#fff`
+   * `--api-method-documentation-bottom-navigation-border-color` | Color of the top border of the bottom navigartion | `#546E7A`
+   * `--api-method-documentation-bottom-navigation-color` | Color of of the bottom navigartion (icon + text) | `#546E7A`
    *
    * @customElement
    * @polymer
@@ -464,6 +537,37 @@
         narrow: {
           type: Boolean,
           reflectToAttribute: true
+        },
+        /**
+         * Model to generate a link to previous HTTP method.
+         * It should contain `id` and `label` properties
+         */
+        previous: Object,
+        /**
+         * Computed value, true if `previous` is set
+         */
+        hasPreviousLink: {
+          type: Boolean,
+          computed: '_computeHasPreviousLink(previous)'
+        },
+        /**
+         * Model to generate a link to next HTTP method.
+         * It should contain `id` and `label` properties
+         */
+        next: Object,
+        /**
+         * Computed value, true if `next` is set
+         */
+        hasNextLink: {
+          type: Boolean,
+          computed: '_computeHasNextLink(next)'
+        },
+        /**
+         * Computed value, true to render bottom navigation
+         */
+        hasPagination: {
+          type: Boolean,
+          computed: '_computeHasNavigation(hasPreviousLink, hasNextLink)'
         }
       };
     }
@@ -779,10 +883,71 @@
         composed: true
       }));
     }
-
+    /**
+     * Computes value for `hasPreviousLink` property
+     * @param {?Object} previous
+     * @return {Boolean}
+     */
+    _computeHasPreviousLink(previous) {
+      return !!previous;
+    }
+    /**
+     * Computes value for `hasNextLink` property
+     * @param {?Object} next
+     * @return {Boolean}
+     */
+    _computeHasNextLink(next) {
+      return !!next;
+    }
+    /**
+     * Computes value for `hasPagination` property
+     * @param {Boolean} previous
+     * @param {Boolean} next
+     * @return {Boolean}
+     */
+    _computeHasNavigation(previous, next) {
+      return !!(previous || next);
+    }
+    /**
+     * Navigates to next method. Calls `_navigate` with id of previous item.
+     */
+    _navigatePrevious() {
+      this._navigate(this.previous.id, 'method');
+    }
+    /**
+     * Navigates to next method. Calls `_navigate` with id of next item.
+     */
+    _navigateNext() {
+      this._navigate(this.next.id, 'method');
+    }
+    /**
+     * Dispatches `api-navigation-selection-changed` so other components
+     * can update their state.
+     *
+     * @param {String} id
+     * @param {String} type
+     */
+    _navigate(id, type) {
+      const e = new CustomEvent('api-navigation-selection-changed', {
+        bubbles: true,
+        composed: true,
+        detail: {
+          selected: id,
+          type: type
+        }
+      });
+      this.dispatchEvent(e);
+    }
     /**
      * Dispatched when the user requested the "Try it" view.
      * @event tryit-requested
+     */
+    /**
+     * Dispatched when the user requested previous / next
+     *
+     * @event api-navigation-selection-changed
+     * @param {String} selected
+     * @param {String} type
      */
   }
   window.customElements.define(apiMethodDocumentation.is, apiMethodDocumentation);

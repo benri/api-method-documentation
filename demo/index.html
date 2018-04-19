@@ -50,6 +50,16 @@
           word-break: break-all;
           overflow: auto;
         };
+        --method-label-get-background-color: rgb(0, 128, 0);
+        --method-label-get-color: #fff;
+        --method-label-post-background-color: rgb(33, 150, 243);
+        --method-label-post-color: #fff;
+        --method-label-put-background-color: rgb(255, 165, 0);
+        --method-label-put-color: #fff;
+        --method-label-patch-background-color: rgb(156, 39, 176);
+        --method-label-patch-color: #fff;
+        --method-label-delete-background-color: rgb(244, 67, 54);
+        --method-label-delete-color: #fff;
       }
 
       html,
@@ -105,7 +115,7 @@
           <raml-aware raml="{{amfModel}}" scope="model"></raml-aware>
           <api-navigation aware="model" endpoints-opened></api-navigation>
           <template is="dom-if" if="[[hasData]]">
-            <api-method-documentation aware="model" endpoint="[[endpoint]]" method="[[method]]"></api-method-documentation>
+            <api-method-documentation aware="model" endpoint="[[endpoint]]" method="[[method]]" previous="[[previous]]" next="[[next]]"></api-method-documentation>
           </template>
           <template is="dom-if" if="[[!hasData]]">
             <p>Select a HTTP method in the navigation to see the demo.</p>
@@ -152,7 +162,51 @@
           return;
         }
         app.endpoint = endpoint;
-        app.method = methods.find((item) => item['@id'] === id);
+
+        let last;
+        for (let i = 0, len = methods.length; i < len; i++) {
+          let item = methods[i];
+          if (item['@id'] !== id) {
+            last = item;
+            continue;
+          }
+          app.method = item;
+          app._setPrevious(last);
+          app._setNext(methods[i + 1]);
+          break;
+        }
+      };
+      app._setPrevious = function(item) {
+        if (!item) {
+          app.previous = undefined;
+          return;
+        }
+        let name;
+        if ('http://schema.org/name' in item) {
+          name = item['http://schema.org/name'][0]['@value'];
+        } else {
+          name = item['http://www.w3.org/ns/hydra/core#method'][0]['@value'];
+        }
+        app.previous = {
+          id: item['@id'],
+          label: name
+        };
+      };
+      app._setNext = function(item) {
+        if (!item) {
+          app.next = undefined;
+          return;
+        }
+        let name;
+        if ('http://schema.org/name' in item) {
+          name = item['http://schema.org/name'][0]['@value'];
+        } else {
+          name = item['http://www.w3.org/ns/hydra/core#method'][0]['@value'];
+        }
+        app.next = {
+          id: item['@id'],
+          label: name
+        };
       };
       app._tryitRequested = function() {
         app.$.tryItToast.opened = true;
