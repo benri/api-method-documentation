@@ -12,6 +12,11 @@
 <link rel="import" href="../marked-element/marked-element.html">
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../arc-icons/arc-icons.html">
+<link rel="import" href="../http-code-snippets/http-code-snippets.html">
+<link rel="import" href="../clipboard-copy/clipboard-copy.html">
+<link rel="import" href="../iron-collapse/iron-collapse.html">
+<link rel="import" href="../api-view-model-transformer/api-view-model-transformer.html">
+
 <dom-module id="api-method-documentation">
   <template>
     <style include="markdown-styles"></style>
@@ -44,18 +49,26 @@
       font-weight: var(--api-method-documentation-title-method-font-weight, 500);
     }
 
-    .url-area {
+    .request-actions {
       @apply --layout-horizontal;
+    }
+
+    .url-area {
+      @apply --layout-flex;
+      @apply --layout-horizontal;
+      @apply --layout-center;
       @apply --arc-font-code1;
       font-size: var(--api-method-documentation-url-font-size, 16px);
       margin-bottom: 40px;
       background: var(--api-method-documentation-url-background-color, #424242);
       color: var(--api-method-documentation-url-font-color, #fff);
-      padding: 16px 8px;
+      padding: 8px;
       border-radius: 2px;
+      position: relative;
     }
 
     .url-value {
+      @apply --layout-flex;
       margin-left: 12px;
       word-break: break-all;
     }
@@ -63,6 +76,20 @@
     .method-value {
       text-transform: uppercase;
       white-space: nowrap;
+    }
+
+    .snippets-toggle-icon {
+      margin-top: 8px;
+      transform: rotateZ(0deg);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .snippets-toggle-icon[data-opened] {
+      transform: rotateZ(-180deg);
+    }
+
+    http-code-snippets {
+      margin-bottom: 40px;
     }
 
     .action-button {
@@ -118,27 +145,27 @@
       font-weight: var(--method-display-font-weigth, 400);
     }
 
-    .method-label[data-method="get"] {
+    .method-label[data-method="GET"] {
       background-color: var(--method-label-get-background-color);
       color: var(--method-label-get-color);
     }
 
-    .method-label[data-method="post"] {
+    .method-label[data-method="POST"] {
       background-color: var(--method-label-post-background-color);
       color: var(--method-label-post-color);
     }
 
-    .method-label[data-method="delete"] {
+    .method-label[data-method="DELETE"] {
       background-color: var(--method-label-delete-background-color);
       color: var(--method-label-delete-color);
     }
 
-    .method-label[data-method="put"] {
+    .method-label[data-method="PUT"] {
       background-color: var(--method-label-put-background-color);
       color: var(--method-label-put-color);
     }
 
-    .method-label[data-method="patch"] {
+    .method-label[data-method="PATCH"] {
       background-color: var(--method-label-patch-background-color);
       color: var(--method-label-patch-color);
     }
@@ -196,10 +223,21 @@
     <section class="request-documentation">
       <h2>Request</h2>
 
-      <div class="url-area">
-        <div class="method-value">[[httpMethod]]</div>
-        <div class="url-value">[[endpointUri]]</div>
-      </div>
+      <section class="request-actions">
+        <div class="url-area">
+          <div class="method-value">[[httpMethod]]</div>
+          <div class="url-value">[[endpointUri]]</div>
+          <paper-icon-button class="action-icon copy-icon" icon="arc:content-copy" on-tap="_copyUrlClipboard" title="Copy URL to clipboard"></paper-icon-button>
+        </div>
+        <paper-icon-button class="action-icon snippets-toggle-icon" data-opened$="[[snippetsOpened]]" icon="arc:expand-more" on-tap="_toggleSnippets" title="Toggle code snippets for the request"></paper-icon-button>
+      </section>
+      <clipboard-copy id="urlCopy" content="[[endpointUri]]"></clipboard-copy>
+
+      <section class="snippets">
+        <iron-collapse opened="[[snippetsOpened]]">
+          <http-code-snippets url="[[endpointUri]]" method="[[httpMethod]]" headers="[[_computeSnippetsHeaders(headers)]]" payload="[[_computeSnippetsPayload(payload)]]"></http-code-snippets>
+        </iron-collapse>
+      </section>
 
       <template is="dom-if" if="[[hasParameters]]">
         <api-parameters-document amf-model="[[amfModel]]" query-opened base-uri-parameters="[[serverVariables]]" endpoint-parameters="[[endpointVariables]]" query-parameters="[[queryParameters]]"></api-parameters-document>
@@ -238,6 +276,8 @@
         </template>
       </section>
     </template>
+
+    <api-view-model-transformer id="transformer"></api-view-model-transformer>
   </template>
   <script>
   /**
@@ -568,7 +608,11 @@
         hasPagination: {
           type: Boolean,
           computed: '_computeHasNavigation(hasPreviousLink, hasNextLink)'
-        }
+        },
+        /**
+         * Set to true to open code snippets section.
+         */
+        snippetsOpened: Boolean
       };
     }
     /**
@@ -624,9 +668,11 @@
      * @return {String|undefined} HTTP method name
      */
     _computeHttpMethod(method) {
-      if (this._hasType(method, 'http://www.w3.org/ns/hydra/core#Operation')) {
-        return this._getValue(method, 'http://www.w3.org/ns/hydra/core#method');
+      let name = this._getValue(method, 'http://www.w3.org/ns/hydra/core#method');
+      if (name) {
+        name = name.toUpperCase();
       }
+      return name;
     }
     /**
      * Computes method's endpoint name.
@@ -937,6 +983,81 @@
         }
       });
       this.dispatchEvent(e);
+    }
+
+    _copyUrlClipboard(e) {
+      const button = e.localTarget || e.target;
+      if (this.$.urlCopy.copy()) {
+          button.icon = 'arc:done';
+        } else {
+          button.icon = 'arc:error';
+        }
+        setTimeout(() => {
+          button.icon = 'arc:content-copy';
+        }, 1000);
+    }
+    /**
+     * Toggles code snippets section.
+     */
+    _toggleSnippets() {
+      this.snippetsOpened = !this.snippetsOpened;
+    }
+
+    /**
+     * Computes example headers string for code snippets.
+     * @param {Array} headers Headers model from AMF
+     * @return {String|undefind} Computed example value for headers
+     */
+    _computeSnippetsHeaders(headers) {
+      let result;
+      if (headers && headers.length) {
+        result = '';
+        headers.forEach((item) => {
+          const name = this._getValue(item, 'http://schema.org/name');
+          const value = this._computePropertyValue(item) || '';
+          result += `${name}: ${value}\n`;
+        });
+      }
+      return result;
+    }
+    /**
+     * Computes example payload string for code snippets.
+     * @param {Array} payload Payload model from AMF
+     * @return {String|undefind} Computed example value for payload
+     */
+    _computeSnippetsPayload(payload) {
+      if (!payload) {
+        return;
+      }
+      if (payload instanceof Array) {
+        payload = payload [0];
+      }
+      return this.$.transformer.bodyToExample(payload);
+    }
+    /**
+     * Tries to find an example value (whether it's default value or from an
+     * example) to put it into snippet's values.
+     *
+     * @param {Object} item A http://raml.org/vocabularies/http#Parameter property
+     * @return {String|undefined}
+     */
+    _computePropertyValue(item) {
+      let schema = item && item['http://raml.org/vocabularies/http#schema'];
+      if (!schema) {
+        return;
+      }
+      schema = schema[0];
+      const defValKey = 'http://www.w3.org/ns/shacl#defaultValue';
+      let value = this._getValue(item, defValKey);
+      if (!value) {
+        const examplesKey = 'http://raml.org/vocabularies/document#examples';
+        let example = item[examplesKey];
+        if (example) {
+          example = example[0];
+          value = this._getValue(item, 'http://raml.org/vocabularies/document#value');
+        }
+      }
+      return value;
     }
     /**
      * Dispatched when the user requested the "Try it" view.

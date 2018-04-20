@@ -22,6 +22,8 @@
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
       :root {
+        --primary-color: #00709a;
+        --accent-color: #cc143c;
         --arc-font-display1: {
           @apply --paper-font-display1;
         };
@@ -60,6 +62,37 @@
         --method-label-patch-color: #fff;
         --method-label-delete-background-color: rgb(244, 67, 54);
         --method-label-delete-color: #fff;
+
+        --http-code-snippet-container-highlighted: {
+          background-color: #f5f5f5;
+        };
+
+        --http-code-snippet-line: {
+          word-break: break-all;
+          white-space: pre-wrap;
+        };
+
+        --http-code-snippet-container: {
+          background-color: #e0e0e0;
+          padding: 8px;
+        };
+
+        --paper-tabs-selection-bar-color: var(--primary-color);
+        --tabs-selection-width: 2px;
+        --paper-tabs-selection-bar: {
+          border-width: var(--tabs-selection-width);
+          border-color: var(--primary-color);
+        };
+        --paper-tabs-content: {
+          @apply --paper-font-common-base;
+          height: calc(100% - var(--tabs-selection-width));
+          border-bottom: var(--tabs-selection-width) solid rgba(39,47,51,.1);
+          font-style: normal;
+          color: rgba(0,0,0,0.87);
+        };
+        --paper-tab-content-unselected: {
+          color: rgba(0,0,0,0.78);
+        };
       }
 
       html,
