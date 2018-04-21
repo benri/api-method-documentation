@@ -18,7 +18,6 @@
 <link rel="import" href="../api-view-model-transformer/api-view-model-transformer.html">
 <link rel="import" href="../amf-helper-mixin/amf-helper-mixin.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
-
 <dom-module id="api-method-documentation">
   <template>
     <style include="markdown-styles"></style>
@@ -675,9 +674,13 @@
      * "Try it" button click handler. Dispatches `tryit-requested` custom event
      */
     _tryIt() {
+      const id = this.method['@id'];
       this.dispatchEvent(new CustomEvent('tryit-requested', {
         bubbles: true,
-        composed: true
+        composed: true,
+        detail: {
+          id
+        }
       }));
     }
     /**
@@ -825,6 +828,9 @@
     /**
      * Dispatched when the user requested the "Try it" view.
      * @event tryit-requested
+     * @param {String} id ID of requested method in AMF model.
+     * It might be required if the request for try it view comes from
+     * a context where more than one method is rendered at the same time.
      */
     /**
      * Dispatched when the user requested previous / next
