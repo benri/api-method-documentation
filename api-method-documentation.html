@@ -368,9 +368,9 @@
    * @polymer
    * @demo demo/index.html
    * @memberof ApiElements
-   * @appliesMixin ApiComponents.AmfHelperMixin
+   * @appliesMixin ApiElements.AmfHelperMixin
    */
-  class apiMethodDocumentation extends ApiComponents.AmfHelperMixin(Polymer.Element) {
+  class apiMethodDocumentation extends ApiElements.AmfHelperMixin(Polymer.Element) {
     static get is() { return 'api-method-documentation'; }
     static get properties() {
       return {
