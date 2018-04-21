@@ -370,7 +370,7 @@
    * @memberof ApiElements
    * @appliesMixin ApiElements.AmfHelperMixin
    */
-  class apiMethodDocumentation extends ApiElements.AmfHelperMixin(Polymer.Element) {
+  class ApiMethodDocumentation extends ApiElements.AmfHelperMixin(Polymer.Element) {
     static get is() { return 'api-method-documentation'; }
     static get properties() {
       return {
@@ -840,6 +840,6 @@
      * @param {String} type
      */
   }
-  window.customElements.define(apiMethodDocumentation.is, apiMethodDocumentation);
+  window.customElements.define(ApiMethodDocumentation.is, ApiMethodDocumentation);
   </script>
 </dom-module>
