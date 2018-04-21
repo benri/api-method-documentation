@@ -170,16 +170,12 @@
           flush(() => done());
         });
 
-        test('parentName is computed', () => {
-          assert.equal(element.parentName, 'People');
-        });
-
         test('methodName is computed', () => {
           assert.equal(element.methodName, 'List people');
         });
 
         test('httpMethod is computed', () => {
-          assert.equal(element.httpMethod, 'get');
+          assert.equal(element.httpMethod, 'GET');
         });
 
         test('endpointUri is computed', () => {
@@ -250,12 +246,6 @@
           element.endpoint = endpoint;
           element.method = method;
           flush(() => done());
-        });
-
-        test('parent-name label is rendered', () => {
-          const node = element.shadowRoot.querySelector('.parent-name');
-          assert.ok(node);
-          assert.equal(node.innerText, 'People:');
         });
 
         test('method-name label is rendered', () => {

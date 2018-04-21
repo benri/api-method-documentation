@@ -29,7 +29,8 @@
     "http-code-snippets": "advanced-rest-client/http-code-snippets#2.0.0-preview",
     "clipboard-copy": "advanced-rest-client/clipboard-copy#^2.0.1",
     "iron-collapse": "PolymerElements/iron-collapse#^2.2.0",
-    "api-view-model-transformer": "advanced-rest-client/api-view-model-transformer#2.0-preview"
+    "api-view-model-transformer": "advanced-rest-client/api-view-model-transformer#2.0-preview",
+    "amf-helper-mixin": "advanced-rest-client/amf-helper-mixin#2.0.0-preview"
   },
   "devDependencies": {
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
