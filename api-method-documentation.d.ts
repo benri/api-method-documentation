@@ -20,6 +20,14 @@
 /// <reference path="../paper-button/paper-button.d.ts" />
 /// <reference path="../markdown-styles/markdown-styles.d.ts" />
 /// <reference path="../marked-element/marked-element.d.ts" />
+/// <reference path="../paper-icon-button/paper-icon-button.d.ts" />
+/// <reference path="../arc-icons/arc-icons.d.ts" />
+/// <reference path="../http-code-snippets/http-code-snippets.d.ts" />
+/// <reference path="../clipboard-copy/clipboard-copy.d.ts" />
+/// <reference path="../iron-collapse/iron-collapse.d.ts" />
+/// <reference path="../api-view-model-transformer/api-view-model-transformer.d.ts" />
+/// <reference path="../amf-helper-mixin/amf-helper-mixin.d.ts" />
+/// <reference path="../iron-icon/iron-icon.d.ts" />
 
 declare namespace ApiElements {
 
@@ -80,13 +88,23 @@ declare namespace ApiElements {
    * Custom property | Description | Default
    * ----------------|-------------|----------
    * `--api-method-documentation` | Mixin applied to this elment | `{}`
+   * `--arc-font-headline` | Theme mixin, Applied to H1 element | `{}`
+   * `--arc-font-title` | Theme mixin, applied to h2 element | `{}`
+   * `--api-method-documentation-title-method-font-weight` | Font weight of method name title. | `500`
+   * `--arc-font-code1` | Theme mixin, applied to the URL area | `{}`
+   * `--api-method-documentation-url-font-size` | Font size of endpoin URL | `16px`
+   * `--api-method-documentation-url-background-color` | Background color of the URL section | `#424242`
+   * `--api-method-documentation-url-font-color` | Font color of the URL area | `#fff`
+   * `--api-method-documentation-try-it-background-color` | Background color of the Try it button | `--primary-color`
+   * `--api-method-documentation-try-it-color` | Color of the Try it button | `--primary-action-color` or `#fff`
+   * `--api-method-documentation-try-it-background-color-hover` | Background color of the Try it button when hovered | `--primary-color`
+   * `--api-method-documentation-try-it-color-hover` | Color of the Try it button when hovered | `--primary-action-color` or `#fff`
+   * `--api-method-documentation-bottom-navigation-border-color` | Color of the top border of the bottom navigartion | `#546E7A`
+   * `--api-method-documentation-bottom-navigation-color` | Color of of the bottom navigartion (icon + text) | `#546E7A`
    */
-  class apiMethodDocumentation extends Polymer.Element {
-
-    /**
-     * `raml-aware` scope property to use.
-     */
-    aware: string|null|undefined;
+  class ApiMethodDocumentation extends
+    ApiElements.AmfHelperMixin(
+    Polymer.Element) {
 
     /**
      * Generated AMF json/ld model form the API spec.
@@ -97,6 +115,11 @@ declare namespace ApiElements {
      * It is only usefult for the element to resolve references.
      */
     amfModel: object|any[]|null;
+
+    /**
+     * `raml-aware` scope property to use.
+     */
+    aware: string|null|undefined;
 
     /**
      * AMF method definition as a `http://www.w3.org/ns/hydra/core#supportedOperation`
@@ -114,13 +137,6 @@ declare namespace ApiElements {
      * The try it button is not rendered when set.
      */
     noTryIt: boolean|null|undefined;
-
-    /**
-     * Parent endpoint name.
-     * It should be either a "displayName" or endpoint's relative
-     * path.
-     */
-    readonly parentName: string|null|undefined;
 
     /**
      * Computed value from the method model, name of the method.
@@ -253,21 +269,44 @@ declare namespace ApiElements {
     narrow: boolean|null|undefined;
 
     /**
-     * Checks if property item has a type.
-     *
-     * @param model Model item.
-     * @param type A type to lookup
+     * Model to generate a link to previous HTTP method.
+     * It should contain `id` and `label` properties
      */
-    _hasType(model: object|null, type: String|null): Boolean|null;
+    previous: object|null|undefined;
 
     /**
-     * Gets a signle scalar value from a model.
-     *
-     * @param model Amf model to extract the value from.
-     * @param key Model key to search for the value
-     * @returns Value for key
+     * Computed value, true if `previous` is set
      */
-    _getValue(model: object|null, key: String|null): any|null;
+    readonly hasPreviousLink: boolean|null|undefined;
+
+    /**
+     * Model to generate a link to next HTTP method.
+     * It should contain `id` and `label` properties
+     */
+    next: object|null|undefined;
+
+    /**
+     * Computed value, true if `next` is set
+     */
+    readonly hasNextLink: boolean|null|undefined;
+
+    /**
+     * Computed value, true to render bottom navigation
+     */
+    readonly hasPagination: boolean|null|undefined;
+
+    /**
+     * Set to true to open code snippets section.
+     */
+    snippetsOpened: boolean|null|undefined;
+
+    /**
+     * Tries to find an example value (whether it's default value or from an
+     * example) to put it into snippet's values.
+     *
+     * @param item A http://raml.org/vocabularies/http#Parameter property
+     */
+    _computePropertyValue(item: object|null): String|null|undefined;
 
     /**
      * Computes value for `methodName` property.
@@ -287,95 +326,12 @@ declare namespace ApiElements {
     _computeHttpMethod(method: object|null): String|null|undefined;
 
     /**
-     * Computes method's endpoint name.
-     * It looks for `http://schema.org/name` in the endpoint definition and
-     * if not found it uses path as name.
-     *
-     * @param endpoint Endpoint model.
-     * @returns Endpoint name.
-     */
-    _computeEndpointName(endpoint: object|null): String|null;
-
-    /**
-     * Computes endpoint's URI based on `amfModel` and `endpoint` models.
-     *
-     * @param server Server model of AMF API.
-     * @param endpoint Endpoint model
-     * @param baseUri Current value of `baseUri` property
-     * @returns Endpoint's URI
-     */
-    _computeEndpointUri(server: object|null, endpoint: object|null, baseUri: String|null): String|null;
-
-    /**
-     * Computes base URI value from either `baseUri`, `iron-meta` with
-     * `ApiBaseUri` key or `amfModel` value (in this order).
-     *
-     * @param baseUri Value of `baseUri` property
-     * @param server AMF API model for Server.
-     * @returns Base uri value. Can be empty string.
-     */
-    _getBaseUri(baseUri: String|null, server: object|null): String|null;
-
-    /**
-     * Computes base URI from AMF model.
-     *
-     * @param server AMF API model for Server.
-     * @returns Base uri value if exists.
-     */
-    _getAmfBaseUri(server: object|null): String|null|undefined;
-
-    /**
-     * Computes value for `server` property that is later used with other computations.
-     *
-     * @param model AMF model for an API
-     * @returns The server model
-     */
-    _computeServer(model: any[]|object|null): object|null;
-
-    /**
-     * Computes value of `description` property.
-     *
-     * @param method SupportedOperation AMF model.
-     * @returns Method description if defined.
-     */
-    _computeMethodDescription(method: object|null): String|null|undefined;
-
-    /**
-     * Computes value for `hasCustomProperties` property.
-     *
-     * @param method AMF `supportedOperation` model
-     */
-    _computeHasCustomProperties(method: object|null): Boolean|null;
-
-    /**
-     * Computes value for the `expects` property.
-     *
-     * @param method AMF `supportedOperation` model
-     */
-    _computeExpects(method: object|null): object|null;
-
-    /**
      * Computes value for `hasPathParameters` property
      *
      * @param sVars Current value of `serverVariables` property
      * @param eVars Current value of `endpointVariables` property
      */
     _computeHasPathParameters(sVars: any[]|null, eVars: any[]|null): Boolean|null;
-
-    /**
-     * Computes value for `queryParameters` property
-     *
-     * @param expects SupportedOperation expects property
-     * @returns Parameetrs array
-     */
-    _computeQueryParameters(expects: object|null): Array<object|null>|null|undefined;
-
-    /**
-     * Computes value for `hasQueryParameters` property.
-     *
-     * @param params List of query parameters.
-     */
-    _computeHasQueryParameters(params: any[]|null): Boolean|null;
 
     /**
      * Computes value for `hasParameters` property.
@@ -385,86 +341,75 @@ declare namespace ApiElements {
     _computeHasParameters(hasPath: Boolean|null, hasQuery: Boolean|null): Boolean|null;
 
     /**
-     * Computes value for `serverVariables` property.
-     *
-     * @param server AMF API model for Server.
-     * @returns Variables if defined.
-     */
-    _computeServerVariables(server: object|null): Array<object|null>|null|undefined;
-
-    /**
-     * Computes value for `endpointVariables` property.
-     *
-     * @param endpoint Endpoint model
-     * @returns Parameters if defined.
-     */
-    _computeEndpointVariables(endpoint: object|null): Array<object|null>|null|undefined;
-
-    /**
-     * Computes value for the `payload` property
-     *
-     * @param expects Current value of `expects` property.
-     * @returns Payload model if defined.
-     */
-    _computePayload(expects: object|null): Array<object|null>|null|undefined;
-
-    /**
-     * Computes value for `hasPayload` property
-     *
-     * @param payload Current value of `payload` property
-     */
-    _computeHasPayload(payload: Array<object|null>|null): Boolean|null;
-
-    /**
-     * Computes value for the `headers` property
-     *
-     * @param expects Current value of `expects` property.
-     * @returns Headers model if defined.
-     */
-    _computeHeaders(expects: object|null): Array<object|null>|null|undefined;
-
-    /**
-     * Computes value for `hasHeaders` property
-     *
-     * @param headers Current value of `headers` property
-     */
-    _computeHasHeaders(headers: Array<object|null>|null): Boolean|null;
-
-    /**
-     * Computes value for `returns` property
-     *
-     * @param method AMF `supportedOperation` model
-     */
-    _computeReturns(method: object|null): Array<object|null>|null|undefined;
-
-    /**
-     * Computes value for `hasReturns` property.
-     *
-     * @param returns Current value of `returns` property
-     */
-    _computeHasReturns(returns: Array<object|null>|null): Boolean|null;
-
-    /**
-     * Computes value for `security` property
-     *
-     * @param method AMF `supportedOperation` model
-     */
-    _computeSecurity(method: object|null): Array<object|null>|null|undefined;
-
-    /**
-     * Computes value for `hasSecurity` property.
-     *
-     * @param security Current value of `security` property
-     */
-    _computeHasSecurity(security: Array<object|null>|null): Boolean|null;
-
-    /**
      * "Try it" button click handler. Dispatches `tryit-requested` custom event
      */
     _tryIt(): void;
+
+    /**
+     * Computes value for `hasPreviousLink` property
+     */
+    _computeHasPreviousLink(previous: object|null): Boolean|null;
+
+    /**
+     * Computes value for `hasNextLink` property
+     */
+    _computeHasNextLink(next: object|null): Boolean|null;
+
+    /**
+     * Computes value for `hasPagination` property
+     */
+    _computeHasNavigation(previous: Boolean|null, next: Boolean|null): Boolean|null;
+
+    /**
+     * Navigates to next method. Calls `_navigate` with id of previous item.
+     */
+    _navigatePrevious(): void;
+
+    /**
+     * Navigates to next method. Calls `_navigate` with id of next item.
+     */
+    _navigateNext(): void;
+
+    /**
+     * Dispatches `api-navigation-selection-changed` so other components
+     * can update their state.
+     */
+    _navigate(id: String|null, type: String|null): void;
+    _copyUrlClipboard(e: any): void;
+
+    /**
+     * Toggles code snippets section.
+     */
+    _toggleSnippets(): void;
+
+    /**
+     * Computes example headers string for code snippets.
+     *
+     * @param headers Headers model from AMF
+     * @returns Computed example value for headers
+     */
+    _computeSnippetsHeaders(headers: any[]|null): String|undefind|null;
+
+    /**
+     * Computes example payload string for code snippets.
+     *
+     * @param payload Payload model from AMF
+     * @returns Computed example value for payload
+     */
+    _computeSnippetsPayload(payload: any[]|null): String|undefind|null;
+
+    /**
+     * Computes a label for the section toggle buttons.
+     */
+    _computeToggleActionLabel(opened: any): any;
+
+    /**
+     * Computes class for the toggle's button icon.
+     */
+    _computeToggleIconClass(opened: any): any;
   }
 }
 
 interface HTMLElementTagNameMap {
-  "api-method-documentation": ApiElements.apiMethodDocumentation;
+  "api-method-documentation": ApiElements.ApiMethodDocumentation;
 }
