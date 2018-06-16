@@ -197,7 +197,7 @@ securitySchemes:
             type: !include schemas/person.xsd
             example: !include examples/person.xml
   /{personId}:
-    securedBy: x-custom
+    securedBy: [x-custom,basic]
     type: ResourceNotFound
     displayName: A person
     description: The endpoint to access information about the person
@@ -362,7 +362,7 @@ securitySchemes:
               application/json:
                 type: ExampleType.Manager[]
 /messages:
-  securedBy: [oauth_2_0]
+  securedBy: [basic, oauth_2_0]
   post:
     description: Create a new message
     is:  [Adminable]

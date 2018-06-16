@@ -476,6 +476,48 @@
       });
     });
   });
+
+  suite('Security documentation', () => {
+    let element;
+    let amf;
+    let endpoint;
+    let method;
+    suiteSetup((done) => {
+      AmfLoader.load(3, 0)
+      .then((data) => {
+        amf = data[0];
+        endpoint = data[1];
+        method = data[2];
+
+        // tests here do not change state so it can be initialized only once
+        element = fixture('Basic');
+        element.amfModel = amf;
+        element.endpoint = endpoint;
+        element.method = method;
+        flush(() => done());
+      });
+    });
+
+    test('Computes security', () => {
+      assert.typeOf(element.security, 'array');
+      assert.lengthOf(element.security, 2);
+    });
+
+    test('Computes hasSecurity', () => {
+      assert.isTrue(element.hasSecurity);
+    });
+
+    test('Renders security section', () => {
+      const section = element.shadowRoot.querySelector('.security');
+      assert.ok(section);
+    });
+
+    test('Toggle button toggles operned state', () => {
+      const section = element.shadowRoot.querySelector('.toggle-button.security');
+      section.click();
+      assert.isTrue(element.securityOpened);
+    });
+  });
   </script>
 </body>
 </html>
