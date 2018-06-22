@@ -28,6 +28,7 @@
 /// <reference path="../api-view-model-transformer/api-view-model-transformer.d.ts" />
 /// <reference path="../amf-helper-mixin/amf-helper-mixin.d.ts" />
 /// <reference path="../iron-icon/iron-icon.d.ts" />
+/// <reference path="../api-security-documentation/api-security-documentation.d.ts" />
 
 declare namespace ApiElements {
 
@@ -296,9 +297,14 @@ declare namespace ApiElements {
     readonly hasPagination: boolean|null|undefined;
 
     /**
-     * Set to true to open code snippets section.
+     * When set code snippets are rendered.
      */
     snippetsOpened: boolean|null|undefined;
+
+    /**
+     * When set security details are rendered.
+     */
+    securityOpened: boolean|null|undefined;
 
     /**
      * Tries to find an example value (whether it's default value or from an
@@ -381,6 +387,11 @@ declare namespace ApiElements {
      * Toggles code snippets section.
      */
     _toggleSnippets(): void;
+
+    /**
+     * Toggles security section.
+     */
+    _toggleSecurity(): void;
 
     /**
      * Computes example headers string for code snippets.
