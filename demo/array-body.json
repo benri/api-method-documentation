@@ -94,7 +94,7 @@
                         ],
                         "http://raml.org/vocabularies/http#schema": [
                           {
-                            "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/get/200/application%2Fjson/array/schema",
+                            "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/get/200/application%2Fjson/array/schema/array/default-array",
                             "@type": [
                               "http://raml.org/vocabularies/shapes#ArrayShape",
                               "http://www.w3.org/ns/shacl#Shape",
@@ -124,11 +124,6 @@
                                     "@value": "AppPerson"
                                   }
                                 ]
-                              }
-                            ],
-                            "http://www.w3.org/ns/shacl#name": [
-                              {
-                                "@value": "schema"
                               }
                             ]
                           }
