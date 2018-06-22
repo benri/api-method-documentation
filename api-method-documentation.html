@@ -55,6 +55,7 @@
 
     .method-name {
       font-weight: var(--api-method-documentation-title-method-font-weight, 500);
+      text-transform: capitalize;
     }
 
     .url-area {
@@ -233,7 +234,6 @@
     </template>
     <div class="title-area">
       <h1 class="title">
-        <span class="method-label" data-method$="[[httpMethod]]">[[httpMethod]]</span>
         <span class="method-name">[[methodName]]</span>
       </h1>
       <template is="dom-if" if="[[!noTryIt]]">
@@ -257,7 +257,7 @@
       <h2>Request</h2>
 
       <section class="url-area">
-        <div class="method-value">[[httpMethod]]</div>
+        <div class="method-value"><span class="method-label" data-method$="[[httpMethod]]">[[httpMethod]]</span></div>
         <div class="url-value">[[endpointUri]]</div>
         <paper-icon-button class="action-icon copy-icon" icon="arc:content-copy" on-tap="_copyUrlClipboard" title="Copy URL to clipboard"></paper-icon-button>
       </section>
