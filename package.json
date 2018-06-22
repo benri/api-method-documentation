@@ -1,7 +1,7 @@
 {
   "name": "@api-components/api-method-documentation",
   "description": "A HTTP method documentation build from AMF model",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "license": "Apache-2.0",
   "main": "api-method-documentation.html",
   "authors": [
@@ -10,7 +10,7 @@
   ],
   "devDependencies": {
     "@polymer/gen-typescript-declarations": "^1.1.1",
-    "amf-client-js": "^1.4.0-30"
+    "amf-client-js": "^1.5.0-1"
   },
   "private": false,
   "scripts": {

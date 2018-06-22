@@ -820,7 +820,7 @@
                     ],
                     "http://raml.org/vocabularies/document#target": [
                       {
-                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable",
+                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable",
                         "@type": [
                           "http://raml.org/vocabularies/document#Trait",
                           "http://raml.org/vocabularies/document#AbstractDeclaration",
@@ -833,25 +833,25 @@
                         ],
                         "http://raml.org/vocabularies/document#dataNode": [
                           {
-                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1",
+                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1",
                             "@type": [
                               "http://raml.org/vocabularies/data#Object"
                             ],
                             "http://raml.org/vocabularies/data#queryParameters": [
                               {
-                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2",
+                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2",
                                 "@type": [
                                   "http://raml.org/vocabularies/data#Object"
                                 ],
                                 "http://raml.org/vocabularies/data#batchSize": [
                                   {
-                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8",
+                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8",
                                     "@type": [
                                       "http://raml.org/vocabularies/data#Object"
                                     ],
                                     "http://raml.org/vocabularies/data#default": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8/scalar_10",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8/scalar_10",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -865,7 +865,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#description": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8/scalar_9",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8/scalar_9",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -879,7 +879,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#required": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8/scalar_11",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8/scalar_11",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -893,7 +893,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#type": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8/scalar_12",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8/scalar_12",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -909,13 +909,13 @@
                                 ],
                                 "http://raml.org/vocabularies/data#startIndex": [
                                   {
-                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3",
+                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3",
                                     "@type": [
                                       "http://raml.org/vocabularies/data#Object"
                                     ],
                                     "http://raml.org/vocabularies/data#default": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3/scalar_5",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3/scalar_5",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -929,7 +929,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#description": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3/scalar_4",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3/scalar_4",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -943,7 +943,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#required": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3/scalar_6",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3/scalar_6",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -957,7 +957,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#type": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3/scalar_7",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3/scalar_7",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -975,31 +975,31 @@
                             ],
                             "http://raml.org/vocabularies/data#responses": [
                               {
-                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13",
+                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13",
                                 "@type": [
                                   "http://raml.org/vocabularies/data#Object"
                                 ],
                                 "http://raml.org/vocabularies/data#200": [
                                   {
-                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14",
+                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14",
                                     "@type": [
                                       "http://raml.org/vocabularies/data#Object"
                                     ],
                                     "http://raml.org/vocabularies/data#body": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Object"
                                         ],
                                         "http://raml.org/vocabularies/data#properties": [
                                           {
-                                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/object_17",
+                                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/object_17",
                                             "@type": [
                                               "http://raml.org/vocabularies/data#Object"
                                             ],
                                             "http://raml.org/vocabularies/data#batchSize": [
                                               {
-                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/object_17/scalar_19",
+                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/object_17/scalar_19",
                                                 "@type": [
                                                   "http://raml.org/vocabularies/data#Scalar"
                                                 ],
@@ -1013,7 +1013,7 @@
                                             ],
                                             "http://raml.org/vocabularies/data#startIndex": [
                                               {
-                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/object_17/scalar_18",
+                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/object_17/scalar_18",
                                                 "@type": [
                                                   "http://raml.org/vocabularies/data#Scalar"
                                                 ],
@@ -1027,7 +1027,7 @@
                                             ],
                                             "http://raml.org/vocabularies/data#totalCount": [
                                               {
-                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/object_17/scalar_20",
+                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/object_17/scalar_20",
                                                 "@type": [
                                                   "http://raml.org/vocabularies/data#Scalar"
                                                 ],
@@ -1043,7 +1043,7 @@
                                         ],
                                         "http://raml.org/vocabularies/data#type": [
                                           {
-                                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/scalar_16",
+                                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/scalar_16",
                                             "@type": [
                                               "http://raml.org/vocabularies/data#Scalar"
                                             ],
@@ -1767,7 +1767,7 @@
                         ],
                         "http://raml.org/vocabularies/http#schema": [
                           {
-                            "@id": "file://demo/appian-api/appian-api.raml#/web-api/end-points/%2FprocessModel%2F%7BprocessModelUuid%7D%2Fstart/post/request/application%2Fjson/schema",
+                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessVariableList",
                             "@type": [
                               "http://www.w3.org/ns/shacl#NodeShape",
                               "http://www.w3.org/ns/shacl#Shape",
@@ -1781,7 +1781,7 @@
                             ],
                             "http://www.w3.org/ns/shacl#property": [
                               {
-                                "@id": "file://demo/appian-api/appian-api.raml#/web-api/end-points/%2FprocessModel%2F%7BprocessModelUuid%7D%2Fstart/post/request/application%2Fjson/schema/property/%2F%2F",
+                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessVariableList/property/%2F%2F",
                                 "@type": [
                                   "http://www.w3.org/ns/shacl#PropertyShape",
                                   "http://www.w3.org/ns/shacl#Shape",
@@ -1794,7 +1794,7 @@
                                 ],
                                 "http://raml.org/vocabularies/shapes#range": [
                                   {
-                                    "@id": "file://demo/appian-api/appian-api.raml#/web-api/end-points/%2FprocessModel%2F%7BprocessModelUuid%7D%2Fstart/post/request/application%2Fjson/schema/property/%2F%2F/any/%2F%2F",
+                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessVariableList/property/%2F%2F/any/%2F%2F",
                                     "@type": [
                                       "http://raml.org/vocabularies/shapes#AnyShape",
                                       "http://www.w3.org/ns/shacl#Shape",
@@ -1810,6 +1810,11 @@
                                 "http://www.w3.org/ns/shacl#minCount": [
                                   {
                                     "@value": 1
+                                  }
+                                ],
+                                "http://raml.org/vocabularies/shapes#patternName": [
+                                  {
+                                    "@value": "^.*$"
                                   }
                                 ],
                                 "http://www.w3.org/ns/shacl#name": [
@@ -3029,6 +3034,11 @@
                                             "@value": 1
                                           }
                                         ],
+                                        "http://raml.org/vocabularies/shapes#patternName": [
+                                          {
+                                            "@value": "^.*$"
+                                          }
+                                        ],
                                         "http://www.w3.org/ns/shacl#name": [
                                           {
                                             "@value": "//"
@@ -3039,6 +3049,61 @@
                                     "http://www.w3.org/ns/shacl#name": [
                                       {
                                         "@value": "ProcessVariableList"
+                                      }
+                                    ],
+                                    "http://raml.org/vocabularies/document#examples": [
+                                      {
+                                        "@id": "file://demo/appian-api/appian-api.raml#/web-api/end-points/%2FprocessModel%2F%7BprocessModelUuid%7D%2Fstart/post/request/application%2Fjson/schema/example/default-example",
+                                        "@type": [
+                                          "http://raml.org/vocabularies/document#Example",
+                                          "http://raml.org/vocabularies/document#DomainElement"
+                                        ],
+                                        "http://raml.org/vocabularies/document#strict": [
+                                          {
+                                            "@value": true
+                                          }
+                                        ],
+                                        "http://raml.org/vocabularies/document#structuredValue": [
+                                          {
+                                            "@id": "file://demo/appian-api/appian-api.raml#/web-api/end-points/%2FprocessModel%2F%7BprocessModelUuid%7D%2Fstart/post/request/application%2Fjson/schema/example/default-example/object_1",
+                                            "@type": [
+                                              "http://raml.org/vocabularies/data#Object"
+                                            ],
+                                            "http://raml.org/vocabularies/data#processVar1": [
+                                              {
+                                                "@id": "file://demo/appian-api/appian-api.raml#/web-api/end-points/%2FprocessModel%2F%7BprocessModelUuid%7D%2Fstart/post/request/application%2Fjson/schema/example/default-example/object_1/scalar_2",
+                                                "@type": [
+                                                  "http://raml.org/vocabularies/data#Scalar"
+                                                ],
+                                                "http://raml.org/vocabularies/data#value": [
+                                                  {
+                                                    "@value": "value1",
+                                                    "@type": "http://www.w3.org/2001/XMLSchema#string"
+                                                  }
+                                                ]
+                                              }
+                                            ],
+                                            "http://raml.org/vocabularies/data#processVar2": [
+                                              {
+                                                "@id": "file://demo/appian-api/appian-api.raml#/web-api/end-points/%2FprocessModel%2F%7BprocessModelUuid%7D%2Fstart/post/request/application%2Fjson/schema/example/default-example/object_1/scalar_3",
+                                                "@type": [
+                                                  "http://raml.org/vocabularies/data#Scalar"
+                                                ],
+                                                "http://raml.org/vocabularies/data#value": [
+                                                  {
+                                                    "@value": "value2",
+                                                    "@type": "http://www.w3.org/2001/XMLSchema#string"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "http://www.w3.org/ns/shacl#raw": [
+                                          {
+                                            "@value": "{\n  \"processVar1\": \"value1\",\n  \"processVar2\": \"value2\"\n}\n"
+                                          }
+                                        ]
                                       }
                                     ]
                                   }
@@ -4792,7 +4857,7 @@
                     ],
                     "http://raml.org/vocabularies/document#target": [
                       {
-                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable",
+                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable",
                         "@type": [
                           "http://raml.org/vocabularies/document#Trait",
                           "http://raml.org/vocabularies/document#AbstractDeclaration",
@@ -4805,25 +4870,25 @@
                         ],
                         "http://raml.org/vocabularies/document#dataNode": [
                           {
-                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1",
+                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1",
                             "@type": [
                               "http://raml.org/vocabularies/data#Object"
                             ],
                             "http://raml.org/vocabularies/data#queryParameters": [
                               {
-                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2",
+                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2",
                                 "@type": [
                                   "http://raml.org/vocabularies/data#Object"
                                 ],
                                 "http://raml.org/vocabularies/data#batchSize": [
                                   {
-                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8",
+                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8",
                                     "@type": [
                                       "http://raml.org/vocabularies/data#Object"
                                     ],
                                     "http://raml.org/vocabularies/data#default": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8/scalar_10",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8/scalar_10",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -4837,7 +4902,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#description": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8/scalar_9",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8/scalar_9",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -4851,7 +4916,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#required": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8/scalar_11",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8/scalar_11",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -4865,7 +4930,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#type": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8/scalar_12",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8/scalar_12",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -4881,13 +4946,13 @@
                                 ],
                                 "http://raml.org/vocabularies/data#startIndex": [
                                   {
-                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3",
+                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3",
                                     "@type": [
                                       "http://raml.org/vocabularies/data#Object"
                                     ],
                                     "http://raml.org/vocabularies/data#default": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3/scalar_5",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3/scalar_5",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -4901,7 +4966,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#description": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3/scalar_4",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3/scalar_4",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -4915,7 +4980,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#required": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3/scalar_6",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3/scalar_6",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -4929,7 +4994,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#type": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3/scalar_7",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3/scalar_7",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -4947,31 +5012,31 @@
                             ],
                             "http://raml.org/vocabularies/data#responses": [
                               {
-                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13",
+                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13",
                                 "@type": [
                                   "http://raml.org/vocabularies/data#Object"
                                 ],
                                 "http://raml.org/vocabularies/data#200": [
                                   {
-                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14",
+                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14",
                                     "@type": [
                                       "http://raml.org/vocabularies/data#Object"
                                     ],
                                     "http://raml.org/vocabularies/data#body": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Object"
                                         ],
                                         "http://raml.org/vocabularies/data#properties": [
                                           {
-                                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/object_17",
+                                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/object_17",
                                             "@type": [
                                               "http://raml.org/vocabularies/data#Object"
                                             ],
                                             "http://raml.org/vocabularies/data#batchSize": [
                                               {
-                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/object_17/scalar_19",
+                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/object_17/scalar_19",
                                                 "@type": [
                                                   "http://raml.org/vocabularies/data#Scalar"
                                                 ],
@@ -4985,7 +5050,7 @@
                                             ],
                                             "http://raml.org/vocabularies/data#startIndex": [
                                               {
-                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/object_17/scalar_18",
+                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/object_17/scalar_18",
                                                 "@type": [
                                                   "http://raml.org/vocabularies/data#Scalar"
                                                 ],
@@ -4999,7 +5064,7 @@
                                             ],
                                             "http://raml.org/vocabularies/data#totalCount": [
                                               {
-                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/object_17/scalar_20",
+                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/object_17/scalar_20",
                                                 "@type": [
                                                   "http://raml.org/vocabularies/data#Scalar"
                                                 ],
@@ -5015,7 +5080,7 @@
                                         ],
                                         "http://raml.org/vocabularies/data#type": [
                                           {
-                                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/scalar_16",
+                                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/scalar_16",
                                             "@type": [
                                               "http://raml.org/vocabularies/data#Scalar"
                                             ],
@@ -6651,7 +6716,7 @@
                     ],
                     "http://raml.org/vocabularies/document#target": [
                       {
-                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable",
+                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable",
                         "@type": [
                           "http://raml.org/vocabularies/document#Trait",
                           "http://raml.org/vocabularies/document#AbstractDeclaration",
@@ -6664,25 +6729,25 @@
                         ],
                         "http://raml.org/vocabularies/document#dataNode": [
                           {
-                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1",
+                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1",
                             "@type": [
                               "http://raml.org/vocabularies/data#Object"
                             ],
                             "http://raml.org/vocabularies/data#queryParameters": [
                               {
-                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2",
+                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2",
                                 "@type": [
                                   "http://raml.org/vocabularies/data#Object"
                                 ],
                                 "http://raml.org/vocabularies/data#batchSize": [
                                   {
-                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8",
+                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8",
                                     "@type": [
                                       "http://raml.org/vocabularies/data#Object"
                                     ],
                                     "http://raml.org/vocabularies/data#default": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8/scalar_10",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8/scalar_10",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -6696,7 +6761,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#description": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8/scalar_9",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8/scalar_9",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -6710,7 +6775,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#required": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8/scalar_11",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8/scalar_11",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -6724,7 +6789,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#type": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8/scalar_12",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8/scalar_12",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -6740,13 +6805,13 @@
                                 ],
                                 "http://raml.org/vocabularies/data#startIndex": [
                                   {
-                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3",
+                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3",
                                     "@type": [
                                       "http://raml.org/vocabularies/data#Object"
                                     ],
                                     "http://raml.org/vocabularies/data#default": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3/scalar_5",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3/scalar_5",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -6760,7 +6825,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#description": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3/scalar_4",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3/scalar_4",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -6774,7 +6839,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#required": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3/scalar_6",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3/scalar_6",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -6788,7 +6853,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#type": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3/scalar_7",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3/scalar_7",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -6806,31 +6871,31 @@
                             ],
                             "http://raml.org/vocabularies/data#responses": [
                               {
-                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13",
+                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13",
                                 "@type": [
                                   "http://raml.org/vocabularies/data#Object"
                                 ],
                                 "http://raml.org/vocabularies/data#200": [
                                   {
-                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14",
+                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14",
                                     "@type": [
                                       "http://raml.org/vocabularies/data#Object"
                                     ],
                                     "http://raml.org/vocabularies/data#body": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Object"
                                         ],
                                         "http://raml.org/vocabularies/data#properties": [
                                           {
-                                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/object_17",
+                                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/object_17",
                                             "@type": [
                                               "http://raml.org/vocabularies/data#Object"
                                             ],
                                             "http://raml.org/vocabularies/data#batchSize": [
                                               {
-                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/object_17/scalar_19",
+                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/object_17/scalar_19",
                                                 "@type": [
                                                   "http://raml.org/vocabularies/data#Scalar"
                                                 ],
@@ -6844,7 +6909,7 @@
                                             ],
                                             "http://raml.org/vocabularies/data#startIndex": [
                                               {
-                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/object_17/scalar_18",
+                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/object_17/scalar_18",
                                                 "@type": [
                                                   "http://raml.org/vocabularies/data#Scalar"
                                                 ],
@@ -6858,7 +6923,7 @@
                                             ],
                                             "http://raml.org/vocabularies/data#totalCount": [
                                               {
-                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/object_17/scalar_20",
+                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/object_17/scalar_20",
                                                 "@type": [
                                                   "http://raml.org/vocabularies/data#Scalar"
                                                 ],
@@ -6874,7 +6939,7 @@
                                         ],
                                         "http://raml.org/vocabularies/data#type": [
                                           {
-                                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/scalar_16",
+                                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/scalar_16",
                                             "@type": [
                                               "http://raml.org/vocabularies/data#Scalar"
                                             ],
@@ -7819,7 +7884,7 @@
                     ],
                     "http://raml.org/vocabularies/document#target": [
                       {
-                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable",
+                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable",
                         "@type": [
                           "http://raml.org/vocabularies/document#Trait",
                           "http://raml.org/vocabularies/document#AbstractDeclaration",
@@ -7832,25 +7897,25 @@
                         ],
                         "http://raml.org/vocabularies/document#dataNode": [
                           {
-                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1",
+                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1",
                             "@type": [
                               "http://raml.org/vocabularies/data#Object"
                             ],
                             "http://raml.org/vocabularies/data#queryParameters": [
                               {
-                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2",
+                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2",
                                 "@type": [
                                   "http://raml.org/vocabularies/data#Object"
                                 ],
                                 "http://raml.org/vocabularies/data#batchSize": [
                                   {
-                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8",
+                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8",
                                     "@type": [
                                       "http://raml.org/vocabularies/data#Object"
                                     ],
                                     "http://raml.org/vocabularies/data#default": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8/scalar_10",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8/scalar_10",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -7864,7 +7929,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#description": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8/scalar_9",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8/scalar_9",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -7878,7 +7943,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#required": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8/scalar_11",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8/scalar_11",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -7892,7 +7957,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#type": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8/scalar_12",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8/scalar_12",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -7908,13 +7973,13 @@
                                 ],
                                 "http://raml.org/vocabularies/data#startIndex": [
                                   {
-                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3",
+                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3",
                                     "@type": [
                                       "http://raml.org/vocabularies/data#Object"
                                     ],
                                     "http://raml.org/vocabularies/data#default": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3/scalar_5",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3/scalar_5",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -7928,7 +7993,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#description": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3/scalar_4",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3/scalar_4",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -7942,7 +8007,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#required": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3/scalar_6",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3/scalar_6",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -7956,7 +8021,7 @@
                                     ],
                                     "http://raml.org/vocabularies/data#type": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3/scalar_7",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3/scalar_7",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Scalar"
                                         ],
@@ -7974,31 +8039,31 @@
                             ],
                             "http://raml.org/vocabularies/data#responses": [
                               {
-                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13",
+                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13",
                                 "@type": [
                                   "http://raml.org/vocabularies/data#Object"
                                 ],
                                 "http://raml.org/vocabularies/data#200": [
                                   {
-                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14",
+                                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14",
                                     "@type": [
                                       "http://raml.org/vocabularies/data#Object"
                                     ],
                                     "http://raml.org/vocabularies/data#body": [
                                       {
-                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15",
+                                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15",
                                         "@type": [
                                           "http://raml.org/vocabularies/data#Object"
                                         ],
                                         "http://raml.org/vocabularies/data#properties": [
                                           {
-                                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/object_17",
+                                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/object_17",
                                             "@type": [
                                               "http://raml.org/vocabularies/data#Object"
                                             ],
                                             "http://raml.org/vocabularies/data#batchSize": [
                                               {
-                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/object_17/scalar_19",
+                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/object_17/scalar_19",
                                                 "@type": [
                                                   "http://raml.org/vocabularies/data#Scalar"
                                                 ],
@@ -8012,7 +8077,7 @@
                                             ],
                                             "http://raml.org/vocabularies/data#startIndex": [
                                               {
-                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/object_17/scalar_18",
+                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/object_17/scalar_18",
                                                 "@type": [
                                                   "http://raml.org/vocabularies/data#Scalar"
                                                 ],
@@ -8026,7 +8091,7 @@
                                             ],
                                             "http://raml.org/vocabularies/data#totalCount": [
                                               {
-                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/object_17/scalar_20",
+                                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/object_17/scalar_20",
                                                 "@type": [
                                                   "http://raml.org/vocabularies/data#Scalar"
                                                 ],
@@ -8042,7 +8107,7 @@
                                         ],
                                         "http://raml.org/vocabularies/data#type": [
                                           {
-                                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/scalar_16",
+                                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/scalar_16",
                                             "@type": [
                                               "http://raml.org/vocabularies/data#Scalar"
                                             ],
@@ -8815,7 +8880,7 @@
     ],
     "http://raml.org/vocabularies/document#declares": [
       {
-        "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessModel",
+        "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessModel",
         "@type": [
           "http://www.w3.org/ns/shacl#NodeShape",
           "http://www.w3.org/ns/shacl#Shape",
@@ -8829,7 +8894,7 @@
         ],
         "http://www.w3.org/ns/shacl#property": [
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessModel/property/id",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessModel/property/id",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -8842,7 +8907,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessModel/property/id/scalar/id",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessModel/property/id/scalar/id",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -8873,7 +8938,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessModel/property/name",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessModel/property/name",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -8886,7 +8951,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessModel/property/name/scalar/name",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessModel/property/name/scalar/name",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -8917,7 +8982,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessModel/property/uuid",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessModel/property/uuid",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -8930,7 +8995,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessModel/property/uuid/scalar/uuid",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessModel/property/uuid/scalar/uuid",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -8961,7 +9026,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessModel/property/description",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessModel/property/description",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -8974,7 +9039,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessModel/property/description/scalar/description",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessModel/property/description/scalar/description",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -9005,7 +9070,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessModel/property/createdBy",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessModel/property/createdBy",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -9018,7 +9083,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessModel/property/createdBy/scalar/createdBy",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessModel/property/createdBy/scalar/createdBy",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -9049,7 +9114,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessModel/property/urls",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessModel/property/urls",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -9062,7 +9127,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessModel/property/urls/urls",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessModel/property/urls/urls",
                 "@type": [
                   "http://www.w3.org/ns/shacl#NodeShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -9076,7 +9141,7 @@
                 ],
                 "http://www.w3.org/ns/shacl#property": [
                   {
-                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessModel/property/urls/urls/property/self_url",
+                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessModel/property/urls/urls/property/self_url",
                     "@type": [
                       "http://www.w3.org/ns/shacl#PropertyShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -9089,7 +9154,7 @@
                     ],
                     "http://raml.org/vocabularies/shapes#range": [
                       {
-                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessModel/property/urls/urls/property/self_url/scalar/self_url",
+                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessModel/property/urls/urls/property/self_url/scalar/self_url",
                         "@type": [
                           "http://raml.org/vocabularies/shapes#ScalarShape",
                           "http://www.w3.org/ns/shacl#Shape",
@@ -9120,7 +9185,7 @@
                     ]
                   },
                   {
-                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessModel/property/urls/urls/property/start_url",
+                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessModel/property/urls/urls/property/start_url",
                     "@type": [
                       "http://www.w3.org/ns/shacl#PropertyShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -9133,7 +9198,7 @@
                     ],
                     "http://raml.org/vocabularies/shapes#range": [
                       {
-                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessModel/property/urls/urls/property/start_url/scalar/start_url",
+                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessModel/property/urls/urls/property/start_url/scalar/start_url",
                         "@type": [
                           "http://raml.org/vocabularies/shapes#ScalarShape",
                           "http://www.w3.org/ns/shacl#Shape",
@@ -9164,7 +9229,7 @@
                     ]
                   },
                   {
-                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessModel/property/urls/urls/property/processes_url",
+                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessModel/property/urls/urls/property/processes_url",
                     "@type": [
                       "http://www.w3.org/ns/shacl#PropertyShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -9177,7 +9242,7 @@
                     ],
                     "http://raml.org/vocabularies/shapes#range": [
                       {
-                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessModel/property/urls/urls/property/processes_url/scalar/processes_url",
+                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessModel/property/urls/urls/property/processes_url/scalar/processes_url",
                         "@type": [
                           "http://raml.org/vocabularies/shapes#ScalarShape",
                           "http://www.w3.org/ns/shacl#Shape",
@@ -9234,7 +9299,7 @@
         ]
       },
       {
-        "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process",
+        "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process",
         "@type": [
           "http://www.w3.org/ns/shacl#NodeShape",
           "http://www.w3.org/ns/shacl#Shape",
@@ -9248,7 +9313,7 @@
         ],
         "http://www.w3.org/ns/shacl#property": [
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/id",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/id",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -9261,7 +9326,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/id/scalar/id",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/id/scalar/id",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -9292,7 +9357,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/name",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/name",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -9305,7 +9370,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/name/scalar/name",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/name/scalar/name",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -9336,7 +9401,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/priority",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/priority",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -9349,7 +9414,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/priority/scalar/priority",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/priority/scalar/priority",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -9380,7 +9445,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/status",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/status",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -9393,7 +9458,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/status/scalar/status",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/status/scalar/status",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -9424,7 +9489,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/startedBy",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/startedBy",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -9437,7 +9502,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/startedBy/scalar/startedBy",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/startedBy/scalar/startedBy",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -9468,7 +9533,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/startTime",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/startTime",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -9481,7 +9546,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/startTime/scalar/startTime",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/startTime/scalar/startTime",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -9512,7 +9577,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/endTime",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/endTime",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -9525,7 +9590,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/endTime/scalar/endTime",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/endTime/scalar/endTime",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -9556,7 +9621,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/activeTasks",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/activeTasks",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -9569,7 +9634,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/activeTasks/scalar/activeTasks",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/activeTasks/scalar/activeTasks",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -9600,7 +9665,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/urls",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/urls",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -9613,7 +9678,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/urls/urls",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/urls/urls",
                 "@type": [
                   "http://www.w3.org/ns/shacl#NodeShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -9627,7 +9692,7 @@
                 ],
                 "http://www.w3.org/ns/shacl#property": [
                   {
-                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/urls/urls/property/self_url",
+                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/urls/urls/property/self_url",
                     "@type": [
                       "http://www.w3.org/ns/shacl#PropertyShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -9640,7 +9705,7 @@
                     ],
                     "http://raml.org/vocabularies/shapes#range": [
                       {
-                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/urls/urls/property/self_url/scalar/self_url",
+                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/urls/urls/property/self_url/scalar/self_url",
                         "@type": [
                           "http://raml.org/vocabularies/shapes#ScalarShape",
                           "http://www.w3.org/ns/shacl#Shape",
@@ -9671,7 +9736,7 @@
                     ]
                   },
                   {
-                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/urls/urls/property/start_url",
+                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/urls/urls/property/start_url",
                     "@type": [
                       "http://www.w3.org/ns/shacl#PropertyShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -9684,7 +9749,7 @@
                     ],
                     "http://raml.org/vocabularies/shapes#range": [
                       {
-                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/Process/property/urls/urls/property/start_url/scalar/start_url",
+                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Process/property/urls/urls/property/start_url/scalar/start_url",
                         "@type": [
                           "http://raml.org/vocabularies/shapes#ScalarShape",
                           "http://www.w3.org/ns/shacl#Shape",
@@ -9741,7 +9806,7 @@
         ]
       },
       {
-        "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessVariableList",
+        "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessVariableList",
         "@type": [
           "http://www.w3.org/ns/shacl#NodeShape",
           "http://www.w3.org/ns/shacl#Shape",
@@ -9755,7 +9820,7 @@
         ],
         "http://www.w3.org/ns/shacl#property": [
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessVariableList/property/%2F%2F",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessVariableList/property/%2F%2F",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -9768,7 +9833,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/ProcessVariableList/property/%2F%2F/any/%2F%2F",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/ProcessVariableList/property/%2F%2F/any/%2F%2F",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#AnyShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -9786,6 +9851,11 @@
                 "@value": 1
               }
             ],
+            "http://raml.org/vocabularies/shapes#patternName": [
+              {
+                "@value": "^.*$"
+              }
+            ],
             "http://www.w3.org/ns/shacl#name": [
               {
                 "@value": "//"
@@ -9797,10 +9867,65 @@
           {
             "@value": "ProcessVariableList"
           }
+        ],
+        "http://raml.org/vocabularies/document#examples": [
+          {
+            "@id": "file://demo/appian-api/appian-api.raml#/web-api/end-points/%2FprocessModel%2F%7BprocessModelUuid%7D%2Fstart/post/request/application%2Fjson/schema/example/default-example",
+            "@type": [
+              "http://raml.org/vocabularies/document#Example",
+              "http://raml.org/vocabularies/document#DomainElement"
+            ],
+            "http://raml.org/vocabularies/document#strict": [
+              {
+                "@value": true
+              }
+            ],
+            "http://raml.org/vocabularies/document#structuredValue": [
+              {
+                "@id": "file://demo/appian-api/appian-api.raml#/web-api/end-points/%2FprocessModel%2F%7BprocessModelUuid%7D%2Fstart/post/request/application%2Fjson/schema/example/default-example/object_1",
+                "@type": [
+                  "http://raml.org/vocabularies/data#Object"
+                ],
+                "http://raml.org/vocabularies/data#processVar1": [
+                  {
+                    "@id": "file://demo/appian-api/appian-api.raml#/web-api/end-points/%2FprocessModel%2F%7BprocessModelUuid%7D%2Fstart/post/request/application%2Fjson/schema/example/default-example/object_1/scalar_2",
+                    "@type": [
+                      "http://raml.org/vocabularies/data#Scalar"
+                    ],
+                    "http://raml.org/vocabularies/data#value": [
+                      {
+                        "@value": "value1",
+                        "@type": "http://www.w3.org/2001/XMLSchema#string"
+                      }
+                    ]
+                  }
+                ],
+                "http://raml.org/vocabularies/data#processVar2": [
+                  {
+                    "@id": "file://demo/appian-api/appian-api.raml#/web-api/end-points/%2FprocessModel%2F%7BprocessModelUuid%7D%2Fstart/post/request/application%2Fjson/schema/example/default-example/object_1/scalar_3",
+                    "@type": [
+                      "http://raml.org/vocabularies/data#Scalar"
+                    ],
+                    "http://raml.org/vocabularies/data#value": [
+                      {
+                        "@value": "value2",
+                        "@type": "http://www.w3.org/2001/XMLSchema#string"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "http://www.w3.org/ns/shacl#raw": [
+              {
+                "@value": "{\n  \"processVar1\": \"value1\",\n  \"processVar2\": \"value2\"\n}\n"
+              }
+            ]
+          }
         ]
       },
       {
-        "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task",
+        "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task",
         "@type": [
           "http://www.w3.org/ns/shacl#NodeShape",
           "http://www.w3.org/ns/shacl#Shape",
@@ -9814,7 +9939,7 @@
         ],
         "http://www.w3.org/ns/shacl#property": [
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/id",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/id",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -9827,7 +9952,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/id/scalar/id",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/id/scalar/id",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -9858,7 +9983,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/name",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/name",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -9871,7 +9996,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/name/scalar/name",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/name/scalar/name",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -9902,7 +10027,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/from",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/from",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -9915,7 +10040,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/from/scalar/from",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/from/scalar/from",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -9946,7 +10071,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/received",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/received",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -9959,7 +10084,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/received/scalar/received",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/received/scalar/received",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -9990,7 +10115,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/process",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/process",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -10003,7 +10128,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/process/scalar/process",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/process/scalar/process",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -10034,7 +10159,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/priority",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/priority",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -10047,7 +10172,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/priority/scalar/priority",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/priority/scalar/priority",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -10078,7 +10203,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/status",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/status",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -10091,7 +10216,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/status/scalar/status",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/status/scalar/status",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -10122,7 +10247,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/completed",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/completed",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -10135,7 +10260,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/completed/scalar/completed",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/completed/scalar/completed",
                 "@type": [
                   "http://raml.org/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -10166,7 +10291,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/urls",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/urls",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -10179,7 +10304,7 @@
             ],
             "http://raml.org/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/urls/urls",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/urls/urls",
                 "@type": [
                   "http://www.w3.org/ns/shacl#NodeShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -10193,7 +10318,7 @@
                 ],
                 "http://www.w3.org/ns/shacl#property": [
                   {
-                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/urls/urls/property/self_url",
+                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/urls/urls/property/self_url",
                     "@type": [
                       "http://www.w3.org/ns/shacl#PropertyShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -10206,7 +10331,7 @@
                     ],
                     "http://raml.org/vocabularies/shapes#range": [
                       {
-                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/urls/urls/property/self_url/scalar/self_url",
+                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/urls/urls/property/self_url/scalar/self_url",
                         "@type": [
                           "http://raml.org/vocabularies/shapes#ScalarShape",
                           "http://www.w3.org/ns/shacl#Shape",
@@ -10237,7 +10362,7 @@
                     ]
                   },
                   {
-                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/urls/urls/property/process_url",
+                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/urls/urls/property/process_url",
                     "@type": [
                       "http://www.w3.org/ns/shacl#PropertyShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -10250,7 +10375,7 @@
                     ],
                     "http://raml.org/vocabularies/shapes#range": [
                       {
-                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/Task/property/urls/urls/property/process_url/scalar/process_url",
+                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/types/Task/property/urls/urls/property/process_url/scalar/process_url",
                         "@type": [
                           "http://raml.org/vocabularies/shapes#ScalarShape",
                           "http://www.w3.org/ns/shacl#Shape",
@@ -10307,7 +10432,7 @@
         ]
       },
       {
-        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable",
+        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable",
         "@type": [
           "http://raml.org/vocabularies/document#Trait",
           "http://raml.org/vocabularies/document#AbstractDeclaration",
@@ -10320,25 +10445,25 @@
         ],
         "http://raml.org/vocabularies/document#dataNode": [
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1",
             "@type": [
               "http://raml.org/vocabularies/data#Object"
             ],
             "http://raml.org/vocabularies/data#queryParameters": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2",
                 "@type": [
                   "http://raml.org/vocabularies/data#Object"
                 ],
                 "http://raml.org/vocabularies/data#batchSize": [
                   {
-                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8",
+                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8",
                     "@type": [
                       "http://raml.org/vocabularies/data#Object"
                     ],
                     "http://raml.org/vocabularies/data#default": [
                       {
-                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8/scalar_10",
+                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8/scalar_10",
                         "@type": [
                           "http://raml.org/vocabularies/data#Scalar"
                         ],
@@ -10352,7 +10477,7 @@
                     ],
                     "http://raml.org/vocabularies/data#description": [
                       {
-                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8/scalar_9",
+                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8/scalar_9",
                         "@type": [
                           "http://raml.org/vocabularies/data#Scalar"
                         ],
@@ -10366,7 +10491,7 @@
                     ],
                     "http://raml.org/vocabularies/data#required": [
                       {
-                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8/scalar_11",
+                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8/scalar_11",
                         "@type": [
                           "http://raml.org/vocabularies/data#Scalar"
                         ],
@@ -10380,7 +10505,7 @@
                     ],
                     "http://raml.org/vocabularies/data#type": [
                       {
-                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_8/scalar_12",
+                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_8/scalar_12",
                         "@type": [
                           "http://raml.org/vocabularies/data#Scalar"
                         ],
@@ -10396,13 +10521,13 @@
                 ],
                 "http://raml.org/vocabularies/data#startIndex": [
                   {
-                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3",
+                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3",
                     "@type": [
                       "http://raml.org/vocabularies/data#Object"
                     ],
                     "http://raml.org/vocabularies/data#default": [
                       {
-                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3/scalar_5",
+                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3/scalar_5",
                         "@type": [
                           "http://raml.org/vocabularies/data#Scalar"
                         ],
@@ -10416,7 +10541,7 @@
                     ],
                     "http://raml.org/vocabularies/data#description": [
                       {
-                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3/scalar_4",
+                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3/scalar_4",
                         "@type": [
                           "http://raml.org/vocabularies/data#Scalar"
                         ],
@@ -10430,7 +10555,7 @@
                     ],
                     "http://raml.org/vocabularies/data#required": [
                       {
-                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3/scalar_6",
+                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3/scalar_6",
                         "@type": [
                           "http://raml.org/vocabularies/data#Scalar"
                         ],
@@ -10444,7 +10569,7 @@
                     ],
                     "http://raml.org/vocabularies/data#type": [
                       {
-                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_2/object_3/scalar_7",
+                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_2/object_3/scalar_7",
                         "@type": [
                           "http://raml.org/vocabularies/data#Scalar"
                         ],
@@ -10462,31 +10587,31 @@
             ],
             "http://raml.org/vocabularies/data#responses": [
               {
-                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13",
+                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13",
                 "@type": [
                   "http://raml.org/vocabularies/data#Object"
                 ],
                 "http://raml.org/vocabularies/data#200": [
                   {
-                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14",
+                    "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14",
                     "@type": [
                       "http://raml.org/vocabularies/data#Object"
                     ],
                     "http://raml.org/vocabularies/data#body": [
                       {
-                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15",
+                        "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15",
                         "@type": [
                           "http://raml.org/vocabularies/data#Object"
                         ],
                         "http://raml.org/vocabularies/data#properties": [
                           {
-                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/object_17",
+                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/object_17",
                             "@type": [
                               "http://raml.org/vocabularies/data#Object"
                             ],
                             "http://raml.org/vocabularies/data#batchSize": [
                               {
-                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/object_17/scalar_19",
+                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/object_17/scalar_19",
                                 "@type": [
                                   "http://raml.org/vocabularies/data#Scalar"
                                 ],
@@ -10500,7 +10625,7 @@
                             ],
                             "http://raml.org/vocabularies/data#startIndex": [
                               {
-                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/object_17/scalar_18",
+                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/object_17/scalar_18",
                                 "@type": [
                                   "http://raml.org/vocabularies/data#Scalar"
                                 ],
@@ -10514,7 +10639,7 @@
                             ],
                             "http://raml.org/vocabularies/data#totalCount": [
                               {
-                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/object_17/scalar_20",
+                                "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/object_17/scalar_20",
                                 "@type": [
                                   "http://raml.org/vocabularies/data#Scalar"
                                 ],
@@ -10530,7 +10655,7 @@
                         ],
                         "http://raml.org/vocabularies/data#type": [
                           {
-                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/pageable/object_1/object_13/object_14/object_15/scalar_16",
+                            "@id": "file://demo/appian-api/appian-api.raml#/declarations/traits/pageable/object_1/object_13/object_14/object_15/scalar_16",
                             "@type": [
                               "http://raml.org/vocabularies/data#Scalar"
                             ],
@@ -10552,7 +10677,7 @@
         ]
       },
       {
-        "@id": "file://demo/appian-api/appian-api.raml#/declarations/basic",
+        "@id": "file://demo/appian-api/appian-api.raml#/declarations/securitySchemes/basic",
         "@type": [
           "http://raml.org/vocabularies/security#SecurityScheme",
           "http://raml.org/vocabularies/document#DomainElement"
@@ -10569,7 +10694,7 @@
         ],
         "http://www.w3.org/ns/hydra/core#response": [
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/basic/401",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/securitySchemes/basic/401",
             "@type": [
               "http://raml.org/vocabularies/http#Response",
               "http://raml.org/vocabularies/document#DomainElement"
@@ -10591,7 +10716,7 @@
             ]
           },
           {
-            "@id": "file://demo/appian-api/appian-api.raml#/declarations/basic/404",
+            "@id": "file://demo/appian-api/appian-api.raml#/declarations/securitySchemes/basic/404",
             "@type": [
               "http://raml.org/vocabularies/http#Response",
               "http://raml.org/vocabularies/document#DomainElement"

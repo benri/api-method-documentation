@@ -18,6 +18,8 @@
 <link rel="import" href="../api-view-model-transformer/api-view-model-transformer.html">
 <link rel="import" href="../amf-helper-mixin/amf-helper-mixin.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../api-security-documentation/api-security-documentation.html">
+
 <dom-module id="api-method-documentation">
   <template>
     <style include="markdown-styles"></style>
@@ -27,6 +29,10 @@
       padding-bottom: 24px;
       @apply --arc-font-body1;
       @apply --api-method-documentation;
+
+      --tmp-font-title: {
+        @apply --arc-font-title;
+      };
     }
 
     h1 {
@@ -49,6 +55,7 @@
 
     .method-name {
       font-weight: var(--api-method-documentation-title-method-font-weight, 500);
+      text-transform: capitalize;
     }
 
     .url-area {
@@ -201,13 +208,32 @@
     .nav-separator {
       @apply --layout-flex;
     }
+
+    api-security-documentation {
+      --arc-font-display1: {
+        @apply --arc-font-title;
+      };
+      --arc-font-title: {
+        @apply --tmp-font-title;
+        font-size: larger;
+      };
+
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px var(--api-headers-document-title-border-color, #e5e5e5) dashed;
+    }
+
+    api-security-documentation:last-of-type {
+      margin-bottom: 0;
+      border-bottom: none;
+      padding-bottom: 0;
+    }
     </style>
     <template is="dom-if" if="[[aware]]">
       <raml-aware raml="{{amfModel}}" scope="[[aware]]"></raml-aware>
     </template>
     <div class="title-area">
       <h1 class="title">
-        <span class="method-label" data-method$="[[httpMethod]]">[[httpMethod]]</span>
         <span class="method-name">[[methodName]]</span>
       </h1>
       <template is="dom-if" if="[[!noTryIt]]">
@@ -231,7 +257,7 @@
       <h2>Request</h2>
 
       <section class="url-area">
-        <div class="method-value">[[httpMethod]]</div>
+        <div class="method-value"><span class="method-label" data-method$="[[httpMethod]]">[[httpMethod]]</span></div>
         <div class="url-value">[[endpointUri]]</div>
         <paper-icon-button class="action-icon copy-icon" icon="arc:content-copy" on-tap="_copyUrlClipboard" title="Copy URL to clipboard"></paper-icon-button>
       </section>
@@ -251,6 +277,25 @@
           <http-code-snippets url="[[endpointUri]]" method="[[httpMethod]]" headers="[[_computeSnippetsHeaders(headers)]]" payload="[[_computeSnippetsPayload(payload)]]"></http-code-snippets>
         </iron-collapse>
       </section>
+
+      <template is="dom-if" if="[[hasSecurity]]">
+        <section class="security">
+          <div class="section-title-area">
+            <h3 class="table-title">Security</h3>
+            <div class="title-area-actions">
+              <paper-button on-click="_toggleSecurity" class="toggle-button security" title="Toogle security details">
+                [[_computeToggleActionLabel(securityOpened)]]
+                <iron-icon icon="arc:expand-more" class$="[[_computeToggleIconClass(securityOpened)]]"></iron-icon>
+              </paper-button>
+            </div>
+          </div>
+          <iron-collapse opened="[[securityOpened]]">
+            <template is="dom-repeat" items="[[security]]">
+              <api-security-documentation amf-model="[[amfModel]]" security="[[item]]"></api-security-documentation>
+            </template>
+          </iron-collapse>
+        </section>
+      </template>
 
       <template is="dom-if" if="[[hasParameters]]">
         <api-parameters-document amf-model="[[amfModel]]" query-opened base-uri-parameters="[[serverVariables]]" endpoint-parameters="[[endpointVariables]]" query-parameters="[[queryParameters]]"></api-parameters-document>
@@ -615,9 +660,16 @@
           computed: '_computeHasNavigation(hasPreviousLink, hasNextLink)'
         },
         /**
-         * Set to true to open code snippets section.
+         * When set code snippets are rendered.
          */
         snippetsOpened: {
+          type: Boolean,
+          value: false
+        },
+        /**
+         * When set security details are rendered.
+         */
+        securityOpened: {
           type: Boolean,
           value: false
         }
@@ -756,6 +808,12 @@
     _toggleSnippets() {
       this.snippetsOpened = !this.snippetsOpened;
     }
+    /**
+     * Toggles security section.
+     */
+    _toggleSecurity() {
+      this.securityOpened = !this.securityOpened;
+    }
 
     /**
      * Computes example headers string for code snippets.
@@ -825,6 +883,8 @@
       }
       return clazz;
     }
+
+    //http://raml.org/vocabularies/security#security
     /**
      * Dispatched when the user requested the "Try it" view.
      * @event tryit-requested
