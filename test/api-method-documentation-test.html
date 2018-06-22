@@ -255,7 +255,7 @@
         test('method-name label is rendered', () => {
           const node = element.shadowRoot.querySelector('.method-name');
           assert.ok(node);
-          assert.equal(node.innerText, 'List People');
+          assert.equal(node.innerText.toLowerCase(), 'list people');
         });
 
         test('api-annotation-document is rendered', () => {
