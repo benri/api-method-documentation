@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "elements": [
     {
-      "description": "`api-method-documentation`\n\nRenders documentation for a method for an endpoint.\n\nThis element works with [AMF](https://github.com/mulesoft/amf) data model.\nTo properly compute all the information relevant to method documentation\nset the following properties:\n\n- amfModel - as AMF's WebApi data model\n- endpoint - As AMF's EndPoint data model\n- method - As AMF's SupportedOperation property\n\nWhen set, this will automatically populate the wiew with data.\n\n## Updating API's base URI\n\nBy default the component render the documentation as it is defined\nin the AMF model. Sometimes, however, you may need to replace the base URI\nof the API with something else. It is useful when the API does not\nhave base URI property defined (therefore this component render relative\npaths instead of URIs) or when you want to manage different environments.\n\nTo update base URI value either update `baseUri` property or use\n`iron-meta` with key `ApiBaseUri`. First method is easier but the second\ngives much more flexibility since it use a [monostate pattern](http://wiki.c2.com/?MonostatePattern)\nto manage base URI property.\n\nWhen the component constructs the funal URI for the endpoint it does the following:\n- if `baseUri` is set it uses this value as a base uri for the endpoint\n- else if `iron-meta` with key `ApiBaseUri` exists and contains a value\nit uses it uses this value as a base uri for the endpoint\n- else if `amfModel` is set then it computes base uri value from main\nmodel document\nThen it concatenates computed base URI with `endpoint`'s path property.\n\n### Example\n\n```html\n<iron-meta key=\"ApiBaseUri\" value=\"https://domain.com\"></iron-meta>\n```\n\nTo update value of the `iron-meta`:\n```javascript\nnew Polymer.IronMeta({key: 'ApiBaseUri'}).value = 'https://other.domain';\n```\n\nNote: The element will not get notified about the change in `iron-meta`.\nThe change will be reflected whehn `amfModel` or `endpoint` property chnage.\n\n## Styling\n\n`<api-method-documentation>` provides the following custom properties and mixins for styling:\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--api-method-documentation` | Mixin applied to this elment | `{}`\n`--arc-font-headline` | Theme mixin, Applied to H1 element | `{}`\n`--arc-font-title` | Theme mixin, applied to h2 element | `{}`\n`--api-method-documentation-title-method-font-weight` | Font weight of method name title. | `500`\n`--arc-font-code1` | Theme mixin, applied to the URL area | `{}`\n`--api-method-documentation-url-font-size` | Font size of endpoin URL | `16px`\n`--api-method-documentation-url-background-color` | Background color of the URL section | `#424242`\n`--api-method-documentation-url-font-color` | Font color of the URL area | `#fff`\n`--api-method-documentation-try-it-background-color` | Background color of the Try it button | `--primary-color`\n`--api-method-documentation-try-it-color` | Color of the Try it button | `--primary-action-color` or `#fff`\n`--api-method-documentation-try-it-background-color-hover` | Background color of the Try it button when hovered | `--primary-color`\n`--api-method-documentation-try-it-color-hover` | Color of the Try it button when hovered | `--primary-action-color` or `#fff`\n`--api-method-documentation-bottom-navigation-border-color` | Color of the top border of the bottom navigartion | `#546E7A`\n`--api-method-documentation-bottom-navigation-color` | Color of of the bottom navigartion (icon + text) | `#546E7A`",
+      "description": "`api-method-documentation`\n\nRenders documentation for a method for an endpoint.\n\nThis element works with [AMF](https://github.com/mulesoft/amf) data model.\nTo properly compute all the information relevant to method documentation\nset the following properties:\n\n- amfModel - as AMF's WebApi data model\n- endpoint - As AMF's EndPoint data model\n- method - As AMF's SupportedOperation property\n\nWhen set, this will automatically populate the wiew with data.\n\n## Updating API's base URI\n\nBy default the component render the documentation as it is defined\nin the AMF model. Sometimes, however, you may need to replace the base URI\nof the API with something else. It is useful when the API does not\nhave base URI property defined (therefore this component render relative\npaths instead of URIs) or when you want to manage different environments.\n\nTo update base URI value either update `baseUri` property or use\n`iron-meta` with key `ApiBaseUri`. First method is easier but the second\ngives much more flexibility since it use a [monostate pattern](http://wiki.c2.com/?MonostatePattern)\nto manage base URI property.\n\nWhen the component constructs the funal URI for the endpoint it does the following:\n- if `baseUri` is set it uses this value as a base uri for the endpoint\n- else if `iron-meta` with key `ApiBaseUri` exists and contains a value\nit uses it uses this value as a base uri for the endpoint\n- else if `amfModel` is set then it computes base uri value from main\nmodel document\nThen it concatenates computed base URI with `endpoint`'s path property.\n\n### Example\n\n```html\n<iron-meta key=\"ApiBaseUri\" value=\"https://domain.com\"></iron-meta>\n```\n\nTo update value of the `iron-meta`:\n```javascript\nnew Polymer.IronMeta({key: 'ApiBaseUri'}).value = 'https://other.domain';\n```\n\nNote: The element will not get notified about the change in `iron-meta`.\nThe change will be reflected whehn `amfModel` or `endpoint` property chnage.\n\n## Styling\n\n`<api-method-documentation>` provides the following custom properties and mixins for styling:\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--api-method-documentation` | Mixin applied to this elment | `{}`\n`--arc-font-headline` | Theme mixin, Applied to H1 element | `{}`\n`--arc-font-title` | Theme mixin, applied to h2 element | `{}`\n`--api-method-documentation-title-method-font-weight` | Font weight of method name title. | `500`\n`--arc-font-code1` | Theme mixin, applied to the URL area | `{}`\n`--api-method-documentation-url-font-size` | Font size of endpoin URL | `16px`\n`--api-method-documentation-url-background-color` | Background color of the URL section | `#424242`\n`--api-method-documentation-url-font-color` | Font color of the URL area | `#fff`\n`--api-method-documentation-try-it-background-color` | Background color of the Try it button | `--primary-color`\n`--api-method-documentation-try-it-color` | Color of the Try it button | `--primary-action-color` or `#fff`\n`--api-method-documentation-try-it-background-color-hover` | Background color of the Try it button when hovered | `--primary-color`\n`--api-method-documentation-try-it-color-hover` | Color of the Try it button when hovered | `--primary-action-color` or `#fff`\n`--api-method-documentation-bottom-navigation-border-color` | Color of the top border of the bottom navigartion | `#546E7A`\n`--api-method-documentation-bottom-navigation-color` | Color of of the bottom navigartion (icon + text) | `#546E7A`\n`--api-method-documentation-main-sections` | Mixin applied to both request and response sections | `{}`\n`--api-method-documentation-docs-sections` | Mixin applied to each documentation block | `{}`",
       "summary": "",
       "path": "api-method-documentation.html",
       "properties": [
@@ -13,11 +13,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 435,
+              "line": 451,
               "column": 8
             },
             "end": {
-              "line": 435,
+              "line": 451,
               "column": 24
             }
           },
@@ -34,11 +34,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 424,
+              "line": 440,
               "column": 8
             },
             "end": {
-              "line": 424,
+              "line": 440,
               "column": 21
             }
           },
@@ -55,11 +55,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 440,
+              "line": 456,
               "column": 8
             },
             "end": {
-              "line": 440,
+              "line": 456,
               "column": 22
             }
           },
@@ -76,11 +76,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 445,
+              "line": 461,
               "column": 8
             },
             "end": {
-              "line": 445,
+              "line": 461,
               "column": 24
             }
           },
@@ -97,11 +97,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 449,
+              "line": 465,
               "column": 8
             },
             "end": {
-              "line": 452,
+              "line": 468,
               "column": 9
             }
           },
@@ -119,11 +119,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 457,
+              "line": 473,
               "column": 8
             },
             "end": {
-              "line": 460,
+              "line": 476,
               "column": 9
             }
           },
@@ -141,11 +141,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 466,
+              "line": 482,
               "column": 8
             },
             "end": {
-              "line": 469,
+              "line": 485,
               "column": 9
             }
           },
@@ -163,11 +163,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 474,
+              "line": 490,
               "column": 8
             },
             "end": {
-              "line": 474,
+              "line": 490,
               "column": 23
             }
           },
@@ -184,11 +184,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 479,
+              "line": 495,
               "column": 8
             },
             "end": {
-              "line": 482,
+              "line": 498,
               "column": 9
             }
           },
@@ -206,11 +206,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 486,
+              "line": 502,
               "column": 8
             },
             "end": {
-              "line": 489,
+              "line": 505,
               "column": 9
             }
           },
@@ -228,11 +228,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 494,
+              "line": 510,
               "column": 8
             },
             "end": {
-              "line": 497,
+              "line": 513,
               "column": 9
             }
           },
@@ -250,11 +250,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 502,
+              "line": 518,
               "column": 8
             },
             "end": {
-              "line": 505,
+              "line": 521,
               "column": 9
             }
           },
@@ -272,11 +272,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 510,
+              "line": 526,
               "column": 8
             },
             "end": {
-              "line": 513,
+              "line": 529,
               "column": 9
             }
           },
@@ -294,11 +294,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 519,
+              "line": 535,
               "column": 8
             },
             "end": {
-              "line": 522,
+              "line": 538,
               "column": 9
             }
           },
@@ -316,11 +316,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 528,
+              "line": 544,
               "column": 8
             },
             "end": {
-              "line": 531,
+              "line": 547,
               "column": 9
             }
           },
@@ -338,11 +338,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 536,
+              "line": 552,
               "column": 8
             },
             "end": {
-              "line": 539,
+              "line": 555,
               "column": 9
             }
           },
@@ -360,11 +360,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 543,
+              "line": 559,
               "column": 8
             },
             "end": {
-              "line": 546,
+              "line": 562,
               "column": 9
             }
           },
@@ -382,11 +382,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 551,
+              "line": 567,
               "column": 8
             },
             "end": {
-              "line": 554,
+              "line": 570,
               "column": 9
             }
           },
@@ -404,11 +404,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 559,
+              "line": 575,
               "column": 8
             },
             "end": {
-              "line": 562,
+              "line": 578,
               "column": 9
             }
           },
@@ -426,11 +426,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 567,
+              "line": 583,
               "column": 8
             },
             "end": {
-              "line": 570,
+              "line": 586,
               "column": 9
             }
           },
@@ -448,11 +448,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 574,
+              "line": 590,
               "column": 8
             },
             "end": {
-              "line": 577,
+              "line": 593,
               "column": 9
             }
           },
@@ -470,11 +470,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 582,
+              "line": 598,
               "column": 8
             },
             "end": {
-              "line": 585,
+              "line": 601,
               "column": 9
             }
           },
@@ -492,11 +492,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 589,
+              "line": 605,
               "column": 8
             },
             "end": {
-              "line": 592,
+              "line": 608,
               "column": 9
             }
           },
@@ -514,11 +514,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 597,
+              "line": 613,
               "column": 8
             },
             "end": {
-              "line": 600,
+              "line": 616,
               "column": 9
             }
           },
@@ -536,11 +536,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 604,
+              "line": 620,
               "column": 8
             },
             "end": {
-              "line": 607,
+              "line": 623,
               "column": 9
             }
           },
@@ -558,11 +558,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 612,
+              "line": 628,
               "column": 8
             },
             "end": {
-              "line": 615,
+              "line": 631,
               "column": 9
             }
           },
@@ -580,11 +580,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 619,
+              "line": 635,
               "column": 8
             },
             "end": {
-              "line": 622,
+              "line": 638,
               "column": 9
             }
           },
@@ -602,11 +602,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 626,
+              "line": 642,
               "column": 8
             },
             "end": {
-              "line": 629,
+              "line": 645,
               "column": 9
             }
           },
@@ -623,11 +623,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 634,
+              "line": 650,
               "column": 8
             },
             "end": {
-              "line": 634,
+              "line": 650,
               "column": 24
             }
           },
@@ -644,11 +644,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 638,
+              "line": 654,
               "column": 8
             },
             "end": {
-              "line": 641,
+              "line": 657,
               "column": 9
             }
           },
@@ -666,11 +666,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 646,
+              "line": 662,
               "column": 8
             },
             "end": {
-              "line": 646,
+              "line": 662,
               "column": 20
             }
           },
@@ -687,11 +687,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 650,
+              "line": 666,
               "column": 8
             },
             "end": {
-              "line": 653,
+              "line": 669,
               "column": 9
             }
           },
@@ -709,11 +709,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 657,
+              "line": 673,
               "column": 8
             },
             "end": {
-              "line": 660,
+              "line": 676,
               "column": 9
             }
           },
@@ -731,11 +731,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 664,
+              "line": 680,
               "column": 8
             },
             "end": {
-              "line": 667,
+              "line": 683,
               "column": 9
             }
           },
@@ -753,11 +753,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 671,
+              "line": 687,
               "column": 8
             },
             "end": {
-              "line": 674,
+              "line": 690,
               "column": 9
             }
           },
@@ -1676,11 +1676,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 855,
+              "line": 871,
               "column": 4
             },
             "end": {
-              "line": 872,
+              "line": 888,
               "column": 5
             }
           },
@@ -2049,11 +2049,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 684,
+              "line": 700,
               "column": 4
             },
             "end": {
-              "line": 690,
+              "line": 706,
               "column": 5
             }
           },
@@ -2076,11 +2076,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 697,
+              "line": 713,
               "column": 4
             },
             "end": {
-              "line": 703,
+              "line": 719,
               "column": 5
             }
           },
@@ -2103,11 +2103,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 711,
+              "line": 727,
               "column": 4
             },
             "end": {
-              "line": 713,
+              "line": 729,
               "column": 5
             }
           },
@@ -2134,11 +2134,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 721,
+              "line": 737,
               "column": 4
             },
             "end": {
-              "line": 723,
+              "line": 739,
               "column": 5
             }
           },
@@ -2164,11 +2164,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 727,
+              "line": 743,
               "column": 4
             },
             "end": {
-              "line": 736,
+              "line": 752,
               "column": 5
             }
           },
@@ -2184,11 +2184,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 742,
+              "line": 758,
               "column": 4
             },
             "end": {
-              "line": 744,
+              "line": 760,
               "column": 5
             }
           },
@@ -2209,11 +2209,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 750,
+              "line": 766,
               "column": 4
             },
             "end": {
-              "line": 752,
+              "line": 768,
               "column": 5
             }
           },
@@ -2234,11 +2234,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 759,
+              "line": 775,
               "column": 4
             },
             "end": {
-              "line": 761,
+              "line": 777,
               "column": 5
             }
           },
@@ -2263,11 +2263,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 765,
+              "line": 781,
               "column": 4
             },
             "end": {
-              "line": 767,
+              "line": 783,
               "column": 5
             }
           },
@@ -2283,11 +2283,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 771,
+              "line": 787,
               "column": 4
             },
             "end": {
-              "line": 773,
+              "line": 789,
               "column": 5
             }
           },
@@ -2303,11 +2303,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 781,
+              "line": 797,
               "column": 4
             },
             "end": {
-              "line": 791,
+              "line": 807,
               "column": 5
             }
           },
@@ -2332,11 +2332,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 793,
+              "line": 809,
               "column": 4
             },
             "end": {
-              "line": 803,
+              "line": 819,
               "column": 5
             }
           },
@@ -2356,11 +2356,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 807,
+              "line": 823,
               "column": 4
             },
             "end": {
-              "line": 809,
+              "line": 825,
               "column": 5
             }
           },
@@ -2376,11 +2376,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 813,
+              "line": 829,
               "column": 4
             },
             "end": {
-              "line": 815,
+              "line": 831,
               "column": 5
             }
           },
@@ -2396,11 +2396,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 822,
+              "line": 838,
               "column": 4
             },
             "end": {
-              "line": 833,
+              "line": 849,
               "column": 5
             }
           },
@@ -2423,11 +2423,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 839,
+              "line": 855,
               "column": 4
             },
             "end": {
-              "line": 847,
+              "line": 863,
               "column": 5
             }
           },
@@ -2450,11 +2450,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 874,
+              "line": 890,
               "column": 4
             },
             "end": {
-              "line": 876,
+              "line": 892,
               "column": 5
             }
           },
@@ -2471,11 +2471,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 878,
+              "line": 894,
               "column": 4
             },
             "end": {
-              "line": 884,
+              "line": 900,
               "column": 5
             }
           },
@@ -2497,11 +2497,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 417,
+          "line": 433,
           "column": 2
         },
         "end": {
-          "line": 901,
+          "line": 917,
           "column": 3
         }
       },
@@ -2514,11 +2514,11 @@
           "description": "Generated AMF json/ld model form the API spec.\nThe element assumes the object of the first array item to be a\ntype of `\"http://raml.org/vocabularies/document#Document`\non AMF vocabulary.\n\nIt is only usefult for the element to resolve references.",
           "sourceRange": {
             "start": {
-              "line": 435,
+              "line": 451,
               "column": 8
             },
             "end": {
-              "line": 435,
+              "line": 451,
               "column": 24
             }
           },
@@ -2530,11 +2530,11 @@
           "description": "`raml-aware` scope property to use.",
           "sourceRange": {
             "start": {
-              "line": 424,
+              "line": 440,
               "column": 8
             },
             "end": {
-              "line": 424,
+              "line": 440,
               "column": 21
             }
           },
@@ -2546,11 +2546,11 @@
           "description": "AMF method definition as a `http://www.w3.org/ns/hydra/core#supportedOperation`\nobject.",
           "sourceRange": {
             "start": {
-              "line": 440,
+              "line": 456,
               "column": 8
             },
             "end": {
-              "line": 440,
+              "line": 456,
               "column": 22
             }
           },
@@ -2562,11 +2562,11 @@
           "description": "Method's endpoint definition as a\n`http://raml.org/vocabularies/http#endpoint` of AMF model.",
           "sourceRange": {
             "start": {
-              "line": 445,
+              "line": 461,
               "column": 8
             },
             "end": {
-              "line": 445,
+              "line": 461,
               "column": 24
             }
           },
@@ -2578,11 +2578,11 @@
           "description": "The try it button is not rendered when set.",
           "sourceRange": {
             "start": {
-              "line": 449,
+              "line": 465,
               "column": 8
             },
             "end": {
-              "line": 452,
+              "line": 468,
               "column": 9
             }
           },
@@ -2594,11 +2594,11 @@
           "description": "Computed value from the method model, name of the method.\nIt is either a `displayName` or HTTP method name",
           "sourceRange": {
             "start": {
-              "line": 457,
+              "line": 473,
               "column": 8
             },
             "end": {
-              "line": 460,
+              "line": 476,
               "column": 9
             }
           },
@@ -2610,11 +2610,11 @@
           "description": "HTTP method name string.\n\nIt is computed from `endpoint`.",
           "sourceRange": {
             "start": {
-              "line": 466,
+              "line": 482,
               "column": 8
             },
             "end": {
-              "line": 469,
+              "line": 485,
               "column": 9
             }
           },
@@ -2626,11 +2626,11 @@
           "description": "A property to set to override AMF's model base URI information.\nWhen this property is set, the `endpointUri` property is recalculated.",
           "sourceRange": {
             "start": {
-              "line": 474,
+              "line": 490,
               "column": 8
             },
             "end": {
-              "line": 474,
+              "line": 490,
               "column": 23
             }
           },
@@ -2642,11 +2642,11 @@
           "description": "Endpoint URI to display in main URL field.\nThis value is computed when `amfModel`, `endpoint` or `baseUri` change.",
           "sourceRange": {
             "start": {
-              "line": 479,
+              "line": 495,
               "column": 8
             },
             "end": {
-              "line": 482,
+              "line": 498,
               "column": 9
             }
           },
@@ -2658,11 +2658,11 @@
           "description": "Computed value of method description from `method` property.",
           "sourceRange": {
             "start": {
-              "line": 486,
+              "line": 502,
               "column": 8
             },
             "end": {
-              "line": 489,
+              "line": 505,
               "column": 9
             }
           },
@@ -2674,11 +2674,11 @@
           "description": "Computed value from current `method`. True if the model contains\ncustom properties (annotations in RAML).",
           "sourceRange": {
             "start": {
-              "line": 494,
+              "line": 510,
               "column": 8
             },
             "end": {
-              "line": 497,
+              "line": 513,
               "column": 9
             }
           },
@@ -2690,11 +2690,11 @@
           "description": "Computed value of `http://www.w3.org/ns/hydra/core#expects`\nof AMF model from current `method`",
           "sourceRange": {
             "start": {
-              "line": 502,
+              "line": 518,
               "column": 8
             },
             "end": {
-              "line": 505,
+              "line": 521,
               "column": 9
             }
           },
@@ -2706,11 +2706,11 @@
           "description": "Computed value of the `http://raml.org/vocabularies/http#server`\nfrom `amfModel`",
           "sourceRange": {
             "start": {
-              "line": 510,
+              "line": 526,
               "column": 8
             },
             "end": {
-              "line": 513,
+              "line": 529,
               "column": 9
             }
           },
@@ -2722,11 +2722,11 @@
           "description": "API base URI parameters defined in AMF api model",
           "sourceRange": {
             "start": {
-              "line": 519,
+              "line": 535,
               "column": 8
             },
             "end": {
-              "line": 522,
+              "line": 538,
               "column": 9
             }
           },
@@ -2738,11 +2738,11 @@
           "description": "Endpoint's path parameters.",
           "sourceRange": {
             "start": {
-              "line": 528,
+              "line": 544,
               "column": 8
             },
             "end": {
-              "line": 531,
+              "line": 547,
               "column": 9
             }
           },
@@ -2754,11 +2754,11 @@
           "description": "Computed value if server and endpoint definition of API model has\ndefined any variables.",
           "sourceRange": {
             "start": {
-              "line": 536,
+              "line": 552,
               "column": 8
             },
             "end": {
-              "line": 539,
+              "line": 555,
               "column": 9
             }
           },
@@ -2770,11 +2770,11 @@
           "description": "Computed value of method's query parameters.",
           "sourceRange": {
             "start": {
-              "line": 543,
+              "line": 559,
               "column": 8
             },
             "end": {
-              "line": 546,
+              "line": 562,
               "column": 9
             }
           },
@@ -2786,11 +2786,11 @@
           "description": "Computed value if server definition of API model has defined\nvariables.",
           "sourceRange": {
             "start": {
-              "line": 551,
+              "line": 567,
               "column": 8
             },
             "end": {
-              "line": 554,
+              "line": 570,
               "column": 9
             }
           },
@@ -2802,11 +2802,11 @@
           "description": "Computed value, true when either has path or query parameters.\nThis renders `api-parameters-document` if true.",
           "sourceRange": {
             "start": {
-              "line": 559,
+              "line": 575,
               "column": 8
             },
             "end": {
-              "line": 562,
+              "line": 578,
               "column": 9
             }
           },
@@ -2818,11 +2818,11 @@
           "description": "Computed value of AMF payload definition from `expects`\nproperty.",
           "sourceRange": {
             "start": {
-              "line": 567,
+              "line": 583,
               "column": 8
             },
             "end": {
-              "line": 570,
+              "line": 586,
               "column": 9
             }
           },
@@ -2834,11 +2834,11 @@
           "description": "Computed value, true if `payload` has values.",
           "sourceRange": {
             "start": {
-              "line": 574,
+              "line": 590,
               "column": 8
             },
             "end": {
-              "line": 577,
+              "line": 593,
               "column": 9
             }
           },
@@ -2850,11 +2850,11 @@
           "description": "Computed value of AMF payload definition from `expects`\nproperty.",
           "sourceRange": {
             "start": {
-              "line": 582,
+              "line": 598,
               "column": 8
             },
             "end": {
-              "line": 585,
+              "line": 601,
               "column": 9
             }
           },
@@ -2866,11 +2866,11 @@
           "description": "Computed value, true if `payload` has values.",
           "sourceRange": {
             "start": {
-              "line": 589,
+              "line": 605,
               "column": 8
             },
             "end": {
-              "line": 592,
+              "line": 608,
               "column": 9
             }
           },
@@ -2882,11 +2882,11 @@
           "description": "Computed value of AMF response definition from `returns`\nproperty.",
           "sourceRange": {
             "start": {
-              "line": 597,
+              "line": 613,
               "column": 8
             },
             "end": {
-              "line": 600,
+              "line": 616,
               "column": 9
             }
           },
@@ -2898,11 +2898,11 @@
           "description": "Computed value, true if `returns` has values.",
           "sourceRange": {
             "start": {
-              "line": 604,
+              "line": 620,
               "column": 8
             },
             "end": {
-              "line": 607,
+              "line": 623,
               "column": 9
             }
           },
@@ -2914,11 +2914,11 @@
           "description": "Computed value of AMF security definition from `method`\nproperty.",
           "sourceRange": {
             "start": {
-              "line": 612,
+              "line": 628,
               "column": 8
             },
             "end": {
-              "line": 615,
+              "line": 631,
               "column": 9
             }
           },
@@ -2930,11 +2930,11 @@
           "description": "Computed value, true if `returns` has values.",
           "sourceRange": {
             "start": {
-              "line": 619,
+              "line": 635,
               "column": 8
             },
             "end": {
-              "line": 622,
+              "line": 638,
               "column": 9
             }
           },
@@ -2946,11 +2946,11 @@
           "description": "If set it will renders the view in the narrow layout.",
           "sourceRange": {
             "start": {
-              "line": 626,
+              "line": 642,
               "column": 8
             },
             "end": {
-              "line": 629,
+              "line": 645,
               "column": 9
             }
           },
@@ -2962,11 +2962,11 @@
           "description": "Model to generate a link to previous HTTP method.\nIt should contain `id` and `label` properties",
           "sourceRange": {
             "start": {
-              "line": 634,
+              "line": 650,
               "column": 8
             },
             "end": {
-              "line": 634,
+              "line": 650,
               "column": 24
             }
           },
@@ -2978,11 +2978,11 @@
           "description": "Computed value, true if `previous` is set",
           "sourceRange": {
             "start": {
-              "line": 638,
+              "line": 654,
               "column": 8
             },
             "end": {
-              "line": 641,
+              "line": 657,
               "column": 9
             }
           },
@@ -2994,11 +2994,11 @@
           "description": "Model to generate a link to next HTTP method.\nIt should contain `id` and `label` properties",
           "sourceRange": {
             "start": {
-              "line": 646,
+              "line": 662,
               "column": 8
             },
             "end": {
-              "line": 646,
+              "line": 662,
               "column": 20
             }
           },
@@ -3010,11 +3010,11 @@
           "description": "Computed value, true if `next` is set",
           "sourceRange": {
             "start": {
-              "line": 650,
+              "line": 666,
               "column": 8
             },
             "end": {
-              "line": 653,
+              "line": 669,
               "column": 9
             }
           },
@@ -3026,11 +3026,11 @@
           "description": "Computed value, true to render bottom navigation",
           "sourceRange": {
             "start": {
-              "line": 657,
+              "line": 673,
               "column": 8
             },
             "end": {
-              "line": 660,
+              "line": 676,
               "column": 9
             }
           },
@@ -3042,11 +3042,11 @@
           "description": "When set code snippets are rendered.",
           "sourceRange": {
             "start": {
-              "line": 664,
+              "line": 680,
               "column": 8
             },
             "end": {
-              "line": 667,
+              "line": 683,
               "column": 9
             }
           },
@@ -3058,11 +3058,11 @@
           "description": "When set security details are rendered.",
           "sourceRange": {
             "start": {
-              "line": 671,
+              "line": 687,
               "column": 8
             },
             "end": {
-              "line": 674,
+              "line": 690,
               "column": 9
             }
           },
