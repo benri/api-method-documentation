@@ -29,7 +29,7 @@
     "http-code-snippets": "advanced-rest-client/http-code-snippets#^2.0.0",
     "clipboard-copy": "advanced-rest-client/clipboard-copy#^2.0.1",
     "iron-collapse": "PolymerElements/iron-collapse#^2.2.0",
-    "api-view-model-transformer": "advanced-rest-client/api-view-model-transformer#^2.0.1",
+    "api-view-model-transformer": "advanced-rest-client/api-view-model-transformer#^2.0.2",
     "amf-helper-mixin": "advanced-rest-client/amf-helper-mixin#^2.0.1",
     "api-security-documentation": "advanced-rest-client/api-security-documentation#^2.0.1"
   },
