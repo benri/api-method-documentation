@@ -699,9 +699,9 @@
      * @return {String|undefined} Method friendly name
      */
     _computeMethodName(method) {
-      let name = this._getValue(method, 'http://schema.org/name');
+      let name = this._getValue(method, this.ns.schema.schemaName);
       if (!name) {
-        name = this._getValue(method, 'http://www.w3.org/ns/hydra/core#method');
+        name = this._getValue(method, this.ns.w3.hydra.core + 'method');
       }
       return name;
     }
@@ -712,7 +712,7 @@
      * @return {String|undefined} HTTP method name
      */
     _computeHttpMethod(method) {
-      let name = this._getValue(method, 'http://www.w3.org/ns/hydra/core#method');
+      let name = this._getValue(method, this.ns.w3.hydra.core + 'method');
       if (name) {
         name = name.toUpperCase();
       }
@@ -841,7 +841,7 @@
       if (headers && headers.length) {
         result = '';
         headers.forEach((item) => {
-          const name = this._getValue(item, 'http://schema.org/name');
+          const name = this._getValue(item, this.ns.schema.schemaName);
           const value = this._computePropertyValue(item) || '';
           result += `${name}: ${value}\n`;
         });
@@ -870,19 +870,19 @@
      * @return {String|undefined}
      */
     _computePropertyValue(item) {
-      let schema = item && item['http://raml.org/vocabularies/http#schema'];
+      let schema = item && item[this.ns.raml.vocabularies.http + 'schema'];
       if (!schema) {
         return;
       }
       schema = schema[0];
-      const defValKey = 'http://www.w3.org/ns/shacl#defaultValue';
+      const defValKey = this.ns.w3.shacl.name + 'defaultValue';
       let value = this._getValue(item, defValKey);
       if (!value) {
-        const examplesKey = 'http://raml.org/vocabularies/document#examples';
+        const examplesKey = this.ns.raml.vocabularies.document + 'examples';
         let example = item[examplesKey];
         if (example) {
           example = example[0];
-          value = this._getValue(item, 'http://raml.org/vocabularies/document#value');
+          value = this._getValue(item, this.ns.raml.vocabularies.document + 'value');
         }
       }
       return value;
