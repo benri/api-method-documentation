@@ -196,8 +196,8 @@
     .bottom-nav {
       padding: 32px 0;
       margin: 16px 0;
-      border-top: 1px var(--api-method-documentation-bottom-navigation-border-color, #546E7A) solid;
-      color: var(--api-method-documentation-bottom-navigation-color, #546E7A);
+      border-top: 1px var(--api-method-documentation-bottom-navigation-border-color, #000) solid;
+      color: var(--api-method-documentation-bottom-navigation-color, #000);
       font-size: 18px;
     }
 
@@ -858,7 +858,7 @@
         return;
       }
       if (payload instanceof Array) {
-        payload = payload [0];
+        payload = payload[0];
       }
       return this.$.transformer.bodyToExample(payload);
     }
