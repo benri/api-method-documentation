@@ -196,8 +196,8 @@
     .bottom-nav {
       padding: 32px 0;
       margin: 16px 0;
-      border-top: 1px var(--api-method-documentation-bottom-navigation-border-color, #546E7A) solid;
-      color: var(--api-method-documentation-bottom-navigation-color, #546E7A);
+      border-top: 1px var(--api-method-documentation-bottom-navigation-border-color, #000) solid;
+      color: var(--api-method-documentation-bottom-navigation-color, #000);
       font-size: 18px;
     }
 
@@ -227,6 +227,20 @@
       margin-bottom: 0;
       border-bottom: none;
       padding-bottom: 0;
+    }
+
+    .request-documentation,
+    .response-documentation {
+      @apply --api-method-documentation-main-sections;
+    }
+
+    .snippets,
+    .security,
+    api-parameters-document,
+    api-headers-document,
+    api-body-document,
+    .response-documentation {
+      @apply --api-method-documentation-docs-sections;
     }
     </style>
     <template is="dom-if" if="[[aware]]">
@@ -408,6 +422,8 @@
    * `--api-method-documentation-try-it-color-hover` | Color of the Try it button when hovered | `--primary-action-color` or `#fff`
    * `--api-method-documentation-bottom-navigation-border-color` | Color of the top border of the bottom navigartion | `#546E7A`
    * `--api-method-documentation-bottom-navigation-color` | Color of of the bottom navigartion (icon + text) | `#546E7A`
+   * `--api-method-documentation-main-sections` | Mixin applied to both request and response sections | `{}`
+   * `--api-method-documentation-docs-sections` | Mixin applied to each documentation block | `{}`
    *
    * @customElement
    * @polymer
@@ -683,9 +699,9 @@
      * @return {String|undefined} Method friendly name
      */
     _computeMethodName(method) {
-      let name = this._getValue(method, 'http://schema.org/name');
+      let name = this._getValue(method, this.ns.schema.schemaName);
       if (!name) {
-        name = this._getValue(method, 'http://www.w3.org/ns/hydra/core#method');
+        name = this._getValue(method, this.ns.w3.hydra.core + 'method');
       }
       return name;
     }
@@ -696,7 +712,7 @@
      * @return {String|undefined} HTTP method name
      */
     _computeHttpMethod(method) {
-      let name = this._getValue(method, 'http://www.w3.org/ns/hydra/core#method');
+      let name = this._getValue(method, this.ns.w3.hydra.core + 'method');
       if (name) {
         name = name.toUpperCase();
       }
@@ -825,7 +841,7 @@
       if (headers && headers.length) {
         result = '';
         headers.forEach((item) => {
-          const name = this._getValue(item, 'http://schema.org/name');
+          const name = this._getValue(item, this.ns.schema.schemaName);
           const value = this._computePropertyValue(item) || '';
           result += `${name}: ${value}\n`;
         });
@@ -842,7 +858,7 @@
         return;
       }
       if (payload instanceof Array) {
-        payload = payload [0];
+        payload = payload[0];
       }
       return this.$.transformer.bodyToExample(payload);
     }
@@ -854,19 +870,19 @@
      * @return {String|undefined}
      */
     _computePropertyValue(item) {
-      let schema = item && item['http://raml.org/vocabularies/http#schema'];
+      let schema = item && item[this.ns.raml.vocabularies.http + 'schema'];
       if (!schema) {
         return;
       }
       schema = schema[0];
-      const defValKey = 'http://www.w3.org/ns/shacl#defaultValue';
+      const defValKey = this.ns.w3.shacl.name + 'defaultValue';
       let value = this._getValue(item, defValKey);
       if (!value) {
-        const examplesKey = 'http://raml.org/vocabularies/document#examples';
+        const examplesKey = this.ns.raml.vocabularies.document + 'examples';
         let example = item[examplesKey];
         if (example) {
           example = example[0];
-          value = this._getValue(item, 'http://raml.org/vocabularies/document#value');
+          value = this._getValue(item, this.ns.raml.vocabularies.document + 'value');
         }
       }
       return value;

@@ -102,6 +102,8 @@ declare namespace ApiElements {
    * `--api-method-documentation-try-it-color-hover` | Color of the Try it button when hovered | `--primary-action-color` or `#fff`
    * `--api-method-documentation-bottom-navigation-border-color` | Color of the top border of the bottom navigartion | `#546E7A`
    * `--api-method-documentation-bottom-navigation-color` | Color of of the bottom navigartion (icon + text) | `#546E7A`
+   * `--api-method-documentation-main-sections` | Mixin applied to both request and response sections | `{}`
+   * `--api-method-documentation-docs-sections` | Mixin applied to each documentation block | `{}`
    */
   class ApiMethodDocumentation extends
     ApiElements.AmfHelperMixin(
