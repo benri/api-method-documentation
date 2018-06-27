@@ -37,11 +37,21 @@
 
     h1 {
       @apply --arc-font-headline;
+      font-weight: var(--api-method-documentation-title-method-font-weight, 500);
+      text-transform: capitalize;
+      @apply --api-method-documentation-title;
     }
 
     h2 {
       @apply --arc-font-title;
       font-size: 22px;
+      @apply --api-method-documentation-main-section-title;
+    }
+
+    h3 {
+      @apply --layout-flex;
+      @apply --arc-font-title;
+      @apply --api-method-documentation-subsection-title;
     }
 
     .title-area {
@@ -49,13 +59,28 @@
       @apply --layout-center;
     }
 
-    .title {
-      @apply --layout-flex;
+    :host([narrow]) .title-area {
+      margin-bottom: 24px;
     }
 
-    .method-name {
-      font-weight: var(--api-method-documentation-title-method-font-weight, 500);
-      text-transform: capitalize;
+    :host([narrow]) h1 {
+      font-size: 20px;
+      margin: 0;
+      @apply --api-method-documentation-title-narrow;
+    }
+
+    :host([narrow]) h2 {
+      font-size: 18px;
+      @apply --api-method-documentation-main-section-title-narrow;
+    }
+
+    :host([narrow]) h3 {
+      font-size: 17px;
+      @apply --api-method-documentation-subsection-title-narrow;
+    }
+
+    .title {
+      @apply --layout-flex;
     }
 
     .url-area {
@@ -76,12 +101,6 @@
       @apply --layout-horizontal;
       @apply --layout-center;
       border-bottom: 1px var(--api-parameters-document-title-border-color, #e5e5e5) solid;
-    }
-
-    .section-title-area h3 {
-      @apply --layout-flex;
-      @apply --arc-font-title;
-      @apply --api-parameters-document-title;
     }
 
     .url-value {
@@ -133,23 +152,6 @@
       @apply --arc-font-body1;
       margin-bottom: 28px;
       color: var(--api-method-documentation-descxription-color, rgba(0, 0, 0, 0.74));
-    }
-
-    :host([narrow]) .title-area {
-      margin-bottom: 24px;
-    }
-
-    :host([narrow]) h1 {
-      font-size: 20px;
-      margin: 0;
-    }
-
-    :host([narrow]) h2 {
-      font-size: 18px;
-    }
-
-    :host([narrow]) h3 {
-      font-size: 17px;
     }
 
     .method-label {
@@ -247,9 +249,7 @@
       <raml-aware raml="{{amfModel}}" scope="[[aware]]"></raml-aware>
     </template>
     <div class="title-area">
-      <h1 class="title">
-        <span class="method-name">[[methodName]]</span>
-      </h1>
+      <h1 class="title">[[methodName]]</h1>
       <template is="dom-if" if="[[!noTryIt]]">
         <div class="action">
           <paper-button class="action-button" on-tap="_tryIt" raised>Try it</paper-button>
@@ -269,7 +269,6 @@
 
     <section class="request-documentation">
       <h2>Request</h2>
-
       <section class="url-area">
         <div class="method-value"><span class="method-label" data-method$="[[httpMethod]]">[[httpMethod]]</span></div>
         <div class="url-value">[[endpointUri]]</div>
@@ -305,29 +304,29 @@
           </div>
           <iron-collapse opened="[[securityOpened]]">
             <template is="dom-repeat" items="[[security]]">
-              <api-security-documentation amf-model="[[amfModel]]" security="[[item]]"></api-security-documentation>
+              <api-security-documentation amf-model="[[amfModel]]" security="[[item]]" narrow="[[narrow]]"></api-security-documentation>
             </template>
           </iron-collapse>
         </section>
       </template>
 
       <template is="dom-if" if="[[hasParameters]]">
-        <api-parameters-document amf-model="[[amfModel]]" query-opened base-uri-parameters="[[serverVariables]]" endpoint-parameters="[[endpointVariables]]" query-parameters="[[queryParameters]]"></api-parameters-document>
+        <api-parameters-document amf-model="[[amfModel]]" query-opened base-uri-parameters="[[serverVariables]]" endpoint-parameters="[[endpointVariables]]" query-parameters="[[queryParameters]]" narrow="[[narrow]]"></api-parameters-document>
       </template>
 
       <template is="dom-if" if="[[hasHeaders]]">
-        <api-headers-document opened amf-model="[[amfModel]]" headers="[[headers]]"></api-headers-document>
+        <api-headers-document opened amf-model="[[amfModel]]" headers="[[headers]]" narrow="[[narrow]]"></api-headers-document>
       </template>
 
       <template is="dom-if" if="[[hasPayload]]">
-        <api-body-document amf-model="[[amfModel]]" body="[[payload]]" opened></api-body-document>
+        <api-body-document amf-model="[[amfModel]]" body="[[payload]]" narrow="[[narrow]]" opened></api-body-document>
       </template>
     </section>
 
     <template is="dom-if" if="[[hasReturns]]">
       <section class="response-documentation">
         <h2>Response</h2>
-        <api-responses-document amf-model="[[amfModel]]" returns="[[returns]]"></api-responses-document>
+        <api-responses-document amf-model="[[amfModel]]" returns="[[returns]]" narrow="[[narrow]]"></api-responses-document>
       </section>
     </template>
 
@@ -410,7 +409,13 @@
    * ----------------|-------------|----------
    * `--api-method-documentation` | Mixin applied to this elment | `{}`
    * `--arc-font-headline` | Theme mixin, Applied to H1 element | `{}`
+   * `--api-method-documentation-title` | Mixin applied to the H1 element | `{}`
+   * `--api-method-documentation-title-narrow` | Mixin applied to the H1 element in narrow layout | `{}`
    * `--arc-font-title` | Theme mixin, applied to h2 element | `{}`
+   * `--api-method-documentation-main-section-title` | Mixin applied to main sections title element (reqyest and response) | `{}`
+   * `--api-method-documentation-main-section-title-narrow` | Mixin applied to main sections title element (reqyest and response) in narrow layout | `{}`
+   * `--api-method-documentation-subsection-title` | Mixin applied to sub section titles | `{}`
+   * `--api-method-documentation-subsection-title-narrow` | Mixin applied to sub section titles in narrow layout | `{}`
    * `--api-method-documentation-title-method-font-weight` | Font weight of method name title. | `500`
    * `--arc-font-code1` | Theme mixin, applied to the URL area | `{}`
    * `--api-method-documentation-url-font-size` | Font size of endpoin URL | `16px`

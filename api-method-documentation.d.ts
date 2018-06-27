@@ -90,7 +90,13 @@ declare namespace ApiElements {
    * ----------------|-------------|----------
    * `--api-method-documentation` | Mixin applied to this elment | `{}`
    * `--arc-font-headline` | Theme mixin, Applied to H1 element | `{}`
+   * `--api-method-documentation-title` | Mixin applied to the H1 element | `{}`
+   * `--api-method-documentation-title-narrow` | Mixin applied to the H1 element in narrow layout | `{}`
    * `--arc-font-title` | Theme mixin, applied to h2 element | `{}`
+   * `--api-method-documentation-main-section-title` | Mixin applied to main sections title element (reqyest and response) | `{}`
+   * `--api-method-documentation-main-section-title-narrow` | Mixin applied to main sections title element (reqyest and response) in narrow layout | `{}`
+   * `--api-method-documentation-subsection-title` | Mixin applied to sub section titles | `{}`
+   * `--api-method-documentation-subsection-title-narrow` | Mixin applied to sub section titles in narrow layout | `{}`
    * `--api-method-documentation-title-method-font-weight` | Font weight of method name title. | `500`
    * `--arc-font-code1` | Theme mixin, applied to the URL area | `{}`
    * `--api-method-documentation-url-font-size` | Font size of endpoin URL | `16px`
