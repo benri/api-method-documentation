@@ -253,7 +253,7 @@
         });
 
         test('method-name label is rendered', () => {
-          const node = element.shadowRoot.querySelector('.method-name');
+          const node = element.shadowRoot.querySelector('h1.title');
           assert.ok(node);
           assert.equal(node.innerText.toLowerCase(), 'list people');
         });
