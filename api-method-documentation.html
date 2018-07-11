@@ -101,6 +101,7 @@
       @apply --layout-horizontal;
       @apply --layout-center;
       border-bottom: 1px var(--api-parameters-document-title-border-color, #e5e5e5) solid;
+      cursor: pointer;
     }
 
     .url-value {
@@ -287,10 +288,10 @@
       <clipboard-copy id="urlCopy" content="[[endpointUri]]"></clipboard-copy>
 
       <section class="snippets">
-        <div class="section-title-area">
+        <div class="section-title-area" on-click="_toggleSnippets" title="Toogle code example details">
           <h3 class="table-title">Code examples</h3>
           <div class="title-area-actions">
-            <paper-button on-click="_toggleSnippets" class="toggle-button" title="Toogle code example details">
+            <paper-button class="toggle-button">
               [[_computeToggleActionLabel(snippetsOpened)]]
               <iron-icon icon="arc:expand-more" class$="[[_computeToggleIconClass(snippetsOpened)]]"></iron-icon>
             </paper-button>
@@ -301,12 +302,12 @@
         </iron-collapse>
       </section>
 
-      <template is="dom-if" if="[[hasSecurity]]">
+      <template is="dom-if" if="[[hasSecurity]]" restamp>
         <section class="security">
-          <div class="section-title-area">
+          <div class="section-title-area" on-click="_toggleSecurity" title="Toogle security details">
             <h3 class="table-title">Security</h3>
             <div class="title-area-actions">
-              <paper-button on-click="_toggleSecurity" class="toggle-button security" title="Toogle security details">
+              <paper-button class="toggle-button security">
                 [[_computeToggleActionLabel(securityOpened)]]
                 <iron-icon icon="arc:expand-more" class$="[[_computeToggleIconClass(securityOpened)]]"></iron-icon>
               </paper-button>
