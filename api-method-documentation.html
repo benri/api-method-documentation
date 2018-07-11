@@ -506,12 +506,19 @@
          */
         baseUri: String,
         /**
+         * Computed value, API version name
+         */
+        apiVersion: {
+          type: String,
+          computed: '_computeApiVersion(amfModel)'
+        },
+        /**
          * Endpoint URI to display in main URL field.
          * This value is computed when `amfModel`, `endpoint` or `baseUri` change.
          */
         endpointUri: {
           type: String,
-          computed: '_computeEndpointUri(server, endpoint, baseUri)'
+          computed: '_computeEndpointUri(server, endpoint, baseUri, apiVersion)'
         },
         /**
          * Computed value of method description from `method` property.
