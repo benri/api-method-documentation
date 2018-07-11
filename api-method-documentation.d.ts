@@ -10,6 +10,8 @@
 
 /// <reference path="../polymer/types/polymer-element.d.ts" />
 /// <reference path="../polymer/types/lib/elements/dom-if.d.ts" />
+/// <reference path="../polymer/types/lib/elements/dom-repeat.d.ts" />
+/// <reference path="../polymer/types/lib/utils/render-status.d.ts" />
 /// <reference path="../raml-aware/raml-aware.d.ts" />
 /// <reference path="../iron-flex-layout/iron-flex-layout.d.ts" />
 /// <reference path="../api-annotation-document/api-annotation-document.d.ts" />
@@ -165,6 +167,11 @@ declare namespace ApiElements {
      * When this property is set, the `endpointUri` property is recalculated.
      */
     baseUri: string|null|undefined;
+
+    /**
+     * Computed value, API version name
+     */
+    readonly apiVersion: string|null|undefined;
 
     /**
      * Endpoint URI to display in main URL field.
@@ -395,6 +402,18 @@ declare namespace ApiElements {
      * Toggles code snippets section.
      */
     _toggleSnippets(): void;
+
+    /**
+     * Renders or hides code snippets section.
+     *
+     * @param state Current state of `snippetsOpened`
+     */
+    _snippetsOpenedChanegd(state: Boolean|null): void;
+
+    /**
+     * Removes code snippets element if should not be rendered.
+     */
+    _snippetsTransitionEnd(): void;
 
     /**
      * Toggles security section.
