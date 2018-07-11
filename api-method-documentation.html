@@ -1,5 +1,7 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../polymer/lib/elements/dom-if.html">
+<link rel="import" href="../polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../polymer/lib/utils/render-status.html">
 <link rel="import" href="../raml-aware/raml-aware.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../api-annotation-document/api-annotation-document.html">
@@ -297,8 +299,10 @@
             </paper-button>
           </div>
         </div>
-        <iron-collapse opened="[[snippetsOpened]]">
-          <http-code-snippets url="[[endpointUri]]" method="[[httpMethod]]" headers="[[_computeSnippetsHeaders(headers)]]" payload="[[_computeSnippetsPayload(payload)]]"></http-code-snippets>
+        <iron-collapse id="snippetsCollapse" on-transitionend="_snippetsTransitionEnd">
+          <template is="dom-if" id="snippetsCondition" restamp>
+            <http-code-snippets url="[[endpointUri]]" method="[[httpMethod]]" headers="[[_computeSnippetsHeaders(headers)]]" payload="[[_computeSnippetsPayload(payload)]]"></http-code-snippets>
+          </template>
         </iron-collapse>
       </section>
 
@@ -703,7 +707,8 @@
          */
         snippetsOpened: {
           type: Boolean,
-          value: false
+          value: false,
+          observer: '_snippetsOpenedChanegd'
         },
         /**
          * When set security details are rendered.
@@ -846,6 +851,36 @@
      */
     _toggleSnippets() {
       this.snippetsOpened = !this.snippetsOpened;
+    }
+    /**
+     * Renders or hides code snippets section.
+     *
+     * @param {Boolean} state Current state of `snippetsOpened`
+     */
+    _snippetsOpenedChanegd(state) {
+      // (Pawel): Code snippets makes a lot of computations and are not even
+      // rendered at first. They should be stamp when user request it.
+      const collapse = this.shadowRoot.querySelector('#snippetsCollapse');
+      if (state) {
+        const condition = this.shadowRoot.querySelector('#snippetsCondition');
+        condition.if = true;
+      } else {
+        collapse.opened = false;
+      }
+      Polymer.RenderStatus.afterNextRender(this, () => {
+        if (state) {
+          collapse.opened = true;
+        }
+      });
+    }
+    /**
+     * Removes code snippets element if should not be rendered.
+     */
+    _snippetsTransitionEnd() {
+      if (!this.snippetsOpened) {
+        const condition = this.shadowRoot.querySelector('#snippetsCondition');
+        condition.if = false;
+      }
     }
     /**
      * Toggles security section.
