@@ -137,7 +137,7 @@
             done();
           });
           const button = element.shadowRoot.querySelector('.action-button');
-          MockInteractions.tap(button);
+          button.click();
         });
       });
 
@@ -513,7 +513,7 @@
     });
 
     test('Toggle button toggles operned state', () => {
-      const section = element.shadowRoot.querySelector('.toggle-button.security');
+      const section = element.shadowRoot.querySelector('.security .section-title-area');
       section.click();
       assert.isTrue(element.securityOpened);
     });
