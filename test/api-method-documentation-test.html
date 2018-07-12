@@ -6,7 +6,6 @@
   <title>api-method-documentation test</title>
   <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
   <script src="../../web-component-tester/browser.js"></script>
-  <script src="../../iron-test-helpers/mock-interactions.js"></script>
   <script src="amf-loader.js"></script>
   <link rel="import" href="../../arc-polyfills/arc-polyfills.html">
   <link rel="import" href="../api-method-documentation.html">
@@ -37,7 +36,7 @@
   </test-fixture>
 
   <script>
-  /* global AmfLoader, MockInteractions */
+  /* global AmfLoader */
   suite('api-method-documentation', () => {
     suite('Basic', () => {
       test('Adds raml-aware to the DOM if aware is set', (done) => {
@@ -137,7 +136,7 @@
             done();
           });
           const button = element.shadowRoot.querySelector('.action-button');
-          MockInteractions.tap(button);
+          button.click();
         });
       });
 
@@ -183,7 +182,7 @@
         });
 
         test('endpointUri is computed', () => {
-          assert.equal(element.endpointUri, 'http://{instance}.domain.com/people');
+          assert.equal(element.endpointUri, 'http://{instance}.domain.com/v1/people');
         });
 
         test('description is computed', () => {
@@ -513,7 +512,7 @@
     });
 
     test('Toggle button toggles operned state', () => {
-      const section = element.shadowRoot.querySelector('.toggle-button.security');
+      const section = element.shadowRoot.querySelector('.security .section-title-area');
       section.click();
       assert.isTrue(element.securityOpened);
     });

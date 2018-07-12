@@ -13,11 +13,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 456,
+              "line": 471,
               "column": 8
             },
             "end": {
-              "line": 456,
+              "line": 471,
               "column": 24
             }
           },
@@ -58,11 +58,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 445,
+              "line": 460,
               "column": 8
             },
             "end": {
-              "line": 445,
+              "line": 460,
               "column": 21
             }
           },
@@ -79,11 +79,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 461,
+              "line": 476,
               "column": 8
             },
             "end": {
-              "line": 461,
+              "line": 476,
               "column": 22
             }
           },
@@ -100,11 +100,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 466,
+              "line": 481,
               "column": 8
             },
             "end": {
-              "line": 466,
+              "line": 481,
               "column": 24
             }
           },
@@ -121,11 +121,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 470,
+              "line": 485,
               "column": 8
             },
             "end": {
-              "line": 473,
+              "line": 488,
               "column": 9
             }
           },
@@ -143,11 +143,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 478,
+              "line": 493,
               "column": 8
             },
             "end": {
-              "line": 481,
+              "line": 496,
               "column": 9
             }
           },
@@ -165,11 +165,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 487,
+              "line": 502,
               "column": 8
             },
             "end": {
-              "line": 490,
+              "line": 505,
               "column": 9
             }
           },
@@ -187,16 +187,38 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 495,
+              "line": 510,
               "column": 8
             },
             "end": {
-              "line": 495,
+              "line": 510,
               "column": 23
             }
           },
           "metadata": {
             "polymer": {
+              "attributeType": "String"
+            }
+          }
+        },
+        {
+          "name": "apiVersion",
+          "type": "string | null | undefined",
+          "description": "Computed value, API version name",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 514,
+              "column": 8
+            },
+            "end": {
+              "line": 517,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "readOnly": true,
               "attributeType": "String"
             }
           }
@@ -208,11 +230,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 500,
+              "line": 522,
               "column": 8
             },
             "end": {
-              "line": 503,
+              "line": 525,
               "column": 9
             }
           },
@@ -230,11 +252,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 507,
+              "line": 529,
               "column": 8
             },
             "end": {
-              "line": 510,
+              "line": 532,
               "column": 9
             }
           },
@@ -252,11 +274,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 515,
+              "line": 537,
               "column": 8
             },
             "end": {
-              "line": 518,
+              "line": 540,
               "column": 9
             }
           },
@@ -274,11 +296,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 523,
+              "line": 545,
               "column": 8
             },
             "end": {
-              "line": 526,
+              "line": 548,
               "column": 9
             }
           },
@@ -296,11 +318,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 531,
+              "line": 553,
               "column": 8
             },
             "end": {
-              "line": 534,
+              "line": 556,
               "column": 9
             }
           },
@@ -318,11 +340,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 540,
+              "line": 562,
               "column": 8
             },
             "end": {
-              "line": 543,
+              "line": 565,
               "column": 9
             }
           },
@@ -340,11 +362,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 549,
+              "line": 571,
               "column": 8
             },
             "end": {
-              "line": 552,
+              "line": 574,
               "column": 9
             }
           },
@@ -362,11 +384,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 557,
+              "line": 579,
               "column": 8
             },
             "end": {
-              "line": 560,
+              "line": 582,
               "column": 9
             }
           },
@@ -384,11 +406,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 564,
+              "line": 586,
               "column": 8
             },
             "end": {
-              "line": 567,
+              "line": 589,
               "column": 9
             }
           },
@@ -406,11 +428,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 572,
+              "line": 594,
               "column": 8
             },
             "end": {
-              "line": 575,
+              "line": 597,
               "column": 9
             }
           },
@@ -428,11 +450,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 580,
+              "line": 602,
               "column": 8
             },
             "end": {
-              "line": 583,
+              "line": 605,
               "column": 9
             }
           },
@@ -450,11 +472,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 588,
+              "line": 610,
               "column": 8
             },
             "end": {
-              "line": 591,
+              "line": 613,
               "column": 9
             }
           },
@@ -472,11 +494,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 595,
+              "line": 617,
               "column": 8
             },
             "end": {
-              "line": 598,
+              "line": 620,
               "column": 9
             }
           },
@@ -494,11 +516,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 603,
+              "line": 625,
               "column": 8
             },
             "end": {
-              "line": 606,
+              "line": 628,
               "column": 9
             }
           },
@@ -516,11 +538,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 610,
+              "line": 632,
               "column": 8
             },
             "end": {
-              "line": 613,
+              "line": 635,
               "column": 9
             }
           },
@@ -538,11 +560,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 618,
+              "line": 640,
               "column": 8
             },
             "end": {
-              "line": 621,
+              "line": 643,
               "column": 9
             }
           },
@@ -560,11 +582,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 625,
+              "line": 647,
               "column": 8
             },
             "end": {
-              "line": 628,
+              "line": 650,
               "column": 9
             }
           },
@@ -582,11 +604,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 633,
+              "line": 655,
               "column": 8
             },
             "end": {
-              "line": 636,
+              "line": 658,
               "column": 9
             }
           },
@@ -604,11 +626,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 640,
+              "line": 662,
               "column": 8
             },
             "end": {
-              "line": 643,
+              "line": 665,
               "column": 9
             }
           },
@@ -626,11 +648,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 647,
+              "line": 669,
               "column": 8
             },
             "end": {
-              "line": 650,
+              "line": 672,
               "column": 9
             }
           },
@@ -647,11 +669,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 655,
+              "line": 677,
               "column": 8
             },
             "end": {
-              "line": 655,
+              "line": 677,
               "column": 24
             }
           },
@@ -668,11 +690,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 659,
+              "line": 681,
               "column": 8
             },
             "end": {
-              "line": 662,
+              "line": 684,
               "column": 9
             }
           },
@@ -690,11 +712,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 667,
+              "line": 689,
               "column": 8
             },
             "end": {
-              "line": 667,
+              "line": 689,
               "column": 20
             }
           },
@@ -711,11 +733,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 671,
+              "line": 693,
               "column": 8
             },
             "end": {
-              "line": 674,
+              "line": 696,
               "column": 9
             }
           },
@@ -733,11 +755,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 678,
+              "line": 700,
               "column": 8
             },
             "end": {
-              "line": 681,
+              "line": 703,
               "column": 9
             }
           },
@@ -755,16 +777,17 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 685,
+              "line": 707,
               "column": 8
             },
             "end": {
-              "line": 688,
+              "line": 711,
               "column": 9
             }
           },
           "metadata": {
             "polymer": {
+              "observer": "\"_snippetsOpenedChanegd\"",
               "attributeType": "Boolean"
             }
           },
@@ -777,11 +800,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 692,
+              "line": 715,
               "column": 8
             },
             "end": {
-              "line": 695,
+              "line": 718,
               "column": 9
             }
           },
@@ -1177,17 +1200,40 @@
           "inheritedFrom": "ApiElements.AmfHelperMixin"
         },
         {
+          "name": "_computeApiVersion",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "../amf-helper-mixin/amf-helper-mixin.html",
+            "start": {
+              "line": 280,
+              "column": 4
+            },
+            "end": {
+              "line": 287,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "amfModel"
+            }
+          ],
+          "inheritedFrom": "ApiElements.AmfHelperMixin"
+        },
+        {
           "name": "_computeServerVariables",
           "description": "Computes value for `serverVariables` property.",
           "privacy": "protected",
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 286,
+              "line": 295,
               "column": 4
             },
             "end": {
-              "line": 288,
+              "line": 297,
               "column": 5
             }
           },
@@ -1212,11 +1258,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 295,
+              "line": 304,
               "column": 4
             },
             "end": {
-              "line": 297,
+              "line": 306,
               "column": 5
             }
           },
@@ -1241,11 +1287,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 304,
+              "line": 313,
               "column": 4
             },
             "end": {
-              "line": 306,
+              "line": 315,
               "column": 5
             }
           },
@@ -1266,34 +1312,6 @@
         {
           "name": "_computeReturns",
           "description": "Computes value for `returns` property",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "../amf-helper-mixin/amf-helper-mixin.html",
-            "start": {
-              "line": 313,
-              "column": 4
-            },
-            "end": {
-              "line": 315,
-              "column": 5
-            }
-          },
-          "metadata": {},
-          "params": [
-            {
-              "name": "method",
-              "type": "Object",
-              "description": "AMF `supportedOperation` model"
-            }
-          ],
-          "return": {
-            "type": "(Array.<Object> | undefined)"
-          },
-          "inheritedFrom": "ApiElements.AmfHelperMixin"
-        },
-        {
-          "name": "_computeSecurity",
-          "description": "Computes value for `security` property",
           "privacy": "protected",
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
@@ -1320,8 +1338,8 @@
           "inheritedFrom": "ApiElements.AmfHelperMixin"
         },
         {
-          "name": "_computeHasCustomProperties",
-          "description": "Computes value for `hasCustomProperties` property.",
+          "name": "_computeSecurity",
+          "description": "Computes value for `security` property",
           "privacy": "protected",
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
@@ -1331,6 +1349,34 @@
             },
             "end": {
               "line": 333,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "method",
+              "type": "Object",
+              "description": "AMF `supportedOperation` model"
+            }
+          ],
+          "return": {
+            "type": "(Array.<Object> | undefined)"
+          },
+          "inheritedFrom": "ApiElements.AmfHelperMixin"
+        },
+        {
+          "name": "_computeHasCustomProperties",
+          "description": "Computes value for `hasCustomProperties` property.",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "../amf-helper-mixin/amf-helper-mixin.html",
+            "start": {
+              "line": 340,
+              "column": 4
+            },
+            "end": {
+              "line": 342,
               "column": 5
             }
           },
@@ -1354,11 +1400,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 340,
+              "line": 349,
               "column": 4
             },
             "end": {
-              "line": 349,
+              "line": 358,
               "column": 5
             }
           },
@@ -1383,11 +1429,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 356,
+              "line": 365,
               "column": 4
             },
             "end": {
-              "line": 368,
+              "line": 377,
               "column": 5
             }
           },
@@ -1412,11 +1458,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 375,
+              "line": 384,
               "column": 4
             },
             "end": {
-              "line": 387,
+              "line": 396,
               "column": 5
             }
           },
@@ -1441,11 +1487,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 394,
+              "line": 403,
               "column": 4
             },
             "end": {
-              "line": 400,
+              "line": 409,
               "column": 5
             }
           },
@@ -1470,11 +1516,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 407,
+              "line": 416,
               "column": 4
             },
             "end": {
-              "line": 414,
+              "line": 423,
               "column": 5
             }
           },
@@ -1499,11 +1545,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 423,
+              "line": 433,
               "column": 4
             },
             "end": {
-              "line": 431,
+              "line": 445,
               "column": 5
             }
           },
@@ -1523,6 +1569,11 @@
               "name": "baseUri",
               "type": "?String",
               "description": "Current value of `baseUri` property"
+            },
+            {
+              "name": "version",
+              "type": "?String",
+              "description": "API current version"
             }
           ],
           "return": {
@@ -1538,11 +1589,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 441,
+              "line": 455,
               "column": 4
             },
             "end": {
-              "line": 452,
+              "line": 466,
               "column": 5
             }
           },
@@ -1577,11 +1628,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 462,
+              "line": 476,
               "column": 4
             },
             "end": {
-              "line": 466,
+              "line": 480,
               "column": 5
             }
           },
@@ -1611,11 +1662,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 478,
+              "line": 492,
               "column": 4
             },
             "end": {
-              "line": 492,
+              "line": 506,
               "column": 5
             }
           },
@@ -1645,11 +1696,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 499,
+              "line": 513,
               "column": 4
             },
             "end": {
-              "line": 509,
+              "line": 523,
               "column": 5
             }
           },
@@ -1673,11 +1724,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 516,
+              "line": 530,
               "column": 4
             },
             "end": {
-              "line": 523,
+              "line": 537,
               "column": 5
             }
           },
@@ -1700,11 +1751,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 876,
+              "line": 929,
               "column": 4
             },
             "end": {
-              "line": 893,
+              "line": 946,
               "column": 5
             }
           },
@@ -1727,11 +1778,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 556,
+              "line": 570,
               "column": 4
             },
             "end": {
-              "line": 562,
+              "line": 576,
               "column": 5
             }
           },
@@ -1761,11 +1812,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 570,
+              "line": 584,
               "column": 4
             },
             "end": {
-              "line": 576,
+              "line": 590,
               "column": 5
             }
           },
@@ -1795,11 +1846,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 577,
+              "line": 591,
               "column": 4
             },
             "end": {
-              "line": 591,
+              "line": 605,
               "column": 5
             }
           },
@@ -1821,11 +1872,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 600,
+              "line": 614,
               "column": 4
             },
             "end": {
-              "line": 617,
+              "line": 631,
               "column": 5
             }
           },
@@ -1860,11 +1911,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 618,
+              "line": 632,
               "column": 4
             },
             "end": {
-              "line": 624,
+              "line": 638,
               "column": 5
             }
           },
@@ -1886,11 +1937,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 632,
+              "line": 646,
               "column": 4
             },
             "end": {
-              "line": 637,
+              "line": 651,
               "column": 5
             }
           },
@@ -1920,11 +1971,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 645,
+              "line": 659,
               "column": 4
             },
             "end": {
-              "line": 651,
+              "line": 665,
               "column": 5
             }
           },
@@ -1954,11 +2005,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 658,
+              "line": 672,
               "column": 4
             },
             "end": {
-              "line": 697,
+              "line": 711,
               "column": 5
             }
           },
@@ -1983,11 +2034,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 706,
+              "line": 720,
               "column": 4
             },
             "end": {
-              "line": 718,
+              "line": 732,
               "column": 5
             }
           },
@@ -2016,11 +2067,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 725,
+              "line": 739,
               "column": 4
             },
             "end": {
-              "line": 746,
+              "line": 760,
               "column": 5
             }
           },
@@ -2045,11 +2096,11 @@
           "sourceRange": {
             "file": "../amf-helper-mixin/amf-helper-mixin.html",
             "start": {
-              "line": 752,
+              "line": 766,
               "column": 4
             },
             "end": {
-              "line": 777,
+              "line": 791,
               "column": 5
             }
           },
@@ -2073,11 +2124,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 705,
+              "line": 728,
               "column": 4
             },
             "end": {
-              "line": 711,
+              "line": 734,
               "column": 5
             }
           },
@@ -2100,11 +2151,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 718,
+              "line": 741,
               "column": 4
             },
             "end": {
-              "line": 724,
+              "line": 747,
               "column": 5
             }
           },
@@ -2127,11 +2178,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 732,
+              "line": 755,
               "column": 4
             },
             "end": {
-              "line": 734,
+              "line": 757,
               "column": 5
             }
           },
@@ -2158,11 +2209,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 742,
+              "line": 765,
               "column": 4
             },
             "end": {
-              "line": 744,
+              "line": 767,
               "column": 5
             }
           },
@@ -2188,11 +2239,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 748,
+              "line": 771,
               "column": 4
             },
             "end": {
-              "line": 757,
+              "line": 780,
               "column": 5
             }
           },
@@ -2208,11 +2259,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 763,
+              "line": 786,
               "column": 4
             },
             "end": {
-              "line": 765,
+              "line": 788,
               "column": 5
             }
           },
@@ -2233,11 +2284,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 771,
+              "line": 794,
               "column": 4
             },
             "end": {
-              "line": 773,
+              "line": 796,
               "column": 5
             }
           },
@@ -2258,11 +2309,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 780,
+              "line": 803,
               "column": 4
             },
             "end": {
-              "line": 782,
+              "line": 805,
               "column": 5
             }
           },
@@ -2287,11 +2338,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 786,
+              "line": 809,
               "column": 4
             },
             "end": {
-              "line": 788,
+              "line": 811,
               "column": 5
             }
           },
@@ -2307,11 +2358,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 792,
+              "line": 815,
               "column": 4
             },
             "end": {
-              "line": 794,
+              "line": 817,
               "column": 5
             }
           },
@@ -2327,11 +2378,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 802,
+              "line": 825,
               "column": 4
             },
             "end": {
-              "line": 812,
+              "line": 835,
               "column": 5
             }
           },
@@ -2356,11 +2407,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 814,
+              "line": 837,
               "column": 4
             },
             "end": {
-              "line": 824,
+              "line": 847,
               "column": 5
             }
           },
@@ -2380,11 +2431,57 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 828,
+              "line": 851,
               "column": 4
             },
             "end": {
-              "line": 830,
+              "line": 853,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "return": {
+            "type": "void"
+          }
+        },
+        {
+          "name": "_snippetsOpenedChanegd",
+          "description": "Renders or hides code snippets section.",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 859,
+              "column": 4
+            },
+            "end": {
+              "line": 874,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "state",
+              "type": "Boolean",
+              "description": "Current state of `snippetsOpened`"
+            }
+          ],
+          "return": {
+            "type": "void"
+          }
+        },
+        {
+          "name": "_snippetsTransitionEnd",
+          "description": "Removes code snippets element if should not be rendered.",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 878,
+              "column": 4
+            },
+            "end": {
+              "line": 883,
               "column": 5
             }
           },
@@ -2400,11 +2497,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 834,
+              "line": 887,
               "column": 4
             },
             "end": {
-              "line": 836,
+              "line": 889,
               "column": 5
             }
           },
@@ -2420,11 +2517,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 843,
+              "line": 896,
               "column": 4
             },
             "end": {
-              "line": 854,
+              "line": 907,
               "column": 5
             }
           },
@@ -2447,11 +2544,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 860,
+              "line": 913,
               "column": 4
             },
             "end": {
-              "line": 868,
+              "line": 921,
               "column": 5
             }
           },
@@ -2474,11 +2571,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 895,
+              "line": 948,
               "column": 4
             },
             "end": {
-              "line": 897,
+              "line": 950,
               "column": 5
             }
           },
@@ -2495,11 +2592,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 899,
+              "line": 952,
               "column": 4
             },
             "end": {
-              "line": 905,
+              "line": 958,
               "column": 5
             }
           },
@@ -2521,11 +2618,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 438,
+          "line": 453,
           "column": 2
         },
         "end": {
-          "line": 922,
+          "line": 975,
           "column": 3
         }
       },
@@ -2538,11 +2635,11 @@
           "description": "Generated AMF json/ld model form the API spec.\nThe element assumes the object of the first array item to be a\ntype of `\"http://raml.org/vocabularies/document#Document`\non AMF vocabulary.\n\nIt is only usefult for the element to resolve references.",
           "sourceRange": {
             "start": {
-              "line": 456,
+              "line": 471,
               "column": 8
             },
             "end": {
-              "line": 456,
+              "line": 471,
               "column": 24
             }
           },
@@ -2572,11 +2669,11 @@
           "description": "`raml-aware` scope property to use.",
           "sourceRange": {
             "start": {
-              "line": 445,
+              "line": 460,
               "column": 8
             },
             "end": {
-              "line": 445,
+              "line": 460,
               "column": 21
             }
           },
@@ -2588,11 +2685,11 @@
           "description": "AMF method definition as a `http://www.w3.org/ns/hydra/core#supportedOperation`\nobject.",
           "sourceRange": {
             "start": {
-              "line": 461,
+              "line": 476,
               "column": 8
             },
             "end": {
-              "line": 461,
+              "line": 476,
               "column": 22
             }
           },
@@ -2604,11 +2701,11 @@
           "description": "Method's endpoint definition as a\n`http://raml.org/vocabularies/http#endpoint` of AMF model.",
           "sourceRange": {
             "start": {
-              "line": 466,
+              "line": 481,
               "column": 8
             },
             "end": {
-              "line": 466,
+              "line": 481,
               "column": 24
             }
           },
@@ -2620,11 +2717,11 @@
           "description": "The try it button is not rendered when set.",
           "sourceRange": {
             "start": {
-              "line": 470,
+              "line": 485,
               "column": 8
             },
             "end": {
-              "line": 473,
+              "line": 488,
               "column": 9
             }
           },
@@ -2636,11 +2733,11 @@
           "description": "Computed value from the method model, name of the method.\nIt is either a `displayName` or HTTP method name",
           "sourceRange": {
             "start": {
-              "line": 478,
+              "line": 493,
               "column": 8
             },
             "end": {
-              "line": 481,
+              "line": 496,
               "column": 9
             }
           },
@@ -2652,11 +2749,11 @@
           "description": "HTTP method name string.\n\nIt is computed from `endpoint`.",
           "sourceRange": {
             "start": {
-              "line": 487,
+              "line": 502,
               "column": 8
             },
             "end": {
-              "line": 490,
+              "line": 505,
               "column": 9
             }
           },
@@ -2668,12 +2765,28 @@
           "description": "A property to set to override AMF's model base URI information.\nWhen this property is set, the `endpointUri` property is recalculated.",
           "sourceRange": {
             "start": {
-              "line": 495,
+              "line": 510,
               "column": 8
             },
             "end": {
-              "line": 495,
+              "line": 510,
               "column": 23
+            }
+          },
+          "metadata": {},
+          "type": "string | null | undefined"
+        },
+        {
+          "name": "api-version",
+          "description": "Computed value, API version name",
+          "sourceRange": {
+            "start": {
+              "line": 514,
+              "column": 8
+            },
+            "end": {
+              "line": 517,
+              "column": 9
             }
           },
           "metadata": {},
@@ -2684,11 +2797,11 @@
           "description": "Endpoint URI to display in main URL field.\nThis value is computed when `amfModel`, `endpoint` or `baseUri` change.",
           "sourceRange": {
             "start": {
-              "line": 500,
+              "line": 522,
               "column": 8
             },
             "end": {
-              "line": 503,
+              "line": 525,
               "column": 9
             }
           },
@@ -2700,11 +2813,11 @@
           "description": "Computed value of method description from `method` property.",
           "sourceRange": {
             "start": {
-              "line": 507,
+              "line": 529,
               "column": 8
             },
             "end": {
-              "line": 510,
+              "line": 532,
               "column": 9
             }
           },
@@ -2716,11 +2829,11 @@
           "description": "Computed value from current `method`. True if the model contains\ncustom properties (annotations in RAML).",
           "sourceRange": {
             "start": {
-              "line": 515,
+              "line": 537,
               "column": 8
             },
             "end": {
-              "line": 518,
+              "line": 540,
               "column": 9
             }
           },
@@ -2732,11 +2845,11 @@
           "description": "Computed value of `http://www.w3.org/ns/hydra/core#expects`\nof AMF model from current `method`",
           "sourceRange": {
             "start": {
-              "line": 523,
+              "line": 545,
               "column": 8
             },
             "end": {
-              "line": 526,
+              "line": 548,
               "column": 9
             }
           },
@@ -2748,11 +2861,11 @@
           "description": "Computed value of the `http://raml.org/vocabularies/http#server`\nfrom `amfModel`",
           "sourceRange": {
             "start": {
-              "line": 531,
+              "line": 553,
               "column": 8
             },
             "end": {
-              "line": 534,
+              "line": 556,
               "column": 9
             }
           },
@@ -2764,11 +2877,11 @@
           "description": "API base URI parameters defined in AMF api model",
           "sourceRange": {
             "start": {
-              "line": 540,
+              "line": 562,
               "column": 8
             },
             "end": {
-              "line": 543,
+              "line": 565,
               "column": 9
             }
           },
@@ -2780,11 +2893,11 @@
           "description": "Endpoint's path parameters.",
           "sourceRange": {
             "start": {
-              "line": 549,
+              "line": 571,
               "column": 8
             },
             "end": {
-              "line": 552,
+              "line": 574,
               "column": 9
             }
           },
@@ -2796,11 +2909,11 @@
           "description": "Computed value if server and endpoint definition of API model has\ndefined any variables.",
           "sourceRange": {
             "start": {
-              "line": 557,
+              "line": 579,
               "column": 8
             },
             "end": {
-              "line": 560,
+              "line": 582,
               "column": 9
             }
           },
@@ -2812,11 +2925,11 @@
           "description": "Computed value of method's query parameters.",
           "sourceRange": {
             "start": {
-              "line": 564,
+              "line": 586,
               "column": 8
             },
             "end": {
-              "line": 567,
+              "line": 589,
               "column": 9
             }
           },
@@ -2828,11 +2941,11 @@
           "description": "Computed value if server definition of API model has defined\nvariables.",
           "sourceRange": {
             "start": {
-              "line": 572,
+              "line": 594,
               "column": 8
             },
             "end": {
-              "line": 575,
+              "line": 597,
               "column": 9
             }
           },
@@ -2844,11 +2957,11 @@
           "description": "Computed value, true when either has path or query parameters.\nThis renders `api-parameters-document` if true.",
           "sourceRange": {
             "start": {
-              "line": 580,
+              "line": 602,
               "column": 8
             },
             "end": {
-              "line": 583,
+              "line": 605,
               "column": 9
             }
           },
@@ -2860,11 +2973,11 @@
           "description": "Computed value of AMF payload definition from `expects`\nproperty.",
           "sourceRange": {
             "start": {
-              "line": 588,
+              "line": 610,
               "column": 8
             },
             "end": {
-              "line": 591,
+              "line": 613,
               "column": 9
             }
           },
@@ -2876,11 +2989,11 @@
           "description": "Computed value, true if `payload` has values.",
           "sourceRange": {
             "start": {
-              "line": 595,
+              "line": 617,
               "column": 8
             },
             "end": {
-              "line": 598,
+              "line": 620,
               "column": 9
             }
           },
@@ -2892,11 +3005,11 @@
           "description": "Computed value of AMF payload definition from `expects`\nproperty.",
           "sourceRange": {
             "start": {
-              "line": 603,
+              "line": 625,
               "column": 8
             },
             "end": {
-              "line": 606,
+              "line": 628,
               "column": 9
             }
           },
@@ -2908,11 +3021,11 @@
           "description": "Computed value, true if `payload` has values.",
           "sourceRange": {
             "start": {
-              "line": 610,
+              "line": 632,
               "column": 8
             },
             "end": {
-              "line": 613,
+              "line": 635,
               "column": 9
             }
           },
@@ -2924,54 +3037,6 @@
           "description": "Computed value of AMF response definition from `returns`\nproperty.",
           "sourceRange": {
             "start": {
-              "line": 618,
-              "column": 8
-            },
-            "end": {
-              "line": 621,
-              "column": 9
-            }
-          },
-          "metadata": {},
-          "type": "Object | null | undefined"
-        },
-        {
-          "name": "has-returns",
-          "description": "Computed value, true if `returns` has values.",
-          "sourceRange": {
-            "start": {
-              "line": 625,
-              "column": 8
-            },
-            "end": {
-              "line": 628,
-              "column": 9
-            }
-          },
-          "metadata": {},
-          "type": "boolean | null | undefined"
-        },
-        {
-          "name": "security",
-          "description": "Computed value of AMF security definition from `method`\nproperty.",
-          "sourceRange": {
-            "start": {
-              "line": 633,
-              "column": 8
-            },
-            "end": {
-              "line": 636,
-              "column": 9
-            }
-          },
-          "metadata": {},
-          "type": "Object | null | undefined"
-        },
-        {
-          "name": "has-security",
-          "description": "Computed value, true if `returns` has values.",
-          "sourceRange": {
-            "start": {
               "line": 640,
               "column": 8
             },
@@ -2981,11 +3046,11 @@
             }
           },
           "metadata": {},
-          "type": "boolean | null | undefined"
+          "type": "Object | null | undefined"
         },
         {
-          "name": "narrow",
-          "description": "If set it will renders the view in the narrow layout.",
+          "name": "has-returns",
+          "description": "Computed value, true if `returns` has values.",
           "sourceRange": {
             "start": {
               "line": 647,
@@ -3000,15 +3065,63 @@
           "type": "boolean | null | undefined"
         },
         {
-          "name": "previous",
-          "description": "Model to generate a link to previous HTTP method.\nIt should contain `id` and `label` properties",
+          "name": "security",
+          "description": "Computed value of AMF security definition from `method`\nproperty.",
           "sourceRange": {
             "start": {
               "line": 655,
               "column": 8
             },
             "end": {
-              "line": 655,
+              "line": 658,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "Object | null | undefined"
+        },
+        {
+          "name": "has-security",
+          "description": "Computed value, true if `returns` has values.",
+          "sourceRange": {
+            "start": {
+              "line": 662,
+              "column": 8
+            },
+            "end": {
+              "line": 665,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "boolean | null | undefined"
+        },
+        {
+          "name": "narrow",
+          "description": "If set it will renders the view in the narrow layout.",
+          "sourceRange": {
+            "start": {
+              "line": 669,
+              "column": 8
+            },
+            "end": {
+              "line": 672,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "boolean | null | undefined"
+        },
+        {
+          "name": "previous",
+          "description": "Model to generate a link to previous HTTP method.\nIt should contain `id` and `label` properties",
+          "sourceRange": {
+            "start": {
+              "line": 677,
+              "column": 8
+            },
+            "end": {
+              "line": 677,
               "column": 24
             }
           },
@@ -3020,11 +3133,11 @@
           "description": "Computed value, true if `previous` is set",
           "sourceRange": {
             "start": {
-              "line": 659,
+              "line": 681,
               "column": 8
             },
             "end": {
-              "line": 662,
+              "line": 684,
               "column": 9
             }
           },
@@ -3036,11 +3149,11 @@
           "description": "Model to generate a link to next HTTP method.\nIt should contain `id` and `label` properties",
           "sourceRange": {
             "start": {
-              "line": 667,
+              "line": 689,
               "column": 8
             },
             "end": {
-              "line": 667,
+              "line": 689,
               "column": 20
             }
           },
@@ -3052,11 +3165,11 @@
           "description": "Computed value, true if `next` is set",
           "sourceRange": {
             "start": {
-              "line": 671,
+              "line": 693,
               "column": 8
             },
             "end": {
-              "line": 674,
+              "line": 696,
               "column": 9
             }
           },
@@ -3068,11 +3181,11 @@
           "description": "Computed value, true to render bottom navigation",
           "sourceRange": {
             "start": {
-              "line": 678,
+              "line": 700,
               "column": 8
             },
             "end": {
-              "line": 681,
+              "line": 703,
               "column": 9
             }
           },
@@ -3084,11 +3197,11 @@
           "description": "When set code snippets are rendered.",
           "sourceRange": {
             "start": {
-              "line": 685,
+              "line": 707,
               "column": 8
             },
             "end": {
-              "line": 688,
+              "line": 711,
               "column": 9
             }
           },
@@ -3100,11 +3213,11 @@
           "description": "When set security details are rendered.",
           "sourceRange": {
             "start": {
-              "line": 692,
+              "line": 715,
               "column": 8
             },
             "end": {
-              "line": 695,
+              "line": 718,
               "column": 9
             }
           },

@@ -1,5 +1,7 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../polymer/lib/elements/dom-if.html">
+<link rel="import" href="../polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../polymer/lib/utils/render-status.html">
 <link rel="import" href="../raml-aware/raml-aware.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../api-annotation-document/api-annotation-document.html">
@@ -101,6 +103,23 @@
       @apply --layout-horizontal;
       @apply --layout-center;
       border-bottom: 1px var(--api-parameters-document-title-border-color, #e5e5e5) solid;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .toggle-button {
+      outline: none;
+      color: var(--api-method-document-toggle-view-color, var(--arc-toggle-view-icon-color, rgba(0, 0, 0, 0.74)));
+      transition: color 0.25s ease-in-out;
+      @apply --toggle-button;
+    }
+
+    .toggle-button:hover {
+      color: var(--api-method-document-toggle-view-hover-color, var(--arc-toggle-view-icon-hover-color, rgba(0, 0, 0, 0.88)));
+      @apply --toggle-button-hover;
     }
 
     .url-value {
@@ -287,26 +306,28 @@
       <clipboard-copy id="urlCopy" content="[[endpointUri]]"></clipboard-copy>
 
       <section class="snippets">
-        <div class="section-title-area">
+        <div class="section-title-area" on-click="_toggleSnippets" title="Toogle code example details">
           <h3 class="table-title">Code examples</h3>
           <div class="title-area-actions">
-            <paper-button on-click="_toggleSnippets" class="toggle-button" title="Toogle code example details">
+            <paper-button class="toggle-button">
               [[_computeToggleActionLabel(snippetsOpened)]]
               <iron-icon icon="arc:expand-more" class$="[[_computeToggleIconClass(snippetsOpened)]]"></iron-icon>
             </paper-button>
           </div>
         </div>
-        <iron-collapse opened="[[snippetsOpened]]">
-          <http-code-snippets url="[[endpointUri]]" method="[[httpMethod]]" headers="[[_computeSnippetsHeaders(headers)]]" payload="[[_computeSnippetsPayload(payload)]]"></http-code-snippets>
+        <iron-collapse id="snippetsCollapse" on-transitionend="_snippetsTransitionEnd">
+          <template is="dom-if" id="snippetsCondition" restamp>
+            <http-code-snippets url="[[endpointUri]]" method="[[httpMethod]]" headers="[[_computeSnippetsHeaders(headers)]]" payload="[[_computeSnippetsPayload(payload)]]"></http-code-snippets>
+          </template>
         </iron-collapse>
       </section>
 
-      <template is="dom-if" if="[[hasSecurity]]">
+      <template is="dom-if" if="[[hasSecurity]]" restamp>
         <section class="security">
-          <div class="section-title-area">
+          <div class="section-title-area" on-click="_toggleSecurity" title="Toogle security details">
             <h3 class="table-title">Security</h3>
             <div class="title-area-actions">
-              <paper-button on-click="_toggleSecurity" class="toggle-button security" title="Toogle security details">
+              <paper-button class="toggle-button security">
                 [[_computeToggleActionLabel(securityOpened)]]
                 <iron-icon icon="arc:expand-more" class$="[[_computeToggleIconClass(securityOpened)]]"></iron-icon>
               </paper-button>
@@ -321,7 +342,7 @@
       </template>
 
       <template is="dom-if" if="[[hasParameters]]">
-        <api-parameters-document amf-model="[[amfModel]]" query-opened base-uri-parameters="[[serverVariables]]" endpoint-parameters="[[endpointVariables]]" query-parameters="[[queryParameters]]" narrow="[[narrow]]"></api-parameters-document>
+        <api-parameters-document amf-model="[[amfModel]]" query-opened path-opened base-uri-parameters="[[serverVariables]]" endpoint-parameters="[[endpointVariables]]" query-parameters="[[queryParameters]]" narrow="[[narrow]]"></api-parameters-document>
       </template>
 
       <template is="dom-if" if="[[hasHeaders]]">
@@ -505,12 +526,19 @@
          */
         baseUri: String,
         /**
+         * Computed value, API version name
+         */
+        apiVersion: {
+          type: String,
+          computed: '_computeApiVersion(amfModel)'
+        },
+        /**
          * Endpoint URI to display in main URL field.
          * This value is computed when `amfModel`, `endpoint` or `baseUri` change.
          */
         endpointUri: {
           type: String,
-          computed: '_computeEndpointUri(server, endpoint, baseUri)'
+          computed: '_computeEndpointUri(server, endpoint, baseUri, apiVersion)'
         },
         /**
          * Computed value of method description from `method` property.
@@ -695,7 +723,8 @@
          */
         snippetsOpened: {
           type: Boolean,
-          value: false
+          value: false,
+          observer: '_snippetsOpenedChanegd'
         },
         /**
          * When set security details are rendered.
@@ -838,6 +867,36 @@
      */
     _toggleSnippets() {
       this.snippetsOpened = !this.snippetsOpened;
+    }
+    /**
+     * Renders or hides code snippets section.
+     *
+     * @param {Boolean} state Current state of `snippetsOpened`
+     */
+    _snippetsOpenedChanegd(state) {
+      // (Pawel): Code snippets makes a lot of computations and are not even
+      // rendered at first. They should be stamp when user request it.
+      const collapse = this.shadowRoot.querySelector('#snippetsCollapse');
+      if (state) {
+        const condition = this.shadowRoot.querySelector('#snippetsCondition');
+        condition.if = true;
+      } else {
+        collapse.opened = false;
+      }
+      Polymer.RenderStatus.afterNextRender(this, () => {
+        if (state) {
+          collapse.opened = true;
+        }
+      });
+    }
+    /**
+     * Removes code snippets element if should not be rendered.
+     */
+    _snippetsTransitionEnd() {
+      if (!this.snippetsOpened) {
+        const condition = this.shadowRoot.querySelector('#snippetsCondition');
+        condition.if = false;
+      }
     }
     /**
      * Toggles security section.
