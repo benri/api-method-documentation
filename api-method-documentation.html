@@ -104,6 +104,22 @@
       @apply --layout-center;
       border-bottom: 1px var(--api-parameters-document-title-border-color, #e5e5e5) solid;
       cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .toggle-button {
+      outline: none;
+      color: var(--api-method-document-toggle-view-color, var(--arc-toggle-view-icon-color, rgba(0, 0, 0, 0.74)));
+      transition: color 0.25s ease-in-out;
+      @apply --toggle-button;
+    }
+
+    .toggle-button:hover {
+      color: var(--api-method-document-toggle-view-hover-color, var(--arc-toggle-view-icon-hover-color, rgba(0, 0, 0, 0.88)));
+      @apply --toggle-button-hover;
     }
 
     .url-value {
