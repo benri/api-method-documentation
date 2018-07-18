@@ -37,6 +37,10 @@
       };
     }
 
+    [hidden] {
+      display: none !important;
+    }
+
     h1 {
       @apply --arc-font-headline;
       font-weight: var(--api-method-documentation-title-method-font-weight, 500);
@@ -92,6 +96,7 @@
       @apply --arc-font-code1;
       font-size: var(--api-method-documentation-url-font-size, 16px);
       margin-bottom: 40px;
+      margin-top: 20px;
       background: var(--api-method-documentation-url-background-color, #424242);
       color: var(--api-method-documentation-url-font-color, #fff);
       padding: 8px;
@@ -277,7 +282,8 @@
     <template is="dom-if" if="[[aware]]">
       <raml-aware raml="{{amfModel}}" scope="[[aware]]"></raml-aware>
     </template>
-    <div class="title-area">
+
+    <div class="title-area" hidden$="[[_titleHidden(methodName, httpMethod, noTryIt)]]">
       <h1 class="title">[[methodName]]</h1>
       <template is="dom-if" if="[[!noTryIt]]">
         <div class="action">
@@ -285,6 +291,13 @@
         </div>
       </template>
     </div>
+
+    <section class="url-area">
+      <div class="method-value"><span class="method-label" data-method$="[[httpMethod]]">[[httpMethod]]</span></div>
+      <div class="url-value">[[endpointUri]]</div>
+      <paper-icon-button class="action-icon copy-icon" icon="arc:content-copy" on-tap="_copyUrlClipboard" title="Copy URL to clipboard"></paper-icon-button>
+    </section>
+    <clipboard-copy id="urlCopy" content="[[endpointUri]]"></clipboard-copy>
 
     <template is="dom-if" if="[[hasCustomProperties]]">
       <api-annotation-document shape="[[method]]"></api-annotation-document>
@@ -297,13 +310,6 @@
     </template>
 
     <section class="request-documentation">
-      <section class="url-area">
-        <div class="method-value"><span class="method-label" data-method$="[[httpMethod]]">[[httpMethod]]</span></div>
-        <div class="url-value">[[endpointUri]]</div>
-        <paper-icon-button class="action-icon copy-icon" icon="arc:content-copy" on-tap="_copyUrlClipboard" title="Copy URL to clipboard"></paper-icon-button>
-      </section>
-      <clipboard-copy id="urlCopy" content="[[endpointUri]]"></clipboard-copy>
-
       <section class="snippets">
         <div class="section-title-area" on-click="_toggleSnippets" title="Toogle code example details">
           <h3 class="table-title">Code examples</h3>
@@ -971,6 +977,19 @@
         clazz += ' opened';
       }
       return clazz;
+    }
+
+    _titleHidden(methodName, httpMethod, noTryIt) {
+      if (!noTryIt) {
+        return false;
+      }
+      if (!methodName || !httpMethod) {
+        return true;
+      }
+      if (methodName.toLowerCase() === httpMethod.toLowerCase()) {
+        return true;
+      }
+      return false;
     }
 
     //http://raml.org/vocabularies/security#security
