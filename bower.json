@@ -44,8 +44,7 @@
     "paper-item": "PolymerElements/paper-item#^2.1.0",
     "web-animations-js": "web-animations/web-animations-js#^2.3",
     "paper-toast": "PolymerElements/paper-toast#^2.1.0",
-    "arc-polyfills": "advanced-rest-client/arc-polyfills#^0.1.11",
-    "url-polyfill": "advanced-rest-client/url-polyfill#^0.5.7"
+    "arc-polyfills": "advanced-rest-client/arc-polyfills#^0.1.11"
   },
   "repository": {
     "type": "git",
