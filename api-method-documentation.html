@@ -328,23 +328,25 @@
         </section>
       </template>
 
-      <template is="dom-if" if="[[hasSecurity]]" restamp>
-        <section class="security">
-          <div class="section-title-area" on-click="_toggleSecurity" title="Toogle security details">
-            <h3 class="table-title">Security</h3>
-            <div class="title-area-actions">
-              <paper-button class="toggle-button security">
-                [[_computeToggleActionLabel(securityOpened)]]
-                <iron-icon icon="arc:expand-more" class$="[[_computeToggleIconClass(securityOpened)]]"></iron-icon>
-              </paper-button>
+      <template is="dom-if" if="[[renderSecurity]]" restamp>
+        <template is="dom-if" if="[[hasSecurity]]" restamp>
+          <section class="security">
+            <div class="section-title-area" on-click="_toggleSecurity" title="Toogle security details">
+              <h3 class="table-title">Security</h3>
+              <div class="title-area-actions">
+                <paper-button class="toggle-button security">
+                  [[_computeToggleActionLabel(securityOpened)]]
+                  <iron-icon icon="arc:expand-more" class$="[[_computeToggleIconClass(securityOpened)]]"></iron-icon>
+                </paper-button>
+              </div>
             </div>
-          </div>
-          <iron-collapse opened="[[securityOpened]]">
-            <template is="dom-repeat" items="[[security]]">
-              <api-security-documentation amf-model="[[amfModel]]" security="[[item]]" narrow="[[narrow]]"></api-security-documentation>
-            </template>
-          </iron-collapse>
-        </section>
+            <iron-collapse opened="[[securityOpened]]">
+              <template is="dom-repeat" items="[[security]]">
+                <api-security-documentation amf-model="[[amfModel]]" security="[[item]]" narrow="[[narrow]]"></api-security-documentation>
+              </template>
+            </iron-collapse>
+          </section>
+        </template>
       </template>
 
       <template is="dom-if" if="[[hasParameters]]">
@@ -759,7 +761,12 @@
         /**
          * When set it renders code examples section is the documentation
          */
-        renderCodeSnippets: Boolean
+        renderCodeSnippets: Boolean,
+
+        /**
+         * When set it renders security documentation when applicable
+         */
+        renderSecurity: Boolean
       };
     }
     /**
