@@ -148,7 +148,7 @@
           <raml-aware raml="{{amfModel}}" scope="model"></raml-aware>
           <api-navigation aware="model" endpoints-opened></api-navigation>
           <template is="dom-if" if="[[hasData]]">
-            <api-method-documentation aware="model" endpoint="[[endpoint]]" method="[[method]]" previous="[[previous]]" next="[[next]]"></api-method-documentation>
+            <api-method-documentation aware="model" endpoint="[[endpoint]]" method="[[method]]" previous="[[previous]]" next="[[next]]" render-code-snippets></api-method-documentation>
           </template>
           <template is="dom-if" if="[[!hasData]]">
             <p>Select a HTTP method in the navigation to see the demo.</p>
