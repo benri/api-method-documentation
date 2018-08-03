@@ -35,6 +35,18 @@
     </template>
   </test-fixture>
 
+  <test-fixture id="RenderSecurity">
+    <template>
+      <api-method-documentation render-security></api-method-documentation>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="RenderCodeSnippets">
+    <template>
+      <api-method-documentation render-code-snippets></api-method-documentation>
+    </template>
+  </test-fixture>
+
   <script>
   /* global AmfLoader */
   suite('api-method-documentation', () => {
@@ -489,7 +501,7 @@
         method = data[2];
 
         // tests here do not change state so it can be initialized only once
-        element = fixture('Basic');
+        element = fixture('RenderSecurity');
         element.amfModel = amf;
         element.endpoint = endpoint;
         element.method = method;
@@ -511,10 +523,62 @@
       assert.ok(section);
     });
 
-    test('Toggle button toggles operned state', () => {
+    test('Toggle button toggles the state', () => {
       const section = element.shadowRoot.querySelector('.security .section-title-area');
       section.click();
       assert.isTrue(element.securityOpened);
+    });
+  });
+
+  suite('Code snippets', () => {
+    let element;
+    let amf;
+    let endpoint;
+    let method;
+    suiteSetup((done) => {
+      AmfLoader.load(3, 0)
+      .then((data) => {
+        amf = data[0];
+        endpoint = data[1];
+        method = data[2];
+
+        // tests here do not change state so it can be initialized only once
+        element = fixture('RenderCodeSnippets');
+        element.amfModel = amf;
+        element.endpoint = endpoint;
+        element.method = method;
+        flush(() => done());
+      });
+    });
+
+    test('Renders snippets section', () => {
+      const node = element.shadowRoot.querySelector('section.snippets');
+      assert.ok(node);
+    });
+
+    test('http-code-snippets are not rendered by default', () => {
+      const node = element.shadowRoot.querySelector('http-code-snippets');
+      assert.notOk(node);
+    });
+
+    test('Toggle button toggles the state', () => {
+      const section = element.shadowRoot.querySelector('.snippets .section-title-area');
+      section.click();
+      assert.isTrue(element.snippetsOpened);
+    });
+
+    test('Eventually renders the snippets', (done) => {
+      const domIf = element.shadowRoot.querySelector('#snippetsCondition');
+      domIf.addEventListener('dom-change', function(e) {
+        if (!e.target.if) {
+          return;
+        }
+        const node = element.shadowRoot.querySelector('http-code-snippets');
+        assert.ok(node);
+        done();
+      });
+      const section = element.shadowRoot.querySelector('.snippets .section-title-area');
+      section.click();
     });
   });
   </script>
