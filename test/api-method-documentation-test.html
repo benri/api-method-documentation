@@ -535,20 +535,21 @@
     let amf;
     let endpoint;
     let method;
-    suiteSetup((done) => {
-      AmfLoader.load(3, 0)
+    suiteSetup(() => {
+      return AmfLoader.load(3, 0)
       .then((data) => {
         amf = data[0];
         endpoint = data[1];
         method = data[2];
-
-        // tests here do not change state so it can be initialized only once
-        element = fixture('RenderCodeSnippets');
-        element.amfModel = amf;
-        element.endpoint = endpoint;
-        element.method = method;
-        flush(() => done());
       });
+    });
+
+    setup((done) => {
+      element = fixture('RenderCodeSnippets');
+      element.amfModel = amf;
+      element.endpoint = endpoint;
+      element.method = method;
+      flush(() => done());
     });
 
     test('Renders snippets section', () => {
@@ -577,8 +578,7 @@
         assert.ok(node);
         done();
       });
-      const section = element.shadowRoot.querySelector('.snippets .section-title-area');
-      section.click();
+      element.snippetsOpened = true;
     });
   });
   </script>
