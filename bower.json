@@ -1,7 +1,7 @@
 {
   "name": "api-method-documentation",
   "description": "A HTTP method documentation build from AMF model",
-  "version": "2.0.11",
+  "version": "2.0.14",
   "license": "Apache-2.0",
   "main": "api-method-documentation.html",
   "keywords": [
@@ -45,7 +45,7 @@
     "web-animations-js": "web-animations/web-animations-js#^2.3",
     "paper-toast": "PolymerElements/paper-toast#^2.1.0",
     "arc-polyfills": "advanced-rest-client/arc-polyfills#^0.1.11",
-    "url-polyfill": "github/url-polyfill#^0.5.6"
+    "paper-toggle-button": "PolymerElements/paper-toggle-button#^2.1.1"
   },
   "repository": {
     "type": "git",

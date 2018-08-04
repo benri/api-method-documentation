@@ -50,7 +50,6 @@
 
     h2 {
       @apply --arc-font-title;
-      font-size: 22px;
       @apply --api-method-documentation-main-section-title;
     }
 
@@ -67,6 +66,10 @@
 
     :host([narrow]) .title-area {
       margin-bottom: 24px;
+    }
+
+    :host([narrow]) .title-area {
+      margin-top: 12px;
     }
 
     :host([narrow]) h1 {
@@ -100,7 +103,7 @@
       background: var(--api-method-documentation-url-background-color, #424242);
       color: var(--api-method-documentation-url-font-color, #fff);
       padding: 8px;
-      border-radius: 2px;
+      border-radius: 4px;
       position: relative;
     }
 
@@ -310,40 +313,44 @@
     </template>
 
     <section class="request-documentation">
-      <section class="snippets">
-        <div class="section-title-area" on-click="_toggleSnippets" title="Toogle code example details">
-          <h3 class="table-title">Code examples</h3>
-          <div class="title-area-actions">
-            <paper-button class="toggle-button">
-              [[_computeToggleActionLabel(snippetsOpened)]]
-              <iron-icon icon="arc:expand-more" class$="[[_computeToggleIconClass(snippetsOpened)]]"></iron-icon>
-            </paper-button>
-          </div>
-        </div>
-        <iron-collapse id="snippetsCollapse" on-transitionend="_snippetsTransitionEnd">
-          <template is="dom-if" id="snippetsCondition" restamp>
-            <http-code-snippets url="[[endpointUri]]" method="[[httpMethod]]" headers="[[_computeSnippetsHeaders(headers)]]" payload="[[_computeSnippetsPayload(payload)]]"></http-code-snippets>
-          </template>
-        </iron-collapse>
-      </section>
-
-      <template is="dom-if" if="[[hasSecurity]]" restamp>
-        <section class="security">
-          <div class="section-title-area" on-click="_toggleSecurity" title="Toogle security details">
-            <h3 class="table-title">Security</h3>
+      <template is="dom-if" if="[[renderCodeSnippets]]" restamp="true">
+        <section class="snippets">
+          <div class="section-title-area" on-click="_toggleSnippets" title="Toogle code example details">
+            <h3 class="table-title">Code examples</h3>
             <div class="title-area-actions">
-              <paper-button class="toggle-button security">
-                [[_computeToggleActionLabel(securityOpened)]]
-                <iron-icon icon="arc:expand-more" class$="[[_computeToggleIconClass(securityOpened)]]"></iron-icon>
+              <paper-button class="toggle-button">
+                [[_computeToggleActionLabel(snippetsOpened)]]
+                <iron-icon icon="arc:expand-more" class$="[[_computeToggleIconClass(snippetsOpened)]]"></iron-icon>
               </paper-button>
             </div>
           </div>
-          <iron-collapse opened="[[securityOpened]]">
-            <template is="dom-repeat" items="[[security]]">
-              <api-security-documentation amf-model="[[amfModel]]" security="[[item]]" narrow="[[narrow]]"></api-security-documentation>
+          <iron-collapse id="snippetsCollapse" on-transitionend="_snippetsTransitionEnd">
+            <template is="dom-if" id="snippetsCondition" restamp>
+              <http-code-snippets url="[[endpointUri]]" method="[[httpMethod]]" headers="[[_computeSnippetsHeaders(headers)]]" payload="[[_computeSnippetsPayload(payload)]]"></http-code-snippets>
             </template>
           </iron-collapse>
         </section>
+      </template>
+
+      <template is="dom-if" if="[[renderSecurity]]" restamp>
+        <template is="dom-if" if="[[hasSecurity]]" restamp>
+          <section class="security">
+            <div class="section-title-area" on-click="_toggleSecurity" title="Toogle security details">
+              <h3 class="table-title">Security</h3>
+              <div class="title-area-actions">
+                <paper-button class="toggle-button security">
+                  [[_computeToggleActionLabel(securityOpened)]]
+                  <iron-icon icon="arc:expand-more" class$="[[_computeToggleIconClass(securityOpened)]]"></iron-icon>
+                </paper-button>
+              </div>
+            </div>
+            <iron-collapse opened="[[securityOpened]]">
+              <template is="dom-repeat" items="[[security]]">
+                <api-security-documentation amf-model="[[amfModel]]" security="[[item]]" narrow="[[narrow]]"></api-security-documentation>
+              </template>
+            </iron-collapse>
+          </section>
+        </template>
       </template>
 
       <template is="dom-if" if="[[hasParameters]]">
@@ -412,10 +419,12 @@
    *
    * To update base URI value either update `baseUri` property or use
    * `iron-meta` with key `ApiBaseUri`. First method is easier but the second
-   * gives much more flexibility since it use a [monostate pattern](http://wiki.c2.com/?MonostatePattern)
+   * gives much more flexibility since it use a
+   * [monostate pattern](http://wiki.c2.com/?MonostatePattern)
    * to manage base URI property.
    *
-   * When the component constructs the funal URI for the endpoint it does the following:
+   * When the component constructs the funal URI for the endpoint it does the
+   * following:
    * - if `baseUri` is set it uses this value as a base uri for the endpoint
    * - else if `iron-meta` with key `ApiBaseUri` exists and contains a value
    * it uses it uses this value as a base uri for the endpoint
@@ -439,32 +448,47 @@
    *
    * ## Styling
    *
-   * `<api-method-documentation>` provides the following custom properties and mixins for styling:
+   * `<api-method-documentation>` provides the following custom properties and
+   * mixins for styling:
    *
    * Custom property | Description | Default
    * ----------------|-------------|----------
    * `--api-method-documentation` | Mixin applied to this elment | `{}`
    * `--arc-font-headline` | Theme mixin, Applied to H1 element | `{}`
    * `--api-method-documentation-title` | Mixin applied to the H1 element | `{}`
-   * `--api-method-documentation-title-narrow` | Mixin applied to the H1 element in narrow layout | `{}`
+   * `--api-method-documentation-title-narrow` | Mixin applied to the H1 element
+   * in narrow layout | `{}`
    * `--arc-font-title` | Theme mixin, applied to h2 element | `{}`
-   * `--api-method-documentation-main-section-title` | Mixin applied to main sections title element (reqyest and response) | `{}`
-   * `--api-method-documentation-main-section-title-narrow` | Mixin applied to main sections title element (reqyest and response) in narrow layout | `{}`
-   * `--api-method-documentation-subsection-title` | Mixin applied to sub section titles | `{}`
-   * `--api-method-documentation-subsection-title-narrow` | Mixin applied to sub section titles in narrow layout | `{}`
+   * `--api-method-documentation-main-section-title` | Mixin applied to main
+   * sections title element (reqyest and response) | `{}`
+   * `--api-method-documentation-main-section-title-narrow` | Mixin applied to
+   * main sections title element (reqyest and response) in narrow layout | `{}`
+   * `--api-method-documentation-subsection-title` | Mixin applied to sub section
+   * titles | `{}`
+   * `--api-method-documentation-subsection-title-narrow` | Mixin applied to
+   * sub section titles in narrow layout | `{}`
    * `--api-method-documentation-title-method-font-weight` | Font weight of method name title. | `500`
    * `--arc-font-code1` | Theme mixin, applied to the URL area | `{}`
    * `--api-method-documentation-url-font-size` | Font size of endpoin URL | `16px`
-   * `--api-method-documentation-url-background-color` | Background color of the URL section | `#424242`
+   * `--api-method-documentation-url-background-color` | Background color of
+   * the URL section | `#424242`
    * `--api-method-documentation-url-font-color` | Font color of the URL area | `#fff`
-   * `--api-method-documentation-try-it-background-color` | Background color of the Try it button | `--primary-color`
-   * `--api-method-documentation-try-it-color` | Color of the Try it button | `--primary-action-color` or `#fff`
-   * `--api-method-documentation-try-it-background-color-hover` | Background color of the Try it button when hovered | `--primary-color`
-   * `--api-method-documentation-try-it-color-hover` | Color of the Try it button when hovered | `--primary-action-color` or `#fff`
-   * `--api-method-documentation-bottom-navigation-border-color` | Color of the top border of the bottom navigartion | `#546E7A`
-   * `--api-method-documentation-bottom-navigation-color` | Color of of the bottom navigartion (icon + text) | `#546E7A`
-   * `--api-method-documentation-main-sections` | Mixin applied to both request and response sections | `{}`
-   * `--api-method-documentation-docs-sections` | Mixin applied to each documentation block | `{}`
+   * `--api-method-documentation-try-it-background-color` | Background color
+   * of the Try it button | `--primary-color`
+   * `--api-method-documentation-try-it-color` | Color of the Try it button |
+   * `--primary-action-color` or `#fff`
+   * `--api-method-documentation-try-it-background-color-hover` | Background
+   * color of the Try it button when hovered | `--primary-color`
+   * `--api-method-documentation-try-it-color-hover` | Color of the Try it
+   * button when hovered | `--primary-action-color` or `#fff`
+   * `--api-method-documentation-bottom-navigation-border-color` | Color of
+   * the top border of the bottom navigartion | `#546E7A`
+   * `--api-method-documentation-bottom-navigation-color` | Color of of the
+   * bottom navigartion (icon + text) | `#546E7A`
+   * `--api-method-documentation-main-sections` | Mixin applied to both request
+   * and response sections | `{}`
+   * `--api-method-documentation-docs-sections` | Mixin applied to each
+   * documentation block | `{}`
    *
    * @customElement
    * @polymer
@@ -737,7 +761,16 @@
         securityOpened: {
           type: Boolean,
           value: false
-        }
+        },
+        /**
+         * When set it renders code examples section is the documentation
+         */
+        renderCodeSnippets: Boolean,
+
+        /**
+         * When set it renders security documentation when applicable
+         */
+        renderSecurity: Boolean
       };
     }
     /**
@@ -859,13 +892,13 @@
     _copyUrlClipboard(e) {
       const button = e.localTarget || e.target;
       if (this.$.urlCopy.copy()) {
-          button.icon = 'arc:done';
-        } else {
-          button.icon = 'arc:error';
-        }
-        setTimeout(() => {
-          button.icon = 'arc:content-copy';
-        }, 1000);
+        button.icon = 'arc:done';
+      } else {
+        button.icon = 'arc:error';
+      }
+      setTimeout(() => {
+        button.icon = 'arc:content-copy';
+      }, 1000);
     }
     /**
      * Toggles code snippets section.
@@ -880,8 +913,11 @@
      */
     _snippetsOpenedChanegd(state) {
       // (Pawel): Code snippets makes a lot of computations and are not even
-      // rendered at first. They should be stamp when user request it.
+      // rendered at first. They should be stamped when user request it.
       const collapse = this.shadowRoot.querySelector('#snippetsCollapse');
+      if (!collapse) {
+        return;
+      }
       if (state) {
         const condition = this.shadowRoot.querySelector('#snippetsCondition');
         condition.if = true;
