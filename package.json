@@ -10,7 +10,7 @@
   ],
   "devDependencies": {
     "@polymer/gen-typescript-declarations": "^1.1.1",
-    "amf-client-js": "^1.7.1"
+    "@api-components/api-model-generator": "^0.1.0"
   },
   "private": false,
   "scripts": {
@@ -26,8 +26,5 @@
   "bugs": {
     "url": "https://github.com/advanced-rest-client/api-method-documentation/issues",
     "email": "arc@mulesoft.com"
-  },
-  "dependencies": {
-    "conventional-changelog-cli": "^2.0.1"
   }
 }

@@ -1,10 +1,14 @@
 const AmfLoader = {};
-AmfLoader.load = function(endpointIndex, methodIndex) {
+AmfLoader.load = function(endpointIndex, methodIndex, compact) {
   endpointIndex = endpointIndex || 0;
   methodIndex = methodIndex || 0;
+
+  const file = '/demo-api' + (compact ? '-compact' : '') + '.json';
+
   const url = location.protocol + '//' + location.host +
     location.pathname.substr(0, location.pathname.lastIndexOf('/'))
-    .replace('/test', '/demo') + '/demo-api.json';
+    .replace(/\/test.*/, '/demo') + file;
+  console.log(url);
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', (e) => {
@@ -15,9 +19,18 @@ AmfLoader.load = function(endpointIndex, methodIndex) {
         reject(e);
         return;
       }
-      const def = data[0]['http://a.ml/vocabularies/document#encodes'][0];
-      const endpoint = def['http://a.ml/vocabularies/http#endpoint'][endpointIndex];
-      const method = endpoint['http://www.w3.org/ns/hydra/core#supportedOperation'][methodIndex];
+      if (data instanceof Array) {
+        data = data[0];
+      }
+      const encKey = compact ? 'doc:encodes' : 'http://a.ml/vocabularies/document#encodes';
+      let def = data[encKey];
+      if (def instanceof Array) {
+        def = def[0];
+      }
+      const endKey = compact ? 'raml-http:endpoint' : 'http://a.ml/vocabularies/http#endpoint';
+      const endpoint = def[endKey][endpointIndex];
+      const opKey = compact ? 'hydra:supportedOperation' : 'http://www.w3.org/ns/hydra/core#supportedOperation';
+      const method = endpoint[opKey][methodIndex];
       resolve([data, endpoint, method]);
     });
     xhr.addEventListener('error',

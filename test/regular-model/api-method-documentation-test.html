@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+  <title>api-method-documentation test</title>
+  <script src="../../../webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="../../../web-component-tester/browser.js"></script>
+  <script src="../amf-loader.js"></script>
+  <link rel="import" href="../../../arc-polyfills/arc-polyfills.html">
+  <link rel="import" href="../../api-method-documentation.html">
+</head>
+<body>
+  <test-fixture id="Basic">
+    <template>
+      <api-method-documentation></api-method-documentation>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="Aware">
+    <template>
+      <api-method-documentation aware="test"></api-method-documentation>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="NoTryIt">
+    <template>
+      <api-method-documentation no-try-it></api-method-documentation>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="BaseUri">
+    <template>
+      <api-method-documentation base-uri="https://domain.com"></api-method-documentation>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="RenderSecurity">
+    <template>
+      <api-method-documentation render-security></api-method-documentation>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="RenderCodeSnippets">
+    <template>
+      <api-method-documentation render-code-snippets></api-method-documentation>
+    </template>
+  </test-fixture>
+
+  <script>
+  /* global AmfLoader */
+  suite('api-method-documentation', () => {
+    suite('Basic', () => {
+      test('Adds raml-aware to the DOM if aware is set', (done) => {
+        const element = fixture('Aware');
+        flush(() => {
+          const node = element.shadowRoot.querySelector('raml-aware');
+          assert.ok(node);
+          done();
+        });
+      });
+
+      test('raml-aware is not in the DOM by default', (done) => {
+        const element = fixture('Basic');
+        flush(() => {
+          const node = element.shadowRoot.querySelector('raml-aware');
+          assert.notOk(node);
+          done();
+        });
+      });
+
+      test('api-annotation-document is not in the DOM', (done) => {
+        const element = fixture('Basic');
+        flush(() => {
+          const node = element.shadowRoot.querySelector('api-annotation-document');
+          assert.notOk(node);
+          done();
+        });
+      });
+
+      test('marked-element is not in the DOM', (done) => {
+        const element = fixture('Basic');
+        flush(() => {
+          const node = element.shadowRoot.querySelector('marked-element');
+          assert.notOk(node);
+          done();
+        });
+      });
+
+      test('api-headers-document is not in the DOM', (done) => {
+        const element = fixture('Basic');
+        flush(() => {
+          const node = element.shadowRoot.querySelector('api-headers-document');
+          assert.notOk(node);
+          done();
+        });
+      });
+
+      test('api-body-document is not in the DOM', (done) => {
+        const element = fixture('Basic');
+        flush(() => {
+          const node = element.shadowRoot.querySelector('api-body-document');
+          assert.notOk(node);
+          done();
+        });
+      });
+
+      test('api-parameters-document is not in the DOM', (done) => {
+        const element = fixture('Basic');
+        flush(() => {
+          const node = element.shadowRoot.querySelector('api-parameters-document');
+          assert.notOk(node);
+          done();
+        });
+      });
+
+      test('api-responses-document is not in the DOM', (done) => {
+        const element = fixture('Basic');
+        flush(() => {
+          const node = element.shadowRoot.querySelector('api-responses-document');
+          assert.notOk(node);
+          done();
+        });
+      });
+
+      test('Try it button is in the DOM', (done) => {
+        const element = fixture('Basic');
+        flush(() => {
+          const button = element.shadowRoot.querySelector('.action-button');
+          assert.ok(button);
+          done();
+        });
+      });
+
+      test('Try it button click dispatches event', (done) => {
+        const element = fixture('Basic');
+        element.method = {
+          '@id': 'test'
+        };
+        flush(() => {
+          element.addEventListener('tryit-requested', (e) => {
+            const type = typeof e.composed;
+            if (type !== 'undefied') {
+              assert.isTrue(e.composed);
+            }
+            assert.isTrue(e.bubbles);
+            assert.equal(e.detail.id, 'test');
+            done();
+          });
+          const button = element.shadowRoot.querySelector('.action-button');
+          button.click();
+        });
+      });
+
+      test('Try it is not in the DOM for no-try-it is set', (done) => {
+        const element = fixture('NoTryIt');
+        flush(() => {
+          const node = element.shadowRoot.querySelector('.action-button');
+          assert.notOk(node);
+          done();
+        });
+      });
+    });
+
+    suite('Full AMF model for GET', () => {
+      let element;
+      let amf;
+      let endpoint;
+      let method;
+      suiteSetup(() => {
+        return AmfLoader.load(2, 0)
+        .then((data) => {
+          amf = data[0];
+          endpoint = data[1];
+          method = data[2];
+        });
+      });
+
+      suite('Computations', () => {
+        suiteSetup((done) => {
+          element = fixture('Basic');
+          element.amfModel = amf;
+          element.endpoint = endpoint;
+          element.method = method;
+          flush(() => done());
+        });
+
+        test('methodName is computed', () => {
+          assert.equal(element.methodName, 'List people');
+        });
+
+        test('httpMethod is computed', () => {
+          assert.equal(element.httpMethod, 'GET');
+        });
+
+        test('endpointUri is computed', () => {
+          assert.equal(element.endpointUri, 'http://{instance}.domain.com/v1/people');
+        });
+
+        test('description is computed', () => {
+          assert.typeOf(element.description, 'string');
+        });
+
+        test('hasCustomProperties is computed', () => {
+          assert.isTrue(element.hasCustomProperties);
+        });
+
+        test('expects is computed', () => {
+          assert.typeOf(element.expects, 'object');
+        });
+
+        test('server is computed', () => {
+          assert.typeOf(element.server, 'object');
+        });
+
+        test('serverVariables is computed', () => {
+          assert.typeOf(element.serverVariables, 'array');
+        });
+
+        test('endpointVariables is not computed', () => {
+          assert.isUndefined(element.endpointVariables);
+        });
+
+        test('hasPathParameters is true', () => {
+          assert.isTrue(element.hasPathParameters);
+        });
+
+        test('queryParameters is computed', () => {
+          assert.typeOf(element.queryParameters, 'array');
+        });
+
+        test('hasQueryParameters is true', () => {
+          assert.isTrue(element.hasQueryParameters);
+        });
+
+        test('hasParameters is true', () => {
+          assert.isTrue(element.hasParameters);
+        });
+
+        test('headers is computed', () => {
+          assert.typeOf(element.headers, 'array');
+        });
+
+        test('hasHeaders is true', () => {
+          assert.isTrue(element.hasHeaders);
+        });
+
+        test('returns is computed', () => {
+          assert.typeOf(element.returns, 'array');
+        });
+
+        test('hasReturns is true', () => {
+          assert.isTrue(element.hasReturns);
+        });
+      });
+
+      suite('DOM content', () => {
+        setup((done) => {
+          element = fixture('Basic');
+          element.amfModel = amf;
+          element.endpoint = endpoint;
+          element.method = method;
+          flush(() => done());
+        });
+
+        test('method-name label is rendered', () => {
+          const node = element.shadowRoot.querySelector('h1.title');
+          assert.ok(node);
+          assert.equal(node.innerText.toLowerCase(), 'list people');
+        });
+
+        test('api-annotation-document is rendered', () => {
+          const node = element.shadowRoot.querySelector('api-annotation-document');
+          assert.ok(node);
+        });
+
+        test('marked-element is rendered', () => {
+          const node = element.shadowRoot.querySelector('marked-element');
+          assert.ok(node);
+        });
+
+        test('api-headers-document is rendered', () => {
+          const node = element.shadowRoot.querySelector('api-headers-document');
+          assert.ok(node);
+        });
+
+        test('api-parameters-document is rendered', () => {
+          const node = element.shadowRoot.querySelector('api-parameters-document');
+          assert.ok(node);
+        });
+
+        test('api-body-document is not rendered', () => {
+          const node = element.shadowRoot.querySelector('api-body-document');
+          assert.notOk(node);
+        });
+
+        test('api-responses-document is rendered', () => {
+          const node = element.shadowRoot.querySelector('api-responses-document');
+          assert.ok(node);
+        });
+      });
+    });
+
+    suite('AMF model for POST', () => {
+      let element;
+      let amf;
+      let endpoint;
+      let method;
+      suiteSetup((done) => {
+        AmfLoader.load(3, 2)
+        .then((data) => {
+          amf = data[0];
+          endpoint = data[1];
+          method = data[2];
+          // tests here do not change state so it can be initialized only once
+          element = fixture('Basic');
+          element.amfModel = amf;
+          element.endpoint = endpoint;
+          element.method = method;
+          flush(() => done());
+        });
+      });
+
+      test('endpointVariables is computed', () => {
+        assert.typeOf(element.endpointVariables, 'array');
+      });
+
+      test('payload is computed', () => {
+        assert.typeOf(element.payload, 'array');
+      });
+
+      test('hasPayload is true', () => {
+        assert.isTrue(element.hasPayload);
+      });
+    });
+
+    suite('Base URI property', () => {
+      let element;
+      let amf;
+      let endpoint;
+      let method;
+      suiteSetup(() => {
+        return AmfLoader.load(3, 2)
+        .then((data) => {
+          amf = data[0];
+          endpoint = data[1];
+          method = data[2];
+        });
+      });
+
+      function setupBaseUri(done) {
+        element = fixture('BaseUri');
+        element.amfModel = amf;
+        element.endpoint = endpoint;
+        element.method = method;
+        flush(() => done());
+      }
+
+      function setupBasic(done) {
+        element = fixture('Basic');
+        element.amfModel = amf;
+        element.endpoint = endpoint;
+        element.method = method;
+        flush(() => done());
+      }
+
+      teardown(() => {
+        new Polymer.IronMeta({key: 'ApiBaseUri'}).value = undefined;
+      });
+
+      test('Sets URL from base uri', (done) => {
+        setupBaseUri(() => {
+          assert.equal(element.endpointUri, 'https://domain.com/people/{personId}');
+          done();
+        });
+      });
+
+      test('Sets URL from iron-meta', (done) => {
+        new Polymer.IronMeta({key: 'ApiBaseUri'}).value = 'https://meta.com/base';
+        setupBasic(() => {
+          assert.equal(element.endpointUri, 'https://meta.com/base/people/{personId}');
+          done();
+        });
+      });
+
+      test('In case of conflict base uri wins', (done) => {
+        new Polymer.IronMeta({key: 'ApiBaseUri'}).value = 'https://meta.com/base';
+        setupBaseUri(() => {
+          assert.equal(element.endpointUri, 'https://domain.com/people/{personId}');
+          done();
+        });
+      });
+    });
+
+    suite('Bottom navigation', () => {
+      let element;
+      let prev = {'label': 'p', 'id': 'pp'};
+      let next = {'label': 'n', 'id': 'nn'};
+
+      test('hasPagination is undefined by default', () => {
+        element = fixture('Basic');
+        assert.isUndefined(element.hasPagination);
+      });
+
+      test('Does not render bottom navigation when nothing is set', (done) => {
+        element = fixture('Basic');
+        flush(() => {
+          const node = element.shadowRoot.querySelector('.bottom-nav');
+          assert.notOk(node);
+          done();
+        });
+      });
+
+      test('hasPreviousLink is computed for "previous" data', () => {
+        element = fixture('Basic');
+        element.previous = prev;
+        assert.isTrue(element.hasPreviousLink);
+      });
+
+      test('hasPagination is computed for "previous" data', () => {
+        element = fixture('Basic');
+        element.previous = prev;
+        assert.isTrue(element.hasPagination);
+      });
+
+      test('hasNextLink is computed for "next" data', () => {
+        element = fixture('Basic');
+        element.next = next;
+        assert.isTrue(element.hasNextLink);
+      });
+
+      test('hasPagination is computed for "next" data', () => {
+        element = fixture('Basic');
+        element.next = next;
+        assert.isTrue(element.hasPagination);
+      });
+
+      test('Renders bottom navigation', (done) => {
+        element = fixture('Basic');
+        element.next = next;
+        element.previous = prev;
+        flush(() => {
+          const node = element.shadowRoot.querySelector('.bottom-nav');
+          assert.ok(node);
+          done();
+        });
+      });
+
+      test('Renders previous buttons', (done) => {
+        element = fixture('Basic');
+        element.previous = prev;
+        flush(() => {
+          const node = element.shadowRoot.querySelector('.bottom-link.previous');
+          assert.ok(node);
+          done();
+        });
+      });
+
+      test('Renders next buttons', (done) => {
+        element = fixture('Basic');
+        element.next = next;
+        flush(() => {
+          const node = element.shadowRoot.querySelector('.bottom-link.next');
+          assert.ok(node);
+          done();
+        });
+      });
+
+      test('Does not render previous for next only', (done) => {
+        element = fixture('Basic');
+        element.next = next;
+        flush(() => {
+          const node = element.shadowRoot.querySelector('.bottom-link.previous');
+          assert.notOk(node);
+          done();
+        });
+      });
+
+      test('Does not render next for previous only', (done) => {
+        element = fixture('Basic');
+        element.previous = prev;
+        flush(() => {
+          const node = element.shadowRoot.querySelector('.bottom-link.next');
+          assert.notOk(node);
+          done();
+        });
+      });
+    });
+  });
+
+  suite('Security documentation', () => {
+    let element;
+    let amf;
+    let endpoint;
+    let method;
+    suiteSetup((done) => {
+      AmfLoader.load(3, 0)
+      .then((data) => {
+        amf = data[0];
+        endpoint = data[1];
+        method = data[2];
+
+        // tests here do not change state so it can be initialized only once
+        element = fixture('RenderSecurity');
+        element.amfModel = amf;
+        element.endpoint = endpoint;
+        element.method = method;
+        flush(() => done());
+      });
+    });
+
+    test('Computes security', () => {
+      assert.typeOf(element.security, 'array');
+      assert.lengthOf(element.security, 2);
+    });
+
+    test('Computes hasSecurity', () => {
+      assert.isTrue(element.hasSecurity);
+    });
+
+    test('Renders security section', () => {
+      const section = element.shadowRoot.querySelector('.security');
+      assert.ok(section);
+    });
+
+    test('Toggle button toggles the state', () => {
+      const section = element.shadowRoot.querySelector('.security .section-title-area');
+      section.click();
+      assert.isTrue(element.securityOpened);
+    });
+  });
+
+  suite('Code snippets', () => {
+    let element;
+    let amf;
+    let endpoint;
+    let method;
+    suiteSetup(() => {
+      return AmfLoader.load(3, 0)
+      .then((data) => {
+        amf = data[0];
+        endpoint = data[1];
+        method = data[2];
+      });
+    });
+
+    setup((done) => {
+      element = fixture('RenderCodeSnippets');
+      element.amfModel = amf;
+      element.endpoint = endpoint;
+      element.method = method;
+      flush(() => done());
+    });
+
+    test('Renders snippets section', () => {
+      const node = element.shadowRoot.querySelector('section.snippets');
+      assert.ok(node);
+    });
+
+    test('http-code-snippets are not rendered by default', () => {
+      const node = element.shadowRoot.querySelector('http-code-snippets');
+      assert.notOk(node);
+    });
+
+    test('Toggle button toggles the state', () => {
+      const section = element.shadowRoot.querySelector('.snippets .section-title-area');
+      section.click();
+      assert.isTrue(element.snippetsOpened);
+    });
+
+    test('Eventually renders the snippets', (done) => {
+      const domIf = element.shadowRoot.querySelector('#snippetsCondition');
+      domIf.addEventListener('dom-change', function(e) {
+        if (!e.target.if) {
+          return;
+        }
+        const node = element.shadowRoot.querySelector('http-code-snippets');
+        assert.ok(node);
+        done();
+      });
+      element.snippetsOpened = true;
+    });
+  });
+  </script>
+</body>
+</html>

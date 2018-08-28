@@ -985,15 +985,17 @@
      * @return {String|undefined}
      */
     _computePropertyValue(item) {
-      let schema = item && item[this.ns.raml.vocabularies.http + 'schema'];
+      const skey = this._getAmfKey(this.ns.raml.vocabularies.http + 'schema');
+      let schema = item && item[skey];
       if (!schema) {
         return;
       }
-      schema = schema[0];
-      const defValKey = this.ns.w3.shacl.name + 'defaultValue';
-      let value = this._getValue(item, defValKey);
+      if (schema instanceof Array) {
+        schema = schema[0];
+      }
+      let value = this._getValue(item, this.ns.w3.shacl.name + 'defaultValue');
       if (!value) {
-        const examplesKey = this.ns.raml.vocabularies.document + 'examples';
+        const examplesKey = this._getAmfKey(this.ns.raml.vocabularies.document + 'examples');
         let example = item[examplesKey];
         if (example) {
           example = example[0];
@@ -1027,8 +1029,6 @@
       }
       return false;
     }
-
-    //http://raml.org/vocabularies/security#security
     /**
      * Dispatched when the user requested the "Try it" view.
      * @event tryit-requested
