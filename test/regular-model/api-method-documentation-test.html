@@ -581,6 +581,50 @@
       element.snippetsOpened = true;
     });
   });
+
+  suite('Traits rendering', () => {
+    let element;
+    let amf;
+    let endpoint;
+    let method;
+    suiteSetup(() => {
+      return AmfLoader.load(2, 0)
+      .then((data) => {
+        amf = data[0];
+        endpoint = data[1];
+        method = data[2];
+      });
+    });
+
+    setup((done) => {
+      element = fixture('Basic');
+      element.amfModel = amf;
+      element.endpoint = endpoint;
+      element.method = method;
+      flush(() => done());
+    });
+
+    test('Computes "extendsTypes"', function() {
+      assert.typeOf(element.extendsTypes, 'array');
+      assert.lengthOf(element.extendsTypes, 2);
+    });
+
+    test('Computes "traits"', function() {
+      assert.typeOf(element.traits, 'array');
+      assert.lengthOf(element.traits, 2);
+    });
+
+    test('Computes "hasTraits"', function() {
+      assert.isTrue(element.hasTraits);
+    });
+
+    test('Trait is rendered', function() {
+      const node = element.shadowRoot.querySelector('.trait-name');
+      assert.ok(node);
+      const txt = node.innerText.toLowerCase().trim();
+      assert.equal(txt, 'paginated and adminable');
+    });
+  });
   </script>
 </body>
 </html>

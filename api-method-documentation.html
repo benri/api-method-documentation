@@ -281,6 +281,11 @@
     .response-documentation {
       @apply --api-method-documentation-docs-sections;
     }
+
+    .extensions {
+      font-style: italic;
+      margin: 12px 0;
+    }
     </style>
     <template is="dom-if" if="[[aware]]">
       <raml-aware raml="{{amfModel}}" scope="[[aware]]"></raml-aware>
@@ -301,6 +306,13 @@
       <paper-icon-button class="action-icon copy-icon" icon="arc:content-copy" on-tap="_copyUrlClipboard" title="Copy URL to clipboard"></paper-icon-button>
     </section>
     <clipboard-copy id="urlCopy" content="[[endpointUri]]"></clipboard-copy>
+
+    <template is="dom-if" if="[[hasTraits]]">
+      <section class="extensions">
+        <span>Mixes in </spane>
+        <span class="trait-name">[[_computeTraitNames(traits)]]</span>.
+      </section>
+    </template>
 
     <template is="dom-if" if="[[hasCustomProperties]]">
       <api-annotation-document shape="[[method]]"></api-annotation-document>
@@ -770,7 +782,32 @@
         /**
          * When set it renders security documentation when applicable
          */
-        renderSecurity: Boolean
+        renderSecurity: Boolean,
+        /**
+         * List of traits and resource types, if any.
+         *
+         * @type {Array<Object>}
+         */
+        extendsTypes: {
+          type: Array,
+          computed: '_computeExtends(method)'
+        },
+        /**
+         * List of traits appied to this endpoint
+         *
+         * @type {Array<Object>}
+         */
+        traits: {
+          type: Array,
+          computed: '_computeTraits(extendsTypes)'
+        },
+        /**
+         * Computed value, true if the endpoint has traits.
+         */
+        hasTraits: {
+          type: Boolean,
+          computed: '_computeHasArrayValue(traits)'
+        }
       };
     }
     /**
@@ -1010,7 +1047,7 @@
     }
     // Computes class for the toggle's button icon.
     _computeToggleIconClass(opened) {
-      var clazz = 'toggle-icon';
+      let clazz = 'toggle-icon';
       if (opened) {
         clazz += ' opened';
       }
@@ -1028,6 +1065,49 @@
         return true;
       }
       return false;
+    }
+
+    /**
+     * Computes list of "extends" from the shape.
+     *
+     * @param {Object} shape AMF shape to get `#extends` model from
+     * @return {Array<Object>|undefined}
+     */
+    _computeExtends(shape) {
+      const key = this._getAmfKey(this.ns.raml.vocabularies.document + 'extends');
+      return shape && this._ensureArray(shape[key]);
+    }
+    /**
+     * Computes value for `traits` property
+     *
+     * @param {Array<Object>} types Result of calling `_computeExtends()` or
+     * a list of `#extends` models.
+     * @return {Array<Object>|undefined}
+     */
+    _computeTraits(types) {
+      if (!types || !types.length) {
+        return;
+      }
+      const data = types.filter((item) =>
+        this._hasType(item, this.ns.raml.vocabularies.document + 'ParametrizedTrait'));
+      return data.length ? data : undefined;
+    }
+
+    /**
+     * Computes list of trait names to render it in the doc.
+     *
+     * @param {Array<Object>} traits AMF trait definition
+     * @return {String|undefined} Trait name if defined.
+     */
+    _computeTraitNames(traits) {
+      if (!traits || !traits.length) {
+        return;
+      }
+      const names = traits.map((trait) => this._getValue(trait, this.ns.schema.schemaName));
+      if (names.length === 2) {
+        return names.join(' and ');
+      }
+      return names.join(', ');
     }
     /**
      * Dispatched when the user requested the "Try it" view.
