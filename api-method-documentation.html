@@ -17,11 +17,10 @@
 <link rel="import" href="../http-code-snippets/http-code-snippets.html">
 <link rel="import" href="../clipboard-copy/clipboard-copy.html">
 <link rel="import" href="../iron-collapse/iron-collapse.html">
-<link rel="import" href="../api-view-model-transformer/api-view-model-transformer.html">
 <link rel="import" href="../amf-helper-mixin/amf-helper-mixin.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../api-security-documentation/api-security-documentation.html">
-
+<link rel="import" href="../api-example-generator/api-example-generator.html">
 <dom-module id="api-method-documentation">
   <template>
     <style include="markdown-styles"></style>
@@ -402,8 +401,7 @@
         </template>
       </section>
     </template>
-
-    <api-view-model-transformer id="transformer"></api-view-model-transformer>
+    <api-example-generator amf-model="[[amfModel]]" id="exampleGenerator"></api-example-generator>
   </template>
   <script>
   /**
@@ -1012,7 +1010,22 @@
       if (payload instanceof Array) {
         payload = payload[0];
       }
-      return this.$.transformer.bodyToExample(payload);
+      if (!payload) {
+        return;
+      }
+      const skey = this._getAmfKey(this.ns.raml.vocabularies.http + 'schema');
+      let schema = payload[skey];
+      if (!schema) {
+        return;
+      }
+      if (schema instanceof Array) {
+        schema = schema[0];
+      }
+      let mt = this._getValue(payload, this.ns.raml.vocabularies.http + 'mediaType');
+      if (!mt) {
+        mt = 'application/json';
+      }
+      return this.$.exampleGenerator.computeExample(mt, schema);
     }
     /**
      * Tries to find an example value (whether it's default value or from an
