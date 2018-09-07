@@ -1,7 +1,7 @@
 {
   "name": "@api-components/api-method-documentation",
   "description": "A HTTP method documentation build from AMF model",
-  "version": "2.0.14",
+  "version": "2.0.17",
   "license": "Apache-2.0",
   "main": "api-method-documentation.html",
   "authors": [
@@ -9,8 +9,8 @@
     "The Advanced REST client authors <arc@mulesoft.com>"
   ],
   "devDependencies": {
-    "@polymer/gen-typescript-declarations": "^1.1.1",
-    "amf-client-js": "^1.7.1"
+    "@api-components/api-model-generator": "^0.1.1",
+    "@polymer/gen-typescript-declarations": "^1.5.1"
   },
   "private": false,
   "scripts": {
@@ -26,8 +26,5 @@
   "bugs": {
     "url": "https://github.com/advanced-rest-client/api-method-documentation/issues",
     "email": "arc@mulesoft.com"
-  },
-  "dependencies": {
-    "conventional-changelog-cli": "^2.0.1"
   }
 }

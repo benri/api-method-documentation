@@ -17,11 +17,10 @@
 <link rel="import" href="../http-code-snippets/http-code-snippets.html">
 <link rel="import" href="../clipboard-copy/clipboard-copy.html">
 <link rel="import" href="../iron-collapse/iron-collapse.html">
-<link rel="import" href="../api-view-model-transformer/api-view-model-transformer.html">
 <link rel="import" href="../amf-helper-mixin/amf-helper-mixin.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../api-security-documentation/api-security-documentation.html">
-
+<link rel="import" href="../api-example-generator/api-example-generator.html">
 <dom-module id="api-method-documentation">
   <template>
     <style include="markdown-styles"></style>
@@ -281,6 +280,11 @@
     .response-documentation {
       @apply --api-method-documentation-docs-sections;
     }
+
+    .extensions {
+      font-style: italic;
+      margin: 12px 0;
+    }
     </style>
     <template is="dom-if" if="[[aware]]">
       <raml-aware raml="{{amfModel}}" scope="[[aware]]"></raml-aware>
@@ -301,6 +305,13 @@
       <paper-icon-button class="action-icon copy-icon" icon="arc:content-copy" on-tap="_copyUrlClipboard" title="Copy URL to clipboard"></paper-icon-button>
     </section>
     <clipboard-copy id="urlCopy" content="[[endpointUri]]"></clipboard-copy>
+
+    <template is="dom-if" if="[[hasTraits]]">
+      <section class="extensions">
+        <span>Mixes in </spane>
+        <span class="trait-name">[[_computeTraitNames(traits)]]</span>.
+      </section>
+    </template>
 
     <template is="dom-if" if="[[hasCustomProperties]]">
       <api-annotation-document shape="[[method]]"></api-annotation-document>
@@ -390,8 +401,7 @@
         </template>
       </section>
     </template>
-
-    <api-view-model-transformer id="transformer"></api-view-model-transformer>
+    <api-example-generator amf-model="[[amfModel]]" id="exampleGenerator"></api-example-generator>
   </template>
   <script>
   /**
@@ -770,7 +780,32 @@
         /**
          * When set it renders security documentation when applicable
          */
-        renderSecurity: Boolean
+        renderSecurity: Boolean,
+        /**
+         * List of traits and resource types, if any.
+         *
+         * @type {Array<Object>}
+         */
+        extendsTypes: {
+          type: Array,
+          computed: '_computeExtends(method)'
+        },
+        /**
+         * List of traits appied to this endpoint
+         *
+         * @type {Array<Object>}
+         */
+        traits: {
+          type: Array,
+          computed: '_computeTraits(extendsTypes)'
+        },
+        /**
+         * Computed value, true if the endpoint has traits.
+         */
+        hasTraits: {
+          type: Boolean,
+          computed: '_computeHasArrayValue(traits)'
+        }
       };
     }
     /**
@@ -975,7 +1010,22 @@
       if (payload instanceof Array) {
         payload = payload[0];
       }
-      return this.$.transformer.bodyToExample(payload);
+      if (!payload) {
+        return;
+      }
+      const skey = this._getAmfKey(this.ns.raml.vocabularies.http + 'schema');
+      let schema = payload[skey];
+      if (!schema) {
+        return;
+      }
+      if (schema instanceof Array) {
+        schema = schema[0];
+      }
+      let mt = this._getValue(payload, this.ns.raml.vocabularies.http + 'mediaType');
+      if (!mt) {
+        mt = 'application/json';
+      }
+      return this.$.exampleGenerator.computeExample(mt, schema);
     }
     /**
      * Tries to find an example value (whether it's default value or from an
@@ -985,15 +1035,17 @@
      * @return {String|undefined}
      */
     _computePropertyValue(item) {
-      let schema = item && item[this.ns.raml.vocabularies.http + 'schema'];
+      const skey = this._getAmfKey(this.ns.raml.vocabularies.http + 'schema');
+      let schema = item && item[skey];
       if (!schema) {
         return;
       }
-      schema = schema[0];
-      const defValKey = this.ns.w3.shacl.name + 'defaultValue';
-      let value = this._getValue(item, defValKey);
+      if (schema instanceof Array) {
+        schema = schema[0];
+      }
+      let value = this._getValue(item, this.ns.w3.shacl.name + 'defaultValue');
       if (!value) {
-        const examplesKey = this.ns.raml.vocabularies.document + 'examples';
+        const examplesKey = this._getAmfKey(this.ns.raml.vocabularies.document + 'examples');
         let example = item[examplesKey];
         if (example) {
           example = example[0];
@@ -1008,7 +1060,7 @@
     }
     // Computes class for the toggle's button icon.
     _computeToggleIconClass(opened) {
-      var clazz = 'toggle-icon';
+      let clazz = 'toggle-icon';
       if (opened) {
         clazz += ' opened';
       }
@@ -1028,7 +1080,48 @@
       return false;
     }
 
-    //http://raml.org/vocabularies/security#security
+    /**
+     * Computes list of "extends" from the shape.
+     *
+     * @param {Object} shape AMF shape to get `#extends` model from
+     * @return {Array<Object>|undefined}
+     */
+    _computeExtends(shape) {
+      const key = this._getAmfKey(this.ns.raml.vocabularies.document + 'extends');
+      return shape && this._ensureArray(shape[key]);
+    }
+    /**
+     * Computes value for `traits` property
+     *
+     * @param {Array<Object>} types Result of calling `_computeExtends()` or
+     * a list of `#extends` models.
+     * @return {Array<Object>|undefined}
+     */
+    _computeTraits(types) {
+      if (!types || !types.length) {
+        return;
+      }
+      const data = types.filter((item) =>
+        this._hasType(item, this.ns.raml.vocabularies.document + 'ParametrizedTrait'));
+      return data.length ? data : undefined;
+    }
+
+    /**
+     * Computes list of trait names to render it in the doc.
+     *
+     * @param {Array<Object>} traits AMF trait definition
+     * @return {String|undefined} Trait name if defined.
+     */
+    _computeTraitNames(traits) {
+      if (!traits || !traits.length) {
+        return;
+      }
+      const names = traits.map((trait) => this._getValue(trait, this.ns.schema.schemaName));
+      if (names.length === 2) {
+        return names.join(' and ');
+      }
+      return names.join(', ');
+    }
     /**
      * Dispatched when the user requested the "Try it" view.
      * @event tryit-requested

@@ -42,13 +42,16 @@ types:
         required: true
         example: true
         default: true
-        description: Indicate that the response is errored.
+        description: |
+          Indicate that the response is errored.
       message:
         type: string
-        description: The error message associated with the error.
+        description: |
+          The error message associated with the error.
         required: true
   Feature:
-    description: A feature to test enum values in the URI parameters.
+    description: |
+      A feature to test enum values in the URI parameters.
     type: string
     enum:
       - A
@@ -148,7 +151,7 @@ securitySchemes:
     (annotationTest):
     displayName: List people
     description: Use this method to list all the people.
-    is: [Paginated: {resourceType: AppPerson}]
+    is: [Paginated: {resourceType: AppPerson}, Adminable]
     headers:
       x-people-op-id:
         (annotationTest):

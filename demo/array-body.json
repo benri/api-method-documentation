@@ -1,6 +1,6 @@
 [
   {
-    "@id": "file://demo/array-body/array-body.raml",
+    "@id": "amf://id",
     "@type": [
       "http://a.ml/vocabularies/document#Document",
       "http://a.ml/vocabularies/document#Fragment",
@@ -9,7 +9,7 @@
     ],
     "http://a.ml/vocabularies/document#encodes": [
       {
-        "@id": "file://demo/array-body/array-body.raml#/web-api",
+        "@id": "amf://id#45",
         "@type": [
           "http://schema.org/WebAPI",
           "http://a.ml/vocabularies/document#RootDomainElement",
@@ -22,7 +22,7 @@
         ],
         "http://a.ml/vocabularies/http#server": [
           {
-            "@id": "file://demo/array-body/array-body.raml#/web-api/http%3A%2F%2Ftest.domain.com%2F",
+            "@id": "amf://id#56",
             "@type": [
               "http://a.ml/vocabularies/http#Server",
               "http://a.ml/vocabularies/document#DomainElement"
@@ -41,7 +41,7 @@
         ],
         "http://a.ml/vocabularies/http#endpoint": [
           {
-            "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody",
+            "@id": "amf://id#46",
             "@type": [
               "http://a.ml/vocabularies/http#EndPoint",
               "http://a.ml/vocabularies/document#DomainElement"
@@ -53,7 +53,7 @@
             ],
             "http://www.w3.org/ns/hydra/core#supportedOperation": [
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/get",
+                "@id": "amf://id#47",
                 "@type": [
                   "http://www.w3.org/ns/hydra/core#Operation",
                   "http://a.ml/vocabularies/document#DomainElement"
@@ -65,7 +65,7 @@
                 ],
                 "http://www.w3.org/ns/hydra/core#returns": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/get/200",
+                    "@id": "amf://id#48",
                     "@type": [
                       "http://a.ml/vocabularies/http#Response",
                       "http://a.ml/vocabularies/document#DomainElement"
@@ -82,7 +82,7 @@
                     ],
                     "http://a.ml/vocabularies/http#payload": [
                       {
-                        "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/get/200/application%2Fjson",
+                        "@id": "amf://id#49",
                         "@type": [
                           "http://a.ml/vocabularies/http#Payload",
                           "http://a.ml/vocabularies/document#DomainElement"
@@ -94,7 +94,7 @@
                         ],
                         "http://a.ml/vocabularies/http#schema": [
                           {
-                            "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/get/200/application%2Fjson/array/schema/array/default-array/linked_1",
+                            "@id": "amf://id#50/linked_1",
                             "@type": [
                               "http://a.ml/vocabularies/shapes#ArrayShape",
                               "http://www.w3.org/ns/shacl#Shape",
@@ -103,7 +103,7 @@
                             ],
                             "http://a.ml/vocabularies/document#link-target": [
                               {
-                                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/get/200/application%2Fjson/array/schema/array/default-array"
+                                "@id": "amf://id#50"
                               }
                             ],
                             "http://a.ml/vocabularies/document#link-label": [
@@ -119,7 +119,7 @@
                 ]
               },
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post",
+                "@id": "amf://id#51",
                 "@type": [
                   "http://www.w3.org/ns/hydra/core#Operation",
                   "http://a.ml/vocabularies/document#DomainElement"
@@ -131,14 +131,14 @@
                 ],
                 "http://www.w3.org/ns/hydra/core#expects": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request",
+                    "@id": "amf://id#52",
                     "@type": [
                       "http://a.ml/vocabularies/http#Request",
                       "http://a.ml/vocabularies/document#DomainElement"
                     ],
                     "http://a.ml/vocabularies/http#payload": [
                       {
-                        "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson",
+                        "@id": "amf://id#53",
                         "@type": [
                           "http://a.ml/vocabularies/http#Payload",
                           "http://a.ml/vocabularies/document#DomainElement"
@@ -150,7 +150,7 @@
                         ],
                         "http://a.ml/vocabularies/http#schema": [
                           {
-                            "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema",
+                            "@id": "amf://id#54",
                             "@type": [
                               "http://a.ml/vocabularies/shapes#ArrayShape",
                               "http://www.w3.org/ns/shacl#Shape",
@@ -159,7 +159,7 @@
                             ],
                             "http://a.ml/vocabularies/shapes#items": [
                               {
-                                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/linked_1",
+                                "@id": "amf://id#1/linked_1",
                                 "@type": [
                                   "http://www.w3.org/ns/shacl#NodeShape",
                                   "http://www.w3.org/ns/shacl#Shape",
@@ -168,7 +168,7 @@
                                 ],
                                 "http://a.ml/vocabularies/document#link-target": [
                                   {
-                                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson"
+                                    "@id": "amf://id#1"
                                   }
                                 ],
                                 "http://a.ml/vocabularies/document#link-label": [
@@ -207,7 +207,7 @@
     ],
     "http://a.ml/vocabularies/document#references": [
       {
-        "@id": "file://demo/demo-api/resourceTypes/app-person.raml",
+        "@id": "amf://id#35",
         "@type": [
           "http://a.ml/vocabularies/document#DataType",
           "http://a.ml/vocabularies/document#Fragment",
@@ -215,7 +215,7 @@
         ],
         "http://a.ml/vocabularies/document#encodes": [
           {
-            "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson",
+            "@id": "amf://id#1",
             "@type": [
               "http://www.w3.org/ns/shacl#NodeShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -229,7 +229,7 @@
             ],
             "http://www.w3.org/ns/shacl#property": [
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/etag",
+                "@id": "amf://id#4",
                 "@type": [
                   "http://www.w3.org/ns/shacl#PropertyShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -242,7 +242,7 @@
                 ],
                 "http://a.ml/vocabularies/shapes#range": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/etag/scalar/etag",
+                    "@id": "amf://id#5",
                     "@type": [
                       "http://a.ml/vocabularies/shapes#ScalarShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -278,7 +278,7 @@
                 ]
               },
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/tagline",
+                "@id": "amf://id#6",
                 "@type": [
                   "http://www.w3.org/ns/shacl#PropertyShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -291,7 +291,7 @@
                 ],
                 "http://a.ml/vocabularies/shapes#range": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/tagline/scalar/tagline",
+                    "@id": "amf://id#7",
                     "@type": [
                       "http://a.ml/vocabularies/shapes#ScalarShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -327,7 +327,7 @@
                 ]
               },
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/name",
+                "@id": "amf://id#8",
                 "@type": [
                   "http://www.w3.org/ns/shacl#PropertyShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -340,7 +340,7 @@
                 ],
                 "http://a.ml/vocabularies/shapes#range": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/name/scalar/name",
+                    "@id": "amf://id#9",
                     "@type": [
                       "http://a.ml/vocabularies/shapes#ScalarShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -369,7 +369,7 @@
                     ],
                     "http://a.ml/vocabularies/document#examples": [
                       {
-                        "@id": "file://demo/demo-api/resourceTypes/app-person.raml#/shape/property/name/scalar/name/example/default-example",
+                        "@id": "amf://id#10",
                         "@type": [
                           "http://a.ml/vocabularies/document#Example",
                           "http://a.ml/vocabularies/document#DomainElement"
@@ -381,7 +381,7 @@
                         ],
                         "http://a.ml/vocabularies/document#structuredValue": [
                           {
-                            "@id": "file://demo/demo-api/resourceTypes/app-person.raml#/shape/property/name/scalar/name/example/default-example/scalar_1",
+                            "@id": "amf://id#11",
                             "@type": [
                               "http://a.ml/vocabularies/data#Scalar"
                             ],
@@ -414,7 +414,7 @@
                 ]
               },
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/url",
+                "@id": "amf://id#12",
                 "@type": [
                   "http://www.w3.org/ns/shacl#PropertyShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -427,7 +427,7 @@
                 ],
                 "http://a.ml/vocabularies/shapes#range": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/url/scalar/url",
+                    "@id": "amf://id#13",
                     "@type": [
                       "http://a.ml/vocabularies/shapes#ScalarShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -463,7 +463,7 @@
                 ]
               },
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/language",
+                "@id": "amf://id#14",
                 "@type": [
                   "http://www.w3.org/ns/shacl#PropertyShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -476,7 +476,7 @@
                 ],
                 "http://a.ml/vocabularies/shapes#range": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/language/scalar/language",
+                    "@id": "amf://id#15",
                     "@type": [
                       "http://a.ml/vocabularies/shapes#ScalarShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -512,7 +512,7 @@
                 ]
               },
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/id",
+                "@id": "amf://id#16",
                 "@type": [
                   "http://www.w3.org/ns/shacl#PropertyShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -525,7 +525,7 @@
                 ],
                 "http://a.ml/vocabularies/shapes#range": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/id/scalar/id",
+                    "@id": "amf://id#17",
                     "@type": [
                       "http://a.ml/vocabularies/shapes#ScalarShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -561,7 +561,7 @@
                 ]
               },
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/birthday",
+                "@id": "amf://id#18",
                 "@type": [
                   "http://www.w3.org/ns/shacl#PropertyShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -574,7 +574,7 @@
                 ],
                 "http://a.ml/vocabularies/shapes#range": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/birthday/scalar/birthday",
+                    "@id": "amf://id#19",
                     "@type": [
                       "http://a.ml/vocabularies/shapes#ScalarShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -610,7 +610,7 @@
                 ]
               },
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/image",
+                "@id": "amf://id#20",
                 "@type": [
                   "http://www.w3.org/ns/shacl#PropertyShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -623,7 +623,7 @@
                 ],
                 "http://a.ml/vocabularies/shapes#range": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/image/image/linked_1",
+                    "@id": "amf://id#21/linked_1",
                     "@type": [
                       "http://www.w3.org/ns/shacl#NodeShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -632,7 +632,7 @@
                     ],
                     "http://a.ml/vocabularies/document#link-target": [
                       {
-                        "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/image/image"
+                        "@id": "amf://id#21"
                       }
                     ],
                     "http://a.ml/vocabularies/document#link-label": [
@@ -654,7 +654,7 @@
                 ]
               },
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/gender",
+                "@id": "amf://id#29",
                 "@type": [
                   "http://www.w3.org/ns/shacl#PropertyShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -667,7 +667,7 @@
                 ],
                 "http://a.ml/vocabularies/shapes#range": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/gender/scalar/gender%3F",
+                    "@id": "amf://id#30",
                     "@type": [
                       "http://a.ml/vocabularies/shapes#ScalarShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -720,7 +720,7 @@
             ],
             "http://a.ml/vocabularies/document#examples": [
               {
-                "@id": "file://demo/demo-api/resourceTypes/app-person.raml#/shape/example/default-example",
+                "@id": "amf://id#2",
                 "@type": [
                   "http://a.ml/vocabularies/document#Example",
                   "http://a.ml/vocabularies/document#DomainElement"
@@ -732,7 +732,7 @@
                 ],
                 "http://a.ml/vocabularies/document#structuredValue": [
                   {
-                    "@id": "file://demo/demo-api/resourceTypes/app-person.raml#/shape/example/default-example/object_1",
+                    "@id": "amf://id#3",
                     "@type": [
                       "http://a.ml/vocabularies/data#Object"
                     ],
@@ -897,7 +897,7 @@
         ],
         "http://a.ml/vocabularies/document#references": [
           {
-            "@id": "file://demo/demo-api/resourceTypes/image.raml",
+            "@id": "amf://id#36",
             "@type": [
               "http://a.ml/vocabularies/document#DataType",
               "http://a.ml/vocabularies/document#Fragment",
@@ -905,7 +905,7 @@
             ],
             "http://a.ml/vocabularies/document#encodes": [
               {
-                "@id": "file://demo/demo-api/resourceTypes/image.raml#/type",
+                "@id": "amf://id#37",
                 "@type": [
                   "http://www.w3.org/ns/shacl#NodeShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -919,7 +919,7 @@
                 ],
                 "http://www.w3.org/ns/shacl#property": [
                   {
-                    "@id": "file://demo/demo-api/resourceTypes/image.raml#/type/property/url",
+                    "@id": "amf://id#38",
                     "@type": [
                       "http://www.w3.org/ns/shacl#PropertyShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -932,7 +932,7 @@
                     ],
                     "http://a.ml/vocabularies/shapes#range": [
                       {
-                        "@id": "file://demo/demo-api/resourceTypes/image.raml#/type/property/url/scalar/url",
+                        "@id": "amf://id#39",
                         "@type": [
                           "http://a.ml/vocabularies/shapes#ScalarShape",
                           "http://www.w3.org/ns/shacl#Shape",
@@ -968,7 +968,7 @@
                     ]
                   },
                   {
-                    "@id": "file://demo/demo-api/resourceTypes/image.raml#/type/property/thumb",
+                    "@id": "amf://id#40",
                     "@type": [
                       "http://www.w3.org/ns/shacl#PropertyShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -981,7 +981,7 @@
                     ],
                     "http://a.ml/vocabularies/shapes#range": [
                       {
-                        "@id": "file://demo/demo-api/resourceTypes/image.raml#/type/property/thumb/scalar/thumb",
+                        "@id": "amf://id#41",
                         "@type": [
                           "http://a.ml/vocabularies/shapes#ScalarShape",
                           "http://www.w3.org/ns/shacl#Shape",
@@ -1034,7 +1034,7 @@
                 ],
                 "http://a.ml/vocabularies/document#examples": [
                   {
-                    "@id": "file://demo/demo-api/resourceTypes/image.raml#/shape/example/default-example",
+                    "@id": "amf://id#22",
                     "@type": [
                       "http://a.ml/vocabularies/document#Example",
                       "http://a.ml/vocabularies/document#DomainElement"
@@ -1046,7 +1046,7 @@
                     ],
                     "http://a.ml/vocabularies/document#structuredValue": [
                       {
-                        "@id": "file://demo/demo-api/resourceTypes/image.raml#/shape/example/default-example/object_1",
+                        "@id": "amf://id#23",
                         "@type": [
                           "http://a.ml/vocabularies/data#Object"
                         ],
@@ -1091,7 +1091,7 @@
             ]
           },
           {
-            "@id": "file://demo/demo-api/resourceTypes/resource.raml",
+            "@id": "amf://id#42",
             "@type": [
               "http://a.ml/vocabularies/document#DataType",
               "http://a.ml/vocabularies/document#Fragment",
@@ -1099,7 +1099,7 @@
             ],
             "http://a.ml/vocabularies/document#encodes": [
               {
-                "@id": "file://demo/demo-api/resourceTypes/resource.raml#/type",
+                "@id": "amf://id#43",
                 "@type": [
                   "http://www.w3.org/ns/shacl#NodeShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -1113,7 +1113,7 @@
                 ],
                 "http://www.w3.org/ns/shacl#property": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/etag",
+                    "@id": "amf://id#4",
                     "@type": [
                       "http://www.w3.org/ns/shacl#PropertyShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -1126,7 +1126,7 @@
                     ],
                     "http://a.ml/vocabularies/shapes#range": [
                       {
-                        "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/etag/scalar/etag",
+                        "@id": "amf://id#5",
                         "@type": [
                           "http://a.ml/vocabularies/shapes#ScalarShape",
                           "http://www.w3.org/ns/shacl#Shape",
@@ -1180,7 +1180,7 @@
     ],
     "http://a.ml/vocabularies/document#declares": [
       {
-        "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson",
+        "@id": "amf://id#1",
         "@type": [
           "http://www.w3.org/ns/shacl#NodeShape",
           "http://www.w3.org/ns/shacl#Shape",
@@ -1194,7 +1194,7 @@
         ],
         "http://www.w3.org/ns/shacl#property": [
           {
-            "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/etag",
+            "@id": "amf://id#4",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -1207,7 +1207,7 @@
             ],
             "http://a.ml/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/etag/scalar/etag",
+                "@id": "amf://id#5",
                 "@type": [
                   "http://a.ml/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -1243,7 +1243,7 @@
             ]
           },
           {
-            "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/tagline",
+            "@id": "amf://id#6",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -1256,7 +1256,7 @@
             ],
             "http://a.ml/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/tagline/scalar/tagline",
+                "@id": "amf://id#7",
                 "@type": [
                   "http://a.ml/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -1292,7 +1292,7 @@
             ]
           },
           {
-            "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/name",
+            "@id": "amf://id#8",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -1305,7 +1305,7 @@
             ],
             "http://a.ml/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/name/scalar/name",
+                "@id": "amf://id#9",
                 "@type": [
                   "http://a.ml/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -1334,7 +1334,7 @@
                 ],
                 "http://a.ml/vocabularies/document#examples": [
                   {
-                    "@id": "file://demo/demo-api/resourceTypes/app-person.raml#/shape/property/name/scalar/name/example/default-example",
+                    "@id": "amf://id#10",
                     "@type": [
                       "http://a.ml/vocabularies/document#Example",
                       "http://a.ml/vocabularies/document#DomainElement"
@@ -1346,7 +1346,7 @@
                     ],
                     "http://a.ml/vocabularies/document#structuredValue": [
                       {
-                        "@id": "file://demo/demo-api/resourceTypes/app-person.raml#/shape/property/name/scalar/name/example/default-example/scalar_1",
+                        "@id": "amf://id#11",
                         "@type": [
                           "http://a.ml/vocabularies/data#Scalar"
                         ],
@@ -1379,7 +1379,7 @@
             ]
           },
           {
-            "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/url",
+            "@id": "amf://id#12",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -1392,7 +1392,7 @@
             ],
             "http://a.ml/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/url/scalar/url",
+                "@id": "amf://id#13",
                 "@type": [
                   "http://a.ml/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -1428,7 +1428,7 @@
             ]
           },
           {
-            "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/language",
+            "@id": "amf://id#14",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -1441,7 +1441,7 @@
             ],
             "http://a.ml/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/language/scalar/language",
+                "@id": "amf://id#15",
                 "@type": [
                   "http://a.ml/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -1477,7 +1477,7 @@
             ]
           },
           {
-            "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/id",
+            "@id": "amf://id#16",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -1490,7 +1490,7 @@
             ],
             "http://a.ml/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/id/scalar/id",
+                "@id": "amf://id#17",
                 "@type": [
                   "http://a.ml/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -1526,7 +1526,7 @@
             ]
           },
           {
-            "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/birthday",
+            "@id": "amf://id#18",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -1539,7 +1539,7 @@
             ],
             "http://a.ml/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/birthday/scalar/birthday",
+                "@id": "amf://id#19",
                 "@type": [
                   "http://a.ml/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -1575,7 +1575,7 @@
             ]
           },
           {
-            "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/image",
+            "@id": "amf://id#20",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -1588,7 +1588,7 @@
             ],
             "http://a.ml/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/image/image",
+                "@id": "amf://id#21",
                 "@type": [
                   "http://www.w3.org/ns/shacl#NodeShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -1602,7 +1602,7 @@
                 ],
                 "http://www.w3.org/ns/shacl#property": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/image/image/property/url",
+                    "@id": "amf://id#24",
                     "@type": [
                       "http://www.w3.org/ns/shacl#PropertyShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -1615,7 +1615,7 @@
                     ],
                     "http://a.ml/vocabularies/shapes#range": [
                       {
-                        "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/image/image/property/url/scalar/url",
+                        "@id": "amf://id#25",
                         "@type": [
                           "http://a.ml/vocabularies/shapes#ScalarShape",
                           "http://www.w3.org/ns/shacl#Shape",
@@ -1651,7 +1651,7 @@
                     ]
                   },
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/image/image/property/thumb",
+                    "@id": "amf://id#26",
                     "@type": [
                       "http://www.w3.org/ns/shacl#PropertyShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -1664,7 +1664,7 @@
                     ],
                     "http://a.ml/vocabularies/shapes#range": [
                       {
-                        "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/image/image/property/thumb/scalar/thumb",
+                        "@id": "amf://id#27",
                         "@type": [
                           "http://a.ml/vocabularies/shapes#ScalarShape",
                           "http://www.w3.org/ns/shacl#Shape",
@@ -1717,7 +1717,7 @@
                 ],
                 "http://a.ml/vocabularies/document#examples": [
                   {
-                    "@id": "file://demo/demo-api/resourceTypes/image.raml#/shape/example/default-example",
+                    "@id": "amf://id#22",
                     "@type": [
                       "http://a.ml/vocabularies/document#Example",
                       "http://a.ml/vocabularies/document#DomainElement"
@@ -1729,7 +1729,7 @@
                     ],
                     "http://a.ml/vocabularies/document#structuredValue": [
                       {
-                        "@id": "file://demo/demo-api/resourceTypes/image.raml#/shape/example/default-example/object_1",
+                        "@id": "amf://id#23",
                         "@type": [
                           "http://a.ml/vocabularies/data#Object"
                         ],
@@ -1784,7 +1784,7 @@
             ]
           },
           {
-            "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/gender",
+            "@id": "amf://id#29",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -1797,7 +1797,7 @@
             ],
             "http://a.ml/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/gender/scalar/gender%3F",
+                "@id": "amf://id#30",
                 "@type": [
                   "http://a.ml/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -1850,7 +1850,7 @@
         ],
         "http://a.ml/vocabularies/document#examples": [
           {
-            "@id": "file://demo/demo-api/resourceTypes/app-person.raml#/shape/example/default-example",
+            "@id": "amf://id#2",
             "@type": [
               "http://a.ml/vocabularies/document#Example",
               "http://a.ml/vocabularies/document#DomainElement"
@@ -1862,7 +1862,7 @@
             ],
             "http://a.ml/vocabularies/document#structuredValue": [
               {
-                "@id": "file://demo/demo-api/resourceTypes/app-person.raml#/shape/example/default-example/object_1",
+                "@id": "amf://id#3",
                 "@type": [
                   "http://a.ml/vocabularies/data#Object"
                 ],
@@ -2025,7 +2025,7 @@
         ]
       },
       {
-        "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/get/200/application%2Fjson/array/schema/array/default-array",
+        "@id": "amf://id#50",
         "@type": [
           "http://a.ml/vocabularies/shapes#ArrayShape",
           "http://www.w3.org/ns/shacl#Shape",
@@ -2034,7 +2034,7 @@
         ],
         "http://a.ml/vocabularies/shapes#items": [
           {
-            "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson",
+            "@id": "amf://id#1",
             "@type": [
               "http://www.w3.org/ns/shacl#NodeShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -2048,7 +2048,7 @@
             ],
             "http://www.w3.org/ns/shacl#property": [
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/etag",
+                "@id": "amf://id#4",
                 "@type": [
                   "http://www.w3.org/ns/shacl#PropertyShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -2061,7 +2061,7 @@
                 ],
                 "http://a.ml/vocabularies/shapes#range": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/etag/scalar/etag",
+                    "@id": "amf://id#5",
                     "@type": [
                       "http://a.ml/vocabularies/shapes#ScalarShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -2097,7 +2097,7 @@
                 ]
               },
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/tagline",
+                "@id": "amf://id#6",
                 "@type": [
                   "http://www.w3.org/ns/shacl#PropertyShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -2110,7 +2110,7 @@
                 ],
                 "http://a.ml/vocabularies/shapes#range": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/tagline/scalar/tagline",
+                    "@id": "amf://id#7",
                     "@type": [
                       "http://a.ml/vocabularies/shapes#ScalarShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -2146,7 +2146,7 @@
                 ]
               },
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/name",
+                "@id": "amf://id#8",
                 "@type": [
                   "http://www.w3.org/ns/shacl#PropertyShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -2159,7 +2159,7 @@
                 ],
                 "http://a.ml/vocabularies/shapes#range": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/name/scalar/name",
+                    "@id": "amf://id#9",
                     "@type": [
                       "http://a.ml/vocabularies/shapes#ScalarShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -2188,7 +2188,7 @@
                     ],
                     "http://a.ml/vocabularies/document#examples": [
                       {
-                        "@id": "file://demo/demo-api/resourceTypes/app-person.raml#/shape/property/name/scalar/name/example/default-example",
+                        "@id": "amf://id#10",
                         "@type": [
                           "http://a.ml/vocabularies/document#Example",
                           "http://a.ml/vocabularies/document#DomainElement"
@@ -2200,7 +2200,7 @@
                         ],
                         "http://a.ml/vocabularies/document#structuredValue": [
                           {
-                            "@id": "file://demo/demo-api/resourceTypes/app-person.raml#/shape/property/name/scalar/name/example/default-example/scalar_1",
+                            "@id": "amf://id#11",
                             "@type": [
                               "http://a.ml/vocabularies/data#Scalar"
                             ],
@@ -2233,7 +2233,7 @@
                 ]
               },
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/url",
+                "@id": "amf://id#12",
                 "@type": [
                   "http://www.w3.org/ns/shacl#PropertyShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -2246,7 +2246,7 @@
                 ],
                 "http://a.ml/vocabularies/shapes#range": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/url/scalar/url",
+                    "@id": "amf://id#13",
                     "@type": [
                       "http://a.ml/vocabularies/shapes#ScalarShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -2282,7 +2282,7 @@
                 ]
               },
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/language",
+                "@id": "amf://id#14",
                 "@type": [
                   "http://www.w3.org/ns/shacl#PropertyShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -2295,7 +2295,7 @@
                 ],
                 "http://a.ml/vocabularies/shapes#range": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/language/scalar/language",
+                    "@id": "amf://id#15",
                     "@type": [
                       "http://a.ml/vocabularies/shapes#ScalarShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -2331,7 +2331,7 @@
                 ]
               },
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/id",
+                "@id": "amf://id#16",
                 "@type": [
                   "http://www.w3.org/ns/shacl#PropertyShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -2344,7 +2344,7 @@
                 ],
                 "http://a.ml/vocabularies/shapes#range": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/id/scalar/id",
+                    "@id": "amf://id#17",
                     "@type": [
                       "http://a.ml/vocabularies/shapes#ScalarShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -2380,7 +2380,7 @@
                 ]
               },
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/birthday",
+                "@id": "amf://id#18",
                 "@type": [
                   "http://www.w3.org/ns/shacl#PropertyShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -2393,7 +2393,7 @@
                 ],
                 "http://a.ml/vocabularies/shapes#range": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/birthday/scalar/birthday",
+                    "@id": "amf://id#19",
                     "@type": [
                       "http://a.ml/vocabularies/shapes#ScalarShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -2429,7 +2429,7 @@
                 ]
               },
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/image",
+                "@id": "amf://id#20",
                 "@type": [
                   "http://www.w3.org/ns/shacl#PropertyShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -2442,7 +2442,7 @@
                 ],
                 "http://a.ml/vocabularies/shapes#range": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/image/image",
+                    "@id": "amf://id#21",
                     "@type": [
                       "http://www.w3.org/ns/shacl#NodeShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -2456,7 +2456,7 @@
                     ],
                     "http://www.w3.org/ns/shacl#property": [
                       {
-                        "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/image/image/property/url",
+                        "@id": "amf://id#24",
                         "@type": [
                           "http://www.w3.org/ns/shacl#PropertyShape",
                           "http://www.w3.org/ns/shacl#Shape",
@@ -2469,7 +2469,7 @@
                         ],
                         "http://a.ml/vocabularies/shapes#range": [
                           {
-                            "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/image/image/property/url/scalar/url",
+                            "@id": "amf://id#25",
                             "@type": [
                               "http://a.ml/vocabularies/shapes#ScalarShape",
                               "http://www.w3.org/ns/shacl#Shape",
@@ -2505,7 +2505,7 @@
                         ]
                       },
                       {
-                        "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/image/image/property/thumb",
+                        "@id": "amf://id#26",
                         "@type": [
                           "http://www.w3.org/ns/shacl#PropertyShape",
                           "http://www.w3.org/ns/shacl#Shape",
@@ -2518,7 +2518,7 @@
                         ],
                         "http://a.ml/vocabularies/shapes#range": [
                           {
-                            "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/image/image/property/thumb/scalar/thumb",
+                            "@id": "amf://id#27",
                             "@type": [
                               "http://a.ml/vocabularies/shapes#ScalarShape",
                               "http://www.w3.org/ns/shacl#Shape",
@@ -2571,7 +2571,7 @@
                     ],
                     "http://a.ml/vocabularies/document#examples": [
                       {
-                        "@id": "file://demo/demo-api/resourceTypes/image.raml#/shape/example/default-example",
+                        "@id": "amf://id#22",
                         "@type": [
                           "http://a.ml/vocabularies/document#Example",
                           "http://a.ml/vocabularies/document#DomainElement"
@@ -2583,7 +2583,7 @@
                         ],
                         "http://a.ml/vocabularies/document#structuredValue": [
                           {
-                            "@id": "file://demo/demo-api/resourceTypes/image.raml#/shape/example/default-example/object_1",
+                            "@id": "amf://id#23",
                             "@type": [
                               "http://a.ml/vocabularies/data#Object"
                             ],
@@ -2638,7 +2638,7 @@
                 ]
               },
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/gender",
+                "@id": "amf://id#29",
                 "@type": [
                   "http://www.w3.org/ns/shacl#PropertyShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -2651,7 +2651,7 @@
                 ],
                 "http://a.ml/vocabularies/shapes#range": [
                   {
-                    "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/gender/scalar/gender%3F",
+                    "@id": "amf://id#30",
                     "@type": [
                       "http://a.ml/vocabularies/shapes#ScalarShape",
                       "http://www.w3.org/ns/shacl#Shape",
@@ -2704,7 +2704,7 @@
             ],
             "http://a.ml/vocabularies/document#examples": [
               {
-                "@id": "file://demo/demo-api/resourceTypes/app-person.raml#/shape/example/default-example",
+                "@id": "amf://id#2",
                 "@type": [
                   "http://a.ml/vocabularies/document#Example",
                   "http://a.ml/vocabularies/document#DomainElement"
@@ -2716,7 +2716,7 @@
                 ],
                 "http://a.ml/vocabularies/document#structuredValue": [
                   {
-                    "@id": "file://demo/demo-api/resourceTypes/app-person.raml#/shape/example/default-example/object_1",
+                    "@id": "amf://id#3",
                     "@type": [
                       "http://a.ml/vocabularies/data#Object"
                     ],
@@ -2886,7 +2886,7 @@
         ]
       },
       {
-        "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/image/image",
+        "@id": "amf://id#21",
         "@type": [
           "http://www.w3.org/ns/shacl#NodeShape",
           "http://www.w3.org/ns/shacl#Shape",
@@ -2900,7 +2900,7 @@
         ],
         "http://www.w3.org/ns/shacl#property": [
           {
-            "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/image/image/property/url",
+            "@id": "amf://id#24",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -2913,7 +2913,7 @@
             ],
             "http://a.ml/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/image/image/property/url/scalar/url",
+                "@id": "amf://id#25",
                 "@type": [
                   "http://a.ml/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -2949,7 +2949,7 @@
             ]
           },
           {
-            "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/image/image/property/thumb",
+            "@id": "amf://id#26",
             "@type": [
               "http://www.w3.org/ns/shacl#PropertyShape",
               "http://www.w3.org/ns/shacl#Shape",
@@ -2962,7 +2962,7 @@
             ],
             "http://a.ml/vocabularies/shapes#range": [
               {
-                "@id": "file://demo/array-body/array-body.raml#/web-api/end-points/%2FarrayBody/post/request/application%2Fjson/array/schema/items/AppPerson/property/image/image/property/thumb/scalar/thumb",
+                "@id": "amf://id#27",
                 "@type": [
                   "http://a.ml/vocabularies/shapes#ScalarShape",
                   "http://www.w3.org/ns/shacl#Shape",
@@ -3015,7 +3015,7 @@
         ],
         "http://a.ml/vocabularies/document#examples": [
           {
-            "@id": "file://demo/demo-api/resourceTypes/image.raml#/shape/example/default-example",
+            "@id": "amf://id#22",
             "@type": [
               "http://a.ml/vocabularies/document#Example",
               "http://a.ml/vocabularies/document#DomainElement"
@@ -3027,7 +3027,7 @@
             ],
             "http://a.ml/vocabularies/document#structuredValue": [
               {
-                "@id": "file://demo/demo-api/resourceTypes/image.raml#/shape/example/default-example/object_1",
+                "@id": "amf://id#23",
                 "@type": [
                   "http://a.ml/vocabularies/data#Object"
                 ],
