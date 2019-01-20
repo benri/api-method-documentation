@@ -265,7 +265,7 @@
       <h1 class="title">[[methodName]]</h1>
       <template is="dom-if" if="[[!noTryIt]]">
         <div class="action">
-          <paper-button class="action-button" on-tap="_tryIt" raised>Try it</paper-button>
+          <paper-button class="action-button" on-click="_tryIt" raised>Try it</paper-button>
         </div>
       </template>
     </div>
@@ -273,7 +273,7 @@
     <section class="url-area">
       <div class="method-value"><span class="method-label" data-method$="[[httpMethod]]">[[httpMethod]]</span></div>
       <div class="url-value">[[endpointUri]]</div>
-      <paper-icon-button class="action-icon copy-icon" icon="arc:content-copy" on-tap="_copyUrlClipboard" title="Copy URL to clipboard"></paper-icon-button>
+      <paper-icon-button class="action-icon copy-icon" icon="arc:content-copy" on-click="_copyUrlClipboard" title="Copy URL to clipboard"></paper-icon-button>
     </section>
     <clipboard-copy id="urlCopy" content="[[endpointUri]]"></clipboard-copy>
 
@@ -358,14 +358,14 @@
     <template is="dom-if" if="[[hasPagination]]">
       <section class="bottom-nav">
         <template is="dom-if" if="[[hasPreviousLink]]">
-          <div class="bottom-link previous" on-tap="_navigatePrevious">
+          <div class="bottom-link previous" on-click="_navigatePrevious">
             <paper-icon-button icon="arc:chevron-left"></paper-icon-button>
             <span class="nav-label">[[previous.label]]</span>
           </div>
         </template>
         <div class="nav-separator"></div>
         <template is="dom-if" if="[[hasNextLink]]">
-          <div class="bottom-link next" on-tap="_navigateNext">
+          <div class="bottom-link next" on-click="_navigateNext">
             <span class="nav-label">[[next.label]]</span>
             <paper-icon-button icon="arc:chevron-right"></paper-icon-button>
           </div>

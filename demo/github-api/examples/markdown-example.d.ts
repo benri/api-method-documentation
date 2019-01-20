@@ -8,3 +8,6 @@
  *   demo/github-api/examples/markdown-example.html
  */
 
+
+// tslint:disable:variable-name Describing an API that's defined elsewhere.
+
