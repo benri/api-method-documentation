@@ -135,49 +135,13 @@
 "@type": "rdfs:Seq",
 "rdfs:_1": [
 {
-"@id": "#748",
-"@type": [
-"data:Scalar"
-],
-"data:value": [
-{
-"@value": "development",
-"@type": "xsd:string"
-}
-],
-"sourcemaps:sources": [
-{
-"@id": "#748/source-map",
-"@type": [
-"sourcemaps:SourceMap"
-],
-"sourcemaps:lexical": [
-{
-"sourcemaps:element": [
-{
-"@value": "amf://id#748"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(15,11)-(15,22)]"
-}
-]
-}
-]
-}
-]
-}
-],
-"rdfs:_2": [
-{
 "@id": "#749",
 "@type": [
 "data:Scalar"
 ],
 "data:value": [
 {
-"@value": "staging",
+"@value": "development",
 "@type": "xsd:string"
 }
 ],
@@ -196,7 +160,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(15,24)-(15,31)]"
+"@value": "[(15,11)-(15,22)]"
 }
 ]
 }
@@ -205,7 +169,7 @@
 ]
 }
 ],
-"rdfs:_3": [
+"rdfs:_2": [
 {
 "@id": "#750",
 "@type": [
@@ -213,7 +177,7 @@
 ],
 "data:value": [
 {
-"@value": "qa",
+"@value": "staging",
 "@type": "xsd:string"
 }
 ],
@@ -232,7 +196,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(15,33)-(15,35)]"
+"@value": "[(15,24)-(15,31)]"
 }
 ]
 }
@@ -241,7 +205,7 @@
 ]
 }
 ],
-"rdfs:_4": [
+"rdfs:_3": [
 {
 "@id": "#751",
 "@type": [
@@ -249,7 +213,7 @@
 ],
 "data:value": [
 {
-"@value": "production",
+"@value": "qa",
 "@type": "xsd:string"
 }
 ],
@@ -264,6 +228,42 @@
 "sourcemaps:element": [
 {
 "@value": "amf://id#751"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "[(15,33)-(15,35)]"
+}
+]
+}
+]
+}
+]
+}
+],
+"rdfs:_4": [
+{
+"@id": "#752",
+"@type": [
+"data:Scalar"
+],
+"data:value": [
+{
+"@value": "production",
+"@type": "xsd:string"
+}
+],
+"sourcemaps:sources": [
+{
+"@id": "#752/source-map",
+"@type": [
+"sourcemaps:SourceMap"
+],
+"sourcemaps:lexical": [
+{
+"sourcemaps:element": [
+{
+"@value": "amf://id#752"
 }
 ],
 "sourcemaps:value": [
@@ -418,7 +418,7 @@
 ]
 },
 {
-"@id": "#752",
+"@id": "#753",
 "@type": [
 "raml-http:Parameter",
 "doc:DomainElement"
@@ -440,7 +440,7 @@
 ],
 "raml-http:schema": [
 {
-"@id": "#753",
+"@id": "#754",
 "@type": [
 "raml-shapes:ScalarShape",
 "shacl:Shape",
@@ -461,7 +461,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#752/source-map",
+"@id": "#753/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -469,7 +469,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#752"
+"@value": "amf://id#753"
 }
 ],
 "sourcemaps:value": [
@@ -2998,7 +2998,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(17,4)-(18,0)]"
+"@value": "[(17,4)-(17,8)]"
 }
 ]
 }
@@ -3012,7 +3012,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(22,4)-(23,0)]"
+"@value": "[(22,4)-(22,15)]"
 }
 ]
 },
@@ -3024,7 +3024,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(19,4)-(20,0)]"
+"@value": "[(19,4)-(19,16)]"
 }
 ]
 },
@@ -3036,7 +3036,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(17,4)-(18,0)]"
+"@value": "[(17,4)-(17,16)]"
 }
 ]
 },
@@ -3048,7 +3048,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(16,2)-(24,0)]"
+"@value": "[(16,2)-(23,19)]"
 }
 ]
 },
@@ -3060,7 +3060,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(20,4)-(21,0)]"
+"@value": "[(20,4)-(20,14)]"
 }
 ]
 },
@@ -3072,7 +3072,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(18,4)-(19,0)]"
+"@value": "[(18,4)-(18,43)]"
 }
 ]
 }
@@ -3096,7 +3096,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(23,4)-(24,0)]"
+"@value": "[(23,4)-(23,19)]"
 }
 ]
 },
@@ -3108,7 +3108,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(16,2)-(24,0)]"
+"@value": "[(16,2)-(23,19)]"
 }
 ]
 },
@@ -3120,7 +3120,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(18,4)-(19,0)]"
+"@value": "[(18,4)-(18,43)]"
 }
 ]
 }
@@ -3361,7 +3361,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(25,4)-(26,0)]"
+"@value": "[(25,4)-(25,8)]"
 }
 ]
 }
@@ -3375,7 +3375,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(29,4)-(30,0)]"
+"@value": "[(29,4)-(29,14)]"
 }
 ]
 },
@@ -3387,7 +3387,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(27,4)-(28,0)]"
+"@value": "[(27,4)-(27,14)]"
 }
 ]
 },
@@ -3399,7 +3399,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(24,2)-(31,0)]"
+"@value": "[(24,2)-(30,19)]"
 }
 ]
 },
@@ -3411,7 +3411,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(25,4)-(26,0)]"
+"@value": "[(25,4)-(25,16)]"
 }
 ]
 },
@@ -3423,7 +3423,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(26,4)-(27,0)]"
+"@value": "[(26,4)-(26,44)]"
 }
 ]
 }
@@ -3447,7 +3447,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(30,4)-(31,0)]"
+"@value": "[(30,4)-(30,19)]"
 }
 ]
 },
@@ -3459,7 +3459,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(24,2)-(31,0)]"
+"@value": "[(24,2)-(30,19)]"
 }
 ]
 },
@@ -3471,7 +3471,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(26,4)-(27,0)]"
+"@value": "[(26,4)-(26,44)]"
 }
 ]
 }
@@ -3671,7 +3671,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(32,4)-(33,0)]"
+"@value": "[(32,4)-(32,8)]"
 }
 ]
 }
@@ -3697,7 +3697,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(32,4)-(33,0)]"
+"@value": "[(32,4)-(32,16)]"
 }
 ]
 },
@@ -3709,7 +3709,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(31,2)-(40,0)]"
+"@value": "[(31,2)-(39,19)]"
 }
 ]
 },
@@ -3721,7 +3721,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(38,4)-(39,0)]"
+"@value": "[(38,4)-(38,27)]"
 }
 ]
 }
@@ -3745,7 +3745,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(39,4)-(40,0)]"
+"@value": "[(39,4)-(39,19)]"
 }
 ]
 },
@@ -3757,7 +3757,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(31,2)-(40,0)]"
+"@value": "[(31,2)-(39,19)]"
 }
 ]
 },
@@ -4317,7 +4317,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(16,8)-(17,0)]"
+"@value": "[(16,8)-(16,12)]"
 }
 ]
 }
@@ -4331,7 +4331,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(17,8)-(18,0)]"
+"@value": "[(17,8)-(17,22)]"
 }
 ]
 },
@@ -4343,7 +4343,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(15,8)-(16,0)]"
+"@value": "[(15,8)-(15,47)]"
 }
 ]
 },
@@ -4355,7 +4355,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(14,6)-(19,0)]"
+"@value": "[(14,6)-(18,94)]"
 }
 ]
 },
@@ -4367,7 +4367,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(16,8)-(17,0)]"
+"@value": "[(16,8)-(16,21)]"
 }
 ]
 },
@@ -4379,7 +4379,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(18,8)-(19,0)]"
+"@value": "[(18,8)-(18,94)]"
 }
 ]
 }
@@ -4403,7 +4403,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(18,8)-(19,0)]"
+"@value": "[(18,8)-(18,94)]"
 }
 ]
 },
@@ -4415,7 +4415,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(14,6)-(19,0)]"
+"@value": "[(14,6)-(18,94)]"
 }
 ]
 }
@@ -4518,7 +4518,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(54,12)-(55,0)]"
+"@value": "[(54,12)-(54,16)]"
 }
 ]
 }
@@ -4532,7 +4532,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(56,12)-(57,0)]"
+"@value": "[(56,12)-(56,68)]"
 }
 ]
 },
@@ -4544,7 +4544,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(53,10)-(58,0)]"
+"@value": "[(53,10)-(57,35)]"
 }
 ]
 }
@@ -4578,7 +4578,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(55,12)-(56,0)]"
+"@value": "[(55,12)-(55,26)]"
 }
 ]
 },
@@ -4590,7 +4590,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(53,10)-(58,0)]"
+"@value": "[(53,10)-(57,35)]"
 }
 ]
 }
@@ -4752,7 +4752,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(59,12)-(60,0)]"
+"@value": "[(59,12)-(59,16)]"
 }
 ]
 }
@@ -4790,7 +4790,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(59,12)-(60,0)]"
+"@value": "[(59,12)-(59,24)]"
 }
 ]
 }
@@ -4824,7 +4824,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(60,12)-(61,0)]"
+"@value": "[(60,12)-(60,26)]"
 }
 ]
 },
@@ -4865,7 +4865,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(51,8)-(52,0)]"
+"@value": "[(51,8)-(51,12)]"
 }
 ]
 }
@@ -5161,7 +5161,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(75,12)-(76,0)]"
+"@value": "[(75,12)-(75,16)]"
 }
 ]
 }
@@ -5175,7 +5175,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(78,12)-(79,0)]"
+"@value": "[(78,12)-(78,63)]"
 }
 ]
 },
@@ -5187,7 +5187,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(74,10)-(79,0)]"
+"@value": "[(74,10)-(78,63)]"
 }
 ]
 },
@@ -5199,7 +5199,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(75,12)-(76,0)]"
+"@value": "[(75,12)-(75,25)]"
 }
 ]
 }
@@ -5233,7 +5233,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(76,12)-(77,0)]"
+"@value": "[(76,12)-(76,26)]"
 }
 ]
 },
@@ -5245,7 +5245,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(74,10)-(79,0)]"
+"@value": "[(74,10)-(78,63)]"
 }
 ]
 }
@@ -5407,7 +5407,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(80,12)-(81,0)]"
+"@value": "[(80,12)-(80,16)]"
 }
 ]
 }
@@ -5421,7 +5421,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(81,12)-(82,0)]"
+"@value": "[(81,12)-(81,69)]"
 }
 ]
 },
@@ -5433,7 +5433,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(79,10)-(84,0)]"
+"@value": "[(79,10)-(83,26)]"
 }
 ]
 },
@@ -5445,7 +5445,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(80,12)-(81,0)]"
+"@value": "[(80,12)-(80,24)]"
 }
 ]
 }
@@ -5479,7 +5479,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(83,12)-(84,0)]"
+"@value": "[(83,12)-(83,26)]"
 }
 ]
 },
@@ -5491,7 +5491,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(79,10)-(84,0)]"
+"@value": "[(79,10)-(83,26)]"
 }
 ]
 }
@@ -5525,7 +5525,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(72,8)-(73,0)]"
+"@value": "[(72,8)-(72,12)]"
 }
 ]
 }
@@ -5539,7 +5539,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(71,8)-(72,0)]"
+"@value": "[(71,8)-(71,28)]"
 }
 ]
 },
@@ -5551,7 +5551,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(70,6)-(84,0)]"
+"@value": "[(70,6)-(83,26)]"
 }
 ]
 }
@@ -5575,7 +5575,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(70,6)-(84,0)]"
+"@value": "[(70,6)-(83,26)]"
 }
 ]
 }
@@ -5599,7 +5599,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(69,4)-(84,0)]"
+"@value": "[(69,4)-(83,26)]"
 }
 ]
 },
@@ -5611,7 +5611,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(65,2)-(84,0)]"
+"@value": "[(65,2)-(83,26)]"
 }
 ]
 },
@@ -5966,7 +5966,7 @@
 ]
 },
 {
-"@id": "#298",
+"@id": "#47",
 "@type": [
 "shacl:PropertyShape",
 "shacl:Shape",
@@ -5979,7 +5979,7 @@
 ],
 "raml-shapes:range": [
 {
-"@id": "#299",
+"@id": "#48",
 "@type": [
 "raml-shapes:ScalarShape",
 "shacl:Shape",
@@ -6003,7 +6003,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#299/source-map",
+"@id": "#48/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -6011,7 +6011,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#299"
+"@value": "amf://id#48"
 }
 ],
 "sourcemaps:value": [
@@ -6037,7 +6037,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#299"
+"@value": "amf://id#48"
 }
 ],
 "sourcemaps:value": [
@@ -6075,7 +6075,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#298/source-map",
+"@id": "#47/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -6083,7 +6083,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#298"
+"@value": "amf://id#47"
 }
 ],
 "sourcemaps:value": [
@@ -6097,7 +6097,7 @@
 ]
 },
 {
-"@id": "#300",
+"@id": "#49",
 "@type": [
 "shacl:PropertyShape",
 "shacl:Shape",
@@ -6110,7 +6110,7 @@
 ],
 "raml-shapes:range": [
 {
-"@id": "#301",
+"@id": "#50",
 "@type": [
 "raml-shapes:ScalarShape",
 "shacl:Shape",
@@ -6242,7 +6242,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#301/source-map",
+"@id": "#50/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -6250,7 +6250,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#301"
+"@value": "amf://id#50"
 }
 ],
 "sourcemaps:value": [
@@ -6288,7 +6288,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#301"
+"@value": "amf://id#50"
 }
 ],
 "sourcemaps:value": [
@@ -6326,7 +6326,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#300/source-map",
+"@id": "#49/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -6346,7 +6346,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#300"
+"@value": "amf://id#49"
 }
 ],
 "sourcemaps:value": [
@@ -6360,7 +6360,7 @@
 ]
 },
 {
-"@id": "#302",
+"@id": "#52",
 "@type": [
 "shacl:PropertyShape",
 "shacl:Shape",
@@ -6373,7 +6373,7 @@
 ],
 "raml-shapes:range": [
 {
-"@id": "#303",
+"@id": "#53",
 "@type": [
 "raml-shapes:ScalarShape",
 "shacl:Shape",
@@ -6397,7 +6397,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#303/source-map",
+"@id": "#53/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -6405,7 +6405,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#303"
+"@value": "amf://id#53"
 }
 ],
 "sourcemaps:value": [
@@ -6431,7 +6431,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#303"
+"@value": "amf://id#53"
 }
 ],
 "sourcemaps:value": [
@@ -6469,7 +6469,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#302/source-map",
+"@id": "#52/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -6477,7 +6477,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#302"
+"@value": "amf://id#52"
 }
 ],
 "sourcemaps:value": [
@@ -6491,7 +6491,7 @@
 ]
 },
 {
-"@id": "#306",
+"@id": "#56",
 "@type": [
 "shacl:PropertyShape",
 "shacl:Shape",
@@ -6504,7 +6504,7 @@
 ],
 "raml-shapes:range": [
 {
-"@id": "#307",
+"@id": "#57",
 "@type": [
 "raml-shapes:ScalarShape",
 "shacl:Shape",
@@ -6528,7 +6528,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#307/source-map",
+"@id": "#57/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -6548,7 +6548,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#307"
+"@value": "amf://id#57"
 }
 ],
 "sourcemaps:value": [
@@ -6574,7 +6574,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#306/source-map",
+"@id": "#56/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -6582,7 +6582,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#306"
+"@value": "amf://id#56"
 }
 ],
 "sourcemaps:value": [
@@ -6596,7 +6596,7 @@
 ]
 },
 {
-"@id": "#304",
+"@id": "#54",
 "@type": [
 "shacl:PropertyShape",
 "shacl:Shape",
@@ -6609,7 +6609,7 @@
 ],
 "raml-shapes:range": [
 {
-"@id": "#305",
+"@id": "#55",
 "@type": [
 "raml-shapes:ScalarShape",
 "shacl:Shape",
@@ -6633,7 +6633,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#305/source-map",
+"@id": "#55/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -6641,7 +6641,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#305"
+"@value": "amf://id#55"
 }
 ],
 "sourcemaps:value": [
@@ -6667,7 +6667,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#305"
+"@value": "amf://id#55"
 }
 ],
 "sourcemaps:value": [
@@ -6705,7 +6705,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#304/source-map",
+"@id": "#54/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -6713,7 +6713,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#304"
+"@value": "amf://id#54"
 }
 ],
 "sourcemaps:value": [
@@ -6727,7 +6727,7 @@
 ]
 },
 {
-"@id": "#308",
+"@id": "#58",
 "@type": [
 "shacl:PropertyShape",
 "shacl:Shape",
@@ -6740,7 +6740,7 @@
 ],
 "raml-shapes:range": [
 {
-"@id": "#309",
+"@id": "#59",
 "@type": [
 "raml-shapes:ScalarShape",
 "shacl:Shape",
@@ -6764,7 +6764,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#309/source-map",
+"@id": "#59/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -6772,7 +6772,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#309"
+"@value": "amf://id#59"
 }
 ],
 "sourcemaps:value": [
@@ -6798,7 +6798,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#309"
+"@value": "amf://id#59"
 }
 ],
 "sourcemaps:value": [
@@ -6836,7 +6836,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#308/source-map",
+"@id": "#58/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -6844,7 +6844,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#308"
+"@value": "amf://id#58"
 }
 ],
 "sourcemaps:value": [
@@ -6858,7 +6858,7 @@
 ]
 },
 {
-"@id": "#310",
+"@id": "#60",
 "@type": [
 "shacl:PropertyShape",
 "shacl:Shape",
@@ -6871,7 +6871,7 @@
 ],
 "raml-shapes:range": [
 {
-"@id": "#84/linked_3",
+"@id": "#61/linked_3",
 "@type": [
 "shacl:NodeShape",
 "shacl:Shape",
@@ -6880,7 +6880,7 @@
 ],
 "doc:link-target": [
 {
-"@id": "#84"
+"@id": "#61"
 }
 ],
 "doc:link-label": [
@@ -6902,7 +6902,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#310/source-map",
+"@id": "#60/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -6910,7 +6910,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#310"
+"@value": "amf://id#60"
 }
 ],
 "sourcemaps:value": [
@@ -6924,7 +6924,7 @@
 ]
 },
 {
-"@id": "#311",
+"@id": "#69",
 "@type": [
 "shacl:PropertyShape",
 "shacl:Shape",
@@ -6937,7 +6937,7 @@
 ],
 "raml-shapes:range": [
 {
-"@id": "#312",
+"@id": "#70",
 "@type": [
 "raml-shapes:ScalarShape",
 "shacl:Shape",
@@ -6961,7 +6961,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#312/source-map",
+"@id": "#70/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -6969,7 +6969,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#312"
+"@value": "amf://id#70"
 }
 ],
 "sourcemaps:value": [
@@ -6995,7 +6995,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#312"
+"@value": "amf://id#70"
 }
 ],
 "sourcemaps:value": [
@@ -7033,7 +7033,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#311/source-map",
+"@id": "#69/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -7041,7 +7041,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#311"
+"@value": "amf://id#69"
 }
 ],
 "sourcemaps:value": [
@@ -7562,7 +7562,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(190,33)-(190,35)]"
+"@value": "[(11,17)-(11,19)]"
 }
 ]
 }
@@ -7591,7 +7591,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(188,22)-(188,28)]"
+"@value": "[(9,6)-(9,12)]"
 }
 ]
 }
@@ -7605,7 +7605,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(190,22)-(190,33)]"
+"@value": "[(11,6)-(11,17)]"
 }
 ]
 },
@@ -7617,7 +7617,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(188,22)-(188,30)]"
+"@value": "[(9,6)-(9,14)]"
 }
 ]
 },
@@ -7629,7 +7629,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(186,20)-(186,26)]"
+"@value": "[(7,4)-(7,10)]"
 }
 ]
 },
@@ -7641,7 +7641,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(189,22)-(189,31)]"
+"@value": "[(10,6)-(10,15)]"
 }
 ]
 }
@@ -7675,7 +7675,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(186,20)-(186,26)]"
+"@value": "[(7,4)-(7,10)]"
 }
 ]
 }
@@ -7746,7 +7746,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(199,33)-(199,35)]"
+"@value": "[(20,17)-(20,19)]"
 }
 ]
 }
@@ -7775,7 +7775,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(197,22)-(197,28)]"
+"@value": "[(18,6)-(18,12)]"
 }
 ]
 }
@@ -7789,7 +7789,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(199,22)-(199,33)]"
+"@value": "[(20,6)-(20,17)]"
 }
 ]
 },
@@ -7801,7 +7801,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(197,22)-(197,30)]"
+"@value": "[(18,6)-(18,14)]"
 }
 ]
 },
@@ -7813,7 +7813,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(195,20)-(195,28)]"
+"@value": "[(16,4)-(16,12)]"
 }
 ]
 },
@@ -7825,7 +7825,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(198,22)-(198,31)]"
+"@value": "[(19,6)-(19,15)]"
 }
 ]
 }
@@ -7859,7 +7859,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(195,20)-(195,28)]"
+"@value": "[(16,4)-(16,12)]"
 }
 ]
 }
@@ -7930,7 +7930,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(208,33)-(208,35)]"
+"@value": "[(29,17)-(29,19)]"
 }
 ]
 }
@@ -7959,7 +7959,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(206,22)-(206,28)]"
+"@value": "[(27,6)-(27,12)]"
 }
 ]
 }
@@ -7973,7 +7973,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(208,22)-(208,33)]"
+"@value": "[(29,6)-(29,17)]"
 }
 ]
 },
@@ -7985,7 +7985,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(206,22)-(206,30)]"
+"@value": "[(27,6)-(27,14)]"
 }
 ]
 },
@@ -7997,7 +7997,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(204,20)-(204,32)]"
+"@value": "[(25,4)-(25,16)]"
 }
 ]
 },
@@ -8009,7 +8009,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(207,22)-(207,31)]"
+"@value": "[(28,6)-(28,15)]"
 }
 ]
 }
@@ -8043,7 +8043,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(204,20)-(204,32)]"
+"@value": "[(25,4)-(25,16)]"
 }
 ]
 }
@@ -8114,7 +8114,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(217,33)-(217,35)]"
+"@value": "[(38,17)-(38,19)]"
 }
 ]
 }
@@ -8143,7 +8143,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(215,22)-(215,28)]"
+"@value": "[(36,6)-(36,12)]"
 }
 ]
 }
@@ -8157,7 +8157,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(217,22)-(217,33)]"
+"@value": "[(38,6)-(38,17)]"
 }
 ]
 },
@@ -8169,7 +8169,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(215,22)-(215,30)]"
+"@value": "[(36,6)-(36,14)]"
 }
 ]
 },
@@ -8181,7 +8181,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(213,20)-(213,30)]"
+"@value": "[(34,4)-(34,14)]"
 }
 ]
 },
@@ -8193,7 +8193,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(216,22)-(216,31)]"
+"@value": "[(37,6)-(37,15)]"
 }
 ]
 }
@@ -8227,7 +8227,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(213,20)-(213,30)]"
+"@value": "[(34,4)-(34,14)]"
 }
 ]
 }
@@ -8298,7 +8298,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(226,33)-(226,35)]"
+"@value": "[(47,17)-(47,19)]"
 }
 ]
 }
@@ -8327,7 +8327,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(224,22)-(224,28)]"
+"@value": "[(45,6)-(45,12)]"
 }
 ]
 }
@@ -8341,7 +8341,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(226,22)-(226,33)]"
+"@value": "[(47,6)-(47,17)]"
 }
 ]
 },
@@ -8353,7 +8353,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(224,22)-(224,30)]"
+"@value": "[(45,6)-(45,14)]"
 }
 ]
 },
@@ -8365,7 +8365,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(222,20)-(222,27)]"
+"@value": "[(43,4)-(43,11)]"
 }
 ]
 },
@@ -8377,7 +8377,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(225,22)-(225,31)]"
+"@value": "[(46,6)-(46,15)]"
 }
 ]
 }
@@ -8411,7 +8411,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(222,20)-(222,27)]"
+"@value": "[(43,4)-(43,11)]"
 }
 ]
 }
@@ -8509,7 +8509,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(239,37)-(239,39)]"
+"@value": "[(60,21)-(60,23)]"
 }
 ]
 }
@@ -8538,7 +8538,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(237,26)-(237,32)]"
+"@value": "[(58,10)-(58,16)]"
 }
 ]
 }
@@ -8552,7 +8552,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(239,26)-(239,37)]"
+"@value": "[(60,10)-(60,21)]"
 }
 ]
 },
@@ -8564,7 +8564,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(237,26)-(237,34)]"
+"@value": "[(58,10)-(58,18)]"
 }
 ]
 },
@@ -8576,7 +8576,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(235,24)-(235,31)]"
+"@value": "[(56,8)-(56,15)]"
 }
 ]
 },
@@ -8588,7 +8588,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(238,26)-(238,35)]"
+"@value": "[(59,10)-(59,19)]"
 }
 ]
 }
@@ -8622,7 +8622,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(235,24)-(235,31)]"
+"@value": "[(56,8)-(56,15)]"
 }
 ]
 }
@@ -8693,7 +8693,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(248,37)-(248,39)]"
+"@value": "[(69,21)-(69,23)]"
 }
 ]
 }
@@ -8722,7 +8722,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(246,26)-(246,32)]"
+"@value": "[(67,10)-(67,16)]"
 }
 ]
 }
@@ -8736,7 +8736,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(248,26)-(248,37)]"
+"@value": "[(69,10)-(69,21)]"
 }
 ]
 },
@@ -8748,7 +8748,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(246,26)-(246,34)]"
+"@value": "[(67,10)-(67,18)]"
 }
 ]
 },
@@ -8760,7 +8760,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(244,24)-(244,33)]"
+"@value": "[(65,8)-(65,17)]"
 }
 ]
 },
@@ -8772,7 +8772,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(247,26)-(247,35)]"
+"@value": "[(68,10)-(68,19)]"
 }
 ]
 }
@@ -8806,7 +8806,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(244,24)-(244,33)]"
+"@value": "[(65,8)-(65,17)]"
 }
 ]
 }
@@ -8835,7 +8835,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(233,22)-(233,28)]"
+"@value": "[(54,6)-(54,12)]"
 }
 ]
 }
@@ -8849,7 +8849,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(231,20)-(231,29)]"
+"@value": "[(52,4)-(52,13)]"
 }
 ]
 }
@@ -8883,7 +8883,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(231,20)-(231,29)]"
+"@value": "[(52,4)-(52,13)]"
 }
 ]
 }
@@ -8954,7 +8954,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(259,33)-(259,35)]"
+"@value": "[(80,17)-(80,19)]"
 }
 ]
 }
@@ -8983,7 +8983,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(257,22)-(257,28)]"
+"@value": "[(78,6)-(78,12)]"
 }
 ]
 }
@@ -8997,7 +8997,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(259,22)-(259,33)]"
+"@value": "[(80,6)-(80,17)]"
 }
 ]
 },
@@ -9009,7 +9009,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(257,22)-(257,30)]"
+"@value": "[(78,6)-(78,14)]"
 }
 ]
 },
@@ -9021,7 +9021,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(255,20)-(255,31)]"
+"@value": "[(76,4)-(76,15)]"
 }
 ]
 },
@@ -9033,7 +9033,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(258,22)-(258,31)]"
+"@value": "[(79,6)-(79,15)]"
 }
 ]
 }
@@ -9067,7 +9067,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(255,20)-(255,31)]"
+"@value": "[(76,4)-(76,15)]"
 }
 ]
 }
@@ -9138,7 +9138,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(268,33)-(268,35)]"
+"@value": "[(89,17)-(89,19)]"
 }
 ]
 }
@@ -9167,7 +9167,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(266,22)-(266,28)]"
+"@value": "[(87,6)-(87,12)]"
 }
 ]
 }
@@ -9181,7 +9181,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(268,22)-(268,33)]"
+"@value": "[(89,6)-(89,17)]"
 }
 ]
 },
@@ -9193,7 +9193,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(266,22)-(266,30)]"
+"@value": "[(87,6)-(87,14)]"
 }
 ]
 },
@@ -9205,7 +9205,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(264,20)-(264,32)]"
+"@value": "[(85,4)-(85,16)]"
 }
 ]
 },
@@ -9217,7 +9217,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(267,22)-(267,31)]"
+"@value": "[(88,6)-(88,15)]"
 }
 ]
 }
@@ -9251,7 +9251,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(264,20)-(264,32)]"
+"@value": "[(85,4)-(85,16)]"
 }
 ]
 }
@@ -9322,7 +9322,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(277,33)-(277,35)]"
+"@value": "[(98,17)-(98,19)]"
 }
 ]
 }
@@ -9351,7 +9351,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(275,22)-(275,28)]"
+"@value": "[(96,6)-(96,12)]"
 }
 ]
 }
@@ -9365,7 +9365,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(277,22)-(277,33)]"
+"@value": "[(98,6)-(98,17)]"
 }
 ]
 },
@@ -9377,7 +9377,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(275,22)-(275,30)]"
+"@value": "[(96,6)-(96,14)]"
 }
 ]
 },
@@ -9389,7 +9389,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(273,20)-(273,28)]"
+"@value": "[(94,4)-(94,12)]"
 }
 ]
 },
@@ -9401,7 +9401,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(276,22)-(276,31)]"
+"@value": "[(97,6)-(97,15)]"
 }
 ]
 }
@@ -9435,7 +9435,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(273,20)-(273,28)]"
+"@value": "[(94,4)-(94,12)]"
 }
 ]
 }
@@ -10009,7 +10009,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(1,0)-(283,17)]"
+"@value": "[(1,0)-(178,22)]"
 }
 ]
 }
@@ -10023,7 +10023,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(182,18)-(182,24)]"
+"@value": "[(3,2)-(3,8)]"
 }
 ]
 }
@@ -10376,7 +10376,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(193,20)-(193,24)]"
+"@value": "[(193,14)-(194,0)]"
 }
 ]
 },
@@ -10508,7 +10508,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(194,26)-(194,36)]"
+"@value": "[(194,14)-(195,0)]"
 }
 ]
 },
@@ -10707,7 +10707,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(190,33)-(190,35)]"
+"@value": "[(11,17)-(11,19)]"
 }
 ]
 }
@@ -10736,7 +10736,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(188,22)-(188,28)]"
+"@value": "[(9,6)-(9,12)]"
 }
 ]
 }
@@ -10750,7 +10750,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(190,22)-(190,33)]"
+"@value": "[(11,6)-(11,17)]"
 }
 ]
 },
@@ -10762,7 +10762,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(188,22)-(188,30)]"
+"@value": "[(9,6)-(9,14)]"
 }
 ]
 },
@@ -10774,7 +10774,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(186,20)-(186,26)]"
+"@value": "[(7,4)-(7,10)]"
 }
 ]
 },
@@ -10786,7 +10786,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(189,22)-(189,31)]"
+"@value": "[(10,6)-(10,15)]"
 }
 ]
 }
@@ -10820,7 +10820,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(186,20)-(186,26)]"
+"@value": "[(7,4)-(7,10)]"
 }
 ]
 }
@@ -10891,7 +10891,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(199,33)-(199,35)]"
+"@value": "[(20,17)-(20,19)]"
 }
 ]
 }
@@ -10920,7 +10920,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(197,22)-(197,28)]"
+"@value": "[(18,6)-(18,12)]"
 }
 ]
 }
@@ -10934,7 +10934,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(199,22)-(199,33)]"
+"@value": "[(20,6)-(20,17)]"
 }
 ]
 },
@@ -10946,7 +10946,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(197,22)-(197,30)]"
+"@value": "[(18,6)-(18,14)]"
 }
 ]
 },
@@ -10958,7 +10958,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(195,20)-(195,28)]"
+"@value": "[(16,4)-(16,12)]"
 }
 ]
 },
@@ -10970,7 +10970,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(198,22)-(198,31)]"
+"@value": "[(19,6)-(19,15)]"
 }
 ]
 }
@@ -11004,7 +11004,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(195,20)-(195,28)]"
+"@value": "[(16,4)-(16,12)]"
 }
 ]
 }
@@ -11075,7 +11075,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(208,33)-(208,35)]"
+"@value": "[(29,17)-(29,19)]"
 }
 ]
 }
@@ -11104,7 +11104,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(206,22)-(206,28)]"
+"@value": "[(27,6)-(27,12)]"
 }
 ]
 }
@@ -11118,7 +11118,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(208,22)-(208,33)]"
+"@value": "[(29,6)-(29,17)]"
 }
 ]
 },
@@ -11130,7 +11130,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(206,22)-(206,30)]"
+"@value": "[(27,6)-(27,14)]"
 }
 ]
 },
@@ -11142,7 +11142,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(204,20)-(204,32)]"
+"@value": "[(25,4)-(25,16)]"
 }
 ]
 },
@@ -11154,7 +11154,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(207,22)-(207,31)]"
+"@value": "[(28,6)-(28,15)]"
 }
 ]
 }
@@ -11188,7 +11188,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(204,20)-(204,32)]"
+"@value": "[(25,4)-(25,16)]"
 }
 ]
 }
@@ -11259,7 +11259,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(217,33)-(217,35)]"
+"@value": "[(38,17)-(38,19)]"
 }
 ]
 }
@@ -11288,7 +11288,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(215,22)-(215,28)]"
+"@value": "[(36,6)-(36,12)]"
 }
 ]
 }
@@ -11302,7 +11302,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(217,22)-(217,33)]"
+"@value": "[(38,6)-(38,17)]"
 }
 ]
 },
@@ -11314,7 +11314,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(215,22)-(215,30)]"
+"@value": "[(36,6)-(36,14)]"
 }
 ]
 },
@@ -11326,7 +11326,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(213,20)-(213,30)]"
+"@value": "[(34,4)-(34,14)]"
 }
 ]
 },
@@ -11338,7 +11338,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(216,22)-(216,31)]"
+"@value": "[(37,6)-(37,15)]"
 }
 ]
 }
@@ -11372,7 +11372,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(213,20)-(213,30)]"
+"@value": "[(34,4)-(34,14)]"
 }
 ]
 }
@@ -11443,7 +11443,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(226,33)-(226,35)]"
+"@value": "[(47,17)-(47,19)]"
 }
 ]
 }
@@ -11472,7 +11472,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(224,22)-(224,28)]"
+"@value": "[(45,6)-(45,12)]"
 }
 ]
 }
@@ -11486,7 +11486,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(226,22)-(226,33)]"
+"@value": "[(47,6)-(47,17)]"
 }
 ]
 },
@@ -11498,7 +11498,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(224,22)-(224,30)]"
+"@value": "[(45,6)-(45,14)]"
 }
 ]
 },
@@ -11510,7 +11510,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(222,20)-(222,27)]"
+"@value": "[(43,4)-(43,11)]"
 }
 ]
 },
@@ -11522,7 +11522,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(225,22)-(225,31)]"
+"@value": "[(46,6)-(46,15)]"
 }
 ]
 }
@@ -11556,7 +11556,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(222,20)-(222,27)]"
+"@value": "[(43,4)-(43,11)]"
 }
 ]
 }
@@ -11654,7 +11654,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(239,37)-(239,39)]"
+"@value": "[(60,21)-(60,23)]"
 }
 ]
 }
@@ -11683,7 +11683,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(237,26)-(237,32)]"
+"@value": "[(58,10)-(58,16)]"
 }
 ]
 }
@@ -11697,7 +11697,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(239,26)-(239,37)]"
+"@value": "[(60,10)-(60,21)]"
 }
 ]
 },
@@ -11709,7 +11709,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(237,26)-(237,34)]"
+"@value": "[(58,10)-(58,18)]"
 }
 ]
 },
@@ -11721,7 +11721,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(235,24)-(235,31)]"
+"@value": "[(56,8)-(56,15)]"
 }
 ]
 },
@@ -11733,7 +11733,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(238,26)-(238,35)]"
+"@value": "[(59,10)-(59,19)]"
 }
 ]
 }
@@ -11767,7 +11767,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(235,24)-(235,31)]"
+"@value": "[(56,8)-(56,15)]"
 }
 ]
 }
@@ -11838,7 +11838,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(248,37)-(248,39)]"
+"@value": "[(69,21)-(69,23)]"
 }
 ]
 }
@@ -11867,7 +11867,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(246,26)-(246,32)]"
+"@value": "[(67,10)-(67,16)]"
 }
 ]
 }
@@ -11881,7 +11881,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(248,26)-(248,37)]"
+"@value": "[(69,10)-(69,21)]"
 }
 ]
 },
@@ -11893,7 +11893,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(246,26)-(246,34)]"
+"@value": "[(67,10)-(67,18)]"
 }
 ]
 },
@@ -11905,7 +11905,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(244,24)-(244,33)]"
+"@value": "[(65,8)-(65,17)]"
 }
 ]
 },
@@ -11917,7 +11917,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(247,26)-(247,35)]"
+"@value": "[(68,10)-(68,19)]"
 }
 ]
 }
@@ -11951,7 +11951,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(244,24)-(244,33)]"
+"@value": "[(65,8)-(65,17)]"
 }
 ]
 }
@@ -11980,7 +11980,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(233,22)-(233,28)]"
+"@value": "[(54,6)-(54,12)]"
 }
 ]
 }
@@ -11994,7 +11994,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(231,20)-(231,29)]"
+"@value": "[(52,4)-(52,13)]"
 }
 ]
 }
@@ -12028,7 +12028,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(231,20)-(231,29)]"
+"@value": "[(52,4)-(52,13)]"
 }
 ]
 }
@@ -12099,7 +12099,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(259,33)-(259,35)]"
+"@value": "[(80,17)-(80,19)]"
 }
 ]
 }
@@ -12128,7 +12128,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(257,22)-(257,28)]"
+"@value": "[(78,6)-(78,12)]"
 }
 ]
 }
@@ -12142,7 +12142,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(259,22)-(259,33)]"
+"@value": "[(80,6)-(80,17)]"
 }
 ]
 },
@@ -12154,7 +12154,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(257,22)-(257,30)]"
+"@value": "[(78,6)-(78,14)]"
 }
 ]
 },
@@ -12166,7 +12166,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(255,20)-(255,31)]"
+"@value": "[(76,4)-(76,15)]"
 }
 ]
 },
@@ -12178,7 +12178,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(258,22)-(258,31)]"
+"@value": "[(79,6)-(79,15)]"
 }
 ]
 }
@@ -12212,7 +12212,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(255,20)-(255,31)]"
+"@value": "[(76,4)-(76,15)]"
 }
 ]
 }
@@ -12283,7 +12283,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(268,33)-(268,35)]"
+"@value": "[(89,17)-(89,19)]"
 }
 ]
 }
@@ -12312,7 +12312,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(266,22)-(266,28)]"
+"@value": "[(87,6)-(87,12)]"
 }
 ]
 }
@@ -12326,7 +12326,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(268,22)-(268,33)]"
+"@value": "[(89,6)-(89,17)]"
 }
 ]
 },
@@ -12338,7 +12338,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(266,22)-(266,30)]"
+"@value": "[(87,6)-(87,14)]"
 }
 ]
 },
@@ -12350,7 +12350,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(264,20)-(264,32)]"
+"@value": "[(85,4)-(85,16)]"
 }
 ]
 },
@@ -12362,7 +12362,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(267,22)-(267,31)]"
+"@value": "[(88,6)-(88,15)]"
 }
 ]
 }
@@ -12396,7 +12396,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(264,20)-(264,32)]"
+"@value": "[(85,4)-(85,16)]"
 }
 ]
 }
@@ -12467,7 +12467,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(277,33)-(277,35)]"
+"@value": "[(98,17)-(98,19)]"
 }
 ]
 }
@@ -12496,7 +12496,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(275,22)-(275,28)]"
+"@value": "[(96,6)-(96,12)]"
 }
 ]
 }
@@ -12510,7 +12510,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(277,22)-(277,33)]"
+"@value": "[(98,6)-(98,17)]"
 }
 ]
 },
@@ -12522,7 +12522,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(275,22)-(275,30)]"
+"@value": "[(96,6)-(96,14)]"
 }
 ]
 },
@@ -12534,7 +12534,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(273,20)-(273,28)]"
+"@value": "[(94,4)-(94,12)]"
 }
 ]
 },
@@ -12546,7 +12546,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(276,22)-(276,31)]"
+"@value": "[(97,6)-(97,15)]"
 }
 ]
 }
@@ -12580,7 +12580,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(273,20)-(273,28)]"
+"@value": "[(94,4)-(94,12)]"
 }
 ]
 }
@@ -13154,7 +13154,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(1,0)-(283,17)]"
+"@value": "[(1,0)-(178,22)]"
 }
 ]
 }
@@ -13168,7 +13168,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(182,18)-(182,24)]"
+"@value": "[(3,2)-(3,8)]"
 }
 ]
 }
@@ -15119,7 +15119,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(69,14)-(70,0)]"
+"@value": "[(69,14)-(69,18)]"
 }
 ]
 }
@@ -15145,7 +15145,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(67,12)-(70,0)]"
+"@value": "[(67,12)-(69,33)]"
 }
 ]
 },
@@ -15157,7 +15157,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(68,14)-(69,0)]"
+"@value": "[(68,14)-(68,45)]"
 }
 ]
 }
@@ -15181,7 +15181,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(67,12)-(70,0)]"
+"@value": "[(67,12)-(69,33)]"
 }
 ]
 }
@@ -15325,7 +15325,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(71,14)-(72,0)]"
+"@value": "[(71,14)-(71,45)]"
 }
 ]
 },
@@ -15337,7 +15337,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(1,0)-(74,0)]"
+"@value": "[(1,0)-(73,21)]"
 }
 ]
 }
@@ -15361,7 +15361,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(1,0)-(74,0)]"
+"@value": "[(1,0)-(73,21)]"
 }
 ]
 }
@@ -15385,7 +15385,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(1,0)-(74,0)]"
+"@value": "[(1,0)-(73,21)]"
 }
 ]
 },
@@ -15397,7 +15397,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(1,0)-(74,0)]"
+"@value": "[(1,0)-(73,21)]"
 }
 ]
 }
@@ -22266,7 +22266,7 @@
 ],
 "shacl:raw": [
 {
-"@value": "                id: \"12345\"\n                onCall:\n                  firstname: nico\n                  lastname: ark\n                  kind: AcmeAdmin\n                  clearanceLevel: low\n                  phone: \"12321\"\n                Head:\n                  firstname: nico\n                  lastname: ark\n                  kind: AcmeManager\n                  reports:\n                    -\n                      firstname: nico\n                      lastname: ark\n                      kind: admin\n                  phone: \"123-23\"\n"
+"@value": "\n                id: \"12345\"\n                onCall:\n                  firstname: nico\n                  lastname: ark\n                  kind: AcmeAdmin\n                  clearanceLevel: low\n                  phone: \"12321\"\n                Head:\n                  firstname: nico\n                  lastname: ark\n                  kind: AcmeManager\n                  reports:\n                    -\n                      firstname: nico\n                      lastname: ark\n                      kind: admin\n                  phone: \"123-23\"\n"
 }
 ],
 "sourcemaps:sources": [
@@ -22310,7 +22310,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(330,0)-(347,0)]"
+"@value": "[(329,14)-(347,0)]"
 }
 ]
 }
@@ -24221,7 +24221,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(16,8)-(17,0)]"
+"@value": "[(16,8)-(16,12)]"
 }
 ]
 }
@@ -24235,7 +24235,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(17,8)-(18,0)]"
+"@value": "[(17,8)-(17,22)]"
 }
 ]
 },
@@ -24247,7 +24247,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(15,8)-(16,0)]"
+"@value": "[(15,8)-(15,47)]"
 }
 ]
 },
@@ -24259,7 +24259,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(14,6)-(19,0)]"
+"@value": "[(14,6)-(18,94)]"
 }
 ]
 },
@@ -24271,7 +24271,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(16,8)-(17,0)]"
+"@value": "[(16,8)-(16,21)]"
 }
 ]
 },
@@ -24283,7 +24283,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(18,8)-(19,0)]"
+"@value": "[(18,8)-(18,94)]"
 }
 ]
 }
@@ -24307,7 +24307,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(18,8)-(19,0)]"
+"@value": "[(18,8)-(18,94)]"
 }
 ]
 },
@@ -24319,7 +24319,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(14,6)-(19,0)]"
+"@value": "[(14,6)-(18,94)]"
 }
 ]
 }
@@ -24343,7 +24343,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(13,4)-(19,0)]"
+"@value": "[(13,4)-(18,94)]"
 }
 ]
 },
@@ -24355,7 +24355,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(12,2)-(19,0)]"
+"@value": "[(12,2)-(18,94)]"
 }
 ]
 }
@@ -29033,7 +29033,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(422,22)-(422,66)]"
+"@value": "[(422,12)-(423,0)]"
 }
 ]
 },
@@ -29332,7 +29332,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(16,8)-(17,0)]"
+"@value": "[(16,8)-(16,12)]"
 }
 ]
 }
@@ -29346,7 +29346,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(17,8)-(18,0)]"
+"@value": "[(17,8)-(17,22)]"
 }
 ]
 },
@@ -29358,7 +29358,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(15,8)-(16,0)]"
+"@value": "[(15,8)-(15,47)]"
 }
 ]
 },
@@ -29370,7 +29370,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(14,6)-(19,0)]"
+"@value": "[(14,6)-(18,94)]"
 }
 ]
 },
@@ -29382,7 +29382,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(16,8)-(17,0)]"
+"@value": "[(16,8)-(16,21)]"
 }
 ]
 },
@@ -29394,7 +29394,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(18,8)-(19,0)]"
+"@value": "[(18,8)-(18,94)]"
 }
 ]
 }
@@ -29418,7 +29418,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(18,8)-(19,0)]"
+"@value": "[(18,8)-(18,94)]"
 }
 ]
 },
@@ -29430,7 +29430,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(14,6)-(19,0)]"
+"@value": "[(14,6)-(18,94)]"
 }
 ]
 }
@@ -29454,7 +29454,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(13,4)-(19,0)]"
+"@value": "[(13,4)-(18,94)]"
 }
 ]
 },
@@ -29466,7 +29466,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(12,2)-(19,0)]"
+"@value": "[(12,2)-(18,94)]"
 }
 ]
 }
@@ -33097,7 +33097,7 @@
 ],
 "raml-shapes:range": [
 {
-"@id": "#61/linked_2",
+"@id": "#61/linked_4",
 "@type": [
 "shacl:NodeShape",
 "shacl:Shape",
@@ -33111,7 +33111,7 @@
 ],
 "doc:link-label": [
 {
-"@value": "amf_inline_type_6"
+"@value": "amf_inline_type_2"
 }
 ]
 }
@@ -33758,7 +33758,7 @@
 ],
 "shacl:raw": [
 {
-"@value": "  id: \"R34fg663H9KW9MMSKISI\"\n  name: \"Pawel Psztyc\"\n  birthday: \"1983-10-20\"\n  gender: male\n  url: \"https://domain.com/profile/pawel.psztyc\"\n  image:\n    url: https://domain.com/profile/pawel.psztyc/image\n    thumb: https://domain.com/profile/pawel.psztyc/image/thumb\n  tagline: Some text about me.\n  language: en_GB\n  etag: \"W\\\\244m4n5kj3gbn2nj4k4n4\"\n"
+"@value": "\n  id: \"R34fg663H9KW9MMSKISI\"\n  name: \"Pawel Psztyc\"\n  birthday: \"1983-10-20\"\n  gender: male\n  url: \"https://domain.com/profile/pawel.psztyc\"\n  image:\n    url: https://domain.com/profile/pawel.psztyc/image\n    thumb: https://domain.com/profile/pawel.psztyc/image/thumb\n  tagline: Some text about me.\n  language: en_GB\n  etag: \"W\\\\244m4n5kj3gbn2nj4k4n4\"\n"
 }
 ],
 "sourcemaps:sources": [
@@ -33802,7 +33802,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(10,0)-(21,0)]"
+"@value": "[(9,0)-(21,0)]"
 }
 ]
 }
@@ -34192,7 +34192,7 @@
 ],
 "shacl:name": [
 {
-"@value": "amf_inline_type_2"
+"@value": "image"
 }
 ],
 "schema-org:description": [
@@ -34330,7 +34330,7 @@
 ],
 "shacl:raw": [
 {
-"@value": "  url: https://domain.com/profile/pawel.psztyc/image\n  thumb: https://domain.com/profile/pawel.psztyc/image/thumb\n"
+"@value": "\n  url: https://domain.com/profile/pawel.psztyc/image\n  thumb: https://domain.com/profile/pawel.psztyc/image/thumb\n"
 }
 ],
 "sourcemaps:sources": [
@@ -34374,7 +34374,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(22,0)-(24,0)]"
+"@value": "[(21,0)-(24,0)]"
 }
 ]
 }
@@ -35221,7 +35221,7 @@
 ],
 "shacl:name": [
 {
-"@value": "amf_inline_type_2"
+"@value": "image"
 }
 ],
 "schema-org:description": [
@@ -35359,7 +35359,7 @@
 ],
 "shacl:raw": [
 {
-"@value": "  url: https://domain.com/profile/pawel.psztyc/image\n  thumb: https://domain.com/profile/pawel.psztyc/image/thumb\n"
+"@value": "\n  url: https://domain.com/profile/pawel.psztyc/image\n  thumb: https://domain.com/profile/pawel.psztyc/image/thumb\n"
 }
 ],
 "sourcemaps:sources": [
@@ -35403,7 +35403,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(22,0)-(24,0)]"
+"@value": "[(21,0)-(24,0)]"
 }
 ]
 }
@@ -42585,7 +42585,7 @@
 ],
 "shacl:raw": [
 {
-"@value": "  id: we2322-4f4f4f-f4f4ff-f4f4ff4\n  name: Acme Product\n  quantity: 200\n  unit: ml\n  upc: \"123456789101\"\n  available: true\n  etag: \"Wsd3deef3rgrgf4r\"\n"
+"@value": "\n  id: we2322-4f4f4f-f4f4ff-f4f4ff4\n  name: Acme Product\n  quantity: 200\n  unit: ml\n  upc: \"123456789101\"\n  available: true\n  etag: \"Wsd3deef3rgrgf4r\"\n"
 }
 ],
 "sourcemaps:sources": [
@@ -42629,7 +42629,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(46,0)-(53,0)]"
+"@value": "[(45,0)-(53,0)]"
 }
 ]
 }
@@ -45790,7 +45790,7 @@
 ],
 "shacl:name": [
 {
-"@value": "amf_inline_type_2"
+"@value": "image"
 }
 ],
 "schema-org:description": [
@@ -45928,7 +45928,7 @@
 ],
 "shacl:raw": [
 {
-"@value": "  url: https://domain.com/profile/pawel.psztyc/image\n  thumb: https://domain.com/profile/pawel.psztyc/image/thumb\n"
+"@value": "\n  url: https://domain.com/profile/pawel.psztyc/image\n  thumb: https://domain.com/profile/pawel.psztyc/image/thumb\n"
 }
 ],
 "sourcemaps:sources": [
@@ -45972,7 +45972,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(22,0)-(24,0)]"
+"@value": "[(21,0)-(24,0)]"
 }
 ]
 }
@@ -46701,7 +46701,7 @@
 ],
 "shacl:raw": [
 {
-"@value": "  id: \"R34fg663H9KW9MMSKISI\"\n  name: \"Pawel Psztyc\"\n  birthday: \"1983-10-20\"\n  gender: male\n  url: \"https://domain.com/profile/pawel.psztyc\"\n  image:\n    url: https://domain.com/profile/pawel.psztyc/image\n    thumb: https://domain.com/profile/pawel.psztyc/image/thumb\n  tagline: Some text about me.\n  language: en_GB\n  etag: \"W\\\\244m4n5kj3gbn2nj4k4n4\"\n"
+"@value": "\n  id: \"R34fg663H9KW9MMSKISI\"\n  name: \"Pawel Psztyc\"\n  birthday: \"1983-10-20\"\n  gender: male\n  url: \"https://domain.com/profile/pawel.psztyc\"\n  image:\n    url: https://domain.com/profile/pawel.psztyc/image\n    thumb: https://domain.com/profile/pawel.psztyc/image/thumb\n  tagline: Some text about me.\n  language: en_GB\n  etag: \"W\\\\244m4n5kj3gbn2nj4k4n4\"\n"
 }
 ],
 "sourcemaps:sources": [
@@ -46745,7 +46745,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(10,0)-(21,0)]"
+"@value": "[(9,0)-(21,0)]"
 }
 ]
 }
@@ -48921,7 +48921,7 @@
 ],
 "shacl:raw": [
 {
-"@value": "  id: we2322-4f4f4f-f4f4ff-f4f4ff4\n  name: Acme Product\n  quantity: 200\n  unit: ml\n  upc: \"123456789101\"\n  available: true\n  etag: \"Wsd3deef3rgrgf4r\"\n"
+"@value": "\n  id: we2322-4f4f4f-f4f4ff-f4f4ff4\n  name: Acme Product\n  quantity: 200\n  unit: ml\n  upc: \"123456789101\"\n  available: true\n  etag: \"Wsd3deef3rgrgf4r\"\n"
 }
 ],
 "sourcemaps:sources": [
@@ -48965,7 +48965,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(46,0)-(53,0)]"
+"@value": "[(45,0)-(53,0)]"
 }
 ]
 }
@@ -49331,7 +49331,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(294,22)-(302,0)]"
+"@value": "[(294,14)-(302,0)]"
 }
 ]
 },
@@ -49737,7 +49737,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(302,27)-(310,0)]"
+"@value": "[(302,14)-(310,0)]"
 }
 ]
 },
@@ -50309,7 +50309,7 @@
 ],
 "shacl:raw": [
 {
-"@value": "  url: https://domain.com/profile/pawel.psztyc/image\n  thumb: https://domain.com/profile/pawel.psztyc/image/thumb\n"
+"@value": "\n  url: https://domain.com/profile/pawel.psztyc/image\n  thumb: https://domain.com/profile/pawel.psztyc/image/thumb\n"
 }
 ],
 "sourcemaps:sources": [
@@ -50353,7 +50353,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(22,0)-(24,0)]"
+"@value": "[(21,0)-(24,0)]"
 }
 ]
 }
@@ -57326,7 +57326,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(131,29)-(131,39)]"
+"@value": "[(131,10)-(132,0)]"
 }
 ]
 },
@@ -57547,7 +57547,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(132,25)-(132,37)]"
+"@value": "[(132,10)-(133,0)]"
 }
 ]
 },
@@ -57634,7 +57634,7 @@
 ]
 },
 {
-"@id": "#84",
+"@id": "#61",
 "@type": [
 "shacl:NodeShape",
 "shacl:Shape",
@@ -57648,7 +57648,7 @@
 ],
 "shacl:property": [
 {
-"@id": "#85",
+"@id": "#62",
 "@type": [
 "shacl:PropertyShape",
 "shacl:Shape",
@@ -57661,7 +57661,7 @@
 ],
 "raml-shapes:range": [
 {
-"@id": "#86",
+"@id": "#63",
 "@type": [
 "raml-shapes:ScalarShape",
 "shacl:Shape",
@@ -57685,7 +57685,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#86/source-map",
+"@id": "#63/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -57693,7 +57693,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#86"
+"@value": "amf://id#63"
 }
 ],
 "sourcemaps:value": [
@@ -57719,7 +57719,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#86"
+"@value": "amf://id#63"
 }
 ],
 "sourcemaps:value": [
@@ -57757,7 +57757,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#85/source-map",
+"@id": "#62/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -57765,7 +57765,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#85"
+"@value": "amf://id#62"
 }
 ],
 "sourcemaps:value": [
@@ -57779,7 +57779,7 @@
 ]
 },
 {
-"@id": "#87",
+"@id": "#64",
 "@type": [
 "shacl:PropertyShape",
 "shacl:Shape",
@@ -57792,7 +57792,7 @@
 ],
 "raml-shapes:range": [
 {
-"@id": "#88",
+"@id": "#65",
 "@type": [
 "raml-shapes:ScalarShape",
 "shacl:Shape",
@@ -57821,7 +57821,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#88/source-map",
+"@id": "#65/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -57829,7 +57829,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#88"
+"@value": "amf://id#65"
 }
 ],
 "sourcemaps:value": [
@@ -57867,7 +57867,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#88"
+"@value": "amf://id#65"
 }
 ],
 "sourcemaps:value": [
@@ -57905,7 +57905,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#87/source-map",
+"@id": "#64/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -57913,7 +57913,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#87"
+"@value": "amf://id#64"
 }
 ],
 "sourcemaps:value": [
@@ -58067,7 +58067,7 @@
 ],
 "shacl:raw": [
 {
-"@value": "  url: https://domain.com/profile/pawel.psztyc/image\n  thumb: https://domain.com/profile/pawel.psztyc/image/thumb\n"
+"@value": "\n  url: https://domain.com/profile/pawel.psztyc/image\n  thumb: https://domain.com/profile/pawel.psztyc/image/thumb\n"
 }
 ],
 "sourcemaps:sources": [
@@ -58111,7 +58111,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(22,0)-(24,0)]"
+"@value": "[(21,0)-(24,0)]"
 }
 ]
 }
@@ -58122,7 +58122,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#84/source-map",
+"@id": "#61/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -58130,7 +58130,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#84"
+"@value": "amf://id#61"
 }
 ],
 "sourcemaps:value": [
@@ -58144,7 +58144,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#84"
+"@value": "amf://id#61"
 }
 ],
 "sourcemaps:value": [
@@ -58170,7 +58170,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#84"
+"@value": "amf://id#61"
 }
 ],
 "sourcemaps:value": [
@@ -58184,7 +58184,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#84"
+"@value": "amf://id#61"
 }
 ],
 "sourcemaps:value": [
@@ -59071,7 +59071,7 @@
 ],
 "shacl:raw": [
 {
-"@value": "      firstname: Pawel\n      lastname: Psztyc\n      title: Mr.\n      kind: Manager\n"
+"@value": "\n      firstname: Pawel\n      lastname: Psztyc\n      title: Mr.\n      kind: Manager\n"
 }
 ],
 "sourcemaps:sources": [
@@ -59115,7 +59115,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(18,0)-(22,0)]"
+"@value": "[(17,4)-(22,0)]"
 }
 ]
 }
@@ -59174,6 +59174,11 @@
 ]
 }
 ]
+}
+],
+"shacl:name": [
+{
+"@value": "reports"
 }
 ],
 "sourcemaps:sources": [
@@ -60737,7 +60742,7 @@
 ],
 "shacl:raw": [
 {
-"@value": "      firstname: Pawel\n      lastname: Psztyc\n      title: Mr.\n      kind: Manager\n"
+"@value": "\n      firstname: Pawel\n      lastname: Psztyc\n      title: Mr.\n      kind: Manager\n"
 }
 ],
 "sourcemaps:sources": [
@@ -60781,7 +60786,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(18,0)-(22,0)]"
+"@value": "[(17,4)-(22,0)]"
 }
 ]
 }
@@ -60840,6 +60845,11 @@
 ]
 }
 ]
+}
+],
+"shacl:name": [
+{
+"@value": "reports"
 }
 ],
 "sourcemaps:sources": [
@@ -63404,570 +63414,6 @@
 ]
 },
 {
-"@id": "#61",
-"@type": [
-"shacl:NodeShape",
-"shacl:Shape",
-"raml-shapes:Shape",
-"doc:DomainElement"
-],
-"shacl:closed": [
-{
-"@value": false
-}
-],
-"shacl:property": [
-{
-"@id": "#62",
-"@type": [
-"shacl:PropertyShape",
-"shacl:Shape",
-"raml-shapes:Shape"
-],
-"shacl:path": [
-{
-"@id": "http://a.ml/vocabularies/data#url"
-}
-],
-"raml-shapes:range": [
-{
-"@id": "#63",
-"@type": [
-"raml-shapes:ScalarShape",
-"shacl:Shape",
-"raml-shapes:Shape",
-"doc:DomainElement"
-],
-"shacl:datatype": [
-{
-"@id": "http://www.w3.org/2001/XMLSchema#string"
-}
-],
-"shacl:name": [
-{
-"@value": "url"
-}
-],
-"schema-org:description": [
-{
-"@value": "The URL of the image.\nTo resize the image and crop it to a square, append the query string **?sz=x**, where x is the dimension in pixels of each side.\n"
-}
-],
-"sourcemaps:sources": [
-{
-"@id": "#63/source-map",
-"@type": [
-"sourcemaps:SourceMap"
-],
-"sourcemaps:type-property-lexical-info": [
-{
-"sourcemaps:element": [
-{
-"@value": "amf://id#63"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(12,4)-(12,8)]"
-}
-]
-}
-],
-"sourcemaps:lexical": [
-{
-"sourcemaps:element": [
-{
-"@value": "schema-org:description"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(13,4)-(16,0)]"
-}
-]
-},
-{
-"sourcemaps:element": [
-{
-"@value": "amf://id#63"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(11,2)-(16,0)]"
-}
-]
-},
-{
-"sourcemaps:element": [
-{
-"@value": "shacl:datatype"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(12,4)-(13,0)]"
-}
-]
-}
-]
-}
-]
-}
-],
-"shacl:minCount": [
-{
-"@value": 1
-}
-],
-"shacl:name": [
-{
-"@value": "url"
-}
-],
-"sourcemaps:sources": [
-{
-"@id": "#62/source-map",
-"@type": [
-"sourcemaps:SourceMap"
-],
-"sourcemaps:lexical": [
-{
-"sourcemaps:element": [
-{
-"@value": "amf://id#62"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(11,2)-(16,0)]"
-}
-]
-}
-]
-}
-]
-},
-{
-"@id": "#64",
-"@type": [
-"shacl:PropertyShape",
-"shacl:Shape",
-"raml-shapes:Shape"
-],
-"shacl:path": [
-{
-"@id": "http://a.ml/vocabularies/data#thumb"
-}
-],
-"raml-shapes:range": [
-{
-"@id": "#65",
-"@type": [
-"raml-shapes:ScalarShape",
-"shacl:Shape",
-"raml-shapes:Shape",
-"doc:DomainElement"
-],
-"shacl:datatype": [
-{
-"@id": "http://www.w3.org/2001/XMLSchema#string"
-}
-],
-"shacl:name": [
-{
-"@value": "thumb"
-}
-],
-"schema-org:name": [
-{
-"@value": "Thumbnail"
-}
-],
-"schema-org:description": [
-{
-"@value": "An URL to the thumbnail of the image. Thumbnails are 60x60px cropped images of the original image.\n"
-}
-],
-"sourcemaps:sources": [
-{
-"@id": "#65/source-map",
-"@type": [
-"sourcemaps:SourceMap"
-],
-"sourcemaps:type-property-lexical-info": [
-{
-"sourcemaps:element": [
-{
-"@value": "amf://id#65"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(17,4)-(17,8)]"
-}
-]
-}
-],
-"sourcemaps:lexical": [
-{
-"sourcemaps:element": [
-{
-"@value": "schema-org:description"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(19,4)-(21,0)]"
-}
-]
-},
-{
-"sourcemaps:element": [
-{
-"@value": "shacl:datatype"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(17,4)-(18,0)]"
-}
-]
-},
-{
-"sourcemaps:element": [
-{
-"@value": "amf://id#65"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(16,2)-(21,0)]"
-}
-]
-},
-{
-"sourcemaps:element": [
-{
-"@value": "schema-org:name"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(18,4)-(19,0)]"
-}
-]
-}
-]
-}
-]
-}
-],
-"shacl:minCount": [
-{
-"@value": 1
-}
-],
-"shacl:name": [
-{
-"@value": "thumb"
-}
-],
-"sourcemaps:sources": [
-{
-"@id": "#64/source-map",
-"@type": [
-"sourcemaps:SourceMap"
-],
-"sourcemaps:lexical": [
-{
-"sourcemaps:element": [
-{
-"@value": "amf://id#64"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(16,2)-(21,0)]"
-}
-]
-}
-]
-}
-]
-}
-],
-"shacl:name": [
-{
-"@value": "amf_inline_type_6"
-}
-],
-"schema-org:description": [
-{
-"@value": "An image object representing an image object strored in the file store.\nThe image can be only included in the response. It has no effect if the Image appear in the\nrequest. Endpoint handles image creation on it's own and clients can't process images\nexcept of sending image data.\n"
-}
-],
-"doc:examples": [
-{
-"@id": "#66",
-"@type": [
-"doc:Example",
-"doc:DomainElement"
-],
-"doc:strict": [
-{
-"@value": true
-}
-],
-"doc:structuredValue": [
-{
-"@id": "#66",
-"@type": [
-"data:Object"
-],
-"data:thumb": [
-{
-"@id": "#67",
-"@type": [
-"data:Scalar"
-],
-"data:value": [
-{
-"@value": "https://domain.com/profile/pawel.psztyc/image/thumb",
-"@type": "xsd:string"
-}
-],
-"sourcemaps:sources": [
-{
-"@id": "#67/source-map",
-"@type": [
-"sourcemaps:SourceMap"
-],
-"sourcemaps:lexical": [
-{
-"sourcemaps:element": [
-{
-"@value": "amf://id#67"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(23,9)-(23,60)]"
-}
-]
-}
-]
-}
-]
-}
-],
-"data:url": [
-{
-"@id": "#68",
-"@type": [
-"data:Scalar"
-],
-"data:value": [
-{
-"@value": "https://domain.com/profile/pawel.psztyc/image",
-"@type": "xsd:string"
-}
-],
-"sourcemaps:sources": [
-{
-"@id": "#68/source-map",
-"@type": [
-"sourcemaps:SourceMap"
-],
-"sourcemaps:lexical": [
-{
-"sourcemaps:element": [
-{
-"@value": "amf://id#68"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(22,7)-(22,52)]"
-}
-]
-}
-]
-}
-]
-}
-],
-"sourcemaps:sources": [
-{
-"@id": "#66/source-map",
-"@type": [
-"sourcemaps:SourceMap"
-],
-"sourcemaps:lexical": [
-{
-"sourcemaps:element": [
-{
-"@value": "amf://id#66"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(22,0)-(24,0)]"
-}
-]
-}
-],
-"sourcemaps:data-node-properties": [
-{
-"sourcemaps:element": [
-{
-"@value": "amf://id#66"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "url->[(22,2)-(23,0)]#thumb->[(23,2)-(24,0)]"
-}
-]
-}
-]
-}
-]
-}
-],
-"shacl:raw": [
-{
-"@value": "  url: https://domain.com/profile/pawel.psztyc/image\n  thumb: https://domain.com/profile/pawel.psztyc/image/thumb\n"
-}
-],
-"sourcemaps:sources": [
-{
-"@id": "#66/source-map",
-"@type": [
-"sourcemaps:SourceMap"
-],
-"sourcemaps:synthesized-field": [
-{
-"sourcemaps:element": [
-{
-"@value": "doc:strict"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "true"
-}
-]
-}
-],
-"sourcemaps:lexical": [
-{
-"sourcemaps:element": [
-{
-"@value": "shacl:raw"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(22,0)-(24,0)]"
-}
-]
-},
-{
-"sourcemaps:element": [
-{
-"@value": "amf://id#66"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(22,0)-(24,0)]"
-}
-]
-}
-]
-}
-]
-}
-],
-"sourcemaps:sources": [
-{
-"@id": "#61/source-map",
-"@type": [
-"sourcemaps:SourceMap"
-],
-"sourcemaps:inline-element": [
-{
-"sourcemaps:element": [
-{
-"@value": "amf://id#61"
-}
-],
-"sourcemaps:value": [
-{
-"@value": ""
-}
-]
-}
-],
-"sourcemaps:type-property-lexical-info": [
-{
-"sourcemaps:element": [
-{
-"@value": "amf://id#61"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(9,0)-(9,4)]"
-}
-]
-}
-],
-"sourcemaps:lexical": [
-{
-"sourcemaps:element": [
-{
-"@value": "schema-org:description"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(3,0)-(9,0)]"
-}
-]
-},
-{
-"sourcemaps:element": [
-{
-"@value": "amf://id#61"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(3,0)-(24,0)]"
-}
-]
-}
-],
-"sourcemaps:source-vendor": [
-{
-"sourcemaps:element": [
-{
-"@value": "amf://id#61"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "RAML 1.0"
-}
-]
-}
-]
-}
-]
-},
-{
 "@id": "#113",
 "@type": [
 "shacl:NodeShape",
@@ -65320,7 +64766,7 @@
 ],
 "shacl:raw": [
 {
-"@value": "      firstname: Pawel\n      lastname: Psztyc\n      title: Mr.\n      kind: Manager\n"
+"@value": "\n      firstname: Pawel\n      lastname: Psztyc\n      title: Mr.\n      kind: Manager\n"
 }
 ],
 "sourcemaps:sources": [
@@ -65364,7 +64810,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(18,0)-(22,0)]"
+"@value": "[(17,4)-(22,0)]"
 }
 ]
 }
