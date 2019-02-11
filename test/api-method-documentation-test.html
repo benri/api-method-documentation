@@ -49,7 +49,24 @@
   </test-fixture>
 
   <script>
-  /* global AmfLoader */
+  /* global AmfLoader, MockInteractions */
+  function getEndpoint(element, amf, endpoint) {
+    const webApi = element._computeWebApi(amf);
+    return element._computeEndpointByPath(webApi, endpoint);
+  }
+
+  function getMethod(element, amf, endpoint, method) {
+    const endPoint = getEndpoint(element, amf, endpoint);
+    const opKey = element._getAmfKey(element.ns.w3.hydra.supportedOperation);
+    const ops = element._ensureArray(endPoint[opKey]);
+    return ops.find((item) => element._getValue(item, element.ns.w3.hydra.core + 'method') === method);
+  }
+
+  function getPayload(element, amf, endpoint, method) {
+    const op = getMethod(element, amf, endpoint, method);
+    const expects = element._computeExpects(op);
+    return element._ensureArray(element._computePayload(expects));
+  }
   suite('api-method-documentation', () => {
     suite('Basic', () => {
       test('Adds raml-aware to the DOM if aware is set', (done) => {
@@ -640,7 +657,7 @@
     });
 
     test('Calls _snippetsTransitionEnd() when snippets opened', (done) => {
-      const spy = sinon.spy(element, '_snippetsTransitionEnd');
+      // const spy = sinon.spy(element, '_snippetsTransitionEnd');
       element.snippetsOpened = true;
       Polymer.RenderStatus.afterNextRender(element, () => {
         setTimeout(() => {
@@ -710,52 +727,152 @@
       suite(item[0], () => {
         let element;
         let amf;
-        let endpoint;
-        let method;
         suiteSetup(() => {
           return AmfLoader.load(3, 0, true)
           .then((data) => {
             amf = data[0];
-            endpoint = data[1];
-            method = data[2];
           });
         });
 
-        setup((done) => {
+        setup(() => {
           element = fixture('RenderCodeSnippets');
           element.amfModel = amf;
+        });
+
+        test('Renders snippets section', (done) => {
+          const endpoint = getEndpoint(element, amf, '/people');
+          const method = getMethod(element, amf, '/people', 'get');
           element.endpoint = endpoint;
           element.method = method;
-          flush(() => done());
-        });
-
-        test('Renders snippets section', () => {
-          const node = element.shadowRoot.querySelector('section.snippets');
-          assert.ok(node);
-        });
-
-        test('http-code-snippets are not rendered by default', () => {
-          const node = element.shadowRoot.querySelector('http-code-snippets');
-          assert.notOk(node);
-        });
-
-        test('Toggle button toggles the state', () => {
-          const section = element.shadowRoot.querySelector('.snippets .section-title-area');
-          section.click();
-          assert.isTrue(element.snippetsOpened);
-        });
-
-        test('Eventually renders the snippets', (done) => {
-          const domIf = element.shadowRoot.querySelector('#snippetsCondition');
-          domIf.addEventListener('dom-change', function(e) {
-            if (!e.target.if) {
-              return;
-            }
-            const node = element.shadowRoot.querySelector('http-code-snippets');
+          flush(() => {
+            const node = element.shadowRoot.querySelector('section.snippets');
             assert.ok(node);
             done();
           });
-          element.snippetsOpened = true;
+        });
+
+        test('http-code-snippets are not rendered by default', (done) => {
+          const endpoint = getEndpoint(element, amf, '/people');
+          const method = getMethod(element, amf, '/people', 'get');
+          element.endpoint = endpoint;
+          element.method = method;
+          flush(() => {
+            const node = element.shadowRoot.querySelector('http-code-snippets');
+            assert.notOk(node);
+            done();
+          });
+        });
+
+        test('Toggle button toggles the state', (done) => {
+          const endpoint = getEndpoint(element, amf, '/people');
+          const method = getMethod(element, amf, '/people', 'get');
+          element.endpoint = endpoint;
+          element.method = method;
+          flush(() => {
+            const section = element.shadowRoot.querySelector('.snippets .section-title-area');
+            section.click();
+            assert.isTrue(element.snippetsOpened);
+            done();
+          });
+        });
+
+        test('Eventually renders the snippets', (done) => {
+          const endpoint = getEndpoint(element, amf, '/people');
+          const method = getMethod(element, amf, '/people', 'get');
+          element.endpoint = endpoint;
+          element.method = method;
+          flush(() => {
+            const domIf = element.shadowRoot.querySelector('#snippetsCondition');
+            domIf.addEventListener('dom-change', function(e) {
+              if (!e.target.if) {
+                return;
+              }
+              const node = element.shadowRoot.querySelector('http-code-snippets');
+              assert.ok(node);
+              done();
+            });
+            element.snippetsOpened = true;
+          });
+        });
+
+        test('_computeSnippetsHeaders() returns a value', (done) => {
+          const endpoint = getEndpoint(element, amf, '/people');
+          const method = getMethod(element, amf, '/people', 'get');
+          element.endpoint = endpoint;
+          element.method = method;
+          flush(() => {
+            const result = element._computeSnippetsHeaders(element.headers);
+            assert.equal(result, 'x-people-op-id: \n');
+            done();
+          });
+        });
+      });
+    });
+  });
+
+  suite('_computeSnippetsPayload()', () => {
+    [
+      ['Full model', false],
+      ['Compact model', true]
+    ]
+    .forEach((item) => {
+      suite(item[0], () => {
+        let element;
+        let amf;
+        suiteSetup(() => {
+          return AmfLoader.load(3, 0, true)
+          .then((data) => {
+            amf = data[0];
+          });
+        });
+
+        setup(() => {
+          element = fixture('RenderCodeSnippets');
+          element.amfModel = amf;
+        });
+
+        test('Uses first payload in array', () => {
+          const payload = getPayload(element, amf, '/people', 'post');
+          const result = element._computeSnippetsPayload(payload);
+          assert.typeOf(result, 'string');
+        });
+
+        test('Computes example for JSON value', () => {
+          const payload = getPayload(element, amf, '/people', 'post');
+          const result = element._computeSnippetsPayload(payload[0]);
+          assert.equal(result,
+            '{\n  "etag": "",\n  "tagline": "",\n  "name": "John Smith",\n  "url": ' +
+            '"",\n  "id": "",\n  "language": "",\n  "birthday": "",\n  "image": {\n    ' +
+            '"url": "",\n    "thumb": ""\n  },\n  "gender": ""\n}');
+        });
+
+        test('Computes example for XML value', () => {
+          const payload = getPayload(element, amf, '/people', 'post');
+          const result = element._computeSnippetsPayload(payload[1]);
+          assert.equal(result,
+            '<?xml version="1.0" encoding="UTF-8"?>\n<resource error="false" type="AppPerson">\n  ' +
+            '<id>Qawer63J73HJ6khjswuqyq62382jG21s</id>\n  <name>John Smith</name>\n  ' +
+            '<birthday>1990-10-12</birthday>\n  <gender>male</gender>\n  ' +
+            '<url>https://www.domain.com/people/Qawer63J73HJ6khjswuqyq62382jG21s</url>\n  <image>\n    ' +
+            '<url>https://www.domain.com/people/Qawer63J73HJ6khjswuqyq62382jG21s/image</url>\n    ' +
+            '<thumb>https://www.domain.com/people/Qawer63J73HJ6khjswuqyq62382jG21s/image/thumb</thumb>\n  ' +
+            '</image>\n  <tagline>Hi, I\'m John!</tagline>\n  <language>en_US</language>\n</resource>\n');
+        });
+
+        test('Uses application/json as default media type', () => {
+          const payload = getPayload(element, amf, '/people', 'post')[0];
+          const key = element._getAmfKey(element.ns.raml.vocabularies.http + 'mediaType');
+          delete payload[key];
+          const result = element._computeSnippetsPayload(payload);
+          assert.equal(result,
+            '{\n  "etag": "",\n  "tagline": "",\n  "name": "John Smith",\n  "url": ' +
+            '"",\n  "id": "",\n  "language": "",\n  "birthday": "",\n  "image": {\n    ' +
+            '"url": "",\n    "thumb": ""\n  },\n  "gender": ""\n}');
+        });
+
+        test('Returns undefined for empty argument', () => {
+          const result = element._computeSnippetsPayload();
+          assert.isUndefined(result);
         });
       });
     });
