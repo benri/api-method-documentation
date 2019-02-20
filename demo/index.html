@@ -4,23 +4,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
     <title>api-request-editor demo</title>
-    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
-    <link rel="import" href="../../shadycss/apply-shim.html">
-    <link rel="import" href="../../polymer/lib/elements/custom-style.html">
-    <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../../paper-styles/typography.html">
-    <link rel="import" href="../../raml-aware/raml-aware.html">
-    <link rel="import" href="../../api-navigation/api-navigation.html">
-    <link rel="import" href="../../paper-dropdown-menu/paper-dropdown-menu.html">
-    <link rel="import" href="../../paper-item/paper-item.html">
-    <link rel="import" href="../../paper-listbox/paper-listbox.html">
-    <link rel="import" href="../../neon-animation/web-animations.html">
-    <link rel="import" href="../../paper-toast/paper-toast.html">
-    <link rel="import" href="../../paper-toggle-button/paper-toggle-button.html">
-    <link rel="import" href="../../api-console-default-theme/api-console-default-theme.html">
-    <link rel="import" href="../api-method-documentation.html">
+
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../node_modules/web-animations-js/web-animations-next.min.js"></script>
+
+    <script type="module">
+      import '@polymer/polymer/lib/elements/dom-bind.js';
+      import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
+      import '@polymer/iron-demo-helpers/demo-snippet.js';
+      import '@polymer/paper-toast/paper-toast.js';
+      import '@polymer/paper-styles/typography.js';
+      import '@polymer/paper-dropdown-menu/paper-dropdown-menu.js';
+      import '@polymer/paper-item/paper-item.js';
+      import '@polymer/paper-listbox/paper-listbox.js';
+      import '@polymer/paper-toggle-button/paper-toggle-button.js';
+      import '@api-components/api-navigation/api-navigation.js';
+      import '@api-components/api-console-default-theme/api-console-default-theme.js';
+      import '../api-method-documentation.js';
+    </script>
+
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
       html,
@@ -100,7 +102,7 @@
         </header>
         <div class="vertical-section-container centered" role="main">
           <raml-aware raml="{{amfModel}}" scope="model"></raml-aware>
-          <api-navigation aware="model" endpoints-opened></api-navigation>
+          <api-navigation aware="model" endpoints-opened=""></api-navigation>
           <template is="dom-if" if="[[hasData]]">
             <api-method-documentation aware="model" endpoint="[[endpoint]]" method="[[method]]" previous="[[previous]]" next="[[next]]" render-code-snippets="[[codeSnippets]]" narrow="[[narrow]]" render-security="[[renderSecurity]]" no-try-it="[[noTryit]]"></api-method-documentation>
           </template>
@@ -113,12 +115,12 @@
         <demo-element id="helper" amf-model="{{amfModel}}"></demo-element>
       </template>
     </dom-bind>
-    <script>
+    <script type="module">
+    import {PolymerElement} from '@polymer/polymer/polymer-element.js';
+    import {AmfHelperMixin, ns} from '@api-components/amf-helper-mixin/amf-helper-mixin.js';
+    class DemoElement extends AmfHelperMixin(PolymerElement) {}
+    window.customElements.define('demo-element', DemoElement);
     (function(app) {
-      const ns = ApiElements.Amf.ns;
-      class DemoElement extends ApiElements.AmfHelperMixin(Polymer.Element) {}
-      window.customElements.define('demo-element', DemoElement);
-
       app.hasData = false;
       app._load = function() {
         document.getElementById('enpointsList').selected = 0;
@@ -203,6 +205,6 @@
       window.addEventListener('api-navigation-selection-changed', app._navChanged);
       window.addEventListener('tryit-requested', app._tryitRequested);
     })(document.getElementById('demo'));
-  </script>
+    </script>
   </body>
 </html>
