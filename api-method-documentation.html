@@ -1009,13 +1009,11 @@
       if (schema instanceof Array) {
         schema = schema[0];
       }
-      let value = this._getValue(item, this.ns.w3.shacl.name + 'defaultValue');
+      let value = this._getValue(schema, this.ns.w3.shacl.name + 'defaultValue');
       if (!value) {
-        const examplesKey = this._getAmfKey(this.ns.raml.vocabularies.document + 'examples');
-        let example = item[examplesKey];
-        if (example) {
-          example = example[0];
-          value = this._getValue(item, this.ns.raml.vocabularies.document + 'value');
+        const items = this.$.exampleGenerator.computeExamples(schema, null, {rawOnly: true});
+        if (items) {
+          value = items[0].value;
         }
       }
       return value;
