@@ -22,7 +22,7 @@
 ],
 "raml-http:server": [
 {
-"@id": "#745",
+"@id": "#747",
 "@type": [
 "raml-http:Server",
 "doc:DomainElement"
@@ -34,7 +34,7 @@
 ],
 "raml-http:variable": [
 {
-"@id": "#746",
+"@id": "#748",
 "@type": [
 "raml-http:Parameter",
 "doc:DomainElement"
@@ -66,7 +66,7 @@
 ],
 "raml-http:schema": [
 {
-"@id": "#747",
+"@id": "#749",
 "@type": [
 "raml-shapes:ScalarShape",
 "shacl:Shape",
@@ -95,89 +95,13 @@
 ],
 "shacl:defaultValue": [
 {
-"@id": "#748",
-"@type": [
-"data:Scalar"
-],
-"data:value": [
-{
-"@value": "production",
-"@type": "xsd:string"
-}
-],
-"sourcemaps:sources": [
-{
-"@id": "#748/source-map",
-"@type": [
-"sourcemaps:SourceMap"
-],
-"sourcemaps:lexical": [
-{
-"sourcemaps:element": [
-{
-"@value": "amf://id#748"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(17,13)-(17,23)]"
-}
-]
-}
-]
-}
-]
-}
-],
-"shacl:in": [
-{
-"@id": "#747/list",
-"@type": "rdfs:Seq",
-"rdfs:_1": [
-{
-"@id": "#749",
-"@type": [
-"data:Scalar"
-],
-"data:value": [
-{
-"@value": "development",
-"@type": "xsd:string"
-}
-],
-"sourcemaps:sources": [
-{
-"@id": "#749/source-map",
-"@type": [
-"sourcemaps:SourceMap"
-],
-"sourcemaps:lexical": [
-{
-"sourcemaps:element": [
-{
-"@value": "amf://id#749"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(15,11)-(15,22)]"
-}
-]
-}
-]
-}
-]
-}
-],
-"rdfs:_2": [
-{
 "@id": "#750",
 "@type": [
 "data:Scalar"
 ],
 "data:value": [
 {
-"@value": "staging",
+"@value": "production",
 "@type": "xsd:string"
 }
 ],
@@ -196,7 +120,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(15,24)-(15,31)]"
+"@value": "[(17,13)-(17,23)]"
 }
 ]
 }
@@ -205,7 +129,11 @@
 ]
 }
 ],
-"rdfs:_3": [
+"shacl:in": [
+{
+"@id": "#749/list",
+"@type": "rdfs:Seq",
+"rdfs:_1": [
 {
 "@id": "#751",
 "@type": [
@@ -213,7 +141,7 @@
 ],
 "data:value": [
 {
-"@value": "qa",
+"@value": "development",
 "@type": "xsd:string"
 }
 ],
@@ -232,7 +160,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(15,33)-(15,35)]"
+"@value": "[(15,11)-(15,22)]"
 }
 ]
 }
@@ -241,7 +169,7 @@
 ]
 }
 ],
-"rdfs:_4": [
+"rdfs:_2": [
 {
 "@id": "#752",
 "@type": [
@@ -249,7 +177,7 @@
 ],
 "data:value": [
 {
-"@value": "production",
+"@value": "staging",
 "@type": "xsd:string"
 }
 ],
@@ -264,6 +192,78 @@
 "sourcemaps:element": [
 {
 "@value": "amf://id#752"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "[(15,24)-(15,31)]"
+}
+]
+}
+]
+}
+]
+}
+],
+"rdfs:_3": [
+{
+"@id": "#753",
+"@type": [
+"data:Scalar"
+],
+"data:value": [
+{
+"@value": "qa",
+"@type": "xsd:string"
+}
+],
+"sourcemaps:sources": [
+{
+"@id": "#753/source-map",
+"@type": [
+"sourcemaps:SourceMap"
+],
+"sourcemaps:lexical": [
+{
+"sourcemaps:element": [
+{
+"@value": "amf://id#753"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "[(15,33)-(15,35)]"
+}
+]
+}
+]
+}
+]
+}
+],
+"rdfs:_4": [
+{
+"@id": "#754",
+"@type": [
+"data:Scalar"
+],
+"data:value": [
+{
+"@value": "production",
+"@type": "xsd:string"
+}
+],
+"sourcemaps:sources": [
+{
+"@id": "#754/source-map",
+"@type": [
+"sourcemaps:SourceMap"
+],
+"sourcemaps:lexical": [
+{
+"sourcemaps:element": [
+{
+"@value": "amf://id#754"
 }
 ],
 "sourcemaps:value": [
@@ -286,7 +286,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#747/source-map",
+"@id": "#749/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -294,7 +294,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#747"
+"@value": "amf://id#749"
 }
 ],
 "sourcemaps:value": [
@@ -344,7 +344,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#747"
+"@value": "amf://id#749"
 }
 ],
 "sourcemaps:value": [
@@ -384,7 +384,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#746/source-map",
+"@id": "#748/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -404,7 +404,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#746"
+"@value": "amf://id#748"
 }
 ],
 "sourcemaps:value": [
@@ -418,7 +418,7 @@
 ]
 },
 {
-"@id": "#753",
+"@id": "#755",
 "@type": [
 "raml-http:Parameter",
 "doc:DomainElement"
@@ -440,7 +440,7 @@
 ],
 "raml-http:schema": [
 {
-"@id": "#754",
+"@id": "#756",
 "@type": [
 "raml-shapes:ScalarShape",
 "shacl:Shape",
@@ -461,7 +461,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#753/source-map",
+"@id": "#755/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -469,7 +469,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#753"
+"@value": "amf://id#755"
 }
 ],
 "sourcemaps:value": [
@@ -485,7 +485,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#745/source-map",
+"@id": "#747/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -519,7 +519,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#745"
+"@value": "amf://id#747"
 }
 ],
 "sourcemaps:value": [
@@ -29874,6 +29874,93 @@
 ]
 }
 ]
+},
+{
+"@id": "#745",
+"@type": [
+"raml-http:EndPoint",
+"doc:DomainElement"
+],
+"raml-http:path": [
+{
+"@value": "/method-description"
+}
+],
+"hydra:supportedOperation": [
+{
+"@id": "#746",
+"@type": [
+"hydra:Operation",
+"doc:DomainElement"
+],
+"hydra:method": [
+{
+"@value": "get"
+}
+],
+"schema-org:description": [
+{
+"@value": "Some text\n|               | hostName | port | user | password | accesskey | securityKey | s3Region | path |\n|---------------|----------|------|------|----------|-----------|-------------|----------|------|\n| SFTP          |     \u221A    |   \u221A  |   \u221A  |     \u221A    |           |             |          |   \u221A  |\n| FTP           |          |      |      |          |           |             |          |   \u221A  |\n| Local file    |          |      |      |          |           |             |          |   \u221A  |\n| Azure Storage |          |      |      |          |           |             |          |   \u221A  |\n| Amazon S3     |          |      |      |          |           |             |          |   \u221A  |\n"
+}
+],
+"sourcemaps:sources": [
+{
+"@id": "#746/source-map",
+"@type": [
+"sourcemaps:SourceMap"
+],
+"sourcemaps:lexical": [
+{
+"sourcemaps:element": [
+{
+"@value": "schema-org:description"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "[(433,4)-(442,0)]"
+}
+]
+},
+{
+"sourcemaps:element": [
+{
+"@value": "amf://id#746"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "[(432,2)-(442,0)]"
+}
+]
+}
+]
+}
+]
+}
+],
+"sourcemaps:sources": [
+{
+"@id": "#745/source-map",
+"@type": [
+"sourcemaps:SourceMap"
+],
+"sourcemaps:lexical": [
+{
+"sourcemaps:element": [
+{
+"@value": "amf://id#745"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "[(431,0)-(442,0)]"
+}
+]
+}
+]
+}
+]
 }
 ],
 "sourcemaps:sources": [
@@ -29929,7 +30016,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(2,0)-(431,0)]"
+"@value": "[(2,0)-(442,0)]"
 }
 ]
 },
