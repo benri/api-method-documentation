@@ -17,7 +17,7 @@ import '@polymer/marked-element/marked-element.js';
 import '@polymer/paper-icon-button/paper-icon-button.js';
 import '@advanced-rest-client/arc-icons/arc-icons.js';
 import '@advanced-rest-client/http-code-snippets/http-code-snippets.js';
-import '@api-components/clipboard-copy/clipboard-copy.js';
+import '@advanced-rest-client/clipboard-copy/clipboard-copy.js';
 import '@polymer/iron-collapse/iron-collapse.js';
 import '@polymer/iron-icon/iron-icon.js';
 import '@api-components/api-security-documentation/api-security-documentation.js';

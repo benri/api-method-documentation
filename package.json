@@ -63,7 +63,7 @@
     "@api-components/api-parameters-document": "^3.0.0-preview.1",
     "@api-components/api-responses-document": "^3.0.0-preview.1",
     "@api-components/api-security-documentation": "^3.0.0-preview.1",
-    "@api-components/clipboard-copy": "^3.0.0-preview.1",
+    "@advanced-rest-client/clipboard-copy": "^3.0.0-preview.1",
     "@api-components/http-method-label": "^3.0.0-preview.1",
     "@api-components/raml-aware": "^3.0.0-preview.1",
     "@polymer/iron-collapse": "^3.0.0",
