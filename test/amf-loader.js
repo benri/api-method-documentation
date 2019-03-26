@@ -8,7 +8,6 @@ AmfLoader.load = function(endpointIndex, methodIndex, compact) {
   const url = location.protocol + '//' + location.host +
     location.pathname.substr(0, location.pathname.lastIndexOf('/'))
     .replace(/\/test.*/, '/demo') + file;
-  console.log(url);
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', (e) => {
