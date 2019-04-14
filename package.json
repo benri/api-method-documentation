@@ -8,7 +8,7 @@
     "url": "git://github.com/advanced-rest-client/api-method-documentation.git"
   },
   "name": "@api-components/api-method-documentation",
-  "version": "3.0.0-preview.2",
+  "version": "3.0.0-preview.3",
   "license": "Apache-2.0",
   "main": "api-method-documentation.js",
   "authors": [
