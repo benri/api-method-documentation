@@ -285,7 +285,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(PolymerElement) {
     .markdown-body {
       @apply --arc-font-body1;
       margin-bottom: 28px;
-      color: var(--api-method-documentation-descxription-color, rgba(0, 0, 0, 0.74));
+      color: var(--api-method-documentation-description-color, rgba(0, 0, 0, 0.74));
     }
 
     .method-label {
