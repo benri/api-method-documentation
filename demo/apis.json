@@ -3,5 +3,6 @@
   "array-body/array-body.raml": "RAML 1.0",
   "appian-api/appian-api.raml":  "RAML 1.0",
   "nexmo-sms-api/nexmo-sms-api.raml":  "RAML 1.0",
-  "loan-microservice/loan-microservice.json": "OAS 2.0"
+  "loan-microservice/loan-microservice.json": "OAS 2.0",
+  "google-drive-api/google-drive-api.raml": "RAML 1.0"
 }
