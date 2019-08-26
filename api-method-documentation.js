@@ -1,28 +1,23 @@
-import {PolymerElement} from '../../@polymer/polymer/polymer-element.js';
-import {afterNextRender} from '../../@polymer/polymer/lib/utils/render-status.js';
-import {html} from '../../@polymer/polymer/lib/utils/html-tag.js';
-import {AmfHelperMixin} from '../../@api-components/amf-helper-mixin/amf-helper-mixin.js';
-import '../../@polymer/polymer/lib/elements/dom-if.js';
-import '../../@polymer/polymer/lib/elements/dom-repeat.js';
-import '../../@api-components/raml-aware/raml-aware.js';
-import '../../@polymer/iron-flex-layout/iron-flex-layout.js';
-import '../../@api-components/api-annotation-document/api-annotation-document.js';
-import '../../@api-components/api-body-document/api-body-document.js';
-import '../../@api-components/api-parameters-document/api-parameters-document.js';
-import '../../@api-components/api-headers-document/api-headers-document.js';
-import '../../@api-components/api-responses-document/api-responses-document.js';
-import '../../@polymer/paper-button/paper-button.js';
-import '../../@advanced-rest-client/markdown-styles/markdown-styles.js';
-import '../../@polymer/marked-element/marked-element.js';
-import '../../@polymer/paper-icon-button/paper-icon-button.js';
-import '../../@advanced-rest-client/arc-icons/arc-icons.js';
-import '../../@advanced-rest-client/http-code-snippets/http-code-snippets.js';
-import '../../@advanced-rest-client/clipboard-copy/clipboard-copy.js';
-import '../../@polymer/iron-collapse/iron-collapse.js';
-import '../../@polymer/iron-icon/iron-icon.js';
-import '../../@api-components/api-security-documentation/api-security-documentation.js';
-import '../../@api-components/api-example-generator/api-example-generator.js';
-import '../../@api-components/http-method-label/http-method-label-common-styles.js';
+import { html, css, LitElement } from 'lit-element';
+import { AmfHelperMixin } from '@api-components/amf-helper-mixin/amf-helper-mixin.js';
+import markdownStyles from '@advanced-rest-client/markdown-styles/markdown-styles.js';
+import httpMethodStyles from '@api-components/http-method-label/http-method-label-common-styles.js';
+import '@api-components/raml-aware/raml-aware.js';
+import '@api-components/api-annotation-document/api-annotation-document.js';
+import '@api-components/api-body-document/api-body-document.js';
+import '@api-components/api-parameters-document/api-parameters-document.js';
+import '@api-components/api-headers-document/api-headers-document.js';
+import '@api-components/api-responses-document/api-responses-document.js';
+import '@advanced-rest-client/arc-marked/arc-marked.js';
+import '@anypoint-web-components/anypoint-button/anypoint-icon-button.js';
+import '@anypoint-web-components/anypoint-button/anypoint-button.js';
+import '@advanced-rest-client/arc-icons/arc-icons.js';
+import '@advanced-rest-client/http-code-snippets/http-code-snippets.js';
+import '@advanced-rest-client/clipboard-copy/clipboard-copy.js';
+import '@polymer/iron-collapse/iron-collapse.js';
+import '@polymer/iron-icon/iron-icon.js';
+import '@api-components/api-security-documentation/api-security-documentation.js';
+import '@api-components/api-example-generator/api-example-generator.js';
 /**
  * `api-method-documentation`
  *
@@ -120,308 +115,310 @@ import '../../@api-components/http-method-label/http-method-label-common-styles.
  * documentation block | `{}`
  *
  * @customElement
- * @polymer
  * @demo demo/index.html
  * @memberof ApiElements
  * @appliesMixin AmfHelperMixin
  */
-class ApiMethodDocumentation extends AmfHelperMixin(PolymerElement) {
-  static get template() {
+class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
+  static get styles() {
+    return [
+      markdownStyles,
+      httpMethodStyles,
+      css`:host {
+        display: block;
+        font-size: var(--arc-font-body1-font-size, inherit);
+        font-weight: var(--arc-font-body1-font-weight, inherit);
+        line-height: var(--arc-font-body1-line-height, inherit);
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      h1 {
+        font-size: var(--arc-font-headline-font-size);
+        font-weight: var(--arc-font-headline-font-weight);
+        letter-spacing: var(--arc-font-headline-letter-spacing);
+        line-height: var(--arc-font-headline-line-height);
+        font-weight: var(--api-method-documentation-title-method-font-weight, 500);
+        text-transform: capitalize;
+      }
+
+      h2 {
+        font-size: var(--arc-font-title-font-size);
+        font-weight: var(--arc-font-title-font-weight);
+        line-height: var(--arc-font-title-line-height);
+      }
+
+      h3 {
+        flex: 1;
+        font-size: var(--arc-font-title-font-size);
+        font-weight: var(--arc-font-title-font-weight);
+        line-height: var(--arc-font-title-line-height);
+      }
+
+      .title-area {
+        flex-direction: row;
+        display: flex;
+        align-items: center;
+      }
+
+      :host([narrow]) .title-area {
+        margin-bottom: 24px;
+      }
+
+      :host([narrow]) .title-area {
+        margin-top: 12px;
+      }
+
+      :host([narrow]) h1 {
+        font-size: 20px;
+        margin: 0;
+      }
+
+      :host([narrow]) h2 {
+        font-size: 18px;
+      }
+
+      :host([narrow]) h3 {
+        font-size: 17px;
+      }
+
+      .title {
+        flex: 1;
+      }
+
+      .url-area {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-family: var(--arc-font-code-family);
+        font-size: var(--api-method-documentation-url-font-size, 16px);
+        margin-bottom: 40px;
+        margin-top: 20px;
+        background: var(--api-method-documentation-url-background-color, #424242);
+        color: var(--api-method-documentation-url-font-color, #fff);
+        padding: 8px;
+        border-radius: 4px;
+        position: relative;
+      }
+
+      .section-title-area {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-bottom: 1px var(--api-parameters-document-title-border-color, #e5e5e5) solid;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .url-value {
+        flex: 1;
+        margin-left: 12px;
+        word-break: break-all;
+      }
+
+      .method-value {
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .toggle-icon {
+        margin-left: 8px;
+        transform: rotateZ(0deg);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .toggle-icon.opened {
+        transform: rotateZ(-180deg);
+      }
+
+      http-code-snippets {
+        margin-bottom: 40px;
+      }
+
+      .bottom.action {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-top: 20px;
+      }
+
+      arc-marked {
+        margin: 12px 0;
+      }
+
+      .markdown-body {
+        margin-bottom: 28px;
+        color: var(--api-method-documentation-description-color, rgba(0, 0, 0, 0.74));
+      }
+
+      .method-label {
+        margin-bottom: 0;
+      }
+
+      .bottom-nav,
+      .bottom-link {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .bottom-nav {
+        padding: 32px 0;
+        margin: 16px 0;
+        border-top: 1px var(--api-method-documentation-bottom-navigation-border-color, #cfd8dc) solid;
+        color: var(--api-method-documentation-bottom-navigation-color, #000);
+        font-size: 18px;
+      }
+
+      .bottom-link {
+        cursor: pointer;
+        max-width: 50%;
+        word-break: break-all;
+      }
+
+      .bottom-link.previous {
+        margin-right: 12px;
+      }
+
+      .bottom-link.next {
+        margin-left: 12px;
+      }
+
+      .nav-separator {
+        flex: 1;
+      }
+
+      api-security-documentation {
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px var(--api-headers-document-title-border-color, #e5e5e5) dashed;
+      }
+
+      api-security-documentation:last-of-type {
+        margin-bottom: 0;
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .extensions {
+        font-style: italic;
+        margin: 12px 0;
+      }`
+    ];
+  }
+
+  _getTitleTemplate() {
+    if (this._titleHidden) {
+      return html``;
+    }
+    const {
+      methodName,
+      noTryIt,
+      legacy
+    } = this;
     return html`
-    <style include="markdown-styles"></style>
-    <style include="http-method-label-common-styles"></style>
-    <style>
-    :host {
-      display: block;
-      padding-bottom: 24px;
-      @apply --arc-font-body1;
-      @apply --api-method-documentation;
-
-      --tmp-font-title: {
-        @apply --arc-font-title;
-      };
-    }
-
-    [hidden] {
-      display: none !important;
-    }
-
-    h1 {
-      @apply --arc-font-headline;
-      font-weight: var(--api-method-documentation-title-method-font-weight, 500);
-      text-transform: capitalize;
-      @apply --api-method-documentation-title;
-    }
-
-    h2 {
-      @apply --arc-font-title;
-      @apply --api-method-documentation-main-section-title;
-    }
-
-    h3 {
-      @apply --layout-flex;
-      @apply --arc-font-title;
-      @apply --api-method-documentation-subsection-title;
-    }
-
-    .title-area {
-      @apply --layout-horizontal;
-      @apply --layout-center;
-    }
-
-    :host([narrow]) .title-area {
-      margin-bottom: 24px;
-    }
-
-    :host([narrow]) .title-area {
-      margin-top: 12px;
-    }
-
-    :host([narrow]) h1 {
-      font-size: 20px;
-      margin: 0;
-      @apply --api-method-documentation-title-narrow;
-    }
-
-    :host([narrow]) h2 {
-      font-size: 18px;
-      @apply --api-method-documentation-main-section-title-narrow;
-    }
-
-    :host([narrow]) h3 {
-      font-size: 17px;
-      @apply --api-method-documentation-subsection-title-narrow;
-    }
-
-    .title {
-      @apply --layout-flex;
-    }
-
-    .url-area {
-      @apply --layout-flex;
-      @apply --layout-horizontal;
-      @apply --layout-center;
-      @apply --arc-font-code1;
-      font-size: var(--api-method-documentation-url-font-size, 16px);
-      margin-bottom: 40px;
-      margin-top: 20px;
-      background: var(--api-method-documentation-url-background-color, #424242);
-      color: var(--api-method-documentation-url-font-color, #fff);
-      padding: 8px;
-      border-radius: 4px;
-      position: relative;
-    }
-
-    .section-title-area {
-      @apply --layout-horizontal;
-      @apply --layout-center;
-      border-bottom: 1px var(--api-parameters-document-title-border-color, #e5e5e5) solid;
-      cursor: pointer;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    .toggle-button {
-      outline: none;
-      color: var(--api-method-document-toggle-view-color,
-        var(--arc-toggle-view-icon-color, rgba(0, 0, 0, 0.74)));
-      transition: color 0.25s ease-in-out;
-      @apply --toggle-button;
-    }
-
-    .toggle-button:hover {
-      color: var(--api-method-document-toggle-view-hover-color,
-        var(--arc-toggle-view-icon-hover-color, rgba(0, 0, 0, 0.88)));
-      @apply --toggle-button-hover;
-    }
-
-    .url-value {
-      @apply --layout-flex;
-      margin-left: 12px;
-      word-break: break-all;
-    }
-
-    .method-value {
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .toggle-icon {
-      margin-left: 8px;
-      transform: rotateZ(0deg);
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .toggle-icon.opened {
-      transform: rotateZ(-180deg);
-    }
-
-    http-code-snippets {
-      margin-bottom: 40px;
-    }
-
-    .action-button {
-      background-color: var(--api-method-documentation-try-it-background-color, var(--primary-color));
-      color: var(--api-method-documentation-try-it-color, var(--primary-action-color, #fff));
-    }
-
-    .action-button:hover {
-      background-color: var(--api-method-documentation-try-it-background-color-hover, var(--primary-color));
-      color: var(--api-method-documentation-try-it-color-hover, var(--primary-action-color, #fff));
-    }
-
-    .bottom.action {
-      @apply --layout-horizontal;
-      @apply --layout-end-justified;
-      margin-top: 20px;
-    }
-
-    marked-element {
-      margin: 12px 0;
-    }
-
-    .markdown-body {
-      @apply --arc-font-body1;
-      margin-bottom: 28px;
-      color: var(--api-method-documentation-description-color, rgba(0, 0, 0, 0.74));
-    }
-
-    .method-label {
-      margin-bottom: 0;
-    }
-
-    .bottom-nav,
-    .bottom-link {
-      @apply --layout-horizontal;
-      @apply --layout-center;
-    }
-
-    .bottom-nav {
-      padding: 32px 0;
-      margin: 16px 0;
-      border-top: 1px var(--api-method-documentation-bottom-navigation-border-color, #cfd8dc) solid;
-      color: var(--api-method-documentation-bottom-navigation-color, #000);
-      font-size: 18px;
-    }
-
-    .bottom-link {
-      cursor: pointer;
-      max-width: 50%;
-      word-break: break-all;
-    }
-
-    .bottom-link.previous {
-      margin-right: 12px;
-    }
-
-    .bottom-link.next {
-      margin-left: 12px;
-    }
-
-    .nav-separator {
-      @apply --layout-flex;
-    }
-
-    api-security-documentation {
-      --arc-font-display1: {
-        @apply --arc-font-title;
-      };
-      --arc-font-title: {
-        @apply --tmp-font-title;
-        font-size: larger;
-      };
-
-      margin-bottom: 12px;
-      padding-bottom: 12px;
-      border-bottom: 1px var(--api-headers-document-title-border-color, #e5e5e5) dashed;
-    }
-
-    api-security-documentation:last-of-type {
-      margin-bottom: 0;
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .request-documentation,
-    .response-documentation {
-      @apply --api-method-documentation-main-sections;
-    }
-
-    .snippets,
-    .security,
-    api-parameters-document,
-    api-headers-document,
-    api-body-document,
-    .response-documentation {
-      @apply --api-method-documentation-docs-sections;
-    }
-
-    .extensions {
-      font-style: italic;
-      margin: 12px 0;
-    }
-    </style>
-    <template is="dom-if" if="[[aware]]">
-      <raml-aware raml="{{amfModel}}" scope="[[aware]]"></raml-aware>
-    </template>
-
-    <div class="title-area" hidden\$="[[_titleHidden(methodName, httpMethod, noTryIt)]]">
-      <h1 class="title">[[methodName]]</h1>
-      <template is="dom-if" if="[[!noTryIt]]">
-        <div class="action">
-          <paper-button class="action-button" on-click="_tryIt" raised="">Try it</paper-button>
-        </div>
-      </template>
+    <div class="title-area">
+      <h1 class="title">${methodName}</h1>
+      ${noTryIt ? '' : html`<div class="action">
+        <anypoint-button
+          class="action-button"
+          @click="${this._tryIt}"
+          emplhasis="high"
+          ?legacy="${legacy}">Try it</anypoint-button>
+      </div>`}
     </div>
+    `;
+  }
 
-    <section class="url-area">
-      <div class="method-value"><span class="method-label" data-method\$="[[httpMethod]]">[[httpMethod]]</span></div>
-      <div class="url-value">[[endpointUri]]</div>
-      <paper-icon-button class="action-icon copy-icon" icon="arc:content-copy"
-        on-click="_copyUrlClipboard" title="Copy URL to clipboard"></paper-icon-button>
+  _getUrlTemplate() {
+    const { httpMethod, endpointUri } = this;
+    return html`<section class="url-area">
+      <div class="method-value"><span class="method-label" data-method="${httpMethod}">${httpMethod}</span></div>
+      <div class="url-value">${endpointUri}</div>
+      <anypoint-icon-button
+        class="action-icon copy-icon"
+        icon="arc:content-copy"
+        on-click="_copyUrlClipboard"
+        title="Copy URL to clipboard"></anypoint-icon-button>
     </section>
-    <clipboard-copy id="urlCopy" content="[[endpointUri]]"></clipboard-copy>
+    <clipboard-copy id="urlCopy" .content="${endpointUri}"></clipboard-copy>`;
+  }
 
-    <template is="dom-if" if="[[hasTraits]]">
-      <section class="extensions">
-        <span>Mixes in
-        <span class="trait-name">[[_computeTraitNames(traits)]]</span>.
-      </span></section>
-    </template>
+  _getTraitsTemplate() {
+    const traits = this.traits;
+    if (!traits || !traits.length) {
+      return html``;
+    }
+    const value = this._computeTraitNames(traits);
+    return html`<section class="extensions">
+      <span>Mixes in
+      <span class="trait-name">${value}</span>.
+      </span>
+    </section>`;
+  }
 
-    <template is="dom-if" if="[[hasCustomProperties]]">
-      <api-annotation-document shape="[[method]]"></api-annotation-document>
-    </template>
+  _getDescriptionTemplate() {
+    const { description } = this;
+    if (!description) {
+      return html``;
+    }
+    return html`<arc-marked .markdown="${description}">
+      <div slot="markdown-html" class="markdown-body"></div>
+    </arc-marked>`;
+  }
 
-    <template is="dom-if" if="[[description]]">
-      <marked-element markdown="[[description]]">
-        <div slot="markdown-html" class="markdown-body"></div>
-      </marked-element>
-    </template>
+  _getCodeSnippetsTemplate() {
+    if (!this.renderCodeSnippets) {
+      return html``;
+    }
+    const {
+      snippetsOpened,
+      endpointUri,
+      httpMethod,
+      headers,
+      payload
+    } = this;
+    const label = this._computeToggleActionLabel(snippetsOpened);
+    const iconClass = this._computeToggleIconClass(snippetsOpened);
+    return html`<section class="snippets">
+      <div class="section-title-area" @click="${this._toggleSnippets}" title="Toogle code example details">
+        <h3 class="table-title">Code examples</h3>
+        <div class="title-area-actions">
+          <anypoint-button class="toggle-button">
+            ${label}
+            <iron-icon icon="arc:expand-more" class="${iconClass}"></iron-icon>
+          </anypoint-button>
+        </div>
+      </div>
+      ${snippetsOpened ? html`<http-code-snippets
+        .url="${endpointUri}"
+        .method="${httpMethod}"
+        .headers="${this._computeSnippetsHeaders(headers)}"
+        .payload="${this._computeSnippetsPayload(payload)}"></http-code-snippets>` : ''}
+    </section>`;
+  }
 
+  render() {
+    const {
+      aware,
+      hasCustomProperties,
+      method
+    } = this;
+    return html`
+    ${aware ? html`<raml-aware
+      .scope="${aware}"
+      @api-changed="${this._apiChanged}"></raml-aware>` : ''}
+
+    ${this._getTitleTemplate()}
+    ${this._getUrlTemplate()}
+    ${this._getTraitsTemplate()}
+    ${hasCustomProperties ? html`<api-annotation-document .shape="${method}"></api-annotation-document>` : ''}
+    ${this._getDescriptionTemplate()}
     <section class="request-documentation">
-      <template is="dom-if" if="[[renderCodeSnippets]]" restamp="true">
-        <section class="snippets">
-          <div class="section-title-area" on-click="_toggleSnippets" title="Toogle code example details">
-            <h3 class="table-title">Code examples</h3>
-            <div class="title-area-actions">
-              <paper-button class="toggle-button">
-                [[_computeToggleActionLabel(snippetsOpened)]]
-                <iron-icon icon="arc:expand-more" class\$="[[_computeToggleIconClass(snippetsOpened)]]"></iron-icon>
-              </paper-button>
-            </div>
-          </div>
-          <iron-collapse id="snippetsCollapse" on-transitionend="_snippetsTransitionEnd">
-            <template is="dom-if" id="snippetsCondition" restamp="">
-              <http-code-snippets url="[[endpointUri]]" method="[[httpMethod]]"
-                headers="[[_computeSnippetsHeaders(headers)]]"
-                payload="[[_computeSnippetsPayload(payload)]]"></http-code-snippets>
-            </template>
-          </iron-collapse>
-        </section>
-      </template>
+      ${this._getCodeSnippetsTemplate()}
 
       <template is="dom-if" if="[[renderSecurity]]" restamp="">
         <template is="dom-if" if="[[hasSecurity]]" restamp="">
@@ -946,7 +943,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(PolymerElement) {
     } else {
       collapse.opened = false;
     }
-    afterNextRender(this, () => {
+    setTimeout(() => {
       if (state) {
         collapse.opened = true;
       }
@@ -1025,7 +1022,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(PolymerElement) {
     }
     let value = this._getValue(schema, this.ns.w3.shacl.name + 'defaultValue');
     if (!value) {
-      const items = this.$.exampleGenerator.computeExamples(schema, null, {rawOnly: true});
+      const items = this.$.exampleGenerator.computeExamples(schema, null, { rawOnly: true });
       if (items) {
         value = items[0].value;
       }
@@ -1045,10 +1042,11 @@ class ApiMethodDocumentation extends AmfHelperMixin(PolymerElement) {
     return clazz;
   }
 
-  _titleHidden(methodName, httpMethod, noTryIt) {
-    if (!noTryIt) {
+  get _titleHidden() {
+    if (!this.noTryIt) {
       return false;
     }
+    const { methodName, httpMethod } = this;
     if (!methodName || !httpMethod) {
       return true;
     }
@@ -1099,6 +1097,10 @@ class ApiMethodDocumentation extends AmfHelperMixin(PolymerElement) {
       return names.join(' and ');
     }
     return names.join(', ');
+  }
+
+  _apiChanged(e) {
+    this.amf = e.detail.value;
   }
   /**
    * Dispatched when the user requested the "Try it" view.
