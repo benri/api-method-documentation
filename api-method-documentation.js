@@ -1,28 +1,23 @@
-import {PolymerElement} from '../../@polymer/polymer/polymer-element.js';
-import {afterNextRender} from '../../@polymer/polymer/lib/utils/render-status.js';
-import {html} from '../../@polymer/polymer/lib/utils/html-tag.js';
-import {AmfHelperMixin} from '../../@api-components/amf-helper-mixin/amf-helper-mixin.js';
-import '../../@polymer/polymer/lib/elements/dom-if.js';
-import '../../@polymer/polymer/lib/elements/dom-repeat.js';
-import '../../@api-components/raml-aware/raml-aware.js';
-import '../../@polymer/iron-flex-layout/iron-flex-layout.js';
-import '../../@api-components/api-annotation-document/api-annotation-document.js';
-import '../../@api-components/api-body-document/api-body-document.js';
-import '../../@api-components/api-parameters-document/api-parameters-document.js';
-import '../../@api-components/api-headers-document/api-headers-document.js';
-import '../../@api-components/api-responses-document/api-responses-document.js';
-import '../../@polymer/paper-button/paper-button.js';
-import '../../@advanced-rest-client/markdown-styles/markdown-styles.js';
-import '../../@polymer/marked-element/marked-element.js';
-import '../../@polymer/paper-icon-button/paper-icon-button.js';
-import '../../@advanced-rest-client/arc-icons/arc-icons.js';
-import '../../@advanced-rest-client/http-code-snippets/http-code-snippets.js';
-import '../../@advanced-rest-client/clipboard-copy/clipboard-copy.js';
-import '../../@polymer/iron-collapse/iron-collapse.js';
-import '../../@polymer/iron-icon/iron-icon.js';
-import '../../@api-components/api-security-documentation/api-security-documentation.js';
-import '../../@api-components/api-example-generator/api-example-generator.js';
-import '../../@api-components/http-method-label/http-method-label-common-styles.js';
+import { html, css, LitElement } from 'lit-element';
+import { AmfHelperMixin } from '@api-components/amf-helper-mixin/amf-helper-mixin.js';
+import markdownStyles from '@advanced-rest-client/markdown-styles/markdown-styles.js';
+import httpMethodStyles from '@api-components/http-method-label/http-method-label-common-styles.js';
+import '@api-components/raml-aware/raml-aware.js';
+import '@api-components/api-annotation-document/api-annotation-document.js';
+import '@api-components/api-body-document/api-body-document.js';
+import '@api-components/api-parameters-document/api-parameters-document.js';
+import '@api-components/api-headers-document/api-headers-document.js';
+import '@api-components/api-responses-document/api-responses-document.js';
+import '@advanced-rest-client/arc-marked/arc-marked.js';
+import '@anypoint-web-components/anypoint-button/anypoint-icon-button.js';
+import '@anypoint-web-components/anypoint-button/anypoint-button.js';
+import '@advanced-rest-client/arc-icons/arc-icons.js';
+import '@advanced-rest-client/http-code-snippets/http-code-snippets.js';
+import '@advanced-rest-client/clipboard-copy/clipboard-copy.js';
+import '@polymer/iron-collapse/iron-collapse.js';
+import '@polymer/iron-icon/iron-icon.js';
+import '@api-components/api-security-documentation/api-security-documentation.js';
+import '@api-components/api-example-generator/api-example-generator.js';
 /**
  * `api-method-documentation`
  *
@@ -32,7 +27,7 @@ import '../../@api-components/http-method-label/http-method-label-common-styles.
  * To properly compute all the information relevant to method documentation
  * set the following properties:
  *
- * - amfModel - as AMF's WebApi data model
+ * - amf - as AMF's WebApi data model
  * - endpoint - As AMF's EndPoint data model
  * - method - As AMF's SupportedOperation property
  *
@@ -57,7 +52,7 @@ import '../../@api-components/http-method-label/http-method-label-common-styles.
  * - if `baseUri` is set it uses this value as a base uri for the endpoint
  * - else if `iron-meta` with key `ApiBaseUri` exists and contains a value
  * it uses it uses this value as a base uri for the endpoint
- * - else if `amfModel` is set then it computes base uri value from main
+ * - else if `amf` is set then it computes base uri value from main
  * model document
  * Then it concatenates computed base URI with `endpoint`'s path property.
  *
@@ -73,7 +68,7 @@ import '../../@api-components/http-method-label/http-method-label-common-styles.
  * ```
  *
  * Note: The element will not get notified about the change in `iron-meta`.
- * The change will be reflected whehn `amfModel` or `endpoint` property chnage.
+ * The change will be reflected whehn `amf` or `endpoint` property chnage.
  *
  * ## Styling
  *
@@ -120,681 +115,515 @@ import '../../@api-components/http-method-label/http-method-label-common-styles.
  * documentation block | `{}`
  *
  * @customElement
- * @polymer
  * @demo demo/index.html
  * @memberof ApiElements
  * @appliesMixin AmfHelperMixin
  */
-class ApiMethodDocumentation extends AmfHelperMixin(PolymerElement) {
-  static get template() {
-    return html`
-    <style include="markdown-styles"></style>
-    <style include="http-method-label-common-styles"></style>
-    <style>
-    :host {
-      display: block;
-      padding-bottom: 24px;
-      @apply --arc-font-body1;
-      @apply --api-method-documentation;
+class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
+  static get styles() {
+    return [
+      markdownStyles,
+      httpMethodStyles,
+      css`:host {
+        display: block;
+        font-size: var(--arc-font-body1-font-size, inherit);
+        font-weight: var(--arc-font-body1-font-weight, inherit);
+        line-height: var(--arc-font-body1-line-height, inherit);
+      }
 
-      --tmp-font-title: {
-        @apply --arc-font-title;
-      };
-    }
+      [hidden] {
+        display: none !important;
+      }
 
-    [hidden] {
-      display: none !important;
-    }
+      .title {
+        font-size: var(--arc-font-headline-font-size);
+        font-weight: var(--arc-font-headline-font-weight);
+        letter-spacing: var(--arc-font-headline-letter-spacing);
+        line-height: var(--arc-font-headline-line-height);
+        font-weight: var(--api-method-documentation-title-method-font-weight, 500);
+        text-transform: capitalize;
+      }
 
-    h1 {
-      @apply --arc-font-headline;
-      font-weight: var(--api-method-documentation-title-method-font-weight, 500);
-      text-transform: capitalize;
-      @apply --api-method-documentation-title;
-    }
+      .heading2 {
+        font-size: var(--arc-font-title-font-size);
+        font-weight: var(--arc-font-title-font-weight);
+        line-height: var(--arc-font-title-line-height);
+        margin: 0.84em 0;
+      }
 
-    h2 {
-      @apply --arc-font-title;
-      @apply --api-method-documentation-main-section-title;
-    }
+      .heading3 {
+        flex: 1;
+        font-size: var(--arc-font-subhead-font-size);
+        font-weight: var(--arc-font-subhead-font-weight);
+        line-height: var(--arc-font-subhead-line-height);
+      }
 
-    h3 {
-      @apply --layout-flex;
-      @apply --arc-font-title;
-      @apply --api-method-documentation-subsection-title;
-    }
+      .title-area {
+        flex-direction: row;
+        display: flex;
+        align-items: center;
+      }
 
-    .title-area {
-      @apply --layout-horizontal;
-      @apply --layout-center;
-    }
+      :host([narrow]) .title-area {
+        margin-bottom: 24px;
+      }
 
-    :host([narrow]) .title-area {
-      margin-bottom: 24px;
-    }
+      :host([narrow]) .title-area {
+        margin-top: 12px;
+      }
 
-    :host([narrow]) .title-area {
-      margin-top: 12px;
-    }
+      :host([narrow]) .title {
+        font-size: 20px;
+        margin: 0;
+      }
 
-    :host([narrow]) h1 {
-      font-size: 20px;
-      margin: 0;
-      @apply --api-method-documentation-title-narrow;
-    }
+      :host([narrow]) .heading2 {
+        font-size: 18px;
+      }
 
-    :host([narrow]) h2 {
-      font-size: 18px;
-      @apply --api-method-documentation-main-section-title-narrow;
-    }
+      :host([narrow]) .heading3 {
+        font-size: 17px;
+      }
 
-    :host([narrow]) h3 {
-      font-size: 17px;
-      @apply --api-method-documentation-subsection-title-narrow;
-    }
+      .title {
+        flex: 1;
+      }
 
-    .title {
-      @apply --layout-flex;
-    }
+      .url-area {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-family: var(--arc-font-code-family);
+        font-size: var(--api-method-documentation-url-font-size, 16px);
+        margin-bottom: 40px;
+        margin-top: 20px;
+        background-color: var(--code-background-color);
+        color: var(--code-color);
+        padding: 8px;
+        border-radius: 4px;
+        position: relative;
+      }
 
-    .url-area {
-      @apply --layout-flex;
-      @apply --layout-horizontal;
-      @apply --layout-center;
-      @apply --arc-font-code1;
-      font-size: var(--api-method-documentation-url-font-size, 16px);
-      margin-bottom: 40px;
-      margin-top: 20px;
-      background: var(--api-method-documentation-url-background-color, #424242);
-      color: var(--api-method-documentation-url-font-color, #fff);
-      padding: 8px;
-      border-radius: 4px;
-      position: relative;
-    }
+      .section-title-area {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-bottom: 1px var(--api-parameters-document-title-border-color, #e5e5e5) solid;
+        cursor: pointer;
+        user-select: none;
+      }
 
-    .section-title-area {
-      @apply --layout-horizontal;
-      @apply --layout-center;
-      border-bottom: 1px var(--api-parameters-document-title-border-color, #e5e5e5) solid;
-      cursor: pointer;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
+      .url-value {
+        flex: 1;
+        margin-left: 12px;
+        word-break: break-all;
+      }
 
-    .toggle-button {
-      outline: none;
-      color: var(--api-method-document-toggle-view-color,
-        var(--arc-toggle-view-icon-color, rgba(0, 0, 0, 0.74)));
-      transition: color 0.25s ease-in-out;
-      @apply --toggle-button;
-    }
+      .method-value {
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
 
-    .toggle-button:hover {
-      color: var(--api-method-document-toggle-view-hover-color,
-        var(--arc-toggle-view-icon-hover-color, rgba(0, 0, 0, 0.88)));
-      @apply --toggle-button-hover;
-    }
+      .toggle-icon {
+        margin-left: 8px;
+        transform: rotateZ(0deg);
+        transition: transform 0.3s ease-in-out;
+      }
 
-    .url-value {
-      @apply --layout-flex;
-      margin-left: 12px;
-      word-break: break-all;
-    }
+      .toggle-icon.opened {
+        transform: rotateZ(-180deg);
+      }
 
-    .method-value {
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
+      http-code-snippets {
+        margin-bottom: 40px;
+      }
 
-    .toggle-icon {
-      margin-left: 8px;
-      transform: rotateZ(0deg);
-      transition: transform 0.3s ease-in-out;
-    }
+      .bottom.action {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-top: 20px;
+      }
 
-    .toggle-icon.opened {
-      transform: rotateZ(-180deg);
-    }
+      arc-marked {
+        margin: 8px 0;
+        padding: 0px;
+      }
 
-    http-code-snippets {
-      margin-bottom: 40px;
-    }
+      .markdown-body {
+        margin-bottom: 28px;
+        color: var(--api-method-documentation-description-color, rgba(0, 0, 0, 0.74));
+      }
 
-    .action-button {
-      background-color: var(--api-method-documentation-try-it-background-color, var(--primary-color));
-      color: var(--api-method-documentation-try-it-color, var(--primary-action-color, #fff));
-    }
+      .method-label {
+        margin-bottom: 0;
+      }
 
-    .action-button:hover {
-      background-color: var(--api-method-documentation-try-it-background-color-hover, var(--primary-color));
-      color: var(--api-method-documentation-try-it-color-hover, var(--primary-action-color, #fff));
-    }
+      .bottom-nav,
+      .bottom-link {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
 
-    .bottom.action {
-      @apply --layout-horizontal;
-      @apply --layout-end-justified;
-      margin-top: 20px;
-    }
+      .bottom-nav {
+        padding: 32px 0;
+        margin: 16px 0;
+        border-top: 1px var(--api-method-documentation-bottom-navigation-border-color, #cfd8dc) solid;
+        color: var(--api-method-documentation-bottom-navigation-color, #000);
+        font-size: 18px;
+      }
 
-    marked-element {
-      margin: 12px 0;
-    }
+      .bottom-link {
+        cursor: pointer;
+        max-width: 50%;
+        word-break: break-all;
+      }
 
-    .markdown-body {
-      @apply --arc-font-body1;
-      margin-bottom: 28px;
-      color: var(--api-method-documentation-description-color, rgba(0, 0, 0, 0.74));
-    }
+      .bottom-link.previous {
+        margin-right: 12px;
+      }
 
-    .method-label {
-      margin-bottom: 0;
-    }
+      .bottom-link.next {
+        margin-left: 12px;
+      }
 
-    .bottom-nav,
-    .bottom-link {
-      @apply --layout-horizontal;
-      @apply --layout-center;
-    }
+      .nav-separator {
+        flex: 1;
+      }
 
-    .bottom-nav {
-      padding: 32px 0;
-      margin: 16px 0;
-      border-top: 1px var(--api-method-documentation-bottom-navigation-border-color, #cfd8dc) solid;
-      color: var(--api-method-documentation-bottom-navigation-color, #000);
-      font-size: 18px;
-    }
+      api-security-documentation {
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px var(--api-headers-document-title-border-color, #e5e5e5) dashed;
+      }
 
-    .bottom-link {
-      cursor: pointer;
-      max-width: 50%;
-      word-break: break-all;
-    }
+      api-security-documentation:last-of-type {
+        margin-bottom: 0;
+        border-bottom: none;
+        padding-bottom: 0;
+      }
 
-    .bottom-link.previous {
-      margin-right: 12px;
-    }
+      .extensions {
+        font-style: italic;
+        margin: 12px 0;
+      }
 
-    .bottom-link.next {
-      margin-left: 12px;
-    }
+      :host([legacy]) {
+        --anypoint-button-background-color: transparent;
+        --anypoint-button-color: var(--primary-color);
+        --anypoint-button-hover-background-color: var(--anypoint-color-coreBlue1);
+      }
 
-    .nav-separator {
-      @apply --layout-flex;
-    }
-
-    api-security-documentation {
-      --arc-font-display1: {
-        @apply --arc-font-title;
-      };
-      --arc-font-title: {
-        @apply --tmp-font-title;
-        font-size: larger;
-      };
-
-      margin-bottom: 12px;
-      padding-bottom: 12px;
-      border-bottom: 1px var(--api-headers-document-title-border-color, #e5e5e5) dashed;
-    }
-
-    api-security-documentation:last-of-type {
-      margin-bottom: 0;
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .request-documentation,
-    .response-documentation {
-      @apply --api-method-documentation-main-sections;
-    }
-
-    .snippets,
-    .security,
-    api-parameters-document,
-    api-headers-document,
-    api-body-document,
-    .response-documentation {
-      @apply --api-method-documentation-docs-sections;
-    }
-
-    .extensions {
-      font-style: italic;
-      margin: 12px 0;
-    }
-    </style>
-    <template is="dom-if" if="[[aware]]">
-      <raml-aware raml="{{amfModel}}" scope="[[aware]]"></raml-aware>
-    </template>
-
-    <div class="title-area" hidden\$="[[_titleHidden(methodName, httpMethod, noTryIt)]]">
-      <h1 class="title">[[methodName]]</h1>
-      <template is="dom-if" if="[[!noTryIt]]">
-        <div class="action">
-          <paper-button class="action-button" on-click="_tryIt" raised="">Try it</paper-button>
-        </div>
-      </template>
-    </div>
-
-    <section class="url-area">
-      <div class="method-value"><span class="method-label" data-method\$="[[httpMethod]]">[[httpMethod]]</span></div>
-      <div class="url-value">[[endpointUri]]</div>
-      <paper-icon-button class="action-icon copy-icon" icon="arc:content-copy"
-        on-click="_copyUrlClipboard" title="Copy URL to clipboard"></paper-icon-button>
-    </section>
-    <clipboard-copy id="urlCopy" content="[[endpointUri]]"></clipboard-copy>
-
-    <template is="dom-if" if="[[hasTraits]]">
-      <section class="extensions">
-        <span>Mixes in
-        <span class="trait-name">[[_computeTraitNames(traits)]]</span>.
-      </span></section>
-    </template>
-
-    <template is="dom-if" if="[[hasCustomProperties]]">
-      <api-annotation-document shape="[[method]]"></api-annotation-document>
-    </template>
-
-    <template is="dom-if" if="[[description]]">
-      <marked-element markdown="[[description]]">
-        <div slot="markdown-html" class="markdown-body"></div>
-      </marked-element>
-    </template>
-
-    <section class="request-documentation">
-      <template is="dom-if" if="[[renderCodeSnippets]]" restamp="true">
-        <section class="snippets">
-          <div class="section-title-area" on-click="_toggleSnippets" title="Toogle code example details">
-            <h3 class="table-title">Code examples</h3>
-            <div class="title-area-actions">
-              <paper-button class="toggle-button">
-                [[_computeToggleActionLabel(snippetsOpened)]]
-                <iron-icon icon="arc:expand-more" class\$="[[_computeToggleIconClass(snippetsOpened)]]"></iron-icon>
-              </paper-button>
-            </div>
-          </div>
-          <iron-collapse id="snippetsCollapse" on-transitionend="_snippetsTransitionEnd">
-            <template is="dom-if" id="snippetsCondition" restamp="">
-              <http-code-snippets url="[[endpointUri]]" method="[[httpMethod]]"
-                headers="[[_computeSnippetsHeaders(headers)]]"
-                payload="[[_computeSnippetsPayload(payload)]]"></http-code-snippets>
-            </template>
-          </iron-collapse>
-        </section>
-      </template>
-
-      <template is="dom-if" if="[[renderSecurity]]" restamp="">
-        <template is="dom-if" if="[[hasSecurity]]" restamp="">
-          <section class="security">
-            <div class="section-title-area" on-click="_toggleSecurity" title="Toogle security details">
-              <h3 class="table-title">Security</h3>
-              <div class="title-area-actions">
-                <paper-button class="toggle-button security">
-                  [[_computeToggleActionLabel(securityOpened)]]
-                  <iron-icon icon="arc:expand-more" class\$="[[_computeToggleIconClass(securityOpened)]]"></iron-icon>
-                </paper-button>
-              </div>
-            </div>
-            <iron-collapse opened="[[securityOpened]]">
-              <template is="dom-repeat" items="[[security]]">
-                <api-security-documentation amf-model="[[amfModel]]"
-                  security="[[item]]" narrow="[[narrow]]"></api-security-documentation>
-              </template>
-            </iron-collapse>
-          </section>
-        </template>
-      </template>
-
-      <template is="dom-if" if="[[hasParameters]]">
-        <api-parameters-document amf-model="[[amfModel]]" query-opened=""
-          path-opened="" base-uri-parameters="[[serverVariables]]"
-          endpoint-parameters="[[endpointVariables]]" query-parameters="[[queryParameters]]"
-          narrow="[[narrow]]"></api-parameters-document>
-      </template>
-
-      <template is="dom-if" if="[[hasHeaders]]">
-        <api-headers-document opened="" amf-model="[[amfModel]]" headers="[[headers]]"
-          narrow="[[narrow]]"></api-headers-document>
-      </template>
-
-      <template is="dom-if" if="[[hasPayload]]">
-        <api-body-document amf-model="[[amfModel]]" body="[[payload]]" narrow="[[narrow]]"
-          opened=""></api-body-document>
-      </template>
-    </section>
-
-    <template is="dom-if" if="[[hasReturns]]">
-      <section class="response-documentation">
-        <h2>Response</h2>
-        <api-responses-document amf-model="[[amfModel]]" returns="[[returns]]"
-          narrow="[[narrow]]"></api-responses-document>
-      </section>
-    </template>
-
-    <template is="dom-if" if="[[hasPagination]]">
-      <section class="bottom-nav">
-        <template is="dom-if" if="[[hasPreviousLink]]">
-          <div class="bottom-link previous" on-click="_navigatePrevious">
-            <paper-icon-button icon="arc:chevron-left"></paper-icon-button>
-            <span class="nav-label">[[previous.label]]</span>
-          </div>
-        </template>
-        <div class="nav-separator"></div>
-        <template is="dom-if" if="[[hasNextLink]]">
-          <div class="bottom-link next" on-click="_navigateNext">
-            <span class="nav-label">[[next.label]]</span>
-            <paper-icon-button icon="arc:chevron-right"></paper-icon-button>
-          </div>
-        </template>
-      </section>
-    </template>
-    <api-example-generator amf-model="[[amfModel]]" id="exampleGenerator"></api-example-generator>
-`;
+      :host([legacy]) .action-button {
+        --anypoint-button-background-color: var(--primary-color);
+        --anypoint-button-color: #fff;
+      }`
+    ];
   }
 
-  static get is() {
-    return 'api-method-documentation';
-  }
+
   static get properties() {
     return {
       /**
        * `raml-aware` scope property to use.
        */
-      aware: String,
-      /**
-       * Generated AMF json/ld model form the API spec.
-       * The element assumes the object of the first array item to be a
-       * type of `"http://raml.org/vocabularies/document#Document`
-       * on AMF vocabulary.
-       *
-       * It is only usefult for the element to resolve references.
-       *
-       * @type {Object|Array}
-       */
-      amfModel: Object,
+      aware: { type: String },
       /**
        * AMF method definition as a `http://www.w3.org/ns/hydra/core#supportedOperation`
        * object.
        */
-      method: Object,
+      method: { type: Object },
       /**
        * Method's endpoint definition as a
        * `http://raml.org/vocabularies/http#endpoint` of AMF model.
        */
-      endpoint: Object,
+      endpoint: { type: Object },
       /**
        * The try it button is not rendered when set.
        */
-      noTryIt: {
-        type: Boolean,
-        value: false
-      },
+      noTryIt: { type: Boolean },
       /**
        * Computed value from the method model, name of the method.
        * It is either a `displayName` or HTTP method name
        */
-      methodName: {
-        type: String,
-        computed: '_computeMethodName(method)'
-      },
+      methodName: { type: String },
       /**
        * HTTP method name string.
        *
        * It is computed from `endpoint`.
        */
-      httpMethod: {
-        type: String,
-        computed: '_computeHttpMethod(method)'
-      },
+      httpMethod: { type: String },
       /**
        * A property to set to override AMF's model base URI information.
        * When this property is set, the `endpointUri` property is recalculated.
        */
-      baseUri: String,
+      baseUri: { type: String },
       /**
        * Computed value, API version name
        */
-      apiVersion: {
-        type: String,
-        computed: '_computeApiVersion(amfModel)'
-      },
+      apiVersion: { type: String },
       /**
        * Endpoint URI to display in main URL field.
-       * This value is computed when `amfModel`, `endpoint` or `baseUri` change.
+       * This value is computed when `amf`, `endpoint` or `baseUri` change.
        */
-      endpointUri: {
-        type: String,
-        computed: '_computeEndpointUri(server, endpoint, baseUri, apiVersion)'
-      },
+      endpointUri: { type: String },
       /**
        * Computed value of method description from `method` property.
        */
-      description: {
-        type: String,
-        computed: '_computeDescription(method)'
-      },
+      description: { type: String },
       /**
        * Computed value from current `method`. True if the model contains
        * custom properties (annotations in RAML).
        */
-      hasCustomProperties: {
-        type: Boolean,
-        computed: '_computeHasCustomProperties(method)'
-      },
+      hasCustomProperties: { type: Boolean },
       /**
        * Computed value of `http://www.w3.org/ns/hydra/core#expects`
        * of AMF model from current `method`
        */
-      expects: {
-        type: Object,
-        computed: '_computeExpects(method)'
-      },
+      expects: { type: Object },
       /**
        * Computed value of the `http://raml.org/vocabularies/http#server`
-       * from `amfModel`
+       * from `amf`
        */
-      server: {
-        type: Object,
-        computed: '_computeServer(amfModel)'
-      },
+      server: { type: Object },
       /**
        * API base URI parameters defined in AMF api model
        *
        * @type {Array|undefined}
        */
-      serverVariables: {
-        type: Array,
-        computed: '_computeServerVariables(server)'
-      },
+      serverVariables: { type: Array },
       /**
        * Endpoint's path parameters.
        *
        * @type {Array|undefined}
        */
-      endpointVariables: {
-        type: Array,
-        computed: '_computeEndpointVariables(endpoint)'
-      },
+      endpointVariables: { type: Array },
       /**
        * Computed value if server and endpoint definition of API model has
        * defined any variables.
        */
-      hasPathParameters: {
-        type: Boolean,
-        computed: '_computeHasPathParameters(serverVariables, endpointVariables)'
-      },
+      hasPathParameters: { type: Boolean },
       /**
        * Computed value of method's query parameters.
        */
-      queryParameters: {
-        type: Array,
-        computed: '_computeQueryParameters(expects)'
-      },
-      /**
-       * Computed value if server definition of API model has defined
-       * variables.
-       */
-      hasQueryParameters: {
-        type: Boolean,
-        computed: '_computeHasArrayValue(queryParameters)'
-      },
+      queryParameters: { type: Array },
       /**
        * Computed value, true when either has path or query parameters.
        * This renders `api-parameters-document` if true.
        */
-      hasParameters: {
-        type: Boolean,
-        computed: '_computeHasParameters(hasQueryParameters, hasPathParameters)'
-      },
+      hasParameters: { type: Boolean },
       /**
        * Computed value of AMF payload definition from `expects`
        * property.
        */
-      payload: {
-        type: Object,
-        computed: '_computePayload(expects)'
-      },
-      /**
-       * Computed value, true if `payload` has values.
-       */
-      hasPayload: {
-        type: Boolean,
-        computed: '_computeHasArrayValue(payload)'
-      },
+      payload: { type: Array },
       /**
        * Computed value of AMF payload definition from `expects`
        * property.
        */
-      headers: {
-        type: Object,
-        computed: '_computeHeaders(expects)'
-      },
-      /**
-       * Computed value, true if `payload` has values.
-       */
-      hasHeaders: {
-        type: Boolean,
-        computed: '_computeHasArrayValue(headers)'
-      },
+      headers: { type: Array },
       /**
        * Computed value of AMF response definition from `returns`
        * property.
        */
-      returns: {
-        type: Object,
-        computed: '_computeReturns(method)'
-      },
-      /**
-       * Computed value, true if `returns` has values.
-       */
-      hasReturns: {
-        type: Boolean,
-        computed: '_computeHasArrayValue(returns)'
-      },
+      returns: { type: Array },
       /**
        * Computed value of AMF security definition from `method`
        * property.
        */
-      security: {
-        type: Object,
-        computed: '_computeSecurity(method)'
-      },
-      /**
-       * Computed value, true if `returns` has values.
-       */
-      hasSecurity: {
-        type: Boolean,
-        computed: '_computeHasArrayValue(security)'
-      },
+      security: { type: Array },
       /**
        * If set it will renders the view in the narrow layout.
        */
-      narrow: {
-        type: Boolean,
-        reflectToAttribute: true
-      },
+      narrow: { type: Boolean, reflect: true },
       /**
        * Model to generate a link to previous HTTP method.
        * It should contain `id` and `label` properties
        */
-      previous: Object,
-      /**
-       * Computed value, true if `previous` is set
-       */
-      hasPreviousLink: {
-        type: Boolean,
-        computed: '_computeHasPreviousLink(previous)'
-      },
+      previous: { type: Object },
       /**
        * Model to generate a link to next HTTP method.
        * It should contain `id` and `label` properties
        */
-      next: Object,
-      /**
-       * Computed value, true if `next` is set
-       */
-      hasNextLink: {
-        type: Boolean,
-        computed: '_computeHasNextLink(next)'
-      },
-      /**
-       * Computed value, true to render bottom navigation
-       */
-      hasPagination: {
-        type: Boolean,
-        computed: '_computeHasNavigation(hasPreviousLink, hasNextLink)'
-      },
+      next: { type: Object },
       /**
        * When set code snippets are rendered.
        */
-      snippetsOpened: {
-        type: Boolean,
-        value: false,
-        observer: '_snippetsOpenedChanegd'
-      },
+      snippetsOpened: { type: Boolean },
       /**
        * When set security details are rendered.
        */
-      securityOpened: {
-        type: Boolean,
-        value: false
-      },
+      securityOpened: { type: Boolean },
       /**
        * When set it renders code examples section is the documentation
        */
-      renderCodeSnippets: Boolean,
+      renderCodeSnippets: { type: Boolean },
 
       /**
        * When set it renders security documentation when applicable
        */
-      renderSecurity: Boolean,
+      renderSecurity: { type: Boolean },
       /**
        * List of traits and resource types, if any.
        *
        * @type {Array<Object>}
        */
-      extendsTypes: {
-        type: Array,
-        computed: '_computeExtends(method)'
-      },
+      extendsTypes: { type: Array },
       /**
        * List of traits appied to this endpoint
        *
        * @type {Array<Object>}
        */
-      traits: {
-        type: Array,
-        computed: '_computeTraits(extendsTypes)'
-      },
+      traits: { type: Array },
       /**
-       * Computed value, true if the endpoint has traits.
+       * When set it enables Anypoint compatibility theme
        */
-      hasTraits: {
-        type: Boolean,
-        computed: '_computeHasArrayValue(traits)'
-      }
+      legacy: { type: Boolean, reflect: true },
+
+      _renderSnippets: { type: Boolean }
     };
   }
+
+  get method() {
+    return this._method;
+  }
+
+  set method(value) {
+    const old = this._method;
+    /* istanbul ignore if */
+    if (old === value) {
+      return;
+    }
+    this._method = value;
+    this._methodChanged();
+  }
+
+  get endpoint() {
+    return this._endpoint;
+  }
+
+  set endpoint(value) {
+    const old = this._endpoint;
+    /* istanbul ignore if */
+    if (old === value) {
+      return;
+    }
+    this._endpoint = value;
+    this._endpointChanged();
+  }
+
+  get baseUri() {
+    return this._baseUri;
+  }
+
+  set baseUri(value) {
+    const old = this._baseUri;
+    /* istanbul ignore if */
+    if (old === value) {
+      return;
+    }
+    this._baseUri = value;
+    this.endpointUri = this._computeEndpointUri(this.server, this.endpoint, value, this.apiVersion);
+  }
+
+  get expects() {
+    return this._expects;
+  }
+
+  set expects(value) {
+    const old = this._expects;
+    /* istanbul ignore if */
+    if (old === value) {
+      return;
+    }
+    this._expects = value;
+    this.requestUpdate('expects', old);
+    this._expectsChanged(value);
+  }
+
+  get _titleHidden() {
+    if (!this.noTryIt) {
+      return false;
+    }
+    const { methodName, httpMethod } = this;
+    if (!methodName || !httpMethod) {
+      return true;
+    }
+    if (methodName.toLowerCase() === httpMethod.toLowerCase()) {
+      return true;
+    }
+    return false;
+  }
+
+  __amfChanged() {
+    if (this.__amfProcessingDebouncer) {
+      return;
+    }
+    this.__amfProcessingDebouncer = true;
+    setTimeout(() => this._processModelChange());
+  }
+
+  _methodChanged() {
+    if (this.__methodProcessingDebouncer) {
+      return;
+    }
+    this.__methodProcessingDebouncer = true;
+    setTimeout(() => this._processMethodChange());
+  }
+
+  _endpointChanged() {
+    if (this.__endpointProcessingDebouncer) {
+      return;
+    }
+    this.__endpointProcessingDebouncer = true;
+    setTimeout(() => this._processEndpointChange());
+  }
+
+  _processModelChange() {
+    this.__amfProcessingDebouncer = false;
+    const { amf } = this;
+    const apiVersion = this.apiVersion = this._computeApiVersion(amf);
+    const server = this.server = this._computeServer(amf);
+    this.endpointUri = this._computeEndpointUri(server, this.endpoint, this.baseUri, apiVersion);
+    const serverVariables = this.serverVariables = this._computeServerVariables(server);
+    const hasPathParameters = this.hasPathParameters =
+      this._computeHasPathParameters(serverVariables, this.endpointVariables);
+    this.hasParameters = hasPathParameters || !(this.queryParameters && this.queryParameters.length);
+  }
+
+  _processMethodChange() {
+    this.__methodProcessingDebouncer = false;
+    const { method } = this;
+    this.methodName = this._computeMethodName(method);
+    this.httpMethod = this._computeHttpMethod(method);
+    this.description = this._computeDescription(method);
+    this.hasCustomProperties = this._computeHasCustomProperties(method);
+    this.expects = this._computeExpects(method);
+    this.returns = this._computeReturns(method);
+    this.security = this._computeSecurity(method);
+    const extendsTypes = this.extendsTypes = this._computeExtends(method);
+    this.traits = this._computeTraits(extendsTypes);
+  }
+
+  _processEndpointChange() {
+    this.__endpointProcessingDebouncer = false;
+    const { endpoint } = this;
+    const endpointVariables = this.endpointVariables = this._computeEndpointVariables(endpoint);
+    this.endpointUri = this._computeEndpointUri(this.server, endpoint, this.baseUri, this.apiVersion);
+    const hasPathParameters = this.hasPathParameters =
+      this._computeHasPathParameters(this.serverVariables, endpointVariables);
+    this.hasParameters = hasPathParameters || !(this.queryParameters && this.queryParameters.length);
+  }
+
+  _expectsChanged(expects) {
+    this.headers = this._computeHeaders(expects);
+    this.payload = this._computePayload(expects);
+    const queryParameters = this.queryParameters = this._computeQueryParameters(expects);
+    this.hasParameters = this.hasPathParameters || !(queryParameters && queryParameters.length);
+  }
+
   /**
    * Computes value for `methodName` property.
    * It is either a `http://schema.org/name` or HTTP method name
@@ -833,16 +662,6 @@ class ApiMethodDocumentation extends AmfHelperMixin(PolymerElement) {
     return !!((sVars && sVars.length) || (eVars && eVars.length));
   }
   /**
-   * Computes value for `hasParameters` property.
-   *
-   * @param {Boolean} hasPath
-   * @param {Boolean} hasQuery
-   * @return {Boolean} True if any argument is true
-   */
-  _computeHasParameters(hasPath, hasQuery) {
-    return !!(hasPath || hasQuery);
-  }
-  /**
    * "Try it" button click handler. Dispatches `tryit-requested` custom event
    */
   _tryIt() {
@@ -854,31 +673,6 @@ class ApiMethodDocumentation extends AmfHelperMixin(PolymerElement) {
         id
       }
     }));
-  }
-  /**
-   * Computes value for `hasPreviousLink` property
-   * @param {?Object} previous
-   * @return {Boolean}
-   */
-  _computeHasPreviousLink(previous) {
-    return !!previous;
-  }
-  /**
-   * Computes value for `hasNextLink` property
-   * @param {?Object} next
-   * @return {Boolean}
-   */
-  _computeHasNextLink(next) {
-    return !!next;
-  }
-  /**
-   * Computes value for `hasPagination` property
-   * @param {Boolean} previous
-   * @param {Boolean} next
-   * @return {Boolean}
-   */
-  _computeHasNavigation(previous, next) {
-    return !!(previous || next);
   }
   /**
    * Navigates to next method. Calls `_navigate` with id of previous item.
@@ -913,7 +707,8 @@ class ApiMethodDocumentation extends AmfHelperMixin(PolymerElement) {
 
   _copyUrlClipboard(e) {
     const button = e.localTarget || e.target;
-    if (this.$.urlCopy.copy()) {
+    const coptElm = this.shadowRoot.querySelector('#urlCopy');
+    if (coptElm.copy()) {
       button.icon = 'arc:done';
     } else {
       button.icon = 'arc:error';
@@ -926,39 +721,18 @@ class ApiMethodDocumentation extends AmfHelperMixin(PolymerElement) {
    * Toggles code snippets section.
    */
   _toggleSnippets() {
-    this.snippetsOpened = !this.snippetsOpened;
-  }
-  /**
-   * Renders or hides code snippets section.
-   *
-   * @param {Boolean} state Current state of `snippetsOpened`
-   */
-  _snippetsOpenedChanegd(state) {
-    // (Pawel): Code snippets makes a lot of computations and are not even
-    // rendered at first. They should be stamped when user request it.
-    const collapse = this.shadowRoot.querySelector('#snippetsCollapse');
-    if (!collapse) {
-      return;
+    const state = !this.snippetsOpened;
+    if (state && !this._renderSnippets) {
+      this._renderSnippets = true;
     }
-    if (state) {
-      const condition = this.shadowRoot.querySelector('#snippetsCondition');
-      condition.if = true;
-    } else {
-      collapse.opened = false;
-    }
-    afterNextRender(this, () => {
-      if (state) {
-        collapse.opened = true;
-      }
+    setTimeout(() => {
+      this.snippetsOpened = state;
     });
   }
-  /**
-   * Removes code snippets element if should not be rendered.
-   */
+
   _snippetsTransitionEnd() {
     if (!this.snippetsOpened) {
-      const condition = this.shadowRoot.querySelector('#snippetsCondition');
-      condition.if = false;
+      this._renderSnippets = false;
     }
   }
   /**
@@ -1001,7 +775,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(PolymerElement) {
     if (!mt) {
       mt = 'application/json';
     }
-    const examples = this.$.exampleGenerator.generatePayloadExamples(payload, mt, {});
+    const examples = this._exampleGenerator.generatePayloadExamples(payload, mt, {});
     if (!examples || !examples[0]) {
       return;
     }
@@ -1025,7 +799,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(PolymerElement) {
     }
     let value = this._getValue(schema, this.ns.w3.shacl.name + 'defaultValue');
     if (!value) {
-      const items = this.$.exampleGenerator.computeExamples(schema, null, {rawOnly: true});
+      const items = this._exampleGenerator.computeExamples(schema, null, { rawOnly: true });
       if (items) {
         value = items[0].value;
       }
@@ -1044,20 +818,6 @@ class ApiMethodDocumentation extends AmfHelperMixin(PolymerElement) {
     }
     return clazz;
   }
-
-  _titleHidden(methodName, httpMethod, noTryIt) {
-    if (!noTryIt) {
-      return false;
-    }
-    if (!methodName || !httpMethod) {
-      return true;
-    }
-    if (methodName.toLowerCase() === httpMethod.toLowerCase()) {
-      return true;
-    }
-    return false;
-  }
-
   /**
    * Computes list of "extends" from the shape.
    *
@@ -1100,6 +860,270 @@ class ApiMethodDocumentation extends AmfHelperMixin(PolymerElement) {
     }
     return names.join(', ');
   }
+
+  _apiChanged(e) {
+    this.amf = e.detail.value;
+  }
+
+  get _exampleGenerator() {
+    if (!this.__exampleGenerator) {
+      this.__exampleGenerator = document.createElement('api-example-generator');
+    }
+    this.__exampleGenerator.amf = this.amf;
+    return this.__exampleGenerator;
+  }
+
+  render() {
+    const {
+      aware,
+      hasCustomProperties,
+      method
+    } = this;
+    return html`
+    ${aware ? html`<raml-aware
+      .scope="${aware}"
+      @api-changed="${this._apiChanged}"></raml-aware>` : ''}
+
+    ${this._getTitleTemplate()}
+    ${this._getUrlTemplate()}
+    ${this._getTraitsTemplate()}
+    ${hasCustomProperties ? html`<api-annotation-document .shape="${method}"></api-annotation-document>` : ''}
+    ${this._getDescriptionTemplate()}
+    <section class="request-documentation">
+      ${this._getCodeSnippetsTemplate()}
+      ${this._getSecurityTemplate()}
+      ${this._getParametersTemplate()}
+      ${this._getHeadersTemplate()}
+      ${this._getBodyTemplate()}
+    </section>
+    ${this._getReturnsTemplate()}
+    ${this._getNavigationTemplate()}`;
+  }
+
+  _getTitleTemplate() {
+    if (this._titleHidden) {
+      return html``;
+    }
+    const {
+      methodName,
+      noTryIt,
+      legacy
+    } = this;
+    return html`
+    <div class="title-area">
+      <div role="heading" aria-level="1" class="title">${methodName}</div>
+      ${noTryIt ? '' : html`<div class="action">
+        <anypoint-button
+          class="action-button"
+          @click="${this._tryIt}"
+          emphasis="high"
+          ?legacy="${legacy}">Try it</anypoint-button>
+      </div>`}
+    </div>
+    `;
+  }
+
+  _getUrlTemplate() {
+    const { httpMethod, endpointUri } = this;
+    return html`<section class="url-area">
+      <div class="method-value"><span class="method-label" data-method="${httpMethod}">${httpMethod}</span></div>
+      <div class="url-value">${endpointUri}</div>
+      <anypoint-icon-button
+        class="action-icon copy-icon"
+        icon="arc:content-copy"
+        on-click="_copyUrlClipboard"
+        title="Copy URL to clipboard"></anypoint-icon-button>
+    </section>
+    <clipboard-copy id="urlCopy" .content="${endpointUri}"></clipboard-copy>`;
+  }
+
+  _getTraitsTemplate() {
+    const traits = this.traits;
+    if (!traits || !traits.length) {
+      return html``;
+    }
+    const value = this._computeTraitNames(traits);
+    return html`<section class="extensions">
+      <span>Mixes in
+      <span class="trait-name">${value}</span>.
+      </span>
+    </section>`;
+  }
+
+  _getDescriptionTemplate() {
+    const { description } = this;
+    if (!description) {
+      return html``;
+    }
+    return html`<arc-marked .markdown="${description}">
+      <div slot="markdown-html" class="markdown-body"></div>
+    </arc-marked>`;
+  }
+
+  _getCodeSnippetsTemplate() {
+    if (!this.renderCodeSnippets) {
+      return html``;
+    }
+    const {
+      snippetsOpened,
+      _renderSnippets,
+      endpointUri,
+      httpMethod,
+      headers,
+      payload,
+      legacy
+    } = this;
+    const label = this._computeToggleActionLabel(snippetsOpened);
+    const iconClass = this._computeToggleIconClass(snippetsOpened);
+    return html`<section class="snippets">
+      <div class="section-title-area" @click="${this._toggleSnippets}" title="Toogle code example details">
+        <div class="heading3 table-title" role="heading" aria-level="2">Code examples</div>
+        <div class="title-area-actions">
+          <anypoint-button class="toggle-button" ?legacy="${legacy}">
+            ${label}
+            <iron-icon icon="arc:expand-more" class="${iconClass}"></iron-icon>
+          </anypoint-button>
+        </div>
+      </div>
+      <iron-collapse .opened="${snippetsOpened}" @transitionend="${this._snippetsTransitionEnd}">
+      ${_renderSnippets ? html`<http-code-snippets
+        .url="${endpointUri}"
+        .method="${httpMethod}"
+        .headers="${this._computeSnippetsHeaders(headers)}"
+        .payload="${this._computeSnippetsPayload(payload)}"></http-code-snippets>` : ''}
+      </iron-collapse>
+    </section>`;
+  }
+
+  _getSecurityTemplate() {
+    const { renderSecurity, security } = this;
+    if (!renderSecurity || !security || !security.length) {
+      return html``;
+    }
+    const { securityOpened, legacy, amf, narrow } = this;
+    const label = this._computeToggleActionLabel(securityOpened);
+    const icon = this._computeToggleIconClass(securityOpened);
+    return html`<section class="security">
+      <div class="section-title-area" @click="${this._toggleSecurity}" title="Toogle security details">
+        <div class="heading3 table-title" role="heading" aria-level="2">Security</div>
+        <div class="title-area-actions">
+          <anypoint-button class="toggle-button security" ?legacy="${legacy}">
+            ${label}
+            <iron-icon icon="arc:expand-more" class="${icon}"></iron-icon>
+          </anypoint-button>
+        </div>
+      </div>
+      <iron-collapse .opened="${securityOpened}">
+        ${security.map((item) => html`<api-security-documentation
+          .amf="${amf}"
+          .security="${item}"
+          ?narrow="${narrow}"
+          ?legacy="${legacy}"></api-security-documentation>`)}
+      </iron-collapse>
+    </section>`;
+  }
+
+  _getParametersTemplate() {
+    if (!this.hasParameters) {
+      return;
+    }
+    const {
+      serverVariables,
+      endpointVariables,
+      queryParameters,
+      amf,
+      narrow,
+      legacy
+    } = this;
+    return html`<api-parameters-document
+      .amf="${amf}"
+      queryopened
+      pathopened
+      .baseUriParameters="${serverVariables}"
+      .endpointParameters="${endpointVariables}"
+      .queryParameters="${queryParameters}"
+      ?narrow="${narrow}"
+      ?legacy="${legacy}"></api-parameters-document>`;
+  }
+
+  _getHeadersTemplate() {
+    const { headers } = this;
+    if (!headers || !headers.length) {
+      return;
+    }
+    const {
+      amf,
+      narrow,
+      legacy
+    } = this;
+    return html`<api-headers-document
+      opened
+      .amf="${amf}"
+      ?narrow="${narrow}"
+      ?legacy="${legacy}"
+      .headers="${headers}"></api-headers-document>`;
+  }
+
+  _getBodyTemplate() {
+    const { payload } = this;
+    if (!payload || !payload.length) {
+      return;
+    }
+    const {
+      amf,
+      narrow,
+      legacy
+    } = this;
+    return html`<api-body-document
+      opened
+      .amf="${amf}"
+      ?narrow="${narrow}"
+      ?legacy="${legacy}"
+      .body="${payload}"></api-body-document>`;
+  }
+
+  _getReturnsTemplate() {
+    const { returns } = this;
+    if (!returns || !returns.length) {
+      return;
+    }
+    const {
+      amf,
+      narrow,
+      legacy
+    } = this;
+    return html`<section class="response-documentation">
+      <div class="heading2" role="heading" aria-level="1">Response</div>
+      <api-responses-document
+        .amf="${amf}"
+        ?narrow="${narrow}"
+        ?legacy="${legacy}"
+        .returns="${returns}"></api-responses-document>
+    </section>`;
+  }
+
+  _getNavigationTemplate() {
+    const { next, previous } = this;
+    if (!next && !previous) {
+      return;
+    }
+    const { legacy } = this;
+    return html`<section class="bottom-nav">
+      ${previous ? html`<div class="bottom-link previous" @click="${this._navigatePrevious}">
+        <anypoint-icon-button title="${previous.label}" ?legacy="${legacy}">
+          <iron-icon icon="arc:chevron-left"></iron-icon>
+        </anypoint-icon-button>
+        <span class="nav-label">${previous.label}</span>
+      </div>` : ''}
+      <div class="nav-separator"></div>
+      ${next ? html`<div class="bottom-link next" @click="${this._navigateNext}">
+        <span class="nav-label">${next.label}</span>
+        <anypoint-icon-button title="${next.label}" ?legacy="${legacy}">
+          <iron-icon icon="arc:chevron-right"></iron-icon>
+        </anypoint-icon-button>
+      </div>` : ''}
+    </section>`;
+  }
   /**
    * Dispatched when the user requested the "Try it" view.
    * @event tryit-requested
@@ -1115,4 +1139,4 @@ class ApiMethodDocumentation extends AmfHelperMixin(PolymerElement) {
    * @param {String} type
    */
 }
-window.customElements.define(ApiMethodDocumentation.is, ApiMethodDocumentation);
+window.customElements.define('api-method-documentation', ApiMethodDocumentation);
