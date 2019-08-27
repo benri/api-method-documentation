@@ -8,6 +8,7 @@ import '@advanced-rest-client/arc-demo-helper/arc-interactive-demo.js';
 import '@api-components/api-navigation/api-navigation.js';
 import '@polymer/paper-toast/paper-toast.js';
 import '@anypoint-web-components/anypoint-styles/colors.js';
+import '@anypoint-web-components/anypoint-styles/typography.js';
 import '../api-method-documentation.js';
 
 class DemoElement extends AmfHelperMixin(LitElement) {}
@@ -49,6 +50,11 @@ class ComponentDemo extends ApiDemoPageBase {
       case 1:
         this.legacy = true;
         break;
+    }
+    if (this.legacy) {
+      document.body.classList.add('anypoint');
+    } else {
+      document.body.classList.remove('anypoint');
     }
   }
 

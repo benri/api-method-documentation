@@ -137,10 +137,10 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
 
       .title {
         font-size: var(--arc-font-headline-font-size);
-        font-weight: var(--arc-font-headline-font-weight);
         letter-spacing: var(--arc-font-headline-letter-spacing);
         line-height: var(--arc-font-headline-line-height);
-        font-weight: var(--api-method-documentation-title-method-font-weight, 500);
+        font-weight: var(--api-method-documentation-title-method-font-weight,
+          var(--arc-font-headline-font-weight, 500));
         text-transform: capitalize;
       }
 
@@ -201,7 +201,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
         background-color: var(--code-background-color);
         color: var(--code-color);
         padding: 8px;
-        border-radius: 4px;
+        border-radius: var(--api-method-documentation-url-border-radius, 4px);
         position: relative;
       }
 
@@ -310,15 +310,10 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
         margin: 12px 0;
       }
 
-      :host([legacy]) {
-        --anypoint-button-background-color: transparent;
-        --anypoint-button-color: var(--primary-color);
-        --anypoint-button-hover-background-color: var(--anypoint-color-coreBlue1);
-      }
-
-      :host([legacy]) .action-button {
-        --anypoint-button-background-color: var(--primary-color);
-        --anypoint-button-color: #fff;
+      .request-documentation,
+      .response-documentation {
+        background-color: var(--api-method-documentation-section-background-color, initial);
+        padding: var(--api-method-documentation-section-padding, 0px);
       }`
     ];
   }
@@ -451,7 +446,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       /**
        * When set code snippets are rendered.
        */
-      snippetsOpened: { type: Boolean },
+      _snippetsOpened: { type: Boolean },
       /**
        * When set security details are rendered.
        */
@@ -665,7 +660,11 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
    * "Try it" button click handler. Dispatches `tryit-requested` custom event
    */
   _tryIt() {
-    const id = this.method['@id'];
+    const { method } = this;
+    if (!method) {
+      return;
+    }
+    const id = method['@id'];
     this.dispatchEvent(new CustomEvent('tryit-requested', {
       bubbles: true,
       composed: true,
@@ -704,34 +703,21 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     });
     this.dispatchEvent(e);
   }
-
-  _copyUrlClipboard(e) {
-    const button = e.localTarget || e.target;
-    const coptElm = this.shadowRoot.querySelector('#urlCopy');
-    if (coptElm.copy()) {
-      button.icon = 'arc:done';
-    } else {
-      button.icon = 'arc:error';
-    }
-    setTimeout(() => {
-      button.icon = 'arc:content-copy';
-    }, 1000);
-  }
   /**
    * Toggles code snippets section.
    */
   _toggleSnippets() {
-    const state = !this.snippetsOpened;
+    const state = !this._snippetsOpened;
     if (state && !this._renderSnippets) {
       this._renderSnippets = true;
     }
     setTimeout(() => {
-      this.snippetsOpened = state;
+      this._snippetsOpened = state;
     });
   }
 
   _snippetsTransitionEnd() {
-    if (!this.snippetsOpened) {
+    if (!this._snippetsOpened) {
       this._renderSnippets = false;
     }
   }
@@ -928,11 +914,6 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     return html`<section class="url-area">
       <div class="method-value"><span class="method-label" data-method="${httpMethod}">${httpMethod}</span></div>
       <div class="url-value">${endpointUri}</div>
-      <anypoint-icon-button
-        class="action-icon copy-icon"
-        icon="arc:content-copy"
-        on-click="_copyUrlClipboard"
-        title="Copy URL to clipboard"></anypoint-icon-button>
     </section>
     <clipboard-copy id="urlCopy" .content="${endpointUri}"></clipboard-copy>`;
   }
@@ -965,7 +946,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       return html``;
     }
     const {
-      snippetsOpened,
+      _snippetsOpened,
       _renderSnippets,
       endpointUri,
       httpMethod,
@@ -973,8 +954,8 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       payload,
       legacy
     } = this;
-    const label = this._computeToggleActionLabel(snippetsOpened);
-    const iconClass = this._computeToggleIconClass(snippetsOpened);
+    const label = this._computeToggleActionLabel(_snippetsOpened);
+    const iconClass = this._computeToggleIconClass(_snippetsOpened);
     return html`<section class="snippets">
       <div class="section-title-area" @click="${this._toggleSnippets}" title="Toogle code example details">
         <div class="heading3 table-title" role="heading" aria-level="2">Code examples</div>
@@ -985,7 +966,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
           </anypoint-button>
         </div>
       </div>
-      <iron-collapse .opened="${snippetsOpened}" @transitionend="${this._snippetsTransitionEnd}">
+      <iron-collapse .opened="${_snippetsOpened}" @transitionend="${this._snippetsTransitionEnd}">
       ${_renderSnippets ? html`<http-code-snippets
         .url="${endpointUri}"
         .method="${httpMethod}"

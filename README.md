@@ -6,11 +6,7 @@
 
 ## &lt;api-method-documentation&gt;
 
-A HTTP method documentation generated from AMF model.
-
-```html
-<api-method-documentation></api-method-documentation>
-```
+A HTTP method documentation generated from an AMF model.
 
 ### API components
 
@@ -33,22 +29,37 @@ npm install --save @api-components/api-method-documentation
     </script>
   </head>
   <body>
-    <api-method-documentation></api-method-documentation>
+    <api-method-documentation amf="..." endpoint="..." method="..."></api-method-documentation>
   </body>
 </html>
 ```
 
-### In a Polymer 3 element
+### In a LitElement
 
 ```js
-import {PolymerElement, html} from '@polymer/polymer';
+import { LitElement, html } from 'lit-element';
 import '@api-components/api-method-documentation/api-method-documentation.js';
 
 class SampleElement extends PolymerElement {
-  static get template() {
+  render() {
     return html`
-    <api-method-documentation></api-method-documentation>
+    <api-method-documentation
+      .amf="${this.amf}"
+      .endpoint="${this.endpoint}"
+      .method="${this.method}"
+      .previous="${this.previous}"
+      .next="${this.next}"
+      ?rendercodesnippets="${this.codeSnippets}"
+      ?narrow="${this.narrow}"
+      .renderSecurity="${this.renderSecurity}"
+      .noTryIt="${this.noTryit}"
+      ?legacy="${this.legacy}"
+      @tryit-requested="${this._tryitHandler}"></api-method-documentation>
     `;
+  }
+
+  _tryitHandler(e) {
+    console.log('opening api-request-panel...');
   }
 }
 customElements.define('sample-element', SampleElement);
@@ -58,19 +69,17 @@ customElements.define('sample-element', SampleElement);
 
 ```sh
 git clone https://github.com/api-components/api-method-documentation
-cd api-url-editor
+cd api-method-documentation
 npm install
-npm install -g polymer-cli
 ```
 
 ### Running the demo locally
 
 ```sh
-polymer serve --npm
-open http://127.0.0.1:<port>/demo/
+npm start
 ```
 
 ### Running the tests
 ```sh
-polymer test --npm
+npm test
 ```

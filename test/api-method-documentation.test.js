@@ -1,0 +1,682 @@
+import { fixture, assert, html, aTimeout, nextFrame } from '@open-wc/testing';
+import * as sinon from 'sinon/pkg/sinon-esm.js';
+import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
+import { IronMeta } from '@polymer/iron-meta/iron-meta.js';
+import { AmfLoader } from './amf-loader.js';
+import '../api-method-documentation.js';
+
+describe('Basic authentication', function() {
+  async function basicFixture() {
+    return (await fixture(`<api-method-documentation></api-method-documentation>`));
+  }
+
+  async function modelFixture(amf, endpoint, method) {
+    return (await fixture(html`<api-method-documentation
+      .amf="${amf}"
+      .endpoint="${endpoint}"
+      .method="${method}"></api-method-documentation>`));
+  }
+
+  async function awareFixture() {
+    return (await fixture(`<api-method-documentation aware="test"></api-method-documentation>`));
+  }
+
+  async function noTryitFixture() {
+    return (await fixture(`<api-method-documentation notryit></api-method-documentation>`));
+  }
+
+  async function baseUriFixture(amf, endpoint, method) {
+    return (await fixture(html`<api-method-documentation
+      baseuri="https://domain.com"
+      .amf="${amf}"
+      .endpoint="${endpoint}"
+      .method="${method}"></api-method-documentation>`));
+  }
+
+  async function renderSecurityFixture(amf, endpoint, method) {
+    return (await fixture(html`<api-method-documentation
+      rendersecurity
+      .amf="${amf}"
+      .endpoint="${endpoint}"
+      .method="${method}"></api-method-documentation>`));
+  }
+
+  async function codeSnippetsFixture(amf, endpoint, method) {
+    return (await fixture(html`<api-method-documentation
+      rendercodesnippets
+      .amf="${amf}"
+      .endpoint="${endpoint}"
+      .method="${method}"></api-method-documentation>`));
+  }
+
+  describe('Basic tests', () => {
+    it('Adds raml-aware to the DOM if aware is set', async () => {
+      const element = await awareFixture();
+      const node = element.shadowRoot.querySelector('raml-aware');
+      assert.ok(node);
+    });
+
+    it('passes AMF model', async () => {
+      const element = await awareFixture();
+      const aware = document.createElement('raml-aware');
+      aware.scope = 'test';
+      aware.api = [{}];
+      assert.deepEqual(element.amf, [{}]);
+    });
+
+    it('raml-aware is not in the DOM by default', async () => {
+      const element = await basicFixture();
+      const node = element.shadowRoot.querySelector('raml-aware');
+      assert.notOk(node);
+    });
+
+    it('api-annotation-document is not in the DOM', async () => {
+      const element = await basicFixture();
+      const node = element.shadowRoot.querySelector('api-annotation-document');
+      assert.notOk(node);
+    });
+
+    it('arc-marked is not in the DOM by default', async () => {
+      const element = await basicFixture();
+      const node = element.shadowRoot.querySelector('arc-marked');
+      assert.notOk(node);
+    });
+
+    it('api-headers-document is not in the DOM', async () => {
+      const element = await basicFixture();
+      const node = element.shadowRoot.querySelector('api-headers-document');
+      assert.notOk(node);
+    });
+
+    it('api-body-document is not in the DOM', async () => {
+      const element = await basicFixture();
+      const node = element.shadowRoot.querySelector('api-body-document');
+      assert.notOk(node);
+    });
+
+    it('api-parameters-document is not in the DOM', async () => {
+      const element = await basicFixture();
+      const node = element.shadowRoot.querySelector('api-parameters-document');
+      assert.notOk(node);
+    });
+
+    it('api-responses-document is not in the DOM', async () => {
+      const element = await basicFixture();
+      const node = element.shadowRoot.querySelector('api-responses-document');
+      assert.notOk(node);
+    });
+
+    it('Try it button is in the DOM', async () => {
+      const element = await basicFixture();
+      const button = element.shadowRoot.querySelector('.action-button');
+      assert.ok(button);
+    });
+
+    it('Try it button click dispatches event', async () => {
+      const element = await basicFixture();
+      element.method = {
+        '@id': 'test'
+      };
+      const spy = sinon.spy();
+      element.addEventListener('tryit-requested', spy);
+      const button = element.shadowRoot.querySelector('.action-button');
+      MockInteractions.tap(button);
+      const e = spy.args[0][0];
+      assert.isTrue(e.bubbles);
+      assert.equal(e.detail.id, 'test');
+    });
+
+    it('Try it is not in the DOM when notryit is set', async () => {
+      const element = await noTryitFixture();
+      const node = element.shadowRoot.querySelector('.action-button');
+      assert.notOk(node);
+    });
+  });
+
+  describe('Bottom navigation', () => {
+    const prev = { 'label': 'p', 'id': 'pp' };
+    const next = { 'label': 'n', 'id': 'nn' };
+
+    let element;
+    beforeEach(async () => {
+      element = await basicFixture();
+    });
+
+    it('does not render bottom navigation when no params', () => {
+      const node = element.shadowRoot.querySelector('.bottom-nav');
+      assert.notOk(node);
+    });
+
+    it('renders bottom navigation', async () => {
+      element.next = next;
+      element.previous = prev;
+      await nextFrame();
+      const node = element.shadowRoot.querySelector('.bottom-nav');
+      assert.ok(node);
+    });
+
+    it('Renders previous buttons', async () => {
+      element.previous = prev;
+      await nextFrame();
+      const node = element.shadowRoot.querySelector('.bottom-link.previous');
+      assert.ok(node);
+    });
+
+    it('Renders next buttons', async () => {
+      element.next = next;
+      await nextFrame();
+      const node = element.shadowRoot.querySelector('.bottom-link.next');
+      assert.ok(node);
+    });
+
+    it('Does not render previous for next only', async () => {
+      element.next = next;
+      await nextFrame();
+      const node = element.shadowRoot.querySelector('.bottom-link.previous');
+      assert.notOk(node);
+    });
+
+    it('Does not render next for previous only', async () => {
+      element.previous = prev;
+      await nextFrame();
+      const node = element.shadowRoot.querySelector('.bottom-link.next');
+      assert.notOk(node);
+    });
+
+    it('_navigatePrevious() calls _navigate()', async () => {
+      element.previous = prev;
+      await nextFrame();
+      const spy = sinon.spy(element, '_navigate');
+      element._navigatePrevious();
+      assert.isTrue(spy.called);
+      assert.equal(spy.args[0][0], prev.id, 'ID argument is set');
+      assert.equal(spy.args[0][1], 'method', 'method argument is set');
+    });
+
+    it('_navigateNext() calls _navigate()', async () => {
+      element.next = next;
+      await nextFrame();
+      const spy = sinon.spy(element, '_navigate');
+      element._navigateNext();
+      assert.isTrue(spy.called);
+      assert.equal(spy.args[0][0], next.id);
+      assert.equal(spy.args[0][1], 'method');
+    });
+  });
+
+  describe('_navigate()', () => {
+    let element;
+    beforeEach(async () => {
+      element = await basicFixture();
+    });
+
+    it('Disaptches api-navigation-selection-changed event', () => {
+      const spy = sinon.spy();
+      element.addEventListener('api-navigation-selection-changed', spy);
+      element._navigate('test-id', 'method');
+      assert.isTrue(spy.called);
+    });
+
+    it('Event has selected property', () => {
+      const spy = sinon.spy();
+      element.addEventListener('api-navigation-selection-changed', spy);
+      element._navigate('test-id', 'method');
+      assert.equal(spy.args[0][0].detail.selected, 'test-id');
+    });
+
+    it('Event has type property', () => {
+      const spy = sinon.spy();
+      element.addEventListener('api-navigation-selection-changed', spy);
+      element._navigate('test-id', 'method');
+      assert.equal(spy.args[0][0].detail.type, 'method');
+    });
+
+    it('Event bubbles', () => {
+      const spy = sinon.spy();
+      element.addEventListener('api-navigation-selection-changed', spy);
+      element._navigate('test-id', 'method');
+      assert.isTrue(spy.args[0][0].bubbles);
+    });
+
+    it('Event is composed', () => {
+      const spy = sinon.spy();
+      element.addEventListener('api-navigation-selection-changed', spy);
+      element._navigate('test-id', 'method');
+      const composed = spy.args[0][0].bubbles;
+      if (composed !== undefined) { // Edge
+        assert.isTrue(composed);
+      }
+    });
+  });
+
+  describe('_titleHidden', () => {
+    let element;
+    beforeEach(async () => {
+      element = await basicFixture();
+    });
+
+    it('returns false when with try it button', () => {
+      element.methodName = 'test';
+      element.httpMethod = 'other';
+      assert.isFalse(element._titleHidden);
+    });
+
+    it('returns false when "noTryIt"', () => {
+      element.noTryIt = true;
+      element.methodName = 'test';
+      element.httpMethod = 'other';
+      assert.isFalse(element._titleHidden);
+    });
+
+    it('returns true when names are equal', () => {
+      element.noTryIt = true;
+      element.methodName = 'test';
+      element.httpMethod = 'test';
+      assert.isTrue(element._titleHidden);
+    });
+
+    it('returns true when no method name methodName', () => {
+      element.noTryIt = true;
+      element.methodName = '';
+      element.httpMethod = 'test';
+      assert.isTrue(element._titleHidden);
+    });
+
+    it('returns true when no method name httpMethod', () => {
+      element.noTryIt = true;
+      element.methodName = 'test';
+      element.httpMethod = '';
+      assert.isTrue(element._titleHidden);
+    });
+  });
+
+  [
+    ['Compact model', true],
+    ['Full model', false]
+  ].forEach(([label, compact]) => {
+    describe(label, () => {
+      const demoApi = 'demo-api';
+      const driveApi = 'google-drive-api';
+
+      describe('Basic AMF computations', () => {
+        let amf;
+        before(async () => {
+          amf = await AmfLoader.load(demoApi, compact);
+        });
+
+        let element;
+        beforeEach(async () => {
+          const [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, '/people', 'get');
+          element = await modelFixture(amf, endpoint, method);
+          // model change debouncer
+          await aTimeout();
+        });
+
+        it('methodName is computed', () => {
+          assert.equal(element.methodName, 'List people');
+        });
+
+        it('httpMethod is computed', () => {
+          assert.equal(element.httpMethod, 'GET');
+        });
+
+        it('endpointUri is computed', () => {
+          assert.equal(element.endpointUri, 'http://{instance}.domain.com/v1/people');
+        });
+
+        it('description is computed', () => {
+          assert.typeOf(element.description, 'string');
+        });
+
+        it('hasCustomProperties is computed', () => {
+          assert.isTrue(element.hasCustomProperties);
+        });
+
+        it('expects is computed', () => {
+          assert.typeOf(element.expects, 'object');
+        });
+
+        it('server is computed', () => {
+          assert.typeOf(element.server, 'object');
+        });
+
+        it('serverVariables is computed', () => {
+          assert.typeOf(element.serverVariables, 'array');
+        });
+
+        it('endpointVariables is not computed', () => {
+          assert.isUndefined(element.endpointVariables);
+        });
+
+        it('hasPathParameters is true', () => {
+          assert.isTrue(element.hasPathParameters);
+        });
+
+        it('queryParameters is computed', () => {
+          assert.typeOf(element.queryParameters, 'array');
+        });
+
+        it('hasParameters is true', () => {
+          assert.isTrue(element.hasParameters);
+        });
+
+        it('headers is computed', () => {
+          assert.typeOf(element.headers, 'array');
+        });
+
+        it('returns is computed', () => {
+          assert.typeOf(element.returns, 'array');
+        });
+      });
+
+      describe('Payload related computations', () => {
+        let amf;
+        before(async () => {
+          amf = await AmfLoader.load(demoApi, compact);
+        });
+
+        let element;
+        beforeEach(async () => {
+          const [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, '/people/{personId}', 'put');
+          element = await modelFixture(amf, endpoint, method);
+          // model change debouncer
+          await aTimeout();
+        });
+
+        it('endpointVariables is computed', () => {
+          assert.typeOf(element.endpointVariables, 'array');
+        });
+
+        it('payload is computed', () => {
+          assert.typeOf(element.payload, 'array');
+        });
+
+        it('renders api-body-document', () => {
+          const node = element.shadowRoot.querySelector('api-body-document');
+          assert.ok(node);
+        });
+      });
+
+      describe('Changing selection', () => {
+        let amf;
+        before(async () => {
+          amf = await AmfLoader.load(demoApi, compact);
+        });
+
+        let element;
+        beforeEach(async () => {
+          const [prevEndpoint, prevMethod] = AmfLoader.lookupEndpointOperation(amf, '/people', 'get');
+          element = await modelFixture(amf, prevEndpoint, prevMethod);
+          // model change debouncer
+          await aTimeout();
+          const [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, '/products', 'post');
+          element.endpoint = endpoint;
+          element.method = method;
+          await aTimeout();
+        });
+
+        it('methodName is computed', () => {
+          assert.equal(element.methodName, 'Create product');
+        });
+
+        it('httpMethod is computed', () => {
+          assert.equal(element.httpMethod, 'POST');
+        });
+
+        it('endpointUri is computed', () => {
+          assert.equal(element.endpointUri, 'http://{instance}.domain.com/v1/products');
+        });
+
+        it('description is computed', () => {
+          assert.typeOf(element.description, 'string');
+        });
+      });
+
+      describe('DOM content', () => {
+        let amf;
+        before(async () => {
+          amf = await AmfLoader.load(demoApi, compact);
+        });
+
+        let element;
+        beforeEach(async () => {
+          const [prevEndpoint, prevMethod] = AmfLoader.lookupEndpointOperation(amf, '/people', 'get');
+          element = await modelFixture(amf, prevEndpoint, prevMethod);
+          await aTimeout();
+        });
+
+        it('method-name label is rendered', () => {
+          const node = element.shadowRoot.querySelector('.title');
+          assert.ok(node);
+          assert.equal(node.innerText.toLowerCase(), 'list people');
+        });
+
+        it('api-annotation-document is rendered', () => {
+          const node = element.shadowRoot.querySelector('api-annotation-document');
+          assert.ok(node);
+        });
+
+        it('renders arc-marked', () => {
+          const node = element.shadowRoot.querySelector('arc-marked');
+          assert.ok(node);
+        });
+
+        it('api-headers-document is rendered', () => {
+          const node = element.shadowRoot.querySelector('api-headers-document');
+          assert.ok(node);
+        });
+
+        it('api-parameters-document is rendered', () => {
+          const node = element.shadowRoot.querySelector('api-parameters-document');
+          assert.ok(node);
+        });
+
+        it('api-body-document is not rendered', () => {
+          const node = element.shadowRoot.querySelector('api-body-document');
+          assert.notOk(node);
+        });
+
+        it('api-responses-document is rendered', () => {
+          const node = element.shadowRoot.querySelector('api-responses-document');
+          assert.ok(node);
+        });
+      });
+
+      describe('Base URI property', () => {
+        let amf;
+        before(async () => {
+          amf = await AmfLoader.load(demoApi, compact);
+        });
+
+        let endpoint;
+        let method;
+        beforeEach(() => {
+          [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, '/people/{personId}', 'put');
+        });
+
+        afterEach(() => {
+          new IronMeta({ key: 'ApiBaseUri' }).value = undefined;
+        });
+
+        it('sets URL from base uri', async () => {
+          const element = await baseUriFixture(amf, endpoint, method);
+          await aTimeout();
+          assert.equal(element.endpointUri, 'https://domain.com/people/{personId}');
+        });
+
+        it('sets URL from iron meta', async () => {
+          new IronMeta({ key: 'ApiBaseUri' }).value = 'https://meta.com/base';
+          const element = await modelFixture(amf, endpoint, method);
+          await aTimeout();
+          assert.equal(element.endpointUri, 'https://meta.com/base/people/{personId}');
+        });
+
+        it('sets URL from base uri even when iron meta', async () => {
+          new IronMeta({ key: 'ApiBaseUri' }).value = 'https://meta.com/base';
+          const element = await baseUriFixture(amf, endpoint, method);
+          await aTimeout();
+          assert.equal(element.endpointUri, 'https://domain.com/people/{personId}');
+        });
+      });
+
+      describe('Code snippets', () => {
+        let amf;
+        before(async () => {
+          amf = await AmfLoader.load(demoApi, compact);
+        });
+
+        let element;
+        beforeEach(async () => {
+          const [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, '/people', 'get');
+          element = await codeSnippetsFixture(amf, endpoint, method);
+          // model change debouncer
+          await aTimeout();
+        });
+
+        it('renders snippets section', async () => {
+          const node = element.shadowRoot.querySelector('.snippets');
+          assert.ok(node);
+        });
+
+        it('sets _renderSnippets when opening snippets', async () => {
+          const button = element.shadowRoot.querySelector('.snippets .title-area-actions anypoint-button');
+          MockInteractions.tap(button);
+          assert.isTrue(element._renderSnippets);
+        });
+
+        it('eventually sets _snippetsOpened', async () => {
+          const button = element.shadowRoot.querySelector('.snippets .title-area-actions anypoint-button');
+          MockInteractions.tap(button);
+          await aTimeout();
+          assert.isTrue(element._snippetsOpened);
+        });
+
+        it('renders code snippets', async () => {
+          const button = element.shadowRoot.querySelector('.snippets .title-area-actions anypoint-button');
+          MockInteractions.tap(button);
+          await aTimeout();
+          const node = element.shadowRoot.querySelector('http-code-snippets');
+          assert.ok(node);
+        });
+
+        it('_computeSnippetsHeaders() returns a value', () => {
+          const result = element._computeSnippetsHeaders(element.headers);
+          assert.equal(result, 'x-people-op-id: 9719fa6f-c666-48e0-a191-290890760b30\n');
+        });
+      });
+
+      describe('_computeSnippetsPayload()', () => {
+        let amf;
+        before(async () => {
+          amf = await AmfLoader.load(demoApi, compact);
+        });
+
+        let element;
+        beforeEach(async () => {
+          element = await codeSnippetsFixture(amf);
+        });
+
+        it('uses first payload in array', () => {
+          const payload = AmfLoader.lookupPayload(amf, '/people', 'post');
+          const result = element._computeSnippetsPayload(payload);
+          assert.typeOf(result, 'string');
+        });
+
+        it('Computes example for JSON value', () => {
+          const payload = AmfLoader.lookupPayload(amf, '/people', 'post');
+          const result = element._computeSnippetsPayload(payload[0]);
+          assert.equal(result,
+            '{\n  "etag": "",\n  "tagline": "",\n  "name": "John Smith",\n  "url": ' +
+            '"",\n  "id": "",\n  "language": "",\n  "birthday": "",\n  "image": {\n    ' +
+            '"url": "",\n    "thumb": ""\n  },\n  "gender": ""\n}');
+        });
+
+        it('Computes example for XML value', () => {
+          const payload = AmfLoader.lookupPayload(amf, '/people', 'post');
+          const result = element._computeSnippetsPayload(payload[1]);
+          assert.equal(result,
+            '<?xml version="1.0" encoding="UTF-8"?>\n<resource error="false" type="AppPerson">\n  ' +
+            '<id>Qawer63J73HJ6khjswuqyq62382jG21s</id>\n  <name>John Smith</name>\n  ' +
+            '<birthday>1990-10-12</birthday>\n  <gender>male</gender>\n  ' +
+            '<url>https://www.domain.com/people/Qawer63J73HJ6khjswuqyq62382jG21s</url>\n  <image>\n    ' +
+            '<url>https://www.domain.com/people/Qawer63J73HJ6khjswuqyq62382jG21s/image</url>\n    ' +
+            '<thumb>https://www.domain.com/people/Qawer63J73HJ6khjswuqyq62382jG21s/image/thumb</thumb>\n  ' +
+            '</image>\n  <tagline>Hi, I\'m John!</tagline>\n  <language>en_US</language>\n</resource>\n');
+        });
+
+        it('Uses application/json as default media type', () => {
+          const payload = AmfLoader.lookupPayload(amf, '/people', 'post')[0];
+          const key = element._getAmfKey(element.ns.raml.vocabularies.http + 'mediaType');
+          delete payload[key];
+          const result = element._computeSnippetsPayload(payload);
+          assert.equal(result,
+            '{\n  "etag": "",\n  "tagline": "",\n  "name": "John Smith",\n  "url": ' +
+            '"",\n  "id": "",\n  "language": "",\n  "birthday": "",\n  "image": {\n    ' +
+            '"url": "",\n    "thumb": ""\n  },\n  "gender": ""\n}');
+        });
+
+        it('Returns undefined for empty argument', () => {
+          const result = element._computeSnippetsPayload();
+          assert.isUndefined(result);
+        });
+      });
+
+      describe('Security documentation', () => {
+        let amf;
+        before(async () => {
+          amf = await AmfLoader.load(demoApi, compact);
+        });
+
+        let element;
+        beforeEach(async () => {
+          const [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, '/people/{personId}', 'get');
+          element = await renderSecurityFixture(amf, endpoint, method);
+          // model change debouncer
+          await aTimeout();
+        });
+
+        it('computes security', () => {
+          assert.typeOf(element.security, 'array');
+          assert.lengthOf(element.security, 2);
+        });
+
+        it('renders security section', () => {
+          const section = element.shadowRoot.querySelector('.security');
+          assert.ok(section);
+        });
+
+        it('toggle button toggles the state', () => {
+          const section = element.shadowRoot.querySelector('.security .section-title-area');
+          MockInteractions.tap(section);
+          assert.isTrue(element.securityOpened);
+        });
+      });
+
+      describe('Traits computation', () => {
+        let amf;
+        let element;
+        before(async () => {
+          amf = await AmfLoader.load(driveApi, compact);
+          const [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, '/files', 'post');
+          element = await renderSecurityFixture(amf, endpoint, method);
+          // model change debouncer
+          await aTimeout();
+        });
+
+        it('renders traits section', () => {
+          const section = element.shadowRoot.querySelector('.extensions');
+          assert.ok(section);
+        });
+
+        it('computes traits property', () => {
+          assert.typeOf(element.traits, 'array');
+        });
+
+        it('render names', () => {
+          const label = element.shadowRoot.querySelector('.extensions .trait-name');
+          assert.equal(label.textContent.trim(), 'file and visibility');
+        });
+      });
+    });
+  });
+});
