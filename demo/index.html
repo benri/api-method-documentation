@@ -1,208 +1,175 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-    <title>api-request-editor demo</title>
-    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
-    <link rel="import" href="../../shadycss/apply-shim.html">
-    <link rel="import" href="../../polymer/lib/elements/custom-style.html">
-    <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../../paper-styles/typography.html">
-    <link rel="import" href="../../raml-aware/raml-aware.html">
-    <link rel="import" href="../../api-navigation/api-navigation.html">
-    <link rel="import" href="../../paper-dropdown-menu/paper-dropdown-menu.html">
-    <link rel="import" href="../../paper-item/paper-item.html">
-    <link rel="import" href="../../paper-listbox/paper-listbox.html">
-    <link rel="import" href="../../neon-animation/web-animations.html">
-    <link rel="import" href="../../paper-toast/paper-toast.html">
-    <link rel="import" href="../../paper-toggle-button/paper-toggle-button.html">
-    <link rel="import" href="../../api-console-default-theme/api-console-default-theme.html">
-    <link rel="import" href="../api-method-documentation.html">
-    <custom-style>
-      <style is="custom-style" include="demo-pages-shared-styles">
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-      }
 
-      [role="main"] {
-        max-width: 1100px;
-        @apply --layout-horizontal;
-        @apply --layout-start;
-      }
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+  <title>api-method-documentation</title>
+  <script src="../node_modules/web-animations-js/web-animations-next.min.js"></script>
+  <style>
+  .main.centered {
+    max-width: 1440px !important;
+  }
 
-      api-navigation {
-        width: 320px;
-        min-width: 320px;
-        overflow: auto;
-      }
+  body.styled {
+    --anypoiont-dropdown-shaddow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+    --anypoiont-autocomplete-dropdown-shaddow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+    --arc-font-subhead-font-size: 16px;
+    --arc-font-subhead-font-weight: 400;
+    --arc-font-subhead-line-height: 24px;
+    --code-mirror-height: auto;
 
-      api-method-documentation {
-        margin-left: 40px;
-        @apply --layout-flex;
-      }
+    --arc-font-headline-font-size: 24px;
+    --arc-font-headline-font-weight: 400;
+    --arc-font-headline-letter-spacing: -.012em;
+    --arc-font-headline-line-height: 32px;
+    --arc-font-title-font-size: 20px;
+    --arc-font-title-font-weight: 500;
+    --arc-font-title-line-height: 28px;
+  }
 
-      header {
-        padding: 12px 24px;
-        background-color: #C5E1A5;
-        --iron-icon-fill-color: #3E2723;
-        --paper-input-container-focus-color: #33691E;
-        --paper-input-container-label: {
-          color: #3E2723;
-        };
-        @apply --layout-horizontal;
-        @apply --layout-center;
-      }
+  body.styled.dark output {
+    background-color: #3a3a3a;
+  }
 
-      .spacer {
-        @apply --layout-flex;
-      }
+  body.styled.dark {
+    --secondary-text-color: #616161;
+    --primary-background-color: #424242;
+    --code-background-color: #263238;
+    --code-color: #fff;
 
-      .options {
-        @apply --layout-horizontal;
-        @apply --layout-center;
-      }
-      .options > * {
-        margin-left: 8px;
-      }
-      </style>
-    </custom-style>
-  </head>
-  <body>
-    <dom-bind id="demo">
-      <template is="dom-bind">
-        <header>
-          <paper-dropdown-menu label="Select demo endpoint">
-            <paper-listbox slot="dropdown-content" id="enpointsList" on-selected-changed="_apiChanged">
-              <paper-item data-src="demo-api.json">Demo api</paper-item>
-              <paper-item data-src="demo-api-compact.json">Demo api - compact model</paper-item>
-              <paper-item data-src="array-body.json">Body with array</paper-item>
-              <paper-item data-src="array-body-compact.json">Body with array - compact model</paper-item>
-              <paper-item data-src="nexmo-sms-api.json">Nexmo SMS API</paper-item>
-              <paper-item data-src="nexmo-sms-api-compact.json">Nexmo SMS API - compact model</paper-item>
-              <paper-item data-src="appian-api.json">Appian API</paper-item>
-              <paper-item data-src="appian-api-compact.json">Appian API - compact model</paper-item>
-              <paper-item data-src="loan-microservice.json">Loan microservice</paper-item>
-              <paper-item data-src="loan-microservice-compact.json">Loan microservice - compact model</paper-item>
-            </paper-listbox>
-          </paper-dropdown-menu>
-          <div class="spacer"></div>
-          <div class="options">
-            <paper-toggle-button checked="{{codeSnippets}}">Render code examples</paper-toggle-button>
-            <paper-toggle-button checked="{{renderSecurity}}">Render security doc</paper-toggle-button>
-            <paper-toggle-button checked="{{narrow}}">Render narrow view</paper-toggle-button>
-            <paper-toggle-button checked="{{noTryit}}">No try it button</paper-toggle-button>
-          </div>
-        </header>
-        <div class="vertical-section-container centered" role="main">
-          <raml-aware raml="{{amfModel}}" scope="model"></raml-aware>
-          <api-navigation aware="model" endpoints-opened></api-navigation>
-          <template is="dom-if" if="[[hasData]]">
-            <api-method-documentation aware="model" endpoint="[[endpoint]]" method="[[method]]" previous="[[previous]]" next="[[next]]" render-code-snippets="[[codeSnippets]]" narrow="[[narrow]]" render-security="[[renderSecurity]]" no-try-it="[[noTryit]]"></api-method-documentation>
-          </template>
-          <template is="dom-if" if="[[!hasData]]">
-            <p>Select a HTTP method in the navigation to see the demo.</p>
-          </template>
-        </div>
-        <paper-toast text="Try it event detected" id="tryItToast"></paper-toast>
+    --anypoint-input-legacy-label-color: #F5F5F5;
+    --arc-interactive-demo-options-color: #F5F5F5;
+    --anypoint-checkbox-label-color:  #F5F5F5;
+    --anypoint-input-background-color: #494949;
+    --anypoint-input-label-color: #fff;
+    --anypoint-input-input-color: #fff;
+    --anypoint-input-border-bottom-color: #fff;
+    --anypoint-input-focused-border-bottom-color: #fff;
+    --anypoint-input-label-background-color: rgb(66, 66, 66);
+    --anypoint-input-legacy-focus-background-color: #3a3b3c;
+    --anypoint-input-legacy-focus-border-color: #178bea;
+    --anypoint-input-info-message-color: #fff;
 
-        <demo-element id="helper" amf-model="{{amfModel}}"></demo-element>
-      </template>
-    </dom-bind>
-    <script>
-    (function(app) {
-      const ns = ApiElements.Amf.ns;
-      class DemoElement extends ApiElements.AmfHelperMixin(Polymer.Element) {}
-      window.customElements.define('demo-element', DemoElement);
+    --anypoint-dropdown-menu-background-color: #494949;
+    --anypoint-dropdown-menu-label-background-color: var(--primary-background-color);
+    --anypoint-listbox-background-color: #494949;
+    --anypoint-dropdown-menu-focus-background-color: #9E9E9E;
+    --anypoint-dropdown-menu-label-color: #fff;
+    --anypoint-dropdown-menu-info-message-color: #fff;
+    --anypoint-item-hover-background-color: #9E9E9E;
+    --anypoiont-autocomplete-background-color: #494949;
+    --anypoint-icon-button-emphasis-low-color: #fff;
 
-      app.hasData = false;
-      app._load = function() {
-        document.getElementById('enpointsList').selected = 0;
-      };
-      app._loadFile = function(file) {
-        fetch('./' + file)
-        .then((response) => response.json())
-        .then((data) => {
-          app.amfModel = data;
-        });
-      };
-      app._apiChanged = function(e) {
-        const file = e.target.selectedItem.dataset.src;
-        app._loadFile(file);
-      };
-      app._navChanged = function(e) {
-        const type = e.detail.type;
-        if (type === 'method') {
-          app.setData(e.detail.selected);
-          app.hasData = true;
-        } else {
-          app.hasData = false;
-        }
-      };
-      app.setData = function(id) {
-        const webApi = app.$.helper._computeWebApi(app.amfModel);
-        const endpoint = app.$.helper._computeMethodEndpoint(webApi, id);
-        if (!endpoint) {
-          app.endpoint = undefined;
-          app.method = undefined;
-          return;
-        }
-        app.endpoint = endpoint;
+    --code-mirror-background-color: #37474F;
+    --code-mirror-string-color: #C3E88D;
+    --code-mirror-punctuation-color: #EEFFFF;
+    --code-mirror-atom-color: #F07178;
+    --code-mirror-number-color: #F78C6A;
+    --code-mirror-cursor-color: #009688;
+    --code-mirror-gutters-background-color: #37474F;
 
-        const methods = app.$.helper._computeOperations(webApi, endpoint['@id']);
+    --api-type-document-type-attribute-color: #fff;
+    --api-annotation-document-color: #fff;
+    --api-body-document-description-color: #fff;
+    --api-method-documentation-description-color: #fff;
+    --api-method-documentation-bottom-navigation-color: #fff;
 
-        let last;
-        for (let i = 0, len = methods.length; i < len; i++) {
-          let item = methods[i];
-          if (item['@id'] !== id) {
-            last = item;
-            continue;
-          }
-          app.method = item;
-          app._setPrevious(last);
-          app._setNext(methods[i + 1]);
-          break;
-        }
-      };
-      app._setPrevious = function(item) {
-        if (!item) {
-          app.previous = undefined;
-          return;
-        }
-        let name = app.$.helper._getValue(item, ns.schema.schemaName);
-        if (!name) {
-          name = app.$.helper._getValue(item, ns.w3.hydra.core + 'method');
-        }
-        app.previous = {
-          id: item['@id'],
-          label: name
-        };
-      };
-      app._setNext = function(item) {
-        if (!item) {
-          app.next = undefined;
-          return;
-        }
-        let name = app.$.helper._getValue(item, ns.schema.schemaName);
-        if (!name) {
-          name = app.$.helper._getValue(item, ns.w3.hydra.core + 'method');
-        }
-        app.next = {
-          id: item['@id'],
-          label: name
-        };
-      };
-      app._tryitRequested = function() {
-        app.$.tryItToast.opened = true;
-      };
-      window.addEventListener('WebComponentsReady', () => app._load());
-      window.addEventListener('api-navigation-selection-changed', app._navChanged);
-      window.addEventListener('tryit-requested', app._tryitRequested);
-    })(document.getElementById('demo'));
-  </script>
-  </body>
+    --http-method-label-get-background-color: rgb(0, 128, 0);
+    --http-method-label-get-color: #fff;
+    --http-method-label-post-background-color: rgb(33, 150, 243);
+    --http-method-label-post-color: #fff;
+    --http-method-label-put-background-color: rgb(255, 165, 0);
+    --http-method-label-put-color: #fff;
+    --http-method-label-delete-background-color: rgb(244, 67, 54);
+    --http-method-label-delete-color: #fff;
+    --iron-icon-fill-color: #fff;
+    --api-method-documentation-url-background-color: var(--code-background-color);
+    --markdown-styles-code-text-shadow: none;
+
+    --http-code-snippet-code-text-shadow: #fff;
+    --http-code-snippet-container-background-color: var(--code-background-color);
+    --http-code-snippet-code-function-color: #82AAFF;
+    --http-code-snippet-code-keyword-color: #C792EA;
+    --http-code-snippet-code-cdata-color: #adb9c5;
+
+    --api-type-document-property-parent-color: #fff;
+  }
+
+  body.styled.anypoint {
+    font-family: var(--font-family);
+    font-size: var(--font-body-font-size);
+    --primary-color: var(--anypoint-color-primary);
+    --secondary-color: var(--anypoint-color-secondary);
+    --primary-background-color: var(--anypoint-color-tertiary);
+    --accent-color: var(--anypoint-color-violet3);
+
+    --arc-font-body1-font-size: var(--font-body-font-size);
+    --arc-font-body1-font-weight: var(--font-body-font-weight);
+    --arc-font-body1-line-height: 20px;
+    --arc-font-code-family: var(--font-code-family);
+
+    --arc-font-headline-font-size: var(--font-header1-font-size);
+    --arc-font-headline-font-weight: var(--font-header1-font-weight);
+    --arc-font-headline-letter-spacing: var(--font-header1-letter-spacing);
+    --arc-font-headline-line-height: 32px;
+
+    --arc-font-subhead-font-size: var(--font-header4-font-size);
+    --arc-font-subhead-font-weight: var(--font-header4-font-weight);
+    --arc-font-subhead-line-height: 24px;
+
+    /* HTTP methods colors */
+    --method-display-selected-color: #fff;
+    --method-display-get-color: var(--anypoint-color-viridian3);
+    --method-display-post-color: var(--anypoint-color-violet3);
+    --method-display-put-color: var(--anypoint-color-yellow3);
+    --method-display-patch-color: var(--anypoint-color-indigo3);
+    --method-display-delete-color: var(--anypoint-color-red3);
+    --method-display-options-color: var(--anypoint-color-teal3);
+    --method-display-head-color: var(--anypoint-color-futureGreen3);
+    /* HTTP methods colors in method documentation panel */
+    --http-method-label-border-radius: 1px;
+    --http-method-label-get-background-color: var(--method-display-get-color);
+    --http-method-label-get-color: #fff;
+    --http-method-label-post-background-color: var(--method-display-post-color);
+    --http-method-label-post-color: #fff;
+    --http-method-label-put-background-color: var(--method-display-put-color);
+    --http-method-label-put-color: #fff;
+    --http-method-label-patch-background-color: var(--method-display-patch-color);
+    --http-method-label-patch-color: #fff;
+    --http-method-label-delete-background-color: var(--method-display-delete-color);
+    --http-method-label-delete-color: #fff;
+    --http-method-label-options-background-color: var(--method-display-options-color);
+    --http-method-label-options-color: #fff;
+    --http-method-label-head-background-color: var(--method-display-head-color);
+    --http-method-label-head-color: #fff;
+    --http-method-label-padding: 4px 5px;
+    --method-display-font-weigth: 100;
+
+    --api-navigation-list-item-selected-background-color: #e8e9ea;
+    --api-method-documentation-url-border-radius: 0;
+
+    --api-method-documentation-section-background-color: #f9fafb;
+    --api-method-documentation-section-padding: 5px;
+
+    --code-background-color: #f4f5f6;
+    --api-type-document-type-background-color: transparent;
+    --api-type-document-type-color: #000;
+    --api-type-document-trait-data-type-font-weight: 400;
+    --api-type-document-trait-data-type-padding: 2px 0;
+    --property-shape-document-object-color: transparent;
+    --property-shape-document-array-color: transparent;
+    --property-shape-document-union-color: transparent;
+  }
+
+  api-method-documentation {
+    width: 700px;
+  }
+  </style>
+</head>
+
+<body class="styled">
+  <div id="demo"></div>
+  <script type="module" src="index.js"></script>
+
 </html>
