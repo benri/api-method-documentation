@@ -473,12 +473,29 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
        */
       traits: { type: Array },
       /**
-       * When set it enables Anypoint compatibility theme
+       * Enables compatibility with Anypoint components.
        */
-      legacy: { type: Boolean, reflect: true },
+      compatibility: { type: Boolean },
+      /**
+       * @deprecated Use `compatibility` instead
+       */
+      legacy: { type: Boolean },
+      /**
+       * When enabled it renders external types as links and dispatches
+       * `api-navigation-selection-changed` when clicked.
+       */
+      graph: { type: Boolean },
 
       _renderSnippets: { type: Boolean }
     };
+  }
+
+  get legacy() {
+    return this.compatibility;
+  }
+
+  set legacy(value) {
+    this.compatibility = value;
   }
 
   get method() {
@@ -893,7 +910,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     const {
       methodName,
       noTryIt,
-      legacy
+      compatibility
     } = this;
     return html`
     <div class="title-area">
@@ -903,7 +920,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
           class="action-button"
           @click="${this._tryIt}"
           emphasis="high"
-          ?legacy="${legacy}">Try it</anypoint-button>
+          ?compatibility="${compatibility}">Try it</anypoint-button>
       </div>`}
     </div>
     `;
@@ -952,7 +969,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       httpMethod,
       headers,
       payload,
-      legacy
+      compatibility
     } = this;
     const label = this._computeToggleActionLabel(_snippetsOpened);
     const iconClass = this._computeToggleIconClass(_snippetsOpened);
@@ -960,7 +977,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       <div class="section-title-area" @click="${this._toggleSnippets}" title="Toogle code example details">
         <div class="heading3 table-title" role="heading" aria-level="2">Code examples</div>
         <div class="title-area-actions">
-          <anypoint-button class="toggle-button" ?legacy="${legacy}">
+          <anypoint-button class="toggle-button" ?compatibility="${compatibility}">
             ${label}
             <iron-icon icon="arc:expand-more" class="${iconClass}"></iron-icon>
           </anypoint-button>
@@ -981,14 +998,14 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     if (!renderSecurity || !security || !security.length) {
       return html``;
     }
-    const { securityOpened, legacy, amf, narrow } = this;
+    const { securityOpened, compatibility, amf, narrow } = this;
     const label = this._computeToggleActionLabel(securityOpened);
     const icon = this._computeToggleIconClass(securityOpened);
     return html`<section class="security">
       <div class="section-title-area" @click="${this._toggleSecurity}" title="Toogle security details">
         <div class="heading3 table-title" role="heading" aria-level="2">Security</div>
         <div class="title-area-actions">
-          <anypoint-button class="toggle-button security" ?legacy="${legacy}">
+          <anypoint-button class="toggle-button security" ?compatibility="${compatibility}">
             ${label}
             <iron-icon icon="arc:expand-more" class="${icon}"></iron-icon>
           </anypoint-button>
@@ -999,7 +1016,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
           .amf="${amf}"
           .security="${item}"
           ?narrow="${narrow}"
-          ?legacy="${legacy}"></api-security-documentation>`)}
+          ?legacy="${compatibility}"></api-security-documentation>`)}
       </iron-collapse>
     </section>`;
   }
@@ -1014,7 +1031,8 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       queryParameters,
       amf,
       narrow,
-      legacy
+      compatibility,
+      graph
     } = this;
     return html`<api-parameters-document
       .amf="${amf}"
@@ -1024,7 +1042,8 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       .endpointParameters="${endpointVariables}"
       .queryParameters="${queryParameters}"
       ?narrow="${narrow}"
-      ?legacy="${legacy}"></api-parameters-document>`;
+      ?legacy="${compatibility}"
+      ?graph="${graph}"></api-parameters-document>`;
   }
 
   _getHeadersTemplate() {
@@ -1035,13 +1054,15 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     const {
       amf,
       narrow,
-      legacy
+      compatibility,
+      graph
     } = this;
     return html`<api-headers-document
       opened
       .amf="${amf}"
       ?narrow="${narrow}"
-      ?legacy="${legacy}"
+      ?compatibility="${compatibility}"
+      ?graph="${graph}"
       .headers="${headers}"></api-headers-document>`;
   }
 
@@ -1053,13 +1074,15 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     const {
       amf,
       narrow,
-      legacy
+      compatibility,
+      graph
     } = this;
     return html`<api-body-document
       opened
       .amf="${amf}"
       ?narrow="${narrow}"
-      ?legacy="${legacy}"
+      ?compatibility="${compatibility}"
+      ?graph="${graph}"
       .body="${payload}"></api-body-document>`;
   }
 
@@ -1071,14 +1094,16 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     const {
       amf,
       narrow,
-      legacy
+      compatibility,
+      graph
     } = this;
     return html`<section class="response-documentation">
       <div class="heading2" role="heading" aria-level="1">Response</div>
       <api-responses-document
         .amf="${amf}"
         ?narrow="${narrow}"
-        ?legacy="${legacy}"
+        ?compatibility="${compatibility}"
+        ?graph="${graph}"
         .returns="${returns}"></api-responses-document>
     </section>`;
   }
@@ -1088,10 +1113,10 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     if (!next && !previous) {
       return;
     }
-    const { legacy } = this;
+    const { compatibility } = this;
     return html`<section class="bottom-nav">
       ${previous ? html`<div class="bottom-link previous" @click="${this._navigatePrevious}">
-        <anypoint-icon-button title="${previous.label}" ?legacy="${legacy}">
+        <anypoint-icon-button title="${previous.label}" ?compatibility="${compatibility}">
           <iron-icon icon="arc:chevron-left"></iron-icon>
         </anypoint-icon-button>
         <span class="nav-label">${previous.label}</span>
@@ -1099,7 +1124,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       <div class="nav-separator"></div>
       ${next ? html`<div class="bottom-link next" @click="${this._navigateNext}">
         <span class="nav-label">${next.label}</span>
-        <anypoint-icon-button title="${next.label}" ?legacy="${legacy}">
+        <anypoint-icon-button title="${next.label}" ?compatibility="${compatibility}">
           <iron-icon icon="arc:chevron-right"></iron-icon>
         </anypoint-icon-button>
       </div>` : ''}

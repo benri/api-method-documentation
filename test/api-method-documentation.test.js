@@ -133,6 +133,21 @@ describe('Basic authentication', function() {
     });
   });
 
+  describe('compatibility mode', () => {
+    it('sets compatibility on item when setting legacy', async () => {
+      const element = await basicFixture();
+      element.legacy = true;
+      assert.isTrue(element.legacy, 'legacy is set');
+      assert.isTrue(element.compatibility, 'compatibility is set');
+    });
+
+    it('returns compatibility value from item when getting legacy', async () => {
+      const element = await basicFixture();
+      element.compatibility = true;
+      assert.isTrue(element.legacy, 'legacy is set');
+    });
+  });
+
   describe('Bottom navigation', () => {
     const prev = { 'label': 'p', 'id': 'pp' };
     const next = { 'label': 'n', 'id': 'nn' };

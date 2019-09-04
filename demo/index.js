@@ -202,6 +202,7 @@ class ComponentDemo extends ApiDemoPageBase {
                 .renderSecurity="${renderSecurity}"
                 .noTryIt="${noTryit}"
                 ?legacy="${legacy}"
+                graph
                 @tryit-requested="${this._tryitRequested}"></api-method-documentation>
             </div>
             <label slot="options" id="mainOptionsLabel">Options</label>
