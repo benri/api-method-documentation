@@ -142,10 +142,11 @@ class ComponentDemo extends ApiDemoPageBase {
     return [
       ['google-drive-api', 'Google Drive'],
       ['demo-api', 'Demo API'],
-      ['appian-api', 'Applian API'],
+      ['appian-api', 'Appian API'],
       ['loan-microservice', 'Loan microservice (OAS)'],
       ['array-body', 'Request body with an array (reported issue)'],
-      ['nexmo-sms-api', 'Nexmo SMS API']
+      ['nexmo-sms-api', 'Nexmo SMS API'],
+      ['SE-12957', 'OAS query parameetrs documentation']
     ].map(([file, label]) => html`
       <paper-item data-src="${file}-compact.json">${label} - compact model</paper-item>
       <paper-item data-src="${file}.json">${label}</paper-item>

@@ -5,7 +5,7 @@ import { IronMeta } from '@polymer/iron-meta/iron-meta.js';
 import { AmfLoader } from './amf-loader.js';
 import '../api-method-documentation.js';
 
-describe('Basic authentication', function() {
+describe('<api-method-documentation>', function() {
   async function basicFixture() {
     return (await fixture(`<api-method-documentation></api-method-documentation>`));
   }
