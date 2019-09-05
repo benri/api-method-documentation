@@ -570,3 +570,12 @@
 
 
 
+## 3.0.2 (2019-09-05)
+
+
+### Bug Fixes
+
+* fixes parameters rendering for OAS ([839ecf9](https://github.com/advanced-rest-client/api-method-documentation/commit/839ecf9))
+
+
+
