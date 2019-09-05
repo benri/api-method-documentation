@@ -622,18 +622,25 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   _processEndpointChange() {
     this.__endpointProcessingDebouncer = false;
     const { endpoint } = this;
-    const endpointVariables = this.endpointVariables = this._computeEndpointVariables(endpoint);
     this.endpointUri = this._computeEndpointUri(this.server, endpoint, this.baseUri, this.apiVersion);
-    const hasPathParameters = this.hasPathParameters =
-      this._computeHasPathParameters(this.serverVariables, endpointVariables);
-    this.hasParameters = hasPathParameters || !(this.queryParameters && this.queryParameters.length);
+    this._processEndpointVariables();
   }
 
   _expectsChanged(expects) {
+    if (!this.endpointVariables) {
+      this._processEndpointVariables();
+    }
     this.headers = this._computeHeaders(expects);
     this.payload = this._computePayload(expects);
     const queryParameters = this.queryParameters = this._computeQueryParameters(expects);
-    this.hasParameters = this.hasPathParameters || !(queryParameters && queryParameters.length);
+    this.hasParameters = this.hasPathParameters || !!(queryParameters && queryParameters.length);
+  }
+
+  _processEndpointVariables() {
+    const endpointVariables = this.endpointVariables = this._computeEndpointVariables(this.endpoint, this.expects);
+    const hasPathParameters = this.hasPathParameters =
+      this._computeHasPathParameters(this.serverVariables, endpointVariables);
+    this.hasParameters = hasPathParameters || !!(this.queryParameters && this.queryParameters.length);
   }
 
   /**

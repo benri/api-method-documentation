@@ -1,7 +1,7 @@
 {
   "name": "@api-components/api-method-documentation",
   "description": "A HTTP method documentation build from AMF model",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "license": "Apache-2.0",
   "main": "api-method-documentation.js",
   "keywords": [
@@ -32,7 +32,7 @@
     "@advanced-rest-client/http-code-snippets": "^3.0.1",
     "@advanced-rest-client/markdown-styles": "^3.1.0",
     "@anypoint-web-components/anypoint-button": "^1.0.10",
-    "@api-components/amf-helper-mixin": "^3.1.6",
+    "@api-components/amf-helper-mixin": "^3.1.7",
     "@api-components/api-annotation-document": "^3.0.1",
     "@api-components/api-body-document": "^3.0.3",
     "@api-components/api-example-generator": "^3.0.2",
