@@ -256,6 +256,11 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
         color: var(--api-method-documentation-description-color, rgba(0, 0, 0, 0.74));
       }
 
+      .summary {
+        color: var(--api-method-documentation-description-color, rgba(0, 0, 0, 0.74));
+        font-size: 1.1rem;
+      }
+
       .method-label {
         margin-bottom: 0;
       }
@@ -485,6 +490,10 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
        * `api-navigation-selection-changed` when clicked.
        */
       graph: { type: Boolean },
+      /**
+       * OAS summary field.
+       */
+      methodSummary: { type: String },
 
       _renderSnippets: { type: Boolean }
     };
@@ -617,6 +626,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     this.security = this._computeSecurity(method);
     const extendsTypes = this.extendsTypes = this._computeExtends(method);
     this.traits = this._computeTraits(extendsTypes);
+    this.methodSummary = this._getValue(method, this.ns.raml.vocabularies.http + 'guiSummary');
   }
 
   _processEndpointChange() {
@@ -917,7 +927,8 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     const {
       methodName,
       noTryIt,
-      compatibility
+      compatibility,
+      methodSummary
     } = this;
     return html`
     <div class="title-area">
@@ -930,6 +941,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
           ?compatibility="${compatibility}">Try it</anypoint-button>
       </div>`}
     </div>
+    ${methodSummary ? html`<p class="summary">${methodSummary}</p>` : ''}
     `;
   }
 

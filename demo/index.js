@@ -146,7 +146,8 @@ class ComponentDemo extends ApiDemoPageBase {
       ['loan-microservice', 'Loan microservice (OAS)'],
       ['array-body', 'Request body with an array (reported issue)'],
       ['nexmo-sms-api', 'Nexmo SMS API'],
-      ['SE-12957', 'OAS query parameetrs documentation']
+      ['SE-12957', 'OAS query parameetrs documentation'],
+      ['SE-12959', 'OAS summary field']
     ].map(([file, label]) => html`
       <paper-item data-src="${file}-compact.json">${label} - compact model</paper-item>
       <paper-item data-src="${file}.json">${label}</paper-item>
