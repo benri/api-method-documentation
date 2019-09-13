@@ -603,7 +603,8 @@ describe('<api-method-documentation>', function() {
           assert.equal(result,
             '{\n  "etag": "",\n  "tagline": "",\n  "name": "John Smith",\n  "url": ' +
             '"",\n  "id": "",\n  "language": "",\n  "birthday": "",\n  "image": {\n    ' +
-            '"url": "",\n    "thumb": ""\n  },\n  "gender": ""\n}');
+            '"url": "https://domain.com/profile/pawel.psztyc/image",\n    ' +
+            '"thumb": "https://domain.com/profile/pawel.psztyc/image/thumb"\n  },\n  "gender": ""\n}');
         });
 
         it('Computes example for XML value', () => {
@@ -627,7 +628,8 @@ describe('<api-method-documentation>', function() {
           assert.equal(result,
             '{\n  "etag": "",\n  "tagline": "",\n  "name": "John Smith",\n  "url": ' +
             '"",\n  "id": "",\n  "language": "",\n  "birthday": "",\n  "image": {\n    ' +
-            '"url": "",\n    "thumb": ""\n  },\n  "gender": ""\n}');
+            '"url": "https://domain.com/profile/pawel.psztyc/image",\n    ' +
+            '"thumb": "https://domain.com/profile/pawel.psztyc/image/thumb"\n  },\n  "gender": ""\n}');
         });
 
         it('Returns undefined for empty argument', () => {
