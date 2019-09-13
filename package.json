@@ -43,7 +43,6 @@
     "@api-components/http-method-label": "^3.0.1",
     "@api-components/raml-aware": "^3.0.0",
     "@polymer/iron-collapse": "^3.0.0",
-    "@polymer/iron-icon": "^3.0.0",
     "lit-element": "^2.0.1",
     "lit-html": "^1.1.2"
   },

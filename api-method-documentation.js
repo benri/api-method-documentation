@@ -2,6 +2,7 @@ import { html, css, LitElement } from 'lit-element';
 import { AmfHelperMixin } from '@api-components/amf-helper-mixin/amf-helper-mixin.js';
 import markdownStyles from '@advanced-rest-client/markdown-styles/markdown-styles.js';
 import httpMethodStyles from '@api-components/http-method-label/http-method-label-common-styles.js';
+import { expandMore, chevronLeft, chevronRight } from '@advanced-rest-client/arc-icons/ArcIcons.js';
 import '@api-components/raml-aware/raml-aware.js';
 import '@api-components/api-annotation-document/api-annotation-document.js';
 import '@api-components/api-body-document/api-body-document.js';
@@ -11,11 +12,9 @@ import '@api-components/api-responses-document/api-responses-document.js';
 import '@advanced-rest-client/arc-marked/arc-marked.js';
 import '@anypoint-web-components/anypoint-button/anypoint-icon-button.js';
 import '@anypoint-web-components/anypoint-button/anypoint-button.js';
-import '@advanced-rest-client/arc-icons/arc-icons.js';
 import '@advanced-rest-client/http-code-snippets/http-code-snippets.js';
 import '@advanced-rest-client/clipboard-copy/clipboard-copy.js';
 import '@polymer/iron-collapse/iron-collapse.js';
-import '@polymer/iron-icon/iron-icon.js';
 import '@api-components/api-security-documentation/api-security-documentation.js';
 import '@api-components/api-example-generator/api-example-generator.js';
 /**
@@ -319,6 +318,13 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       .response-documentation {
         background-color: var(--api-method-documentation-section-background-color, initial);
         padding: var(--api-method-documentation-section-padding, 0px);
+      }
+
+      .icon {
+        display: block;
+        width: 24px;
+        height: 24px;
+        fill: currentColor;
       }`
     ];
   }
@@ -998,7 +1004,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
         <div class="title-area-actions">
           <anypoint-button class="toggle-button" ?compatibility="${compatibility}">
             ${label}
-            <iron-icon icon="arc:expand-more" class="${iconClass}"></iron-icon>
+            <span class="icon ${iconClass}">${expandMore}</span>
           </anypoint-button>
         </div>
       </div>
@@ -1020,14 +1026,14 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     }
     const { securityOpened, compatibility, amf, narrow } = this;
     const label = this._computeToggleActionLabel(securityOpened);
-    const icon = this._computeToggleIconClass(securityOpened);
+    const iconClass = this._computeToggleIconClass(securityOpened);
     return html`<section class="security">
       <div class="section-title-area" @click="${this._toggleSecurity}" title="Toogle security details">
         <div class="heading3 table-title" role="heading" aria-level="2">Security</div>
         <div class="title-area-actions">
           <anypoint-button class="toggle-button security" ?compatibility="${compatibility}">
             ${label}
-            <iron-icon icon="arc:expand-more" class="${icon}"></iron-icon>
+            <span class="icon ${iconClass}">${expandMore}</span>
           </anypoint-button>
         </div>
       </div>
@@ -1137,7 +1143,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     return html`<section class="bottom-nav">
       ${previous ? html`<div class="bottom-link previous" @click="${this._navigatePrevious}">
         <anypoint-icon-button title="${previous.label}" ?compatibility="${compatibility}">
-          <iron-icon icon="arc:chevron-left"></iron-icon>
+          <span class="icon">${chevronLeft}</span>
         </anypoint-icon-button>
         <span class="nav-label">${previous.label}</span>
       </div>` : ''}
@@ -1145,7 +1151,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       ${next ? html`<div class="bottom-link next" @click="${this._navigateNext}">
         <span class="nav-label">${next.label}</span>
         <anypoint-icon-button title="${next.label}" ?compatibility="${compatibility}">
-          <iron-icon icon="arc:chevron-right"></iron-icon>
+          <span class="icon">${chevronRight}</span>
         </anypoint-icon-button>
       </div>` : ''}
     </section>`;
