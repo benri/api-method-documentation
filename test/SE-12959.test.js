@@ -2,7 +2,7 @@ import { fixture, assert, html, aTimeout } from '@open-wc/testing';
 import { AmfLoader } from './amf-loader.js';
 import '../api-method-documentation.js';
 
-describe.only('SE-12959', function() {
+describe('SE-12959', function() {
   async function modelFixture(amf, endpoint, method) {
     return (await fixture(html`<api-method-documentation
       .amf="${amf}"
