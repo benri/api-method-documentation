@@ -1004,6 +1004,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       </div>
       <iron-collapse .opened="${_snippetsOpened}" @transitionend="${this._snippetsTransitionEnd}">
       ${_renderSnippets ? html`<http-code-snippets
+        scrollable
         .url="${endpointUri}"
         .method="${httpMethod}"
         .headers="${this._computeSnippetsHeaders(headers)}"
