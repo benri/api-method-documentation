@@ -125,9 +125,6 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       httpMethodStyles,
       css`:host {
         display: block;
-        font-size: var(--arc-font-body1-font-size, inherit);
-        font-weight: var(--arc-font-body1-font-weight, inherit);
-        line-height: var(--arc-font-body1-line-height, inherit);
       }
 
       [hidden] {
@@ -172,16 +169,16 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       }
 
       :host([narrow]) .title {
-        font-size: 20px;
+        font-size: var(--arc-font-headline-narrow-font-size, 20px);
         margin: 0;
       }
 
       :host([narrow]) .heading2 {
-        font-size: 18px;
+        font-size: var(--arc-font-title-narrow-font-size, 18px);
       }
 
       :host([narrow]) .heading3 {
-        font-size: 17px;
+        font-size: var(--arc-font-subhead-narrow-font-size, 17px);
       }
 
       .title {
@@ -194,7 +191,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
         flex-direction: row;
         align-items: center;
         font-family: var(--arc-font-code-family);
-        font-size: var(--api-method-documentation-url-font-size, 16px);
+        font-size: var(--api-method-documentation-url-font-size, 1.07rem);
         margin-bottom: 40px;
         margin-top: 20px;
         background-color: var(--code-background-color);
@@ -276,7 +273,6 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
         margin: 16px 0;
         border-top: 1px var(--api-method-documentation-bottom-navigation-border-color, #cfd8dc) solid;
         color: var(--api-method-documentation-bottom-navigation-color, #000);
-        font-size: 18px;
       }
 
       .bottom-link {
