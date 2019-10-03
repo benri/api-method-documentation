@@ -29,7 +29,8 @@ class ComponentDemo extends ApiDemoPageBase {
       'endpoint',
       'method',
       'previous',
-      'next'
+      'next',
+      'graph'
     ]);
     this.noTryit = false;
     this.codeSnippets = true;
@@ -172,7 +173,8 @@ class ComponentDemo extends ApiDemoPageBase {
       next,
       codeSnippets,
       renderSecurity,
-      noTryit
+      noTryit,
+      graph
     } = this;
     return html `
     <section class="documentation-section">
@@ -204,7 +206,7 @@ class ComponentDemo extends ApiDemoPageBase {
                 .renderSecurity="${renderSecurity}"
                 .noTryIt="${noTryit}"
                 ?legacy="${legacy}"
-                graph
+                ?graph="${graph}"
                 @tryit-requested="${this._tryitRequested}"></api-method-documentation>
             </div>
             <label slot="options" id="mainOptionsLabel">Options</label>
@@ -238,6 +240,13 @@ class ComponentDemo extends ApiDemoPageBase {
               .checked="${renderSecurity}"
               @change="${this._toggleMainOption}"
               >With security</anypoint-checkbox
+            >
+            <anypoint-checkbox
+              aria-describedby="mainOptionsLabel"
+              slot="options"
+              name="graph"
+              @change="${this._toggleMainOption}"
+              >Graph experiment</anypoint-checkbox
             >
           </arc-interactive-demo>
         </div>
