@@ -49,6 +49,14 @@ describe('<api-method-documentation>', function() {
       .method="${method}"></api-method-documentation>`));
   }
 
+  async function noNavigationFixture(amf, endpoint, method) {
+    return (await fixture(html`<api-method-documentation
+      noNavigation
+      .amf="${amf}"
+      .endpoint="${endpoint}"
+      .method="${method}"></api-method-documentation>`));
+  }
+
   describe('Basic tests', () => {
     it('Adds raml-aware to the DOM if aware is set', async () => {
       const element = await awareFixture();
@@ -692,6 +700,25 @@ describe('<api-method-documentation>', function() {
         it('render names', () => {
           const label = element.shadowRoot.querySelector('.extensions .trait-name');
           assert.equal(label.textContent.trim(), 'file and visibility');
+        });
+      });
+
+      describe('No navigation', () => {
+        let amf;
+        before(async () => {
+          amf = await AmfLoader.load(demoApi, compact);
+        });
+
+        let element;
+        beforeEach(async () => {
+          const [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, '/people', 'get');
+          element = await noNavigationFixture(amf, endpoint, method);
+          await aTimeout();
+        });
+
+        it('does not render navigation', () => {
+          const node = element.shadowRoot.querySelector('.bottom-nav');
+          assert.notOk(node);
         });
       });
     });

@@ -501,7 +501,11 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
        */
       methodSummary: { type: String },
 
-      _renderSnippets: { type: Boolean }
+      _renderSnippets: { type: Boolean },
+      /**
+       * When set it hiddes bottom navigation links
+       */
+      noNavigation: { type: Boolean }
     };
   }
 
@@ -1135,8 +1139,8 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   }
 
   _getNavigationTemplate() {
-    const { next, previous } = this;
-    if (!next && !previous) {
+    const { next, previous, noNavigation } = this;
+    if (!next && !previous || noNavigation) {
       return;
     }
     const { compatibility } = this;
