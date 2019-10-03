@@ -279,6 +279,7 @@ class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
         cursor: pointer;
         max-width: 50%;
         word-break: break-all;
+        text-decoration: underline;
       }
 
       .bottom-link.previous {
