@@ -641,3 +641,19 @@
 
 
 
+# 4.0.0 (2019-10-13)
+
+
+### Bug Fixes
+
+* fixes OAS summary rendering ([f60d47d](https://github.com/advanced-rest-client/api-method-documentation/commit/f60d47d))
+* fixes parameters rendering for OAS ([839ecf9](https://github.com/advanced-rest-client/api-method-documentation/commit/839ecf9))
+
+
+### Features
+
+* adding "scrollable" tabs option to the code snippets ([b8ef459](https://github.com/advanced-rest-client/api-method-documentation/commit/b8ef459))
+* adding `noNavigation` option ([b6ed150](https://github.com/advanced-rest-client/api-method-documentation/commit/b6ed150))
+
+
+
