@@ -113,9 +113,9 @@ class ComponentDemo extends ApiDemoPageBase {
       return;
     }
     const helper = this.helper;
-    let name = helper._getValue(item, helper.ns.schema.schemaName);
+    let name = helper._getValue(item, helper.ns.aml.vocabularies.core.name);
     if (!name) {
-      name = helper._getValue(item, helper.ns.w3.hydra.core + 'method');
+      name = helper._getValue(item, helper.ns.aml.vocabularies.apiContract.method);
     }
     this.previous = {
       id: item['@id'],
@@ -129,9 +129,9 @@ class ComponentDemo extends ApiDemoPageBase {
       return;
     }
     const helper = this.helper;
-    let name = helper._getValue(item, helper.ns.schema.schemaName);
+    let name = helper._getValue(item, helper.ns.aml.vocabularies.core.name);
     if (!name) {
-      name = helper._getValue(item, helper.ns.w3.hydra.core + 'method');
+      name = helper._getValue(item, helper.ns.aml.vocabularies.apiContract.method);
     }
     this.next = {
       id: item['@id'],

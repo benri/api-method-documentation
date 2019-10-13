@@ -8,9 +8,10 @@
 
 A HTTP method documentation generated from an AMF model.
 
-### API components
+## Version compatibility
 
-This components is a part of [API components ecosystem](https://elements.advancedrestclient.com/)
+This version only works with AMF model version 2 (AMF parser >= 4.0.0).
+For compatibility with previous model version use `3.x.x` version of the component.
 
 ## Usage
 
@@ -25,7 +26,7 @@ npm install --save @api-components/api-method-documentation
 <html>
   <head>
     <script type="module">
-      import './node_modules/@api-components/api-method-documentation/api-method-documentation.js';
+      import '@api-components/api-method-documentation/api-method-documentation.js';
     </script>
   </head>
   <body>
@@ -65,7 +66,7 @@ class SampleElement extends PolymerElement {
 customElements.define('sample-element', SampleElement);
 ```
 
-### Installation
+## Development
 
 ```sh
 git clone https://github.com/api-components/api-method-documentation
@@ -83,3 +84,7 @@ npm start
 ```sh
 npm test
 ```
+
+### API components
+
+This components is a part of [API components ecosystem](https://elements.advancedrestclient.com/)
