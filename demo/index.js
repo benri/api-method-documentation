@@ -9,6 +9,7 @@ import '@api-components/api-navigation/api-navigation.js';
 import '@polymer/paper-toast/paper-toast.js';
 import '@anypoint-web-components/anypoint-styles/colors.js';
 import '@anypoint-web-components/anypoint-styles/typography.js';
+import '@anypoint-web-components/anypoint-styles/din-pro.js';
 import '../api-method-documentation.js';
 
 class DemoElement extends AmfHelperMixin(LitElement) {}

@@ -208,6 +208,11 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
         border-bottom: 1px var(--api-parameters-document-title-border-color, #e5e5e5) solid;
         cursor: pointer;
         user-select: none;
+        transition: border-bottom-color 0.15s ease-in-out;
+      }
+
+      .section-title-area[opened] {
+        border-bottom-color: transparent;
       }
 
       .url-value {
@@ -1000,7 +1005,12 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     const label = this._computeToggleActionLabel(_snippetsOpened);
     const iconClass = this._computeToggleIconClass(_snippetsOpened);
     return html`<section class="snippets">
-      <div class="section-title-area" @click="${this._toggleSnippets}" title="Toogle code example details">
+      <div
+        class="section-title-area"
+        @click="${this._toggleSnippets}"
+        title="Toogle code example details"
+        ?opened="${_snippetsOpened}"
+      >
         <div class="heading3 table-title" role="heading" aria-level="2">Code examples</div>
         <div class="title-area-actions">
           <anypoint-button class="toggle-button" ?compatibility="${compatibility}">
@@ -1030,7 +1040,12 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     const label = this._computeToggleActionLabel(securityOpened);
     const iconClass = this._computeToggleIconClass(securityOpened);
     return html`<section class="security">
-      <div class="section-title-area" @click="${this._toggleSecurity}" title="Toogle security details">
+      <div
+        class="section-title-area"
+        @click="${this._toggleSecurity}"
+        title="Toogle security details"
+        ?opened="${securityOpened}"
+      >
         <div class="heading3 table-title" role="heading" aria-level="2">Security</div>
         <div class="title-area-actions">
           <anypoint-button class="toggle-button security" ?compatibility="${compatibility}">
