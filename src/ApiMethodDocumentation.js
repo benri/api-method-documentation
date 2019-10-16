@@ -1126,7 +1126,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       graph
     } = this;
     return html`<section class="response-documentation">
-      <div class="heading2" role="heading" aria-level="1">Response</div>
+      <div class="heading2" role="heading" aria-level="1">Responses</div>
       <api-responses-document
         .amf="${amf}"
         ?narrow="${narrow}"
