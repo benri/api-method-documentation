@@ -119,7 +119,7 @@ import '@api-components/api-example-generator/api-example-generator.js';
  * @appliesMixin AmfHelperMixin
  */
 export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
-  static get styles() {
+  get styles() {
     return [
       markdownStyles,
       httpMethodStyles,
@@ -911,7 +911,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       hasCustomProperties,
       method
     } = this;
-    return html`
+    return html`<style>${this.styles}</style>
     ${aware ? html`<raml-aware
       .scope="${aware}"
       @api-changed="${this._apiChanged}"></raml-aware>` : ''}
