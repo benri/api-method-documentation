@@ -590,15 +590,6 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     return false;
   }
 
-  connectedCallback() {
-    if (super.connectedCallback) {
-      super.connectedCallback();
-    }
-    if (window.ShadyCSS) {
-      window.ShadyCSS.styleElement(this);
-    }
-  }
-
   __amfChanged() {
     if (this.__amfProcessingDebouncer) {
       return;
@@ -924,7 +915,6 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     ${aware ? html`<raml-aware
       .scope="${aware}"
       @api-changed="${this._apiChanged}"></raml-aware>` : ''}
-
     ${this._getTitleTemplate()}
     ${this._getUrlTemplate()}
     ${this._getTraitsTemplate()}
