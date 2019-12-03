@@ -2,9 +2,7 @@ import { html, render } from 'lit-html';
 import { LitElement } from 'lit-element';
 import { ApiDemoPageBase } from '@advanced-rest-client/arc-demo-helper/ApiDemoPage.js';
 import { AmfHelperMixin } from '@api-components/amf-helper-mixin/amf-helper-mixin.js';
-import '@anypoint-web-components/anypoint-checkbox/anypoint-checkbox.js';
 import '@advanced-rest-client/arc-demo-helper/arc-demo-helper.js';
-import '@advanced-rest-client/arc-demo-helper/arc-interactive-demo.js';
 import '@api-components/api-navigation/api-navigation.js';
 import '@polymer/paper-toast/paper-toast.js';
 import '@anypoint-web-components/anypoint-styles/colors.js';
@@ -21,48 +19,18 @@ class ComponentDemo extends ApiDemoPageBase {
     this._componentName = 'api-method-documentation';
 
     this.initObservableProperties([
-      'legacy',
-      'narrow',
       'selectedAmfId',
-      'noTryit',
-      'codeSnippets',
       'renderSecurity',
       'endpoint',
       'method',
       'previous',
       'next',
-      'graph'
     ]);
     this.noTryit = false;
     this.codeSnippets = true;
     this.renderSecurity = true;
 
-    this.demoStates = ['Material', 'Anypoint'];
-    this._demoStateHandler = this._demoStateHandler.bind(this);
-    this._toggleMainOption = this._toggleMainOption.bind(this);
     this._tryitRequested = this._tryitRequested.bind(this);
-  }
-
-  _demoStateHandler(e) {
-    const state = e.detail.value;
-    switch (state) {
-      case 0:
-        this.legacy = false;
-        break;
-      case 1:
-        this.legacy = true;
-        break;
-    }
-    if (this.legacy) {
-      document.body.classList.add('anypoint');
-    } else {
-      document.body.classList.remove('anypoint');
-    }
-  }
-
-  _toggleMainOption(e) {
-    const { name, checked } = e.target;
-    this[name] = checked;
   }
 
   get helper() {
@@ -163,8 +131,6 @@ class ComponentDemo extends ApiDemoPageBase {
 
   _demoTemplate() {
     const {
-      demoStates,
-      darkThemeActive,
       legacy,
       amf,
       narrow,
@@ -189,67 +155,19 @@ class ComponentDemo extends ApiDemoPageBase {
         ${this._apiNavigationTemplate()}
         <div class="demo-container">
 
-          <arc-interactive-demo
-            .states="${demoStates}"
-            @state-chanegd="${this._demoStateHandler}"
-            ?dark="${darkThemeActive}"
-          >
-
-            <div slot="content">
-              <api-method-documentation
-                .amf="${amf}"
-                .endpoint="${endpoint}"
-                .method="${method}"
-                .previous="${previous}"
-                .next="${next}"
-                ?rendercodesnippets="${codeSnippets}"
-                ?narrow="${narrow}"
-                .renderSecurity="${renderSecurity}"
-                .noTryIt="${noTryit}"
-                ?legacy="${legacy}"
-                ?graph="${graph}"
-                @tryit-requested="${this._tryitRequested}"></api-method-documentation>
-            </div>
-            <label slot="options" id="mainOptionsLabel">Options</label>
-
-            <anypoint-checkbox
-              aria-describedby="mainOptionsLabel"
-              slot="options"
-              name="narrow"
-              @change="${this._toggleMainOption}"
-              >Narrow view</anypoint-checkbox
-            >
-            <anypoint-checkbox
-              aria-describedby="mainOptionsLabel"
-              slot="options"
-              name="noTryit"
-              @change="${this._toggleMainOption}"
-              >No try it</anypoint-checkbox
-            >
-            <anypoint-checkbox
-              aria-describedby="mainOptionsLabel"
-              slot="options"
-              name="codeSnippets"
-              .checked="${codeSnippets}"
-              @change="${this._toggleMainOption}"
-              >With cod snippets</anypoint-checkbox
-            >
-            <anypoint-checkbox
-              aria-describedby="mainOptionsLabel"
-              slot="options"
-              name="renderSecurity"
-              .checked="${renderSecurity}"
-              @change="${this._toggleMainOption}"
-              >With security</anypoint-checkbox
-            >
-            <anypoint-checkbox
-              aria-describedby="mainOptionsLabel"
-              slot="options"
-              name="graph"
-              @change="${this._toggleMainOption}"
-              >Graph experiment</anypoint-checkbox
-            >
-          </arc-interactive-demo>
+          <api-method-documentation
+            .amf="${amf}"
+            .endpoint="${endpoint}"
+            .method="${method}"
+            .previous="${previous}"
+            .next="${next}"
+            ?rendercodesnippets="${codeSnippets}"
+            ?narrow="${narrow}"
+            .renderSecurity="${renderSecurity}"
+            .noTryIt="${noTryit}"
+            ?legacy="${legacy}"
+            ?graph="${graph}"
+            @tryit-requested="${this._tryitRequested}"></api-method-documentation>
         </div>
       </section>
     </section>`;
