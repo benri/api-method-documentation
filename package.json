@@ -30,9 +30,9 @@
     "@advanced-rest-client/arc-marked": "^1.0.6",
     "@advanced-rest-client/clipboard-copy": "^3.0.1",
     "@advanced-rest-client/http-code-snippets": "^3.1.1",
-    "@advanced-rest-client/markdown-styles": "^3.1.0",
+    "@advanced-rest-client/markdown-styles": "^3.1.1",
     "@anypoint-web-components/anypoint-button": "^1.0.15",
-    "@api-components/amf-helper-mixin": "^4.0.13",
+    "@api-components/amf-helper-mixin": "^4.0.14",
     "@api-components/api-annotation-document": "^4.0.1",
     "@api-components/api-body-document": "^4.0.4",
     "@api-components/api-example-generator": "^4.0.4",
@@ -60,6 +60,7 @@
     "@api-components/api-navigation": "^4.0.2",
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
+    "@open-wc/building-rollup": "^0.14.8",
     "@open-wc/testing": "^2.4.1",
     "@open-wc/testing-karma": "^3.2.6",
     "@polymer/gen-typescript-declarations": "^1.6.2",
@@ -70,8 +71,9 @@
     "husky": "^3.1.0",
     "karma": "^4.4.1",
     "lint-staged": "^9.5.0",
-    "sinon": "^7.5.0",
-    "web-animations-js": "^2.3.2"
+    "rimraf": "^3.0.0",
+    "rollup-plugin-cpy": "^2.0.1",
+    "sinon": "^7.5.0"
   },
   "scripts": {
     "update-types": "gen-typescript-declarations --deleteExisting --outDir .",
@@ -88,9 +90,10 @@
     "test:watch": "karma start --auto-watch=true --single-run=false",
     "test:update-snapshots": "karma start --update-snapshots",
     "test:prune-snapshots": "karma start --prune-snapshots",
-    "test:compatibility": "karma start --compatibility all --coverage",
-    "test:compatibility:watch": "karma start --compatibility all --auto-watch=true --single-run=false",
-    "test:sl": "karma start karma.sl.config.js --compatibility all --coverage"
+    "test:compatibility": "karma start --compatibility auto --coverage",
+    "test:compatibility:watch": "karma start --compatibility auto --auto-watch=true --single-run=false",
+    "test:sl": "karma start karma.sl.config.js --compatibility auto --coverage",
+    "build": "rimraf dist && rollup -c rollup.config.js"
   },
   "lint-staged": {
     "*.js": [

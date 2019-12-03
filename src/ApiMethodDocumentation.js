@@ -933,7 +933,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
 
   _getTitleTemplate() {
     if (this._titleHidden) {
-      return html``;
+      return '';
     }
     const {
       methodName,
@@ -968,7 +968,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   _getTraitsTemplate() {
     const traits = this.traits;
     if (!traits || !traits.length) {
-      return html``;
+      return '';
     }
     const value = this._computeTraitNames(traits);
     return html`<section class="extensions">
@@ -981,7 +981,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   _getDescriptionTemplate() {
     const { description } = this;
     if (!description) {
-      return html``;
+      return '';
     }
     return html`<arc-marked .markdown="${description}" sanitize>
       <div slot="markdown-html" class="markdown-body"></div>
@@ -990,7 +990,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
 
   _getCodeSnippetsTemplate() {
     if (!this.renderCodeSnippets) {
-      return html``;
+      return '';
     }
     const {
       _snippetsOpened,
@@ -1033,7 +1033,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   _getSecurityTemplate() {
     const { renderSecurity, security } = this;
     if (!renderSecurity || !security || !security.length) {
-      return html``;
+      return '';
     }
     const { securityOpened, compatibility, amf, narrow } = this;
     const label = this._computeToggleActionLabel(securityOpened);
@@ -1065,7 +1065,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
 
   _getParametersTemplate() {
     if (!this.hasParameters) {
-      return html``;
+      return '';
     }
     const {
       serverVariables,
@@ -1091,7 +1091,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   _getHeadersTemplate() {
     const { headers } = this;
     if (!headers || !headers.length) {
-      return html``;
+      return '';
     }
     const {
       amf,
@@ -1111,7 +1111,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   _getBodyTemplate() {
     const { payload } = this;
     if (!payload || !payload.length) {
-      return html``;
+      return '';
     }
     const {
       amf,
@@ -1131,7 +1131,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   _getReturnsTemplate() {
     const { returns } = this;
     if (!returns || !returns.length) {
-      return html``;
+      return '';
     }
     const {
       amf,
@@ -1153,7 +1153,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   _getNavigationTemplate() {
     const { next, previous, noNavigation } = this;
     if (!next && !previous || noNavigation) {
-      return html``;
+      return '';
     }
     const { compatibility } = this;
     return html`<section class="bottom-nav">
