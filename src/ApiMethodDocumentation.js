@@ -1065,7 +1065,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
 
   _getParametersTemplate() {
     if (!this.hasParameters) {
-      return;
+      return html``;
     }
     const {
       serverVariables,
@@ -1091,7 +1091,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   _getHeadersTemplate() {
     const { headers } = this;
     if (!headers || !headers.length) {
-      return;
+      return html``;
     }
     const {
       amf,
@@ -1111,7 +1111,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   _getBodyTemplate() {
     const { payload } = this;
     if (!payload || !payload.length) {
-      return;
+      return html``;
     }
     const {
       amf,
@@ -1131,7 +1131,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   _getReturnsTemplate() {
     const { returns } = this;
     if (!returns || !returns.length) {
-      return;
+      return html``;
     }
     const {
       amf,
@@ -1153,7 +1153,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   _getNavigationTemplate() {
     const { next, previous, noNavigation } = this;
     if (!next && !previous || noNavigation) {
-      return;
+      return html``;
     }
     const { compatibility } = this;
     return html`<section class="bottom-nav">
