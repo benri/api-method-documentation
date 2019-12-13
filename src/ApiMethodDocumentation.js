@@ -664,6 +664,32 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       this._computeHasPathParameters(this.serverVariables, endpointVariables);
     this.hasParameters = hasPathParameters || !!(this.queryParameters && this.queryParameters.length);
   }
+  /**
+   * Computes list of query parameters to be rendered in the query parameters table.
+   *
+   * The parameters document can pass a type definition for query parameters
+   * or a list of properties to be rendered without the parent type definition.
+   *
+   * @param {Object} scheme Model for Expects shape of AMF model.
+   * @return {Array<Object>|Object} Either list of properties or a type definition
+   * for a queryString property of RAML's
+   */
+  _computeQueryParameters(scheme) {
+    if (!scheme) {
+      return;
+    }
+    const pKey = this._getAmfKey(this.ns.aml.vocabularies.apiContract.parameter);
+    let result = this._ensureArray(scheme[pKey]);
+    if (result) {
+      return result;
+    }
+    const qKey = this._getAmfKey(this.ns.aml.vocabularies.apiContract.queryString);
+    result = this._ensureArray(scheme[qKey]);
+    if (result) {
+      result = this._resolve(result[0]);
+    }
+    return result;
+  }
 
   /**
    * Computes value for `methodName` property.
