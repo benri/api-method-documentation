@@ -630,7 +630,7 @@
 ],
 "sourcemaps:lexical": [
 {
-"@id": "#105/source-map/lexical/element_1",
+"@id": "#105/source-map/lexical/element_2",
 "sourcemaps:element": [
 {
 "@value": "apiContract:parameter"
@@ -652,6 +652,19 @@
 "sourcemaps:value": [
 {
 "@value": "[(26,8)-(42,9)]"
+}
+]
+},
+{
+"@id": "#105/source-map/lexical/element_1",
+"sourcemaps:element": [
+{
+"@value": "amf://id#105"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "[(14,13)-(55,7)]"
 }
 ]
 }
@@ -2097,7 +2110,7 @@
 ],
 "sourcemaps:lexical": [
 {
-"@id": "#118/source-map/lexical/element_1",
+"@id": "#118/source-map/lexical/element_2",
 "sourcemaps:element": [
 {
 "@value": "apiContract:parameter"
@@ -2119,6 +2132,19 @@
 "sourcemaps:value": [
 {
 "@value": "[(70,8)-(94,9)]"
+}
+]
+},
+{
+"@id": "#118/source-map/lexical/element_1",
+"sourcemaps:element": [
+{
+"@value": "amf://id#118"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "[(58,13)-(107,7)]"
 }
 ]
 }
@@ -3564,7 +3590,7 @@
 ],
 "sourcemaps:lexical": [
 {
-"@id": "#133/source-map/lexical/element_1",
+"@id": "#133/source-map/lexical/element_2",
 "sourcemaps:element": [
 {
 "@value": "apiContract:parameter"
@@ -3586,6 +3612,19 @@
 "sourcemaps:value": [
 {
 "@value": "[(122,8)-(146,9)]"
+}
+]
+},
+{
+"@id": "#133/source-map/lexical/element_1",
+"sourcemaps:element": [
+{
+"@value": "amf://id#133"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "[(110,13)-(159,7)]"
 }
 ]
 }
@@ -5255,7 +5294,7 @@
 ],
 "sourcemaps:lexical": [
 {
-"@id": "#148/source-map/lexical/element_1",
+"@id": "#148/source-map/lexical/element_2",
 "sourcemaps:element": [
 {
 "@value": "apiContract:parameter"
@@ -5277,6 +5316,19 @@
 "sourcemaps:value": [
 {
 "@value": "[(174,8)-(205,9)]"
+}
+]
+},
+{
+"@id": "#148/source-map/lexical/element_1",
+"sourcemaps:element": [
+{
+"@value": "amf://id#148"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "[(162,13)-(218,7)]"
 }
 ]
 }
@@ -6012,6 +6064,11 @@
 "apiContract:Payload",
 "doc:DomainElement"
 ],
+"core:name": [
+{
+"@value": "downtimeEvent"
+}
+],
 "core:mediaType": [
 {
 "@value": "application/json-patch+json"
@@ -6045,9 +6102,9 @@
 "@type": [
 "sourcemaps:SourceMap"
 ],
-"sourcemaps:required-param-payload": [
+"sourcemaps:body-parameter": [
 {
-"@id": "#162/source-map/required-param-payload/element_0",
+"@id": "#162/source-map/body-parameter/element_0",
 "sourcemaps:element": [
 {
 "@value": "amf://id#162"
@@ -6055,7 +6112,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "false->[(239,12)-(239,29)]"
+"@value": "true"
 }
 ]
 }
@@ -6074,6 +6131,21 @@
 }
 ]
 }
+],
+"sourcemaps:required-param-payload": [
+{
+"@id": "#162/source-map/required-param-payload/element_0",
+"sourcemaps:element": [
+{
+"@value": "amf://id#162"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "false->[(239,12)-(239,29)]"
+}
+]
+}
 ]
 }
 ]
@@ -6083,6 +6155,11 @@
 "@type": [
 "apiContract:Payload",
 "doc:DomainElement"
+],
+"core:name": [
+{
+"@value": "downtimeEvent"
+}
 ],
 "core:mediaType": [
 {
@@ -6117,9 +6194,9 @@
 "@type": [
 "sourcemaps:SourceMap"
 ],
-"sourcemaps:required-param-payload": [
+"sourcemaps:body-parameter": [
 {
-"@id": "#163/source-map/required-param-payload/element_0",
+"@id": "#163/source-map/body-parameter/element_0",
 "sourcemaps:element": [
 {
 "@value": "amf://id#163"
@@ -6127,7 +6204,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "false->[(239,12)-(239,29)]"
+"@value": "true"
 }
 ]
 }
@@ -6146,6 +6223,21 @@
 }
 ]
 }
+],
+"sourcemaps:required-param-payload": [
+{
+"@id": "#163/source-map/required-param-payload/element_0",
+"sourcemaps:element": [
+{
+"@value": "amf://id#163"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "false->[(239,12)-(239,29)]"
+}
+]
+}
 ]
 }
 ]
@@ -6155,6 +6247,11 @@
 "@type": [
 "apiContract:Payload",
 "doc:DomainElement"
+],
+"core:name": [
+{
+"@value": "downtimeEvent"
+}
 ],
 "core:mediaType": [
 {
@@ -6189,9 +6286,9 @@
 "@type": [
 "sourcemaps:SourceMap"
 ],
-"sourcemaps:required-param-payload": [
+"sourcemaps:body-parameter": [
 {
-"@id": "#164/source-map/required-param-payload/element_0",
+"@id": "#164/source-map/body-parameter/element_0",
 "sourcemaps:element": [
 {
 "@value": "amf://id#164"
@@ -6199,7 +6296,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "false->[(239,12)-(239,29)]"
+"@value": "true"
 }
 ]
 }
@@ -6218,6 +6315,21 @@
 }
 ]
 }
+],
+"sourcemaps:required-param-payload": [
+{
+"@id": "#164/source-map/required-param-payload/element_0",
+"sourcemaps:element": [
+{
+"@value": "amf://id#164"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "false->[(239,12)-(239,29)]"
+}
+]
+}
 ]
 }
 ]
@@ -6227,6 +6339,11 @@
 "@type": [
 "apiContract:Payload",
 "doc:DomainElement"
+],
+"core:name": [
+{
+"@value": "downtimeEvent"
+}
 ],
 "core:mediaType": [
 {
@@ -6261,9 +6378,9 @@
 "@type": [
 "sourcemaps:SourceMap"
 ],
-"sourcemaps:required-param-payload": [
+"sourcemaps:body-parameter": [
 {
-"@id": "#165/source-map/required-param-payload/element_0",
+"@id": "#165/source-map/body-parameter/element_0",
 "sourcemaps:element": [
 {
 "@value": "amf://id#165"
@@ -6271,7 +6388,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "false->[(239,12)-(239,29)]"
+"@value": "true"
 }
 ]
 }
@@ -6289,6 +6406,44 @@
 "@value": "[(235,10)-(243,11)]"
 }
 ]
+}
+],
+"sourcemaps:required-param-payload": [
+{
+"@id": "#165/source-map/required-param-payload/element_0",
+"sourcemaps:element": [
+{
+"@value": "amf://id#165"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "false->[(239,12)-(239,29)]"
+}
+]
+}
+]
+}
+]
+}
+],
+"sourcemaps:sources": [
+{
+"@id": "#161/source-map",
+"@type": [
+"sourcemaps:SourceMap"
+],
+"sourcemaps:lexical": [
+{
+"@id": "#161/source-map/lexical/element_0",
+"sourcemaps:element": [
+{
+"@value": "amf://id#161"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "[(221,13)-(250,7)]"
 }
 ]
 }
@@ -6550,6 +6705,11 @@
 "apiContract:Payload",
 "doc:DomainElement"
 ],
+"core:name": [
+{
+"@value": "downtimeEvent"
+}
+],
 "core:mediaType": [
 {
 "@value": "application/json-patch+json"
@@ -6583,9 +6743,9 @@
 "@type": [
 "sourcemaps:SourceMap"
 ],
-"sourcemaps:required-param-payload": [
+"sourcemaps:body-parameter": [
 {
-"@id": "#170/source-map/required-param-payload/element_0",
+"@id": "#170/source-map/body-parameter/element_0",
 "sourcemaps:element": [
 {
 "@value": "amf://id#170"
@@ -6593,7 +6753,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "false->[(269,12)-(269,29)]"
+"@value": "true"
 }
 ]
 }
@@ -6612,6 +6772,21 @@
 }
 ]
 }
+],
+"sourcemaps:required-param-payload": [
+{
+"@id": "#170/source-map/required-param-payload/element_0",
+"sourcemaps:element": [
+{
+"@value": "amf://id#170"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "false->[(269,12)-(269,29)]"
+}
+]
+}
 ]
 }
 ]
@@ -6621,6 +6796,11 @@
 "@type": [
 "apiContract:Payload",
 "doc:DomainElement"
+],
+"core:name": [
+{
+"@value": "downtimeEvent"
+}
 ],
 "core:mediaType": [
 {
@@ -6655,9 +6835,9 @@
 "@type": [
 "sourcemaps:SourceMap"
 ],
-"sourcemaps:required-param-payload": [
+"sourcemaps:body-parameter": [
 {
-"@id": "#171/source-map/required-param-payload/element_0",
+"@id": "#171/source-map/body-parameter/element_0",
 "sourcemaps:element": [
 {
 "@value": "amf://id#171"
@@ -6665,7 +6845,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "false->[(269,12)-(269,29)]"
+"@value": "true"
 }
 ]
 }
@@ -6684,6 +6864,21 @@
 }
 ]
 }
+],
+"sourcemaps:required-param-payload": [
+{
+"@id": "#171/source-map/required-param-payload/element_0",
+"sourcemaps:element": [
+{
+"@value": "amf://id#171"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "false->[(269,12)-(269,29)]"
+}
+]
+}
 ]
 }
 ]
@@ -6693,6 +6888,11 @@
 "@type": [
 "apiContract:Payload",
 "doc:DomainElement"
+],
+"core:name": [
+{
+"@value": "downtimeEvent"
+}
 ],
 "core:mediaType": [
 {
@@ -6727,9 +6927,9 @@
 "@type": [
 "sourcemaps:SourceMap"
 ],
-"sourcemaps:required-param-payload": [
+"sourcemaps:body-parameter": [
 {
-"@id": "#172/source-map/required-param-payload/element_0",
+"@id": "#172/source-map/body-parameter/element_0",
 "sourcemaps:element": [
 {
 "@value": "amf://id#172"
@@ -6737,7 +6937,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "false->[(269,12)-(269,29)]"
+"@value": "true"
 }
 ]
 }
@@ -6756,6 +6956,21 @@
 }
 ]
 }
+],
+"sourcemaps:required-param-payload": [
+{
+"@id": "#172/source-map/required-param-payload/element_0",
+"sourcemaps:element": [
+{
+"@value": "amf://id#172"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "false->[(269,12)-(269,29)]"
+}
+]
+}
 ]
 }
 ]
@@ -6765,6 +6980,11 @@
 "@type": [
 "apiContract:Payload",
 "doc:DomainElement"
+],
+"core:name": [
+{
+"@value": "downtimeEvent"
+}
 ],
 "core:mediaType": [
 {
@@ -6799,9 +7019,9 @@
 "@type": [
 "sourcemaps:SourceMap"
 ],
-"sourcemaps:required-param-payload": [
+"sourcemaps:body-parameter": [
 {
-"@id": "#173/source-map/required-param-payload/element_0",
+"@id": "#173/source-map/body-parameter/element_0",
 "sourcemaps:element": [
 {
 "@value": "amf://id#173"
@@ -6809,7 +7029,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "false->[(269,12)-(269,29)]"
+"@value": "true"
 }
 ]
 }
@@ -6827,6 +7047,44 @@
 "@value": "[(265,10)-(273,11)]"
 }
 ]
+}
+],
+"sourcemaps:required-param-payload": [
+{
+"@id": "#173/source-map/required-param-payload/element_0",
+"sourcemaps:element": [
+{
+"@value": "amf://id#173"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "false->[(269,12)-(269,29)]"
+}
+]
+}
+]
+}
+]
+}
+],
+"sourcemaps:sources": [
+{
+"@id": "#169/source-map",
+"@type": [
+"sourcemaps:SourceMap"
+],
+"sourcemaps:lexical": [
+{
+"@id": "#169/source-map/lexical/element_0",
+"sourcemaps:element": [
+{
+"@value": "amf://id#169"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "[(251,14)-(280,7)]"
 }
 ]
 }
@@ -7593,7 +7851,7 @@
 ],
 "sourcemaps:lexical": [
 {
-"@id": "#181/source-map/lexical/element_1",
+"@id": "#181/source-map/lexical/element_2",
 "sourcemaps:element": [
 {
 "@value": "apiContract:parameter"
@@ -7615,6 +7873,19 @@
 "sourcemaps:value": [
 {
 "@value": "[(295,8)-(311,9)]"
+}
+]
+},
+{
+"@id": "#181/source-map/lexical/element_1",
+"sourcemaps:element": [
+{
+"@value": "amf://id#181"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "[(283,13)-(320,7)]"
 }
 ]
 }
@@ -8786,7 +9057,7 @@
 ],
 "sourcemaps:lexical": [
 {
-"@id": "#190/source-map/lexical/element_1",
+"@id": "#190/source-map/lexical/element_2",
 "sourcemaps:element": [
 {
 "@value": "apiContract:parameter"
@@ -8808,6 +9079,19 @@
 "sourcemaps:value": [
 {
 "@value": "[(331,8)-(355,9)]"
+}
+]
+},
+{
+"@id": "#190/source-map/lexical/element_1",
+"sourcemaps:element": [
+{
+"@value": "amf://id#190"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "[(323,13)-(361,7)]"
 }
 ]
 }
@@ -9594,6 +9878,11 @@
 "apiContract:Payload",
 "doc:DomainElement"
 ],
+"core:name": [
+{
+"@value": "downtimeEvents"
+}
+],
 "core:mediaType": [
 {
 "@value": "application/json-patch+json"
@@ -9728,9 +10017,9 @@
 "@type": [
 "sourcemaps:SourceMap"
 ],
-"sourcemaps:required-param-payload": [
+"sourcemaps:body-parameter": [
 {
-"@id": "#206/source-map/required-param-payload/element_0",
+"@id": "#206/source-map/body-parameter/element_0",
 "sourcemaps:element": [
 {
 "@value": "amf://id#206"
@@ -9738,7 +10027,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "false->[(398,12)-(398,29)]"
+"@value": "true"
 }
 ]
 }
@@ -9757,6 +10046,21 @@
 }
 ]
 }
+],
+"sourcemaps:required-param-payload": [
+{
+"@id": "#206/source-map/required-param-payload/element_0",
+"sourcemaps:element": [
+{
+"@value": "amf://id#206"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "false->[(398,12)-(398,29)]"
+}
+]
+}
 ]
 }
 ]
@@ -9766,6 +10070,11 @@
 "@type": [
 "apiContract:Payload",
 "doc:DomainElement"
+],
+"core:name": [
+{
+"@value": "downtimeEvents"
+}
 ],
 "core:mediaType": [
 {
@@ -9901,9 +10210,9 @@
 "@type": [
 "sourcemaps:SourceMap"
 ],
-"sourcemaps:required-param-payload": [
+"sourcemaps:body-parameter": [
 {
-"@id": "#208/source-map/required-param-payload/element_0",
+"@id": "#208/source-map/body-parameter/element_0",
 "sourcemaps:element": [
 {
 "@value": "amf://id#208"
@@ -9911,7 +10220,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "false->[(398,12)-(398,29)]"
+"@value": "true"
 }
 ]
 }
@@ -9930,6 +10239,21 @@
 }
 ]
 }
+],
+"sourcemaps:required-param-payload": [
+{
+"@id": "#208/source-map/required-param-payload/element_0",
+"sourcemaps:element": [
+{
+"@value": "amf://id#208"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "false->[(398,12)-(398,29)]"
+}
+]
+}
 ]
 }
 ]
@@ -9939,6 +10263,11 @@
 "@type": [
 "apiContract:Payload",
 "doc:DomainElement"
+],
+"core:name": [
+{
+"@value": "downtimeEvents"
+}
 ],
 "core:mediaType": [
 {
@@ -10074,9 +10403,9 @@
 "@type": [
 "sourcemaps:SourceMap"
 ],
-"sourcemaps:required-param-payload": [
+"sourcemaps:body-parameter": [
 {
-"@id": "#209/source-map/required-param-payload/element_0",
+"@id": "#209/source-map/body-parameter/element_0",
 "sourcemaps:element": [
 {
 "@value": "amf://id#209"
@@ -10084,7 +10413,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "false->[(398,12)-(398,29)]"
+"@value": "true"
 }
 ]
 }
@@ -10103,6 +10432,21 @@
 }
 ]
 }
+],
+"sourcemaps:required-param-payload": [
+{
+"@id": "#209/source-map/required-param-payload/element_0",
+"sourcemaps:element": [
+{
+"@value": "amf://id#209"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "false->[(398,12)-(398,29)]"
+}
+]
+}
 ]
 }
 ]
@@ -10112,6 +10456,11 @@
 "@type": [
 "apiContract:Payload",
 "doc:DomainElement"
+],
+"core:name": [
+{
+"@value": "downtimeEvents"
+}
 ],
 "core:mediaType": [
 {
@@ -10247,9 +10596,9 @@
 "@type": [
 "sourcemaps:SourceMap"
 ],
-"sourcemaps:required-param-payload": [
+"sourcemaps:body-parameter": [
 {
-"@id": "#210/source-map/required-param-payload/element_0",
+"@id": "#210/source-map/body-parameter/element_0",
 "sourcemaps:element": [
 {
 "@value": "amf://id#210"
@@ -10257,7 +10606,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "false->[(398,12)-(398,29)]"
+"@value": "true"
 }
 ]
 }
@@ -10276,6 +10625,21 @@
 }
 ]
 }
+],
+"sourcemaps:required-param-payload": [
+{
+"@id": "#210/source-map/required-param-payload/element_0",
+"sourcemaps:element": [
+{
+"@value": "amf://id#210"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "false->[(398,12)-(398,29)]"
+}
+]
+}
 ]
 }
 ]
@@ -10289,7 +10653,7 @@
 ],
 "sourcemaps:lexical": [
 {
-"@id": "#201/source-map/lexical/element_1",
+"@id": "#201/source-map/lexical/element_2",
 "sourcemaps:element": [
 {
 "@value": "apiContract:parameter"
@@ -10311,6 +10675,19 @@
 "sourcemaps:value": [
 {
 "@value": "[(378,8)-(407,9)]"
+}
+]
+},
+{
+"@id": "#201/source-map/lexical/element_1",
+"sourcemaps:element": [
+{
+"@value": "amf://id#201"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "[(364,13)-(413,7)]"
 }
 ]
 }
@@ -10611,6 +10988,29 @@
 "apiContract:Request",
 "apiContract:Message",
 "doc:DomainElement"
+],
+"sourcemaps:sources": [
+{
+"@id": "#219/source-map",
+"@type": [
+"sourcemaps:SourceMap"
+],
+"sourcemaps:lexical": [
+{
+"@id": "#219/source-map/lexical/element_0",
+"sourcemaps:element": [
+{
+"@value": "amf://id#219"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "[(416,13)-(441,7)]"
+}
+]
+}
+]
+}
 ]
 }
 ],
@@ -11789,6 +12189,19 @@
 ],
 "sourcemaps:lexical": [
 {
+"@id": "#228/source-map/lexical/element_1",
+"sourcemaps:element": [
+{
+"@value": "amf://id#228"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "[(444,13)-(484,7)]"
+}
+]
+},
+{
 "@id": "#228/source-map/lexical/element_0",
 "sourcemaps:element": [
 {
@@ -12757,6 +13170,19 @@
 ],
 "sourcemaps:lexical": [
 {
+"@id": "#242/source-map/lexical/element_1",
+"sourcemaps:element": [
+{
+"@value": "amf://id#242"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "[(487,13)-(520,7)]"
+}
+]
+},
+{
 "@id": "#242/source-map/lexical/element_0",
 "sourcemaps:element": [
 {
@@ -13643,6 +14069,29 @@
 "apiContract:Request",
 "apiContract:Message",
 "doc:DomainElement"
+],
+"sourcemaps:sources": [
+{
+"@id": "#253/source-map",
+"@type": [
+"sourcemaps:SourceMap"
+],
+"sourcemaps:lexical": [
+{
+"@id": "#253/source-map/lexical/element_0",
+"sourcemaps:element": [
+{
+"@value": "amf://id#253"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "[(523,13)-(548,7)]"
+}
+]
+}
+]
+}
 ]
 }
 ],
@@ -14418,7 +14867,7 @@
 ],
 "doc:version": [
 {
-"@value": "2.0.0"
+"@value": "2.1.0"
 }
 ],
 "doc:root": [
