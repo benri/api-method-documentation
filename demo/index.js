@@ -1,28 +1,21 @@
-import { html, render } from 'lit-html';
-import { LitElement } from 'lit-element';
-import { ApiDemoPageBase } from '@advanced-rest-client/arc-demo-helper/ApiDemoPage.js';
-import { AmfHelperMixin } from '@api-components/amf-helper-mixin/amf-helper-mixin.js';
+import { html } from 'lit-html';
+import { ApiDemoPage } from '@advanced-rest-client/arc-demo-helper';
 import '@anypoint-web-components/anypoint-checkbox/anypoint-checkbox.js';
-import '@advanced-rest-client/arc-demo-helper/arc-demo-helper.js';
 import '@advanced-rest-client/arc-demo-helper/arc-interactive-demo.js';
-import '@api-components/api-navigation/api-navigation.js';
 import '@polymer/paper-toast/paper-toast.js';
 import '@anypoint-web-components/anypoint-styles/colors.js';
 import '@anypoint-web-components/anypoint-styles/typography.js';
 import '@anypoint-web-components/anypoint-styles/din-pro.js';
 import '../api-method-documentation.js';
 
-class DemoElement extends AmfHelperMixin(LitElement) {}
-window.customElements.define('demo-element', DemoElement);
-
-class ComponentDemo extends ApiDemoPageBase {
+class ComponentDemo extends ApiDemoPage {
   constructor() {
     super();
-    this._componentName = 'api-method-documentation';
+    this.componentName = 'api-method-documentation';
+    this.renderViewControls = true;
 
     this.initObservableProperties([
-      'legacy',
-      'narrow',
+      'compatibility',
       'selectedAmfId',
       'noTryit',
       'codeSnippets',
@@ -31,7 +24,7 @@ class ComponentDemo extends ApiDemoPageBase {
       'method',
       'previous',
       'next',
-      'graph'
+      'graph',
     ]);
     this.noTryit = false;
     this.codeSnippets = true;
@@ -44,32 +37,13 @@ class ComponentDemo extends ApiDemoPageBase {
   }
 
   _demoStateHandler(e) {
-    const state = e.detail.value;
-    switch (state) {
-      case 0:
-        this.legacy = false;
-        break;
-      case 1:
-        this.legacy = true;
-        break;
-    }
-    if (this.legacy) {
+    const { value } = e.detail;
+    this.compatibility = value === 1;
+    if (this.compatibility) {
       document.body.classList.add('anypoint');
     } else {
       document.body.classList.remove('anypoint');
     }
-  }
-
-  _toggleMainOption(e) {
-    const { name, checked } = e.target;
-    this[name] = checked;
-  }
-
-  get helper() {
-    if (!this.__helper) {
-      this.__helper = document.getElementById('helper');
-    }
-    return this.__helper;
   }
 
   _navChanged(e) {
@@ -83,9 +57,8 @@ class ComponentDemo extends ApiDemoPageBase {
   }
 
   setData(id) {
-    const helper = this.helper;
-    const webApi = helper._computeWebApi(this.amf);
-    const endpoint = helper._computeMethodEndpoint(webApi, id);
+    const webApi = this._computeWebApi(this.amf);
+    const endpoint = this._computeMethodEndpoint(webApi, id);
     if (!endpoint) {
       this.endpoint = undefined;
       this.method = undefined;
@@ -93,7 +66,7 @@ class ComponentDemo extends ApiDemoPageBase {
     }
     this.endpoint = endpoint;
 
-    const methods = helper._computeOperations(webApi, endpoint['@id']);
+    const methods = this._computeOperations(webApi, endpoint['@id']);
     let last;
     for (let i = 0, len = methods.length; i < len; i++) {
       const item = methods[i];
@@ -113,10 +86,9 @@ class ComponentDemo extends ApiDemoPageBase {
       this.previous = undefined;
       return;
     }
-    const helper = this.helper;
-    let name = helper._getValue(item, helper.ns.aml.vocabularies.core.name);
+    let name = this._getValue(item, this.ns.aml.vocabularies.core.name);
     if (!name) {
-      name = helper._getValue(item, helper.ns.aml.vocabularies.apiContract.method);
+      name = this._getValue(item, this.ns.aml.vocabularies.apiContract.method);
     }
     this.previous = {
       id: item['@id'],
@@ -129,10 +101,9 @@ class ComponentDemo extends ApiDemoPageBase {
       this.next = undefined;
       return;
     }
-    const helper = this.helper;
-    let name = helper._getValue(item, helper.ns.aml.vocabularies.core.name);
+    let name = this._getValue(item, this.ns.aml.vocabularies.core.name);
     if (!name) {
-      name = helper._getValue(item, helper.ns.aml.vocabularies.apiContract.method);
+      name = this._getValue(item, this.ns.aml.vocabularies.apiContract.method);
     }
     this.next = {
       id: item['@id'],
@@ -152,8 +123,8 @@ class ComponentDemo extends ApiDemoPageBase {
       ['SE-12959', 'OAS summary field'],
       ['SE-12752', 'Query string (SE-12752)'],
     ].map(([file, label]) => html`
-      <paper-item data-src="${file}-compact.json">${label} - compact model</paper-item>
-      <paper-item data-src="${file}.json">${label}</paper-item>
+      <anypoint-item data-src="${file}-compact.json">${label} - compact model</anypoint-item>
+      <anypoint-item data-src="${file}.json">${label}</anypoint-item>
       `);
   }
 
@@ -166,7 +137,7 @@ class ComponentDemo extends ApiDemoPageBase {
     const {
       demoStates,
       darkThemeActive,
-      legacy,
+      compatibility,
       amf,
       narrow,
       endpoint,
@@ -176,7 +147,7 @@ class ComponentDemo extends ApiDemoPageBase {
       codeSnippets,
       renderSecurity,
       noTryit,
-      graph
+      graph,
     } = this;
     return html `
     <section class="documentation-section">
@@ -186,73 +157,67 @@ class ComponentDemo extends ApiDemoPageBase {
         configuration options.
       </p>
 
-      <section class="horizontal-section-container centered main">
-        ${this._apiNavigationTemplate()}
-        <div class="demo-container">
+      <arc-interactive-demo
+        .states="${demoStates}"
+        @state-chanegd="${this._demoStateHandler}"
+        ?dark="${darkThemeActive}"
+      >
 
-          <arc-interactive-demo
-            .states="${demoStates}"
-            @state-chanegd="${this._demoStateHandler}"
-            ?dark="${darkThemeActive}"
-          >
-
-            <div slot="content">
-              <api-method-documentation
-                .amf="${amf}"
-                .endpoint="${endpoint}"
-                .method="${method}"
-                .previous="${previous}"
-                .next="${next}"
-                ?rendercodesnippets="${codeSnippets}"
-                ?narrow="${narrow}"
-                .renderSecurity="${renderSecurity}"
-                .noTryIt="${noTryit}"
-                ?legacy="${legacy}"
-                ?graph="${graph}"
-                @tryit-requested="${this._tryitRequested}"></api-method-documentation>
-            </div>
-            <label slot="options" id="mainOptionsLabel">Options</label>
-
-            <anypoint-checkbox
-              aria-describedby="mainOptionsLabel"
-              slot="options"
-              name="narrow"
-              @change="${this._toggleMainOption}"
-              >Narrow view</anypoint-checkbox
-            >
-            <anypoint-checkbox
-              aria-describedby="mainOptionsLabel"
-              slot="options"
-              name="noTryit"
-              @change="${this._toggleMainOption}"
-              >No try it</anypoint-checkbox
-            >
-            <anypoint-checkbox
-              aria-describedby="mainOptionsLabel"
-              slot="options"
-              name="codeSnippets"
-              .checked="${codeSnippets}"
-              @change="${this._toggleMainOption}"
-              >With cod snippets</anypoint-checkbox
-            >
-            <anypoint-checkbox
-              aria-describedby="mainOptionsLabel"
-              slot="options"
-              name="renderSecurity"
-              .checked="${renderSecurity}"
-              @change="${this._toggleMainOption}"
-              >With security</anypoint-checkbox
-            >
-            <anypoint-checkbox
-              aria-describedby="mainOptionsLabel"
-              slot="options"
-              name="graph"
-              @change="${this._toggleMainOption}"
-              >Graph experiment</anypoint-checkbox
-            >
-          </arc-interactive-demo>
+        <div slot="content">
+          <api-method-documentation
+            .amf="${amf}"
+            .endpoint="${endpoint}"
+            .method="${method}"
+            .previous="${previous}"
+            .next="${next}"
+            ?rendercodesnippets="${codeSnippets}"
+            ?narrow="${narrow}"
+            .renderSecurity="${renderSecurity}"
+            .noTryIt="${noTryit}"
+            ?compatibility="${compatibility}"
+            ?graph="${graph}"
+            @tryit-requested="${this._tryitRequested}"></api-method-documentation>
         </div>
-      </section>
+        <label slot="options" id="mainOptionsLabel">Options</label>
+
+        <anypoint-checkbox
+          aria-describedby="mainOptionsLabel"
+          slot="options"
+          name="narrow"
+          @change="${this._toggleMainOption}"
+          >Narrow view</anypoint-checkbox
+        >
+        <anypoint-checkbox
+          aria-describedby="mainOptionsLabel"
+          slot="options"
+          name="noTryit"
+          @change="${this._toggleMainOption}"
+          >No try it</anypoint-checkbox
+        >
+        <anypoint-checkbox
+          aria-describedby="mainOptionsLabel"
+          slot="options"
+          name="codeSnippets"
+          .checked="${codeSnippets}"
+          @change="${this._toggleMainOption}"
+          >With code snippets</anypoint-checkbox
+        >
+        <anypoint-checkbox
+          aria-describedby="mainOptionsLabel"
+          slot="options"
+          name="renderSecurity"
+          .checked="${renderSecurity}"
+          @change="${this._toggleMainOption}"
+          >With security</anypoint-checkbox
+        >
+        <anypoint-checkbox
+          aria-describedby="mainOptionsLabel"
+          slot="options"
+          name="graph"
+          @change="${this._toggleMainOption}"
+          >Graph experiment</anypoint-checkbox
+        >
+      </arc-interactive-demo>
     </section>`;
   }
 
@@ -276,28 +241,21 @@ class ComponentDemo extends ApiDemoPageBase {
         <ul>
           <li><b>Material Design</b> (default)</li>
           <li>
-            <b>Legacy</b> - To provide compatibility with legacy Anypoint design, use
-            <code>legacy</code> property
+            <b>Compatibility</b> - To provide compatibility with Anypoint design, use
+            <code>compatibility</code> property
           </li>
         </ul>
       </section>`;
   }
 
-  _render() {
-    const { amf } = this;
-    render(html`
-      ${this.headerTemplate()}
-
-      <demo-element id="helper" .amf="${amf}"></demo-element>
-      <paper-toast text="Try it event detected" id="tryItToast"></paper-toast>
-
-      <div role="main">
-        <h2 class="centered main">API method documentation</h2>
-        ${this._demoTemplate()}
-        ${this._introductionTemplate()}
-        ${this._usageTemplate()}
-      </div>
-      `, document.querySelector('#demo'));
+  contentTemplate() {
+    return html`
+    <paper-toast text="Try it event detected" id="tryItToast"></paper-toast>
+    <h2 class="centered main">API method documentation</h2>
+    ${this._demoTemplate()}
+    ${this._introductionTemplate()}
+    ${this._usageTemplate()}
+    `;
   }
 }
 const instance = new ComponentDemo();
