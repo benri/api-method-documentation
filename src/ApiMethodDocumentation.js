@@ -880,7 +880,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
           .amf="${amf}"
           .security="${item}"
           ?narrow="${narrow}"
-          ?legacy="${compatibility}"></api-security-documentation>`)}
+          ?compatibility="${compatibility}"></api-security-documentation>`)}
       </iron-collapse>
     </section>`;
   }
@@ -906,7 +906,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       .endpointParameters="${endpointVariables}"
       .queryParameters="${queryParameters}"
       ?narrow="${narrow}"
-      ?legacy="${compatibility}"
+      ?compatibility="${compatibility}"
       ?graph="${graph}"></api-parameters-document>`;
   }
 
