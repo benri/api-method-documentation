@@ -116,7 +116,6 @@ import styles from './Styles.js';
  *
  * @customElement
  * @demo demo/index.html
- * @memberof ApiElements
  * @appliesMixin AmfHelperMixin
  */
 export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
