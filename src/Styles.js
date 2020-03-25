@@ -32,6 +32,11 @@ export default css`
   line-height: var(--arc-font-subhead-line-height);
 }
 
+.heading4 {
+  flex: 1;
+  font-weight: bold;
+}
+
 .title-area {
   flex-direction: row;
   display: flex;
@@ -205,4 +210,10 @@ api-security-documentation:last-of-type {
   width: 24px;
   height: 24px;
   fill: currentColor;
+}
+
+.callback-section {
+  margin: 12px 0;
+  padding: 8px;
+  background-color: var(--api-method-documentation-callback-background-color, #f7f7f7);
 }`;

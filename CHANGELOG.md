@@ -1668,3 +1668,25 @@
  [3ef7849](https://github.com/advanced-rest-client/api-method-documentation/commit/3ef78495cf92de7667da4fef24f68231e450690b) by Pawel Psztyc
 
 
+<a name="4.0.8"></a>
+## [4.0.8](https://github.com/advanced-rest-client/api-method-documentation/compare/4.0.7...4.0.8) (2020-03-16)
+
+### Build
+
+* bumping version [b4eebef](https://github.com/advanced-rest-client/api-method-documentation/commit/b4eebef3582ef27a5edbacfc3829c24568b01b89) by Pawel Psztyc
+
+
+### Update
+
+* [ci skip] automated merge master->stage. syncing main branches [5464c52](https://github.com/advanced-rest-client/api-method-documentation/commit/5464c52395133114034cbe25d1d741e25ea06b9f) by Ci agent
+* removing generated API model files [d6a6397](https://github.com/advanced-rest-client/api-method-documentation/commit/d6a6397bca4cba0fb954300e8e5e236363ea8dec) by Pawel Psztyc
+* removing git add from lint staged config [597a3dd](https://github.com/advanced-rest-client/api-method-documentation/commit/597a3ddf4d2e937e4ab907c0da08d99d3b477ede) by Pawel Psztyc
+* upgrading dependencies [43256a0](https://github.com/advanced-rest-client/api-method-documentation/commit/43256a0b4182dcdea97bf2259359c9569b2687af) by Pawel Psztyc
+* bump amf-helper-mixin component and re-generate models (#6) [bump-version] [b23b680](https://github.com/advanced-rest-client/api-method-documentation/commit/b23b680c1f3da911956a8586debd10a454eff309) by Leandro Bauret
+
+
+### Testing
+
+* updating tests config [8e217f5](https://github.com/advanced-rest-client/api-method-documentation/commit/8e217f51648c1143bddddf1a8402a06fee0053f4) by Pawel Psztyc
+
+

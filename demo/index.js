@@ -117,11 +117,12 @@ class ComponentDemo extends ApiDemoPage {
       ['google-drive-api', 'Google Drive'],
       ['appian-api', 'Appian API'],
       ['loan-microservice', 'Loan microservice (OAS)'],
-      ['array-body', 'Request body with an array (reported issue)'],
-      ['nexmo-sms-api', 'Nexmo SMS API'],
-      ['SE-12957', 'OAS query parameetrs documentation'],
-      ['SE-12959', 'OAS summary field'],
-      ['SE-12752', 'Query string (SE-12752)'],
+      // ['array-body', 'Request body with an array (reported issue)'],
+      // ['nexmo-sms-api', 'Nexmo SMS API'],
+      // ['SE-12957', 'OAS query parameetrs documentation'],
+      // ['SE-12959', 'OAS summary field'],
+      // ['SE-12752', 'Query string (SE-12752)'],
+      ['oas-callbacks', 'OAS 3 callbacks']
     ].map(([file, label]) => html`
       <anypoint-item data-src="${file}-compact.json">${label} - compact model</anypoint-item>
       <anypoint-item data-src="${file}.json">${label}</anypoint-item>

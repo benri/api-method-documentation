@@ -261,6 +261,10 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
        */
       securityOpened: { type: Boolean },
       /**
+       * Whether or not the callbacks toggle is opened.
+       */
+      callbacksOpened: { type: Boolean },
+      /**
        * When set it renders code examples section is the documentation
        */
       renderCodeSnippets: { type: Boolean },
@@ -303,7 +307,11 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       /**
        * When set it hiddes bottom navigation links
        */
-      noNavigation: { type: Boolean }
+      noNavigation: { type: Boolean },
+      /**
+       * When set the base URI won't be rendered for this method.
+       */
+      ignoreBaseUri: { type: Boolean },
     };
   }
 
@@ -354,7 +362,23 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       return;
     }
     this._baseUri = value;
-    this.endpointUri = this._computeEndpointUri(this.server, this.endpoint, value, this.apiVersion);
+    const { server, apiVersion: version, endpoint, ignoreBaseUri: ignoreBase } = this;
+    this.endpointUri = this._computeUri(endpoint, { version, server, ignoreBase, baseUri: value });
+  }
+
+  get ignoreBaseUri() {
+    return this._ignoreBaseUri;
+  }
+
+  set ignoreBaseUri(value) {
+    const old = this._ignoreBaseUri;
+    /* istanbul ignore if */
+    if (old === value) {
+      return;
+    }
+    this._ignoreBaseUri = value;
+    const { server, apiVersion: version, endpoint, baseUri } = this;
+    this.endpointUri = this._computeUri(endpoint, { version, server, baseUri, ignoreBase: value });
   }
 
   get expects() {
@@ -386,6 +410,19 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     return false;
   }
 
+  get _exampleGenerator() {
+    if (!this.__exampleGenerator) {
+      this.__exampleGenerator = document.createElement('api-example-generator');
+    }
+    this.__exampleGenerator.amf = this.amf;
+    return this.__exampleGenerator;
+  }
+
+  constructor() {
+    super();
+    this.callbacksOpened = false;
+  }
+
   __amfChanged() {
     if (this.__amfProcessingDebouncer) {
       return;
@@ -413,9 +450,12 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   _processModelChange() {
     this.__amfProcessingDebouncer = false;
     const { amf } = this;
-    const apiVersion = this.apiVersion = this._computeApiVersion(amf);
+    const version = this.apiVersion = this._computeApiVersion(amf);
     const server = this.server = this._computeServer(amf);
-    this.endpointUri = this._computeEndpointUri(server, this.endpoint, this.baseUri, apiVersion);
+
+    const { endpoint, ignoreBaseUri: ignoreBase, baseUri } = this;
+    this.endpointUri = this._computeUri(endpoint, { version, server, ignoreBase, baseUri });
+
     const serverVariables = this.serverVariables = this._computeServerVariables(server);
     const hasPathParameters = this.hasPathParameters =
       this._computeHasPathParameters(serverVariables, this.endpointVariables);
@@ -435,12 +475,13 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     const extendsTypes = this.extendsTypes = this._computeExtends(method);
     this.traits = this._computeTraits(extendsTypes);
     this.methodSummary = this._getValue(method, this.ns.aml.vocabularies.apiContract.guiSummary);
+    this.callbacks = this._computeCallbacks(method);
   }
 
   _processEndpointChange() {
     this.__endpointProcessingDebouncer = false;
-    const { endpoint } = this;
-    this.endpointUri = this._computeEndpointUri(this.server, endpoint, this.baseUri, this.apiVersion);
+    const { endpoint, ignoreBaseUri: ignoreBase, baseUri, apiVersion: version, server } = this;
+    this.endpointUri = this._computeUri(endpoint, { version, server, ignoreBase, baseUri });
     this._processEndpointVariables();
   }
 
@@ -597,6 +638,13 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   }
 
   /**
+   * Toggles security section.
+   */
+  _toggleCallbacks() {
+    this.callbacksOpened = !this.callbacksOpened;
+  }
+
+  /**
    * Computes example headers string for code snippets.
    * @param {Array} headers Headers model from AMF
    * @return {String|undefind} Computed example value for headers
@@ -719,12 +767,17 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     this.amf = e.detail.value;
   }
 
-  get _exampleGenerator() {
-    if (!this.__exampleGenerator) {
-      this.__exampleGenerator = document.createElement('api-example-generator');
+  /**
+   * Computes as list of OAS' callbacks in current method
+   * @param {Object} method A method to process
+   * @return {Array<Object>|undefined} List of Callbacks or undefined if none.
+   */
+  _computeCallbacks(method) {
+    if (!method) {
+      return;
     }
-    this.__exampleGenerator.amf = this.amf;
-    return this.__exampleGenerator;
+    const key = this._getAmfKey(this.ns.aml.vocabularies.apiContract.callback);
+    return this._ensureArray(method[key]);
   }
 
   render() {
@@ -748,6 +801,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       ${this._getParametersTemplate()}
       ${this._getHeadersTemplate()}
       ${this._getBodyTemplate()}
+      ${this._callbacksTemplate()}
     </section>
     ${this._getReturnsTemplate()}
     ${this._getNavigationTemplate()}`;
@@ -970,6 +1024,75 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
         ?graph="${graph}"
         .returns="${returns}"></api-responses-document>
     </section>`;
+  }
+
+  _callbacksTemplate() {
+    const { callbacks } = this;
+    if (!callbacks || !callbacks.length) {
+      return '';
+    }
+    const {
+      callbacksOpened,
+      compatibility,
+    } = this;
+    const label = this._computeToggleActionLabel(callbacksOpened);
+    const iconClass = this._computeToggleIconClass(callbacksOpened);
+    return html`<section class="callbacks">
+      <div
+        class="section-title-area"
+        @click="${this._toggleCallbacks}"
+        title="Toogle callbacks details"
+        ?opened="${callbacksOpened}"
+      >
+        <div class="heading3 table-title" role="heading" aria-level="2">Callbacks</div>
+        <div class="title-area-actions">
+          <anypoint-button class="toggle-button" ?compatibility="${compatibility}">
+            ${label}
+            <span class="icon ${iconClass}">${expandMore}</span>
+          </anypoint-button>
+        </div>
+      </div>
+      <iron-collapse .opened="${callbacksOpened}">
+        ${callbacks.map((callback) => this._callbackTemplate(callback))}
+      </iron-collapse>
+    </section>`;
+  }
+
+  _callbackTemplate(callback) {
+    const name = this._getValue(callback, this.ns.aml.vocabularies.core.name);
+    const endpointKey = this._getAmfKey(this.ns.aml.vocabularies.apiContract.endpoint);
+    const endpoints = this._ensureArray(callback[endpointKey]);
+    if (!endpoints || !endpoints.length) {
+      return '';
+    }
+    const endpoint = endpoints[0];
+    const methodKey = this._getAmfKey(this.ns.aml.vocabularies.apiContract.supportedOperation);
+    const methods = this._ensureArray(endpoint[methodKey]);
+    if (!methods || !methods.length) {
+      return '';
+    }
+    const method = methods[0];
+    const {
+      amf,
+      compatibility,
+      graph,
+    } = this;
+    return html`
+      <div class="callback-section">
+        <div class="heading4 table-title" role="heading" aria-level="3">${name}</div>
+        <api-method-documentation
+          .amf="${amf}"
+          .method="${method}"
+          .endpoint="${endpoint}"
+          ?compatibility="${compatibility}"
+          ?graph="${graph}"
+          notryit
+          narrow
+          nonavigation
+          ignorebaseuri
+        ></api-method-documentation>
+      </div>
+    `;
   }
 
   _getNavigationTemplate() {
