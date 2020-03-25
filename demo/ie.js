@@ -1,8 +1,5 @@
-import { html, render } from 'lit-html';
-import { LitElement } from 'lit-element';
-import { ApiDemoPageBase } from '@advanced-rest-client/arc-demo-helper/ApiDemoPage.js';
-import { AmfHelperMixin } from '@api-components/amf-helper-mixin/amf-helper-mixin.js';
-import '@advanced-rest-client/arc-demo-helper/arc-demo-helper.js';
+import { html } from 'lit-html';
+import { ApiDemoPage } from '@advanced-rest-client/arc-demo-helper';
 import '@api-components/api-navigation/api-navigation.js';
 import '@polymer/paper-toast/paper-toast.js';
 import '@anypoint-web-components/anypoint-styles/colors.js';
@@ -10,13 +7,11 @@ import '@anypoint-web-components/anypoint-styles/typography.js';
 import '@anypoint-web-components/anypoint-styles/din-pro.js';
 import '../api-method-documentation.js';
 
-class DemoElement extends AmfHelperMixin(LitElement) {}
-window.customElements.define('demo-element', DemoElement);
-
-class ComponentDemo extends ApiDemoPageBase {
+class ComponentDemo extends ApiDemoPage {
   constructor() {
     super();
-    this._componentName = 'api-method-documentation';
+    this.componentName = 'api-method-documentation';
+    this.renderViewControls = true;
 
     this.initObservableProperties([
       'selectedAmfId',
@@ -33,13 +28,6 @@ class ComponentDemo extends ApiDemoPageBase {
     this._tryitRequested = this._tryitRequested.bind(this);
   }
 
-  get helper() {
-    if (!this.__helper) {
-      this.__helper = document.getElementById('helper');
-    }
-    return this.__helper;
-  }
-
   _navChanged(e) {
     const { selected, type } = e.detail;
     if (type === 'method') {
@@ -51,9 +39,8 @@ class ComponentDemo extends ApiDemoPageBase {
   }
 
   setData(id) {
-    const helper = this.helper;
-    const webApi = helper._computeWebApi(this.amf);
-    const endpoint = helper._computeMethodEndpoint(webApi, id);
+    const webApi = this._computeWebApi(this.amf);
+    const endpoint = this._computeMethodEndpoint(webApi, id);
     if (!endpoint) {
       this.endpoint = undefined;
       this.method = undefined;
@@ -61,7 +48,7 @@ class ComponentDemo extends ApiDemoPageBase {
     }
     this.endpoint = endpoint;
 
-    const methods = helper._computeOperations(webApi, endpoint['@id']);
+    const methods = this._computeOperations(webApi, endpoint['@id']);
     let last;
     for (let i = 0, len = methods.length; i < len; i++) {
       const item = methods[i];
@@ -81,10 +68,9 @@ class ComponentDemo extends ApiDemoPageBase {
       this.previous = undefined;
       return;
     }
-    const helper = this.helper;
-    let name = helper._getValue(item, helper.ns.aml.vocabularies.core.name);
+    let name = this._getValue(item, this.ns.aml.vocabularies.core.name);
     if (!name) {
-      name = helper._getValue(item, helper.ns.aml.vocabularies.apiContract.method);
+      name = this._getValue(item, this.ns.aml.vocabularies.apiContract.method);
     }
     this.previous = {
       id: item['@id'],
@@ -97,10 +83,9 @@ class ComponentDemo extends ApiDemoPageBase {
       this.next = undefined;
       return;
     }
-    const helper = this.helper;
-    let name = helper._getValue(item, helper.ns.aml.vocabularies.core.name);
+    let name = this._getValue(item, this.ns.aml.vocabularies.core.name);
     if (!name) {
-      name = helper._getValue(item, helper.ns.aml.vocabularies.apiContract.method);
+      name = this._getValue(item, this.ns.aml.vocabularies.apiContract.method);
     }
     this.next = {
       id: item['@id'],
@@ -119,8 +104,8 @@ class ComponentDemo extends ApiDemoPageBase {
       ['SE-12957', 'OAS query parameetrs documentation'],
       ['SE-12959', 'OAS summary field']
     ].map(([file, label]) => html`
-      <paper-item data-src="${file}-compact.json">${label} - compact model</paper-item>
-      <paper-item data-src="${file}.json">${label}</paper-item>
+    <anypoint-item data-src="${file}-compact.json">${label} - compact model</anypoint-item>
+    <anypoint-item data-src="${file}.json">${label}</anypoint-item>
       `);
   }
 
@@ -150,26 +135,19 @@ class ComponentDemo extends ApiDemoPageBase {
         This demo lets you preview the API method documentation element with various
         configuration options.
       </p>
-
-      <section class="horizontal-section-container centered main">
-        ${this._apiNavigationTemplate()}
-        <div class="demo-container">
-
-          <api-method-documentation
-            .amf="${amf}"
-            .endpoint="${endpoint}"
-            .method="${method}"
-            .previous="${previous}"
-            .next="${next}"
-            ?rendercodesnippets="${codeSnippets}"
-            ?narrow="${narrow}"
-            .renderSecurity="${renderSecurity}"
-            .noTryIt="${noTryit}"
-            ?legacy="${legacy}"
-            ?graph="${graph}"
-            @tryit-requested="${this._tryitRequested}"></api-method-documentation>
-        </div>
-      </section>
+      <api-method-documentation
+        .amf="${amf}"
+        .endpoint="${endpoint}"
+        .method="${method}"
+        .previous="${previous}"
+        .next="${next}"
+        ?rendercodesnippets="${codeSnippets}"
+        ?narrow="${narrow}"
+        .renderSecurity="${renderSecurity}"
+        .noTryIt="${noTryit}"
+        ?legacy="${legacy}"
+        ?graph="${graph}"
+        @tryit-requested="${this._tryitRequested}"></api-method-documentation>
     </section>`;
   }
 
@@ -200,21 +178,14 @@ class ComponentDemo extends ApiDemoPageBase {
       </section>`;
   }
 
-  _render() {
-    const { amf } = this;
-    render(html`
-      ${this.headerTemplate()}
-
-      <demo-element id="helper" .amf="${amf}"></demo-element>
-      <paper-toast text="Try it event detected" id="tryItToast"></paper-toast>
-
-      <div role="main">
-        <h2 class="centered main">API method documentation</h2>
-        ${this._demoTemplate()}
-        ${this._introductionTemplate()}
-        ${this._usageTemplate()}
-      </div>
-      `, document.querySelector('#demo'));
+  contentTemplate() {
+    return html`
+    <paper-toast text="Try it event detected" id="tryItToast"></paper-toast>
+    <h2 class="centered main">API method documentation</h2>
+    ${this._demoTemplate()}
+    ${this._introductionTemplate()}
+    ${this._usageTemplate()}
+    `;
   }
 }
 const instance = new ComponentDemo();

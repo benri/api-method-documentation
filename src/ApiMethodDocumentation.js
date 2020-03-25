@@ -1,4 +1,4 @@
-import { html, css, LitElement } from 'lit-element';
+import { html, LitElement } from 'lit-element';
 import { AmfHelperMixin } from '@api-components/amf-helper-mixin/amf-helper-mixin.js';
 import markdownStyles from '@advanced-rest-client/markdown-styles/markdown-styles.js';
 import httpMethodStyles from '@api-components/http-method-label/http-method-label-common-styles.js';
@@ -17,6 +17,7 @@ import '@advanced-rest-client/clipboard-copy/clipboard-copy.js';
 import '@polymer/iron-collapse/iron-collapse.js';
 import '@api-components/api-security-documentation/api-security-documentation.js';
 import '@api-components/api-example-generator/api-example-generator.js';
+import styles from './Styles.js';
 /**
  * `api-method-documentation`
  *
@@ -115,7 +116,6 @@ import '@api-components/api-example-generator/api-example-generator.js';
  *
  * @customElement
  * @demo demo/index.html
- * @memberof ApiElements
  * @appliesMixin AmfHelperMixin
  */
 export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
@@ -123,211 +123,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     return [
       markdownStyles,
       httpMethodStyles,
-      css`:host {
-        display: block;
-      }
-
-      [hidden] {
-        display: none !important;
-      }
-
-      .title {
-        font-size: var(--arc-font-headline-font-size);
-        letter-spacing: var(--arc-font-headline-letter-spacing);
-        line-height: var(--arc-font-headline-line-height);
-        font-weight: var(--api-method-documentation-title-method-font-weight,
-          var(--arc-font-headline-font-weight, 500));
-        text-transform: capitalize;
-      }
-
-      .heading2 {
-        font-size: var(--arc-font-title-font-size);
-        font-weight: var(--arc-font-title-font-weight);
-        line-height: var(--arc-font-title-line-height);
-        margin: 0.84em 0;
-      }
-
-      .heading3 {
-        flex: 1;
-        font-size: var(--arc-font-subhead-font-size);
-        font-weight: var(--arc-font-subhead-font-weight);
-        line-height: var(--arc-font-subhead-line-height);
-      }
-
-      .title-area {
-        flex-direction: row;
-        display: flex;
-        align-items: center;
-      }
-
-      :host([narrow]) .title-area {
-        margin-bottom: 24px;
-      }
-
-      :host([narrow]) .title-area {
-        margin-top: 12px;
-      }
-
-      :host([narrow]) .title {
-        font-size: var(--arc-font-headline-narrow-font-size, 20px);
-        margin: 0;
-      }
-
-      :host([narrow]) .heading2 {
-        font-size: var(--arc-font-title-narrow-font-size, 18px);
-      }
-
-      :host([narrow]) .heading3 {
-        font-size: var(--arc-font-subhead-narrow-font-size, 17px);
-      }
-
-      .title {
-        flex: 1;
-      }
-
-      .url-area {
-        flex: 1;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        font-family: var(--arc-font-code-family);
-        font-size: var(--api-method-documentation-url-font-size, 1.07rem);
-        margin-bottom: 40px;
-        margin-top: 20px;
-        background-color: var(--code-background-color);
-        color: var(--code-color);
-        padding: 8px;
-        border-radius: var(--api-method-documentation-url-border-radius, 4px);
-        position: relative;
-      }
-
-      .section-title-area {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        border-bottom: 1px var(--api-parameters-document-title-border-color, #e5e5e5) solid;
-        cursor: pointer;
-        user-select: none;
-        transition: border-bottom-color 0.15s ease-in-out;
-      }
-
-      .section-title-area[opened] {
-        border-bottom-color: transparent;
-      }
-
-      .url-value {
-        flex: 1;
-        margin-left: 12px;
-        word-break: break-all;
-      }
-
-      .method-value {
-        text-transform: uppercase;
-        white-space: nowrap;
-      }
-
-      .toggle-icon {
-        margin-left: 8px;
-        transform: rotateZ(0deg);
-        transition: transform 0.3s ease-in-out;
-      }
-
-      .toggle-icon.opened {
-        transform: rotateZ(-180deg);
-      }
-
-      http-code-snippets {
-        margin-bottom: 40px;
-      }
-
-      .bottom.action {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        margin-top: 20px;
-      }
-
-      arc-marked {
-        margin: 8px 0;
-        padding: 0px;
-      }
-
-      .markdown-body {
-        margin-bottom: 28px;
-        color: var(--api-method-documentation-description-color, rgba(0, 0, 0, 0.74));
-      }
-
-      .summary {
-        color: var(--api-method-documentation-description-color, rgba(0, 0, 0, 0.74));
-        font-size: 1.1rem;
-      }
-
-      .method-label {
-        margin-bottom: 0;
-      }
-
-      .bottom-nav,
-      .bottom-link {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-      }
-
-      .bottom-nav {
-        padding: 32px 0;
-        margin: 16px 0;
-        border-top: 1px var(--api-method-documentation-bottom-navigation-border-color, #cfd8dc) solid;
-        color: var(--api-method-documentation-bottom-navigation-color, #000);
-      }
-
-      .bottom-link {
-        cursor: pointer;
-        max-width: 50%;
-        word-break: break-all;
-        text-decoration: underline;
-      }
-
-      .bottom-link.previous {
-        margin-right: 12px;
-      }
-
-      .bottom-link.next {
-        margin-left: 12px;
-      }
-
-      .nav-separator {
-        flex: 1;
-      }
-
-      api-security-documentation {
-        margin-bottom: 12px;
-        padding-bottom: 12px;
-        border-bottom: 1px var(--api-headers-document-title-border-color, #e5e5e5) dashed;
-      }
-
-      api-security-documentation:last-of-type {
-        margin-bottom: 0;
-        border-bottom: none;
-        padding-bottom: 0;
-      }
-
-      .extensions {
-        font-style: italic;
-        margin: 12px 0;
-      }
-
-      .request-documentation,
-      .response-documentation {
-        background-color: var(--api-method-documentation-section-background-color, initial);
-        padding: var(--api-method-documentation-section-padding, 0px);
-      }
-
-      .icon {
-        display: block;
-        width: 24px;
-        height: 24px;
-        fill: currentColor;
-      }`
+      styles,
     ];
   }
 
@@ -465,6 +261,10 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
        */
       securityOpened: { type: Boolean },
       /**
+       * Whether or not the callbacks toggle is opened.
+       */
+      callbacksOpened: { type: Boolean },
+      /**
        * When set it renders code examples section is the documentation
        */
       renderCodeSnippets: { type: Boolean },
@@ -507,7 +307,11 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       /**
        * When set it hiddes bottom navigation links
        */
-      noNavigation: { type: Boolean }
+      noNavigation: { type: Boolean },
+      /**
+       * When set the base URI won't be rendered for this method.
+       */
+      ignoreBaseUri: { type: Boolean },
     };
   }
 
@@ -558,7 +362,23 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       return;
     }
     this._baseUri = value;
-    this.endpointUri = this._computeEndpointUri(this.server, this.endpoint, value, this.apiVersion);
+    const { server, apiVersion: version, endpoint, ignoreBaseUri: ignoreBase } = this;
+    this.endpointUri = this._computeUri(endpoint, { version, server, ignoreBase, baseUri: value });
+  }
+
+  get ignoreBaseUri() {
+    return this._ignoreBaseUri;
+  }
+
+  set ignoreBaseUri(value) {
+    const old = this._ignoreBaseUri;
+    /* istanbul ignore if */
+    if (old === value) {
+      return;
+    }
+    this._ignoreBaseUri = value;
+    const { server, apiVersion: version, endpoint, baseUri } = this;
+    this.endpointUri = this._computeUri(endpoint, { version, server, baseUri, ignoreBase: value });
   }
 
   get expects() {
@@ -590,6 +410,19 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     return false;
   }
 
+  get _exampleGenerator() {
+    if (!this.__exampleGenerator) {
+      this.__exampleGenerator = document.createElement('api-example-generator');
+    }
+    this.__exampleGenerator.amf = this.amf;
+    return this.__exampleGenerator;
+  }
+
+  constructor() {
+    super();
+    this.callbacksOpened = false;
+  }
+
   __amfChanged() {
     if (this.__amfProcessingDebouncer) {
       return;
@@ -617,9 +450,12 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   _processModelChange() {
     this.__amfProcessingDebouncer = false;
     const { amf } = this;
-    const apiVersion = this.apiVersion = this._computeApiVersion(amf);
+    const version = this.apiVersion = this._computeApiVersion(amf);
     const server = this.server = this._computeServer(amf);
-    this.endpointUri = this._computeEndpointUri(server, this.endpoint, this.baseUri, apiVersion);
+
+    const { endpoint, ignoreBaseUri: ignoreBase, baseUri } = this;
+    this.endpointUri = this._computeUri(endpoint, { version, server, ignoreBase, baseUri });
+
     const serverVariables = this.serverVariables = this._computeServerVariables(server);
     const hasPathParameters = this.hasPathParameters =
       this._computeHasPathParameters(serverVariables, this.endpointVariables);
@@ -639,12 +475,13 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     const extendsTypes = this.extendsTypes = this._computeExtends(method);
     this.traits = this._computeTraits(extendsTypes);
     this.methodSummary = this._getValue(method, this.ns.aml.vocabularies.apiContract.guiSummary);
+    this.callbacks = this._computeCallbacks(method);
   }
 
   _processEndpointChange() {
     this.__endpointProcessingDebouncer = false;
-    const { endpoint } = this;
-    this.endpointUri = this._computeEndpointUri(this.server, endpoint, this.baseUri, this.apiVersion);
+    const { endpoint, ignoreBaseUri: ignoreBase, baseUri, apiVersion: version, server } = this;
+    this.endpointUri = this._computeUri(endpoint, { version, server, ignoreBase, baseUri });
     this._processEndpointVariables();
   }
 
@@ -801,6 +638,13 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   }
 
   /**
+   * Toggles security section.
+   */
+  _toggleCallbacks() {
+    this.callbacksOpened = !this.callbacksOpened;
+  }
+
+  /**
    * Computes example headers string for code snippets.
    * @param {Array} headers Headers model from AMF
    * @return {String|undefind} Computed example value for headers
@@ -923,12 +767,17 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     this.amf = e.detail.value;
   }
 
-  get _exampleGenerator() {
-    if (!this.__exampleGenerator) {
-      this.__exampleGenerator = document.createElement('api-example-generator');
+  /**
+   * Computes as list of OAS' callbacks in current method
+   * @param {Object} method A method to process
+   * @return {Array<Object>|undefined} List of Callbacks or undefined if none.
+   */
+  _computeCallbacks(method) {
+    if (!method) {
+      return;
     }
-    this.__exampleGenerator.amf = this.amf;
-    return this.__exampleGenerator;
+    const key = this._getAmfKey(this.ns.aml.vocabularies.apiContract.callback);
+    return this._ensureArray(method[key]);
   }
 
   render() {
@@ -952,6 +801,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       ${this._getParametersTemplate()}
       ${this._getHeadersTemplate()}
       ${this._getBodyTemplate()}
+      ${this._callbacksTemplate()}
     </section>
     ${this._getReturnsTemplate()}
     ${this._getNavigationTemplate()}`;
@@ -1084,7 +934,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
           .amf="${amf}"
           .security="${item}"
           ?narrow="${narrow}"
-          ?legacy="${compatibility}"></api-security-documentation>`)}
+          ?compatibility="${compatibility}"></api-security-documentation>`)}
       </iron-collapse>
     </section>`;
   }
@@ -1110,7 +960,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       .endpointParameters="${endpointVariables}"
       .queryParameters="${queryParameters}"
       ?narrow="${narrow}"
-      ?legacy="${compatibility}"
+      ?compatibility="${compatibility}"
       ?graph="${graph}"></api-parameters-document>`;
   }
 
@@ -1174,6 +1024,75 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
         ?graph="${graph}"
         .returns="${returns}"></api-responses-document>
     </section>`;
+  }
+
+  _callbacksTemplate() {
+    const { callbacks } = this;
+    if (!callbacks || !callbacks.length) {
+      return '';
+    }
+    const {
+      callbacksOpened,
+      compatibility,
+    } = this;
+    const label = this._computeToggleActionLabel(callbacksOpened);
+    const iconClass = this._computeToggleIconClass(callbacksOpened);
+    return html`<section class="callbacks">
+      <div
+        class="section-title-area"
+        @click="${this._toggleCallbacks}"
+        title="Toogle callbacks details"
+        ?opened="${callbacksOpened}"
+      >
+        <div class="heading3 table-title" role="heading" aria-level="2">Callbacks</div>
+        <div class="title-area-actions">
+          <anypoint-button class="toggle-button" ?compatibility="${compatibility}">
+            ${label}
+            <span class="icon ${iconClass}">${expandMore}</span>
+          </anypoint-button>
+        </div>
+      </div>
+      <iron-collapse .opened="${callbacksOpened}">
+        ${callbacks.map((callback) => this._callbackTemplate(callback))}
+      </iron-collapse>
+    </section>`;
+  }
+
+  _callbackTemplate(callback) {
+    const name = this._getValue(callback, this.ns.aml.vocabularies.core.name);
+    const endpointKey = this._getAmfKey(this.ns.aml.vocabularies.apiContract.endpoint);
+    const endpoints = this._ensureArray(callback[endpointKey]);
+    if (!endpoints || !endpoints.length) {
+      return '';
+    }
+    const endpoint = endpoints[0];
+    const methodKey = this._getAmfKey(this.ns.aml.vocabularies.apiContract.supportedOperation);
+    const methods = this._ensureArray(endpoint[methodKey]);
+    if (!methods || !methods.length) {
+      return '';
+    }
+    const method = methods[0];
+    const {
+      amf,
+      compatibility,
+      graph,
+    } = this;
+    return html`
+      <div class="callback-section">
+        <div class="heading4 table-title" role="heading" aria-level="3">${name}</div>
+        <api-method-documentation
+          .amf="${amf}"
+          .method="${method}"
+          .endpoint="${endpoint}"
+          ?compatibility="${compatibility}"
+          ?graph="${graph}"
+          notryit
+          narrow
+          nonavigation
+          ignorebaseuri
+        ></api-method-documentation>
+      </div>
+    `;
   }
 
   _getNavigationTemplate() {

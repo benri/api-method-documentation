@@ -1,5 +1,5 @@
 import { fixture, assert, html, aTimeout, nextFrame } from '@open-wc/testing';
-import * as sinon from 'sinon/pkg/sinon-esm.js';
+import * as sinon from 'sinon';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 import { IronMeta } from '@polymer/iron-meta/iron-meta.js';
 import { AmfLoader } from './amf-loader.js';
@@ -320,6 +320,7 @@ describe('<api-method-documentation>', function() {
     describe(label, () => {
       const demoApi = 'demo-api';
       const driveApi = 'google-drive-api';
+      const callbacksApi = 'oas-callbacks';
 
       describe('Basic AMF computations', () => {
         let amf;
@@ -719,6 +720,76 @@ describe('<api-method-documentation>', function() {
         it('does not render navigation', () => {
           const node = element.shadowRoot.querySelector('.bottom-nav');
           assert.notOk(node);
+        });
+      });
+
+      describe('Callbacks basic computations', () => {
+        let amf;
+        let element;
+        before(async () => {
+          amf = await AmfLoader.load(callbacksApi, compact);
+          const [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, '/subscribe', 'post');
+          element = await modelFixture(amf, endpoint, method);
+          await aTimeout();
+        });
+
+        it('computes callbacks property', () => {
+          assert.typeOf(element.callbacks, 'array', 'callbacks are computed');
+          assert.lengthOf(element.callbacks, 3, 'has 3 callbacks');
+        });
+
+        it('renders callbacks section', () => {
+          const node = element.shadowRoot.querySelector('.callbacks');
+          assert.ok(node);
+        });
+
+        it('callbacks section is collapsed by default', () => {
+          assert.isFalse(element.callbacksOpened);
+        });
+
+        it('callbacks section can be opened with a click', async () => {
+          const node = element.shadowRoot.querySelector('.callbacks .section-title-area');
+          MockInteractions.tap(node);
+          await nextFrame();
+          assert.isTrue(element.callbacksOpened);
+        });
+
+        it('toggle section button has SHOW label by default', () => {
+          const node = element.shadowRoot.querySelector('.callbacks .title-area-actions .toggle-button');
+          assert.equal(node.textContent.trim(), 'Hide');
+        });
+
+        it('toggle section button has HIDE label when opened', async () => {
+          element.callbacksOpened = true;
+          await nextFrame();
+          const node = element.shadowRoot.querySelector('.callbacks .title-area-actions .toggle-button');
+          assert.equal(node.textContent.trim(), 'Hide');
+        });
+
+        it('renders all defiend callback sections', () => {
+          const nodes = element.shadowRoot.querySelectorAll('.callback-section');
+          assert.lengthOf(nodes, 3);
+        });
+
+        it('renders callback section title', () => {
+          const nodes = element.shadowRoot.querySelectorAll('.callback-section .table-title');
+          assert.equal(nodes[0].textContent.trim(), 'inProgress');
+          assert.equal(nodes[1].textContent.trim(), 'inProgress');
+          assert.equal(nodes[2].textContent.trim(), 'inProgress');
+        });
+
+        it('each section has method documentation', () => {
+          const nodes = element.shadowRoot.querySelectorAll('.callback-section api-method-documentation');
+          assert.lengthOf(nodes, 3);
+        });
+
+        it('method documentation as set configuration', () => {
+          const node = element.shadowRoot.querySelector('.callback-section api-method-documentation');
+          assert.isTrue(node.noTryIt, 'notryit is set');
+          assert.isTrue(node.narrow, 'narrow is set');
+          assert.isTrue(node.noNavigation, 'nonavigation is set');
+          assert.isTrue(node.noNavigation, 'nonavigation is set');
+          assert.isTrue(node.ignoreBaseUri, 'ignorebaseuri is set');
         });
       });
     });
