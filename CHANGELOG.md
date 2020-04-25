@@ -1732,3 +1732,40 @@
 * updating tests config [8e217f5](https://github.com/advanced-rest-client/api-method-documentation/commit/8e217f51648c1143bddddf1a8402a06fee0053f4) by Pawel Psztyc
 
 
+<a name="4.1.1"></a>
+## [4.1.1](https://github.com/advanced-rest-client/api-method-documentation/compare/4.0.8...4.1.1) (2020-04-25)
+
+### Build
+
+* bumping version [c3175f8](https://github.com/advanced-rest-client/api-method-documentation/commit/c3175f8ccc4d101f37ec6e243ecdad10506956c8) by Pawel
+
+
+### Update
+
+* adding types support [1c799bf](https://github.com/advanced-rest-client/api-method-documentation/commit/1c799bf37e64a0e5c9a053623341000147869e64) by Pawel
+* updating travis badge [5fd735b](https://github.com/advanced-rest-client/api-method-documentation/commit/5fd735be9ad8f0b076a1aebdad081ec2f72bde17) by Pawel
+* upgrading examples generator [1b02fb0](https://github.com/advanced-rest-client/api-method-documentation/commit/1b02fb0d58acce7e362f4f29a32358de56bcdfde) by Pawel
+* [ci skip] automated merge master->stage. syncing main branches [a458ca2](https://github.com/advanced-rest-client/api-method-documentation/commit/a458ca2c814fd2cd0247ccda6bc329077efcd7bb) by Ci agent
+* [ci skip] automated merge master->stage. syncing main branches [50ecc2e](https://github.com/advanced-rest-client/api-method-documentation/commit/50ecc2ed1164b326fcb3605ba50633745c32a6da) by Ci agent
+* updating amf model generator [9b17f4c](https://github.com/advanced-rest-client/api-method-documentation/commit/9b17f4c050fc3ba9864941795ce2d3c4e31e9861) by Pawel
+* removing memberof tag [8e0e1b9](https://github.com/advanced-rest-client/api-method-documentation/commit/8e0e1b952cc8dab8b9f373f609bf448d07a1ab3c) by Pawel
+* upgrading dependencies [baee5c9](https://github.com/advanced-rest-client/api-method-documentation/commit/baee5c9f891289bd60ac4f5e34c7302c472fd3d6) by Pawel
+* [ci skip] automated merge master->stage. syncing main branches [5464c52](https://github.com/advanced-rest-client/api-method-documentation/commit/5464c52395133114034cbe25d1d741e25ea06b9f) by Ci agent
+
+
+### Documentation
+
+* upgrading demo page [4e81eb1](https://github.com/advanced-rest-client/api-method-documentation/commit/4e81eb162837aee8cfc77089e99a391825a4f161) by Pawel
+
+
+### Features
+
+* adding support for OAS' 3 callbacks [86e1945](https://github.com/advanced-rest-client/api-method-documentation/commit/86e1945fa7e9ed28aa1ac7f7ff47de40fb954f5c) by Paweł Psztyć
+
+
+### Refactor
+
+* removing deprecated `legacy` use in the template [d027baa](https://github.com/advanced-rest-client/api-method-documentation/commit/d027baa40d4fd3854bfec18b91d073a93e77cac4) by Pawel
+* moving styles to a separate file [f533648](https://github.com/advanced-rest-client/api-method-documentation/commit/f533648de6cefd23924dc5e4dfa159a2a89441a0) by Pawel
+
+
