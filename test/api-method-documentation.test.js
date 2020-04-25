@@ -1,7 +1,6 @@
 import { fixture, assert, html, aTimeout, nextFrame } from '@open-wc/testing';
 import * as sinon from 'sinon';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
-import { IronMeta } from '@polymer/iron-meta/iron-meta.js';
 import { AmfLoader } from './amf-loader.js';
 import '../api-method-documentation.js';
 
@@ -518,25 +517,13 @@ describe('<api-method-documentation>', function() {
           [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, '/people/{personId}', 'put');
         });
 
-        afterEach(() => {
-          new IronMeta({ key: 'ApiBaseUri' }).value = undefined;
-        });
-
         it('sets URL from base uri', async () => {
           const element = await baseUriFixture(amf, endpoint, method);
           await aTimeout();
           assert.equal(element.endpointUri, 'https://domain.com/people/{personId}');
         });
 
-        it('sets URL from iron meta', async () => {
-          new IronMeta({ key: 'ApiBaseUri' }).value = 'https://meta.com/base';
-          const element = await modelFixture(amf, endpoint, method);
-          await aTimeout();
-          assert.equal(element.endpointUri, 'https://meta.com/base/people/{personId}');
-        });
-
-        it('sets URL from base uri even when iron meta', async () => {
-          new IronMeta({ key: 'ApiBaseUri' }).value = 'https://meta.com/base';
+        it('sets URL from base uri', async () => {
           const element = await baseUriFixture(amf, endpoint, method);
           await aTimeout();
           assert.equal(element.endpointUri, 'https://domain.com/people/{personId}');

@@ -16,7 +16,7 @@ import '@advanced-rest-client/http-code-snippets/http-code-snippets.js';
 import '@advanced-rest-client/clipboard-copy/clipboard-copy.js';
 import '@polymer/iron-collapse/iron-collapse.js';
 import '@api-components/api-security-documentation/api-security-documentation.js';
-import '@api-components/api-example-generator/api-example-generator.js';
+import { ExampleGenerator } from '@api-components/api-example-generator';
 import styles from './Styles.js';
 /**
  * `api-method-documentation`
@@ -410,14 +410,6 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     return false;
   }
 
-  get _exampleGenerator() {
-    if (!this.__exampleGenerator) {
-      this.__exampleGenerator = document.createElement('api-example-generator');
-    }
-    this.__exampleGenerator.amf = this.amf;
-    return this.__exampleGenerator;
-  }
-
   constructor() {
     super();
     this.callbacksOpened = false;
@@ -677,7 +669,8 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     if (!mt) {
       mt = 'application/json';
     }
-    const examples = this._exampleGenerator.generatePayloadExamples(payload, mt, {});
+    const gen = new ExampleGenerator(this.amf);
+    const examples = gen.generatePayloadExamples(payload, mt, {});
     if (!examples || !examples[0]) {
       return;
     }
@@ -701,7 +694,8 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     }
     let value = this._getValue(schema, this.ns.w3.shacl.defaultValue);
     if (!value) {
-      const items = this._exampleGenerator.computeExamples(schema, null, { rawOnly: true });
+      const gen = new ExampleGenerator(this.amf);
+      const items = gen.computeExamples(schema, null, { rawOnly: true });
       if (items) {
         value = items[0].value;
       }
