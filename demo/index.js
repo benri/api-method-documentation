@@ -6,13 +6,12 @@ import '@polymer/paper-toast/paper-toast.js';
 import '@anypoint-web-components/anypoint-styles/colors.js';
 import '@anypoint-web-components/anypoint-styles/typography.js';
 import '@anypoint-web-components/anypoint-styles/din-pro.js';
+import '@api-components/api-server-selector/api-server-selector.js';
 import '../api-method-documentation.js';
 
 class ComponentDemo extends ApiDemoPage {
   constructor() {
     super();
-    this.componentName = 'api-method-documentation';
-    this.renderViewControls = true;
 
     this.initObservableProperties([
       'compatibility',
@@ -25,8 +24,13 @@ class ComponentDemo extends ApiDemoPage {
       'previous',
       'next',
       'graph',
+      'serverType',
+      'serverValue',
     ]);
+    this.componentName = 'api-method-documentation';
+    this.renderViewControls = true;
     this.noTryit = false;
+    this.graph = false;
     this.codeSnippets = true;
     this.renderSecurity = true;
 
@@ -34,29 +38,62 @@ class ComponentDemo extends ApiDemoPage {
     this._demoStateHandler = this._demoStateHandler.bind(this);
     this._toggleMainOption = this._toggleMainOption.bind(this);
     this._tryitRequested = this._tryitRequested.bind(this);
+    this._serverHandler = this._serverHandler.bind(this);
+  }
+
+  get server() {
+    const { serverValue, serverType, endpointId, methodId } = this;
+    if (serverType && serverType !== 'server') {
+      return null;
+    }
+    const servers = this._getServers({ endpointId, methodId });
+    if (!servers || !servers.length) {
+      return null;
+    }
+    if (!serverValue && servers.length) {
+      return servers[0];
+    }
+    return servers.find((server) => this._getServerUri(server) === serverValue);
+  }
+
+  get baseUri() {
+    const { serverValue, serverType } = this;
+    if (['custom', 'uri'].indexOf(serverType) !== -1) {
+      return serverValue;
+    }
+    return null;
+  }
+
+  /**
+   * @param {Object} server Server definition.
+   * @return {String|undefined} Value for server's base URI
+   */
+  _getServerUri(server) {
+    const key = this._getAmfKey(this.ns.aml.vocabularies.core.urlTemplate);
+    return /** @type string */ (this._getValue(server, key));
   }
 
   _demoStateHandler(e) {
     const { value } = e.detail;
     this.compatibility = value === 1;
-    if (this.compatibility) {
-      document.body.classList.add('anypoint');
-    } else {
-      document.body.classList.remove('anypoint');
-    }
+    this._updateCompatibility();
   }
 
   _navChanged(e) {
-    const { selected, type } = e.detail;
+    const { selected, type, endpointId } = e.detail;
     if (type === 'method') {
-      this.setData(selected);
+      this.setData(selected, endpointId);
       this.hasData = true;
     } else {
       this.hasData = false;
+      this.endpointId = null;
+      this.methodId = null;
     }
   }
 
-  setData(id) {
+  setData(id, endpointId) {
+    this.endpointId = endpointId;
+    this.methodId = id;
     const webApi = this._computeWebApi(this.amf);
     const endpoint = this._computeMethodEndpoint(webApi, id);
     if (!endpoint) {
@@ -114,6 +151,7 @@ class ComponentDemo extends ApiDemoPage {
   _apiListTemplate() {
     return [
       ['demo-api', 'Demo API'],
+      ['multi-server', 'Multiple servers'],
       ['google-drive-api', 'Google Drive'],
       ['appian-api', 'Appian API'],
       ['loan-microservice', 'Loan microservice (OAS)'],
@@ -134,6 +172,12 @@ class ComponentDemo extends ApiDemoPage {
     toast.opened = true;
   }
 
+  _serverHandler(e) {
+    const { value, type } = e.detail;
+    this.serverType = type;
+    this.serverValue = value;
+  }
+
   _demoTemplate() {
     const {
       demoStates,
@@ -149,6 +193,8 @@ class ComponentDemo extends ApiDemoPage {
       renderSecurity,
       noTryit,
       graph,
+      server,
+      baseUri,
     } = this;
     return html `
     <section class="documentation-section">
@@ -157,6 +203,8 @@ class ComponentDemo extends ApiDemoPage {
         This demo lets you preview the API method documentation element with various
         configuration options.
       </p>
+
+      ${this._serverSelectorTemplate()}
 
       <arc-interactive-demo
         .states="${demoStates}"
@@ -167,6 +215,8 @@ class ComponentDemo extends ApiDemoPage {
         <div slot="content">
           <api-method-documentation
             .amf="${amf}"
+            .baseUri="${baseUri}"
+            .server="${server}"
             .endpoint="${endpoint}"
             .method="${method}"
             .previous="${previous}"
@@ -220,6 +270,28 @@ class ComponentDemo extends ApiDemoPage {
         >
       </arc-interactive-demo>
     </section>`;
+  }
+
+  /**
+   * @return {object} A template for the server selector
+   */
+  _serverSelectorTemplate() {
+    const {
+      amf,
+      serverType,
+      serverValue,
+      compatibility,
+    } = this;
+    return html`
+    <api-server-selector
+      .amf="${amf}"
+      .value="${serverValue}"
+      .type="${serverType}"
+      autoselect
+      allowCustom
+      ?compatibility="${compatibility}"
+      @apiserverchanged="${this._serverHandler}"
+    ></api-server-selector>`;
   }
 
   _introductionTemplate() {

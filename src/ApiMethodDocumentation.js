@@ -194,14 +194,10 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       server: { type: Object },
       /**
        * API base URI parameters defined in AMF api model
-       *
-       * @type {Array|undefined}
        */
       serverVariables: { type: Array },
       /**
        * Endpoint's path parameters.
-       *
-       * @type {Array|undefined}
        */
       endpointVariables: { type: Array },
       /**
@@ -275,14 +271,10 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       renderSecurity: { type: Boolean },
       /**
        * List of traits and resource types, if any.
-       *
-       * @type {Array<Object>}
        */
       extendsTypes: { type: Array },
       /**
        * List of traits appied to this endpoint
-       *
-       * @type {Array<Object>}
        */
       traits: { type: Array },
       /**
@@ -362,8 +354,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       return;
     }
     this._baseUri = value;
-    const { server, apiVersion: version, endpoint, ignoreBaseUri: ignoreBase } = this;
-    this.endpointUri = this._computeUri(endpoint, { version, server, ignoreBase, baseUri: value });
+    this._processServerInfo();
   }
 
   get ignoreBaseUri() {
@@ -377,8 +368,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       return;
     }
     this._ignoreBaseUri = value;
-    const { server, apiVersion: version, endpoint, baseUri } = this;
-    this.endpointUri = this._computeUri(endpoint, { version, server, baseUri, ignoreBase: value });
+    this._processServerInfo();
   }
 
   get expects() {
@@ -394,6 +384,21 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     this._expects = value;
     this.requestUpdate('expects', old);
     this._expectsChanged(value);
+  }
+
+  get server() {
+    return this._server;
+  }
+
+  set server(value) {
+    const old = this._server;
+    /* istanbul ignore if */
+    if (old === value) {
+      return;
+    }
+    this._server = value;
+    this.requestUpdate('server', old);
+    this._processServerInfo();
   }
 
   get _titleHidden() {
@@ -442,16 +447,9 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   _processModelChange() {
     this.__amfProcessingDebouncer = false;
     const { amf } = this;
-    const version = this.apiVersion = this._computeApiVersion(amf);
-    const server = this.server = this._computeServer(amf);
-
-    const { endpoint, ignoreBaseUri: ignoreBase, baseUri } = this;
-    this.endpointUri = this._computeUri(endpoint, { version, server, ignoreBase, baseUri });
-
-    const serverVariables = this.serverVariables = this._computeServerVariables(server);
-    const hasPathParameters = this.hasPathParameters =
-      this._computeHasPathParameters(serverVariables, this.endpointVariables);
-    this.hasParameters = hasPathParameters || !(this.queryParameters && this.queryParameters.length);
+    this.apiVersion = this._computeApiVersion(amf);
+    this.server = this._computeServer(amf);
+    this._processServerInfo();
   }
 
   _processMethodChange() {
@@ -472,9 +470,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
 
   _processEndpointChange() {
     this.__endpointProcessingDebouncer = false;
-    const { endpoint, ignoreBaseUri: ignoreBase, baseUri, apiVersion: version, server } = this;
-    this.endpointUri = this._computeUri(endpoint, { version, server, ignoreBase, baseUri });
-    this._processEndpointVariables();
+    this._processServerInfo();
   }
 
   _expectsChanged(expects) {
@@ -493,6 +489,28 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       this._computeHasPathParameters(this.serverVariables, endpointVariables);
     this.hasParameters = hasPathParameters || !!(this.queryParameters && this.queryParameters.length);
   }
+
+  /**
+   * Updates value for endpoint URI, server and path variables.
+   */
+  _processServerInfo() {
+    this.endpointUri = this._computeEndpointUri();
+    const serverVariables = this.serverVariables = this._computeServerVariables(this.server);
+    const hasPathParameters = this.hasPathParameters =
+      this._computeHasPathParameters(serverVariables, this.endpointVariables);
+    this.hasParameters = hasPathParameters || !(this.queryParameters && this.queryParameters.length);
+    this._processEndpointVariables();
+  }
+
+  /**
+   * Computes value of endpoint URI.
+   * @return {String}
+   */
+  _computeEndpointUri() {
+    const { server, baseUri, apiVersion: version, endpoint } = this;
+    return this._computeUri(endpoint, { server, baseUri, version });
+  }
+
   /**
    * Computes list of query parameters to be rendered in the query parameters table.
    *

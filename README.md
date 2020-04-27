@@ -46,6 +46,7 @@ class SampleElement extends PolymerElement {
     return html`
     <api-method-documentation
       .amf="${this.amf}"
+      .server="${server}"
       .endpoint="${this.endpoint}"
       .method="${this.method}"
       .previous="${this.previous}"
