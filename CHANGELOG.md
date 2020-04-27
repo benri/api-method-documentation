@@ -1769,3 +1769,26 @@
 * moving styles to a separate file [f533648](https://github.com/advanced-rest-client/api-method-documentation/commit/f533648de6cefd23924dc5e4dfa159a2a89441a0) by Pawel
 
 
+<a name="5.0.0"></a>
+# [5.0.0](https://github.com/advanced-rest-client/api-method-documentation/compare/4.1.0...5.0.0) (2020-04-27)
+
+## Build
+
+* bumping version [c3175f8](https://github.com/advanced-rest-client/api-method-documentation/commit/c3175f8ccc4d101f37ec6e243ecdad10506956c8) by Pawel
+
+
+## Update
+
+* adding suppoprt for OAS 3 servers [6940e66](https://github.com/advanced-rest-client/api-method-documentation/commit/6940e66061c602fe7f062fe1a2c46450cd2f6d8c) by Pawel
+* [ci skip] automated merge master->stage. syncing main branches [c2a8251](https://github.com/advanced-rest-client/api-method-documentation/commit/c2a82516c0d6375e79ba5b3e611efccbf0db2848) by Ci agent
+* adding types support [1c799bf](https://github.com/advanced-rest-client/api-method-documentation/commit/1c799bf37e64a0e5c9a053623341000147869e64) by Pawel
+* updating travis badge [5fd735b](https://github.com/advanced-rest-client/api-method-documentation/commit/5fd735be9ad8f0b076a1aebdad081ec2f72bde17) by Pawel
+* upgrading examples generator [1b02fb0](https://github.com/advanced-rest-client/api-method-documentation/commit/1b02fb0d58acce7e362f4f29a32358de56bcdfde) by Pawel
+* [ci skip] automated merge master->stage. syncing main branches [a458ca2](https://github.com/advanced-rest-client/api-method-documentation/commit/a458ca2c814fd2cd0247ccda6bc329077efcd7bb) by Ci agent
+
+
+## Testing
+
+* adding timeout [9932cdd](https://github.com/advanced-rest-client/api-method-documentation/commit/9932cdd4ded43c79e8590c35675734bc1c38dace) by Pawel
+
+
