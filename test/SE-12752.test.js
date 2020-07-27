@@ -29,8 +29,8 @@ describe('SE-12752 - query string', function() {
         element = await modelFixture(amf, endpopint, method);
         await aTimeout();
         const qp = element.queryParameters;
-        assert.typeOf(qp, 'object', 'queryParameters is computed');
-        const isNodeShape = element._hasType(qp, element.ns.w3.shacl.NodeShape);
+        assert.isArray(qp, 'queryParameters is computed');
+        const isNodeShape = element._hasType(qp[0], element.ns.w3.shacl.NodeShape);
         assert.isTrue(isNodeShape, 'queryParameters is a NodeShape');
         const node = element.shadowRoot.querySelector('api-parameters-document');
         assert.ok(node, 'document is rendered');
@@ -42,8 +42,8 @@ describe('SE-12752 - query string', function() {
         element = await modelFixture(amf, endpopint, method);
         await aTimeout();
         const qp = element.queryParameters;
-        assert.typeOf(qp, 'object', 'queryParameters is computed');
-        const isNodeShape = element._hasType(qp, element.ns.aml.vocabularies.shapes.ArrayShape);
+        assert.isArray(qp, 'queryParameters is computed');
+        const isNodeShape = element._hasType(qp[0], element.ns.aml.vocabularies.shapes.ArrayShape);
         assert.isTrue(isNodeShape, 'queryParameters is an ArrayShape');
         const node = element.shadowRoot.querySelector('api-parameters-document');
         assert.ok(node, 'document is rendered');
@@ -55,8 +55,8 @@ describe('SE-12752 - query string', function() {
         element = await modelFixture(amf, endpopint, method);
         await aTimeout();
         const qp = element.queryParameters;
-        assert.typeOf(qp, 'object', 'queryParameters is computed');
-        const isNodeShape = element._hasType(qp, element.ns.aml.vocabularies.shapes.UnionShape);
+        assert.isArray(qp, 'queryParameters is computed');
+        const isNodeShape = element._hasType(qp[0], element.ns.aml.vocabularies.shapes.UnionShape);
         assert.isTrue(isNodeShape, 'queryParameters is an UnionShape');
         const node = element.shadowRoot.querySelector('api-parameters-document');
         assert.ok(node, 'document is rendered');
