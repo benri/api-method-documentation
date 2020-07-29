@@ -24,42 +24,59 @@ describe('SE-12752 - query string', function() {
       });
 
       it('renders parameters table with query parameters as a NodeShape', async () => {
-        const endpopint = AmfLoader.lookupEndpoint(amf, '/test');
+        const endpoint = AmfLoader.lookupEndpoint(amf, '/test');
         const method = AmfLoader.lookupOperation(amf, '/test', 'get');
-        element = await modelFixture(amf, endpopint, method);
+        element = await modelFixture(amf, endpoint, method);
         await aTimeout();
         const qp = element.queryParameters;
-        assert.isArray(qp, 'queryParameters is computed');
-        const isNodeShape = element._hasType(qp[0], element.ns.w3.shacl.NodeShape);
+        assert.typeOf(qp, 'object', 'queryParameters is computed');
+        const isNodeShape = element._hasType(qp, element.ns.w3.shacl.NodeShape);
         assert.isTrue(isNodeShape, 'queryParameters is a NodeShape');
         const node = element.shadowRoot.querySelector('api-parameters-document');
         assert.ok(node, 'document is rendered');
+        assert.isTrue(element.hasParameters);
       });
 
       it('renders parameters table with query parameters as an ArrayShape', async () => {
-        const endpopint = AmfLoader.lookupEndpoint(amf, '/array');
+        const endpoint = AmfLoader.lookupEndpoint(amf, '/array');
         const method = AmfLoader.lookupOperation(amf, '/array', 'get');
-        element = await modelFixture(amf, endpopint, method);
+        element = await modelFixture(amf, endpoint, method);
         await aTimeout();
         const qp = element.queryParameters;
-        assert.isArray(qp, 'queryParameters is computed');
-        const isNodeShape = element._hasType(qp[0], element.ns.aml.vocabularies.shapes.ArrayShape);
+        assert.typeOf(qp, 'object', 'queryParameters is computed');
+        const isNodeShape = element._hasType(qp, element.ns.aml.vocabularies.shapes.ArrayShape);
         assert.isTrue(isNodeShape, 'queryParameters is an ArrayShape');
         const node = element.shadowRoot.querySelector('api-parameters-document');
         assert.ok(node, 'document is rendered');
+        assert.isTrue(element.hasParameters);
       });
 
       it('renders parameters table with query parameters as an UnionShape', async () => {
-        const endpopint = AmfLoader.lookupEndpoint(amf, '/union');
+        const endpoint = AmfLoader.lookupEndpoint(amf, '/union');
         const method = AmfLoader.lookupOperation(amf, '/union', 'get');
-        element = await modelFixture(amf, endpopint, method);
+        element = await modelFixture(amf, endpoint, method);
         await aTimeout();
         const qp = element.queryParameters;
-        assert.isArray(qp, 'queryParameters is computed');
-        const isNodeShape = element._hasType(qp[0], element.ns.aml.vocabularies.shapes.UnionShape);
+        assert.typeOf(qp, 'object', 'queryParameters is computed');
+        const isNodeShape = element._hasType(qp, element.ns.aml.vocabularies.shapes.UnionShape);
         assert.isTrue(isNodeShape, 'queryParameters is an UnionShape');
         const node = element.shadowRoot.querySelector('api-parameters-document');
         assert.ok(node, 'document is rendered');
+        assert.isTrue(element.hasParameters);
+      });
+
+      it('renders parameters table with query parameters as an ScalarShape', async () => {
+        const endpoint = AmfLoader.lookupEndpoint(amf, '/scalar');
+        const method = AmfLoader.lookupOperation(amf, '/scalar', 'get');
+        element = await modelFixture(amf, endpoint, method);
+        await aTimeout();
+        const qp = element.queryParameters;
+        assert.typeOf(qp, 'object', 'queryParameters is computed');
+        const isScalarShape = element._hasType(qp, element.ns.aml.vocabularies.shapes.ScalarShape);
+        assert.isTrue(isScalarShape, 'queryParameters is an ScalarShape');
+        const node = element.shadowRoot.querySelector('api-parameters-document');
+        assert.ok(node, 'document is rendered');
+        assert.isTrue(element.hasParameters);
       });
     });
   });
