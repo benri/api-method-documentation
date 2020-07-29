@@ -409,7 +409,10 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     if (!methodName || !httpMethod) {
       return true;
     }
-    return methodName.toLowerCase() === httpMethod.toLowerCase();
+    if (methodName.toLowerCase() === httpMethod.toLowerCase()) {
+      return true;
+    }
+    return false;
   }
 
   constructor() {
@@ -516,7 +519,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
    *
    * @param {Object} scheme Model for Expects shape of AMF model.
    * @return {Array<Object>|Object} Either list of properties or a type definition
-   * for a queryString and queryParameters property of RAML's
+   * for a queryString property of RAML's
    */
   _computeQueryParameters(scheme) {
     if (!scheme) {
@@ -530,7 +533,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     const qKey = this._getAmfKey(this.ns.aml.vocabularies.apiContract.queryString);
     result = this._ensureArray(scheme[qKey]);
     if (result) {
-      result = [this._resolve(result[0])];
+      result = this._resolve(result[0]);
     }
     return result;
   }
@@ -654,7 +657,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   /**
    * Computes example headers string for code snippets.
    * @param {Array} headers Headers model from AMF
-   * @return {String|undefined} Computed example value for headers
+   * @return {String|undefind} Computed example value for headers
    */
   _computeSnippetsHeaders(headers) {
     let result;
@@ -671,7 +674,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   /**
    * Computes example payload string for code snippets.
    * @param {Array} payload Payload model from AMF
-   * @return {String|undefined} Computed example value for payload
+   * @return {String|undefind} Computed example value for payload
    */
   _computeSnippetsPayload(payload) {
     if (payload && payload instanceof Array) {
