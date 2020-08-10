@@ -409,10 +409,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     if (!methodName || !httpMethod) {
       return true;
     }
-    if (methodName.toLowerCase() === httpMethod.toLowerCase()) {
-      return true;
-    }
-    return false;
+    return methodName.toLowerCase() === httpMethod.toLowerCase();
   }
 
   constructor() {
@@ -664,7 +661,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   /**
    * Computes example headers string for code snippets.
    * @param {Array} headers Headers model from AMF
-   * @return {String|undefind} Computed example value for headers
+   * @return {String|undefined} Computed example value for headers
    */
   _computeSnippetsHeaders(headers) {
     let result;
@@ -681,7 +678,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   /**
    * Computes example payload string for code snippets.
    * @param {Array} payload Payload model from AMF
-   * @return {String|undefind} Computed example value for payload
+   * @return {String|undefined} Computed example value for payload
    */
   _computeSnippetsPayload(payload) {
     if (payload && payload instanceof Array) {
