@@ -159,7 +159,7 @@ class ComponentDemo extends ApiDemoPage {
       // ['nexmo-sms-api', 'Nexmo SMS API'],
       // ['SE-12957', 'OAS query parameetrs documentation'],
       // ['SE-12959', 'OAS summary field'],
-      // ['SE-12752', 'Query string (SE-12752)'],
+      ['SE-12752', 'Query string (SE-12752)'],
       ['oas-callbacks', 'OAS 3 callbacks']
     ].map(([file, label]) => html`
       <anypoint-item data-src="${file}-compact.json">${label} - compact model</anypoint-item>

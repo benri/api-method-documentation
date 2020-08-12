@@ -470,21 +470,28 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     this._processServerInfo();
   }
 
+  _hasQueryParameters() {
+    if (!this.queryParameters) {
+      return false;
+    }
+    return this.queryParameters instanceof Object || this.queryParameters.length
+  }
+
   _expectsChanged(expects) {
     if (!this.endpointVariables) {
       this._processEndpointVariables();
     }
     this.headers = this._computeHeaders(expects);
     this.payload = this._computePayload(expects);
-    const queryParameters = this.queryParameters = this._computeQueryParameters(expects);
-    this.hasParameters = this.hasPathParameters || !!(queryParameters && queryParameters.length);
+    this.queryParameters = this._computeQueryParameters(expects);
+    this.hasParameters = this.hasPathParameters || this._hasQueryParameters();
   }
 
   _processEndpointVariables() {
     const endpointVariables = this.endpointVariables = this._computeEndpointVariables(this.endpoint, this.expects);
     const hasPathParameters = this.hasPathParameters =
       this._computeHasPathParameters(this.serverVariables, endpointVariables);
-    this.hasParameters = hasPathParameters || !!(this.queryParameters && this.queryParameters.length);
+    this.hasParameters = hasPathParameters || this._hasQueryParameters();
   }
 
   /**
@@ -495,7 +502,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     const serverVariables = this.serverVariables = this._computeServerVariables(this.server);
     const hasPathParameters = this.hasPathParameters =
       this._computeHasPathParameters(serverVariables, this.endpointVariables);
-    this.hasParameters = hasPathParameters || !(this.queryParameters && this.queryParameters.length);
+    this.hasParameters = hasPathParameters || this._hasQueryParameters();
     this._processEndpointVariables();
   }
 
@@ -516,7 +523,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
    *
    * @param {Object} scheme Model for Expects shape of AMF model.
    * @return {Array<Object>|Object} Either list of properties or a type definition
-   * for a queryString and queryParameters property of RAML's
+   * for a queryString property of RAML's
    */
   _computeQueryParameters(scheme) {
     if (!scheme) {
@@ -530,7 +537,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     const qKey = this._getAmfKey(this.ns.aml.vocabularies.apiContract.queryString);
     result = this._ensureArray(scheme[qKey]);
     if (result) {
-      result = [this._resolve(result[0])];
+      result = this._resolve(result[0]);
     }
     return result;
   }

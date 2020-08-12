@@ -35,6 +35,7 @@ describe('SE-12957', function() {
         const node = element.shadowRoot.querySelector('api-parameters-document');
         assert.typeOf(node.queryParameters, 'array');
         assert.lengthOf(node.queryParameters, 1);
+        assert.isTrue(element.hasParameters);
       });
 
       it('parameters documentation computed endpointParameters', () => {
