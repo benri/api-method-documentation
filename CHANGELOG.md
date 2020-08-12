@@ -1792,3 +1792,34 @@
 * adding timeout [9932cdd](https://github.com/advanced-rest-client/api-method-documentation/commit/9932cdd4ded43c79e8590c35675734bc1c38dace) by Pawel
 
 
+<a name="5.0.1"></a>
+## [5.0.1](https://github.com/advanced-rest-client/api-method-documentation/compare/4.1.1...5.0.1) (2020-08-12)
+
+### Build
+
+* bump version [86cd34d](https://github.com/advanced-rest-client/api-method-documentation/commit/86cd34db51f03d7158f996692d8b314e0d83f0a5) by Carolina Wright
+
+
+### Update
+
+* ignore .idea folder [699cfd4](https://github.com/advanced-rest-client/api-method-documentation/commit/699cfd47cd379d1fcaecedcd7c6e88f70f9c9387) by Carolina Wright
+* [ci skip] automated merge master->stage. syncing main branches [1a57669](https://github.com/advanced-rest-client/api-method-documentation/commit/1a57669ec8159af77665472582274a8beeb20241) by Ci agent
+* adding suppoprt for OAS 3 servers [6940e66](https://github.com/advanced-rest-client/api-method-documentation/commit/6940e66061c602fe7f062fe1a2c46450cd2f6d8c) by Pawel
+* [ci skip] automated merge master->stage. syncing main branches [c2a8251](https://github.com/advanced-rest-client/api-method-documentation/commit/c2a82516c0d6375e79ba5b3e611efccbf0db2848) by Ci agent
+
+
+### Bug Fixes
+
+* typo and simplyfy comparison [ac158d1](https://github.com/advanced-rest-client/api-method-documentation/commit/ac158d15002ac22df728984f601ac841615bea94) by Carolina Wright
+* hasParameters should checks length only when array [044d501](https://github.com/advanced-rest-client/api-method-documentation/commit/044d5015df413eb40e59553a915d31587f89def6) by Carolina Wright
+* queryParameters should be an array [e09f162](https://github.com/advanced-rest-client/api-method-documentation/commit/e09f16271d478fdef932717d7c7c7caba6e7bd1c) by Carolina Wright
+
+
+### Testing
+
+* test hasParameters for different type of queryparams [5c02124](https://github.com/advanced-rest-client/api-method-documentation/commit/5c0212401bf39a3926c1f678e81cf5618b15164e) by Carolina Wright
+* increase timeout [f0f0da0](https://github.com/advanced-rest-client/api-method-documentation/commit/f0f0da082ab85bf0addcba53c015ada174062a97) by Carolina Wright
+* queryString are computed as array [879f482](https://github.com/advanced-rest-client/api-method-documentation/commit/879f482d998e363233c299e697b1027333c908dd) by Carolina Wright
+* adding timeout [9932cdd](https://github.com/advanced-rest-client/api-method-documentation/commit/9932cdd4ded43c79e8590c35675734bc1c38dace) by Pawel
+
+
