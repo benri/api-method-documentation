@@ -513,21 +513,44 @@ describe('<api-method-documentation>', function() {
 
         let endpoint;
         let method;
-        beforeEach(() => {
-          [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, '/people/{personId}', 'put');
-        });
 
-        it('sets URL from base uri', async () => {
-          const element = await baseUriFixture(amf, endpoint, method);
-          await aTimeout();
-          assert.equal(element.endpointUri, 'https://domain.com/people/{personId}');
-        });
+        describe('method with no queryParameters', () => {
+          beforeEach(() => {
+            [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, '/people/{personId}', 'put');
+          });
 
-        it('sets URL from base uri', async () => {
-          const element = await baseUriFixture(amf, endpoint, method);
-          await aTimeout();
-          assert.equal(element.endpointUri, 'https://domain.com/people/{personId}');
-        });
+          it('sets URL from base uri', async () => {
+            const element = await baseUriFixture(amf, endpoint, method);
+            await aTimeout();
+            assert.equal(element.endpointUri, 'https://domain.com/people/{personId}');
+          });
+        })
+
+        describe('method with string queryParameter', () => {
+          beforeEach(() => {
+            [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, '/mail', 'get');
+          });
+
+          it('sets URL from base uri', async () => {
+            const element = await baseUriFixture(amf, endpoint, method);
+            await aTimeout();
+            assert.equal(element.endpointUri, 'https://domain.com/mail?box=foo');
+          });
+        })
+
+        describe('method with array queryParameter', () => {
+          beforeEach(() => {
+            [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, '/test-parameters/{feature}', 'get');
+          });
+
+          it('sets URL from base uri', async () => {
+            const element = await baseUriFixture(amf, endpoint, method);
+            await aTimeout();
+            const expectedUri =
+              'https://domain.com/test-parameters/{feature}?numericRepeatable=123&numericRepeatable=456'
+            assert.equal(element.endpointUri, expectedUri);
+          });
+        })
       });
 
       describe('Code snippets', () => {
