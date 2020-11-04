@@ -440,3 +440,10 @@ securitySchemes:
       | Local file    |          |      |      |          |           |             |          |   √  |
       | Azure Storage |          |      |      |          |           |             |          |   √  |
       | Amazon S3     |          |      |      |          |           |             |          |   √  |
+/mail:
+  get:
+    queryParameters:
+      box:
+        type: string
+        example: "foo"
+        required: true
