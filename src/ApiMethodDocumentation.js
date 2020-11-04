@@ -524,15 +524,15 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
 
     const expects = this._computeExpects(method);
     const params = this._computeQueryParameters(expects);
-    if (params) {
+    if (params && Array.isArray(params)) {
       params.forEach(param => {
         const paramExample = this._computeMethodParameterUri(param);
         if (paramExample) {
           if (paramExample.example) {
-            queryParams = `${queryParams ? '&' : '?'}${paramExample.name}=${paramExample.example}`
+            queryParams += `${queryParams ? '&' : '?'}${paramExample.name}=${paramExample.example}`
           } else {
             const examples = paramExample.examples.map(e => `${paramExample.name}=${e}`).join('&')
-            queryParams = `${queryParams ? '&' : '?'}${examples}`
+            queryParams += `${queryParams ? '&' : '?'}${examples}`
           }
         }
       });

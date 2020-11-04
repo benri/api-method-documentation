@@ -547,7 +547,8 @@ describe('<api-method-documentation>', function() {
             const element = await baseUriFixture(amf, endpoint, method);
             await aTimeout();
             const expectedUri =
-              'https://domain.com/test-parameters/{feature}?numericRepeatable=123&numericRepeatable=456'
+              'https://domain.com/test-parameters/{feature}' +
+              '?testRepeatable=value1&testRepeatable=value2&numericRepeatable=123&numericRepeatable=456'
             assert.equal(element.endpointUri, expectedUri);
           });
         })
