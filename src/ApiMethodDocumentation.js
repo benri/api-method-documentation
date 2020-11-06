@@ -778,6 +778,10 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   _computeToggleActionLabel(opened) {
     return opened ? 'Hide' : 'Show';
   }
+  // Computes state of toggle button.
+  _computeToggleButtonState(opened) {
+    return opened ? 'Collapsed' : 'Expanded';
+  }
   // Computes class for the toggle's button icon.
   _computeToggleIconClass(opened) {
     let clazz = 'toggle-icon';
@@ -944,6 +948,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       compatibility
     } = this;
     const label = this._computeToggleActionLabel(_snippetsOpened);
+    const buttonState = this._computeToggleButtonState(_snippetsOpened);
     const iconClass = this._computeToggleIconClass(_snippetsOpened);
     return html`<section class="snippets">
       <div
@@ -953,7 +958,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
         ?opened="${_snippetsOpened}"
       >
         <div class="heading3 table-title" role="heading" aria-level="2">Code examples</div>
-        <div class="title-area-actions">
+        <div class="title-area-actions" aria-label="${buttonState}">
           <anypoint-button class="toggle-button" ?compatibility="${compatibility}">
             ${label}
             <span class="icon ${iconClass}">${expandMore}</span>
@@ -979,6 +984,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     }
     const { securityOpened, compatibility, amf, narrow } = this;
     const label = this._computeToggleActionLabel(securityOpened);
+    const buttonState = this._computeToggleButtonState(securityOpened);
     const iconClass = this._computeToggleIconClass(securityOpened);
     return html`<section class="security">
       <div
@@ -988,7 +994,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
         ?opened="${securityOpened}"
       >
         <div class="heading3 table-title" role="heading" aria-level="2">Security</div>
-        <div class="title-area-actions">
+        <div class="title-area-actions" aria-label="${buttonState}">
           <anypoint-button class="toggle-button security" ?compatibility="${compatibility}">
             ${label}
             <span class="icon ${iconClass}">${expandMore}</span>
@@ -1102,6 +1108,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       compatibility,
     } = this;
     const label = this._computeToggleActionLabel(callbacksOpened);
+    const buttonState = this._computeToggleButtonState(callbacksOpened);
     const iconClass = this._computeToggleIconClass(callbacksOpened);
     return html`<section class="callbacks">
       <div
@@ -1111,7 +1118,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
         ?opened="${callbacksOpened}"
       >
         <div class="heading3 table-title" role="heading" aria-level="2">Callbacks</div>
-        <div class="title-area-actions">
+        <div class="title-area-actions" aria-label="${buttonState}">
           <anypoint-button class="toggle-button" ?compatibility="${compatibility}">
             ${label}
             <span class="icon ${iconClass}">${expandMore}</span>
