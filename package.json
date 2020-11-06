@@ -1,7 +1,7 @@
 {
   "name": "@api-components/api-method-documentation",
   "description": "A HTTP method documentation build from AMF model",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "license": "Apache-2.0",
   "main": "api-method-documentation.js",
   "keywords": [
