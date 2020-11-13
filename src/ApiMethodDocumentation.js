@@ -16,6 +16,7 @@ import '@advanced-rest-client/http-code-snippets/http-code-snippets.js';
 import '@advanced-rest-client/clipboard-copy/clipboard-copy.js';
 import '@polymer/iron-collapse/iron-collapse.js';
 import '@api-components/api-security-documentation/api-security-documentation.js';
+import '../api-url.js'
 import { ExampleGenerator } from '@api-components/api-example-generator';
 import styles from './Styles.js';
 /**
@@ -304,6 +305,10 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
        * When set the base URI won't be rendered for this method.
        */
       ignoreBaseUri: { type: Boolean },
+      /**
+       * Optional protocol for the current method
+       */
+      protocol: { type: String },
     };
   }
 
@@ -453,7 +458,6 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     this.__methodProcessingDebouncer = false;
     const { method } = this;
     this.methodName = this._computeMethodName(method);
-    this.httpMethod = this._computeHttpMethod(method);
     this.description = this._computeDescription(method);
     this.hasCustomProperties = this._computeHasCustomProperties(method);
     this.expects = this._computeExpects(method);
@@ -462,6 +466,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     const extendsTypes = this.extendsTypes = this._computeExtends(method);
     this.traits = this._computeTraits(extendsTypes);
     this.methodSummary = this._getValue(method, this.ns.aml.vocabularies.apiContract.guiSummary);
+    this.operationId = this._getValue(method, this.ns.aml.vocabularies.apiContract.operationId);
     this.callbacks = this._computeCallbacks(method);
   }
 
@@ -498,71 +503,11 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
    * Updates value for endpoint URI, server and path variables.
    */
   _processServerInfo() {
-    this.endpointUri = this._computeEndpointUri();
     const serverVariables = this.serverVariables = this._computeServerVariables(this.server);
     const hasPathParameters = this.hasPathParameters =
       this._computeHasPathParameters(serverVariables, this.endpointVariables);
     this.hasParameters = hasPathParameters || this._hasQueryParameters();
     this._processEndpointVariables();
-  }
-
-  /**
-   * Computes value of endpoint URI.
-   * @return {String}
-   */
-  _computeEndpointUri() {
-    const { server, baseUri, apiVersion: version, endpoint, method } = this;
-    const uri = this._computeUri(endpoint, { server, baseUri, version })
-    return uri + this._computeMethodParametersUri(method);
-  }
-
-  _computeMethodParametersUri(method) {
-    let queryParams = '';
-    if (!method) {
-      return queryParams
-    }
-
-    const expects = this._computeExpects(method);
-    const params = this._computeQueryParameters(expects);
-    if (params && Array.isArray(params)) {
-      params.forEach(param => {
-        const paramExample = this._computeMethodParameterUri(param);
-        if (paramExample) {
-          if (paramExample.example) {
-            queryParams += `${queryParams ? '&' : '?'}${paramExample.name}=${paramExample.example}`
-          } else {
-            const examples = paramExample.examples.map(e => `${paramExample.name}=${e}`).join('&')
-            queryParams += `${queryParams ? '&' : '?'}${examples}`
-          }
-        }
-      });
-    }
-    return queryParams
-  }
-
-  _computeMethodParameterUri(param) {
-    if (!this._getValue(param, this.ns.aml.vocabularies.apiContract.required)) {
-      return
-    }
-
-    const paramName = this._getValue(param, this.ns.aml.vocabularies.apiContract.paramName);
-    const paramExample = this._computePropertyValue(param);
-
-    const skey = this._getAmfKey(this.ns.aml.vocabularies.shapes.schema);
-    let schema = param && param[skey];
-    if (schema) {
-      if (schema instanceof Array) {
-        schema = schema[0]
-      }
-      if (this._hasType(schema, this.ns.aml.vocabularies.shapes.ArrayShape)) {
-        const examples = paramExample.split(/\n/).map(e => e.substr(1).trim())
-        return { name: paramName, examples }
-      }
-    }
-
-    if (paramName && paramExample) {
-      return { name: paramName, example: paramExample }
-    }
   }
 
   /**
@@ -603,19 +548,6 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     let name = this._getValue(method, this.ns.aml.vocabularies.core.name);
     if (!name) {
       name = this._getValue(method, this.ns.aml.vocabularies.apiContract.method);
-    }
-    return name;
-  }
-  /**
-   * Computes value for `httpMethod` property.
-   *
-   * @param {Object} method AMF `supportedOperation` model
-   * @return {String|undefined} HTTP method name
-   */
-  _computeHttpMethod(method) {
-    let name = this._getValue(method, this.ns.aml.vocabularies.apiContract.method);
-    if (name) {
-      name = name.toUpperCase();
     }
     return name;
   }
@@ -885,7 +817,8 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       methodName,
       noTryIt,
       compatibility,
-      methodSummary
+      methodSummary,
+      operationId,
     } = this;
     return html`
     <div class="title-area">
@@ -899,16 +832,22 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       </div>`}
     </div>
     ${methodSummary ? html`<p class="summary">${methodSummary}</p>` : ''}
+    ${operationId ? html`<span class="operation-id">Operation ID: ${operationId}</span>` : ''}
     `;
   }
 
   _getUrlTemplate() {
-    const { httpMethod, endpointUri } = this;
-    return html`<section class="url-area">
-      <div class="method-value"><span class="method-label" data-method="${httpMethod}">${httpMethod}</span></div>
-      <div class="url-value">${endpointUri}</div>
-    </section>
-    <clipboard-copy id="urlCopy" .content="${endpointUri}"></clipboard-copy>`;
+    return html`
+    <api-url
+      .amf="${this.amf}"
+      .server="${this.server}"
+      .endpoint="${this.endpoint}"
+      .apiVersion="${this.apiVersion}"
+      .baseUri="${this.baseUri}"
+      .operation="${this.method}"
+      @onchange="${this._handleUrlChange}"
+    >
+    </api-url>`;
   }
 
   _getTraitsTemplate() {
@@ -936,6 +875,9 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
 
   _getCodeSnippetsTemplate() {
     if (!this.renderCodeSnippets) {
+      return '';
+    }
+    if (this.isNonHttpProtocol()) {
       return '';
     }
     const {
@@ -1168,6 +1110,21 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     `;
   }
 
+  _handleUrlChange(event) {
+    this.endpointUri = event.detail.url;
+    this.protocol = event.detail.protocol;
+    this.httpMethod = event.detail.method;
+  }
+
+  isNonHttpProtocol() {
+    const { protocol } = this;
+    if (!protocol) {
+      return false;
+    }
+    const lowerCase = protocol.toLowerCase();
+    return lowerCase !== 'http' && lowerCase !== 'https';
+  }
+
   _getNavigationTemplate() {
     const { next, previous, noNavigation } = this;
     if (!next && !previous || noNavigation) {
@@ -1190,6 +1147,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       </div>` : ''}
     </section>`;
   }
+
   /**
    * Dispatched when the user requested the "Try it" view.
    * @event tryit-requested
