@@ -1859,3 +1859,31 @@
 * queryString are computed as array [879f482](https://github.com/advanced-rest-client/api-method-documentation/commit/879f482d998e363233c299e697b1027333c908dd) by Carolina Wright
 
 
+<a name="5.0.3"></a>
+## [5.0.3](https://github.com/advanced-rest-client/api-method-documentation/compare/5.0.1...5.0.3) (2020-11-13)
+
+### Build
+
+* bump version [114d97e](https://github.com/advanced-rest-client/api-method-documentation/commit/114d97edb0354f05c5335b549c4d5cf0bcd8bbf3) by Carolina Wright
+
+
+### Update
+
+* [ci skip] automated merge master->stage. syncing main branches [c697432](https://github.com/advanced-rest-client/api-method-documentation/commit/c69743279ee22f5f7dfcc6840218e176fbf64b4d) by Ci agent
+* increase tests timeout [090886e](https://github.com/advanced-rest-client/api-method-documentation/commit/090886ebc596e48496c6c70616bdbc761f33d952) by Carolina Wright
+* generate model before tests [17033d5](https://github.com/advanced-rest-client/api-method-documentation/commit/17033d53d0555a4f324d91206afa8a136eff364d) by Carolina Wright
+* run prepare before test [2ab48ea](https://github.com/advanced-rest-client/api-method-documentation/commit/2ab48ea66f24117769a169391ac9fb48453e1a74) by Carolina Wright
+* [ci skip] automated merge master->stage. syncing main branches [ac5c065](https://github.com/advanced-rest-client/api-method-documentation/commit/ac5c0657a5394a10a8eb84f5fe7715fc67383dfd) by Ci agent
+
+
+### Bug Fixes
+
+* tests [d29ba40](https://github.com/advanced-rest-client/api-method-documentation/commit/d29ba40d09e9b926f0826d713e69c18ef6e59cf0) by Carolina Wright
+* apic-498 add method parameters when computing uri [56da2a2](https://github.com/advanced-rest-client/api-method-documentation/commit/56da2a27ac8f0b68107d76f56a6c4b461eac13d5) by Carolina Wright
+
+
+### Testing
+
+* uri for methods with query parameters [88dc9a1](https://github.com/advanced-rest-client/api-method-documentation/commit/88dc9a1993f75c80d40d31d594ab8b84a75adcee) by Carolina Wright
+
+
