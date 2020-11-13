@@ -145,6 +145,11 @@ arc-marked {
   font-size: 1.1rem;
 }
 
+.operation-id {
+  color: var(--api-method-documentation-operation-id-color, rgba(0, 0, 0, 0.61));
+  font-size: 0.8rem;
+}
+
 .method-label {
   margin-bottom: 0;
 }

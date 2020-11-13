@@ -160,7 +160,8 @@ class ComponentDemo extends ApiDemoPage {
       // ['SE-12957', 'OAS query parameetrs documentation'],
       // ['SE-12959', 'OAS summary field'],
       ['SE-12752', 'Query string (SE-12752)'],
-      ['oas-callbacks', 'OAS 3 callbacks']
+      ['oas-callbacks', 'OAS 3 callbacks'],
+      ['async-api', 'Async API'],
     ].map(([file, label]) => html`
       <anypoint-item data-src="${file}-compact.json">${label} - compact model</anypoint-item>
       <anypoint-item data-src="${file}.json">${label}</anypoint-item>

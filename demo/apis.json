@@ -9,5 +9,6 @@
   "SE-12959/SE-12959.json": "OAS 2.0",
   "SE-12752/SE-12752.raml": "RAML 1.0",
   "oas-callbacks/oas-callbacks.yaml": { "type": "OAS 3.0", "mime": "application/yaml" },
-  "multi-server/multi-server.yaml": { "type": "OAS 3.0", "mime": "application/yaml" }
+  "multi-server/multi-server.yaml": { "type": "OAS 3.0", "mime": "application/yaml" },
+  "async-api/async-api.yaml": "ASYNC 2.0"
 }

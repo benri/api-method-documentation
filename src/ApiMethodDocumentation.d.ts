@@ -16,6 +16,8 @@ import {html, LitElement} from 'lit-element';
 
 import {AmfHelperMixin} from '@api-components/amf-helper-mixin/amf-helper-mixin.js';
 
+import {ExampleGenerator} from '@api-components/api-example-generator';
+
 export {ApiMethodDocumentation};
 
 /**
@@ -148,8 +150,13 @@ declare class ApiMethodDocumentation extends
    * of AMF model from current `method`
    */
   expects: object|null|undefined;
+
+  /**
+   * Computed value of the `http://raml.org/vocabularies/http#server`
+   * from `amf`
+   */
+  server: object|null|undefined;
   readonly _titleHidden: any;
-  readonly _exampleGenerator: any;
 
   /**
    * `raml-aware` scope property to use.
@@ -195,12 +202,6 @@ declare class ApiMethodDocumentation extends
    * custom properties (annotations in RAML).
    */
   hasCustomProperties: boolean|null|undefined;
-
-  /**
-   * Computed value of the `http://raml.org/vocabularies/http#server`
-   * from `amf`
-   */
-  server: object|null|undefined;
 
   /**
    * API base URI parameters defined in AMF api model
@@ -298,12 +299,12 @@ declare class ApiMethodDocumentation extends
   /**
    * List of traits and resource types, if any.
    */
-  extendsTypes: Array<object|null>|null;
+  extendsTypes: any[]|null|undefined;
 
   /**
    * List of traits appied to this endpoint
    */
-  traits: Array<object|null>|null;
+  traits: any[]|null|undefined;
 
   /**
    * Enables compatibility with Anypoint components.
@@ -328,6 +329,24 @@ declare class ApiMethodDocumentation extends
   noNavigation: boolean|null|undefined;
 
   /**
+   * Optional protocol for the current method
+   */
+  protocol: string|null|undefined;
+  _methodChanged(): void;
+  _endpointChanged(): void;
+  _processModelChange(): void;
+  _processMethodChange(): void;
+  _processEndpointChange(): void;
+  _hasQueryParameters(): any;
+  _expectsChanged(expects: any): void;
+  _processEndpointVariables(): void;
+
+  /**
+   * Updates value for endpoint URI, server and path variables.
+   */
+  _processServerInfo(): void;
+
+  /**
    * Computes list of query parameters to be rendered in the query parameters table.
    *
    * The parameters document can pass a type definition for query parameters
@@ -340,21 +359,6 @@ declare class ApiMethodDocumentation extends
   _computeQueryParameters(scheme: object|null): Array<object|null>|object|null;
 
   /**
-   * Tries to find an example value (whether it's default value or from an
-   * example) to put it into snippet's values.
-   *
-   * @param item A http://raml.org/vocabularies/http#Parameter property
-   */
-  _computePropertyValue(item: object|null): String|null|undefined;
-  _methodChanged(): void;
-  _endpointChanged(): void;
-  _processModelChange(): void;
-  _processMethodChange(): void;
-  _processEndpointChange(): void;
-  _expectsChanged(expects: any): void;
-  _processEndpointVariables(): void;
-
-  /**
    * Computes value for `methodName` property.
    * It is either a `http://schema.org/name` or HTTP method name
    *
@@ -362,14 +366,6 @@ declare class ApiMethodDocumentation extends
    * @returns Method friendly name
    */
   _computeMethodName(method: object|null): String|null|undefined;
-
-  /**
-   * Computes value for `httpMethod` property.
-   *
-   * @param method AMF `supportedOperation` model
-   * @returns HTTP method name
-   */
-  _computeHttpMethod(method: object|null): String|null|undefined;
 
   /**
    * Computes value for `hasPathParameters` property
@@ -422,7 +418,7 @@ declare class ApiMethodDocumentation extends
    * @param headers Headers model from AMF
    * @returns Computed example value for headers
    */
-  _computeSnippetsHeaders(headers: any[]|null): String|undefind|null;
+  _computeSnippetsHeaders(headers: any[]|null): String|null|undefined;
 
   /**
    * Computes example payload string for code snippets.
@@ -430,7 +426,15 @@ declare class ApiMethodDocumentation extends
    * @param payload Payload model from AMF
    * @returns Computed example value for payload
    */
-  _computeSnippetsPayload(payload: any[]|null): String|undefind|null;
+  _computeSnippetsPayload(payload: any[]|null): String|null|undefined;
+
+  /**
+   * Tries to find an example value (whether it's default value or from an
+   * example) to put it into snippet's values.
+   *
+   * @param item A http://raml.org/vocabularies/http#Parameter property
+   */
+  _computePropertyValue(item: object|null): String|null|undefined;
 
   /**
    * Computes a label for the section toggle buttons.
@@ -486,5 +490,7 @@ declare class ApiMethodDocumentation extends
   _getReturnsTemplate(): any;
   _callbacksTemplate(): any;
   _callbackTemplate(callback: any): any;
+  _handleUrlChange(event: any): void;
+  isNonHttpProtocol(): any;
   _getNavigationTemplate(): any;
 }

@@ -3,10 +3,8 @@ test/
 demo/
 gen-tsd.json
 CONTRIBUTING.md
-.travis.yml
 index.html
 polymer.json
-karma.*
 husky.*
 commitlint.*
 .*
