@@ -1887,3 +1887,22 @@
 * uri for methods with query parameters [88dc9a1](https://github.com/advanced-rest-client/api-method-documentation/commit/88dc9a1993f75c80d40d31d594ab8b84a75adcee) by Carolina Wright
 
 
+<a name="5.0.4"></a>
+## [5.0.4](https://github.com/advanced-rest-client/api-method-documentation/compare/5.0.2...5.0.4) (2020-11-17)
+
+### Build
+
+* bump version [5e597b5](https://github.com/advanced-rest-client/api-method-documentation/commit/5e597b529d0320994d4967cc9787d0d5f78c9bbf) by Carolina Wright
+
+
+### Update
+
+* [ci skip] automated merge master->stage. syncing main branches [786a082](https://github.com/advanced-rest-client/api-method-documentation/commit/786a0824336534e9c649ca84f9289b1beb1e8d42) by Ci agent
+* [ci skip] automated merge master->stage. syncing main branches [c697432](https://github.com/advanced-rest-client/api-method-documentation/commit/c69743279ee22f5f7dfcc6840218e176fbf64b4d) by Ci agent
+
+
+### Features
+
+* apic-470 add expanded or collapsed label to toggle button [8ad12cd](https://github.com/advanced-rest-client/api-method-documentation/commit/8ad12cde25e08f3c083923564388cbbb15fcb786) by Carolina Wright
+
+
