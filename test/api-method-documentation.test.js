@@ -834,7 +834,27 @@ describe('<api-method-documentation>', function() {
           element.noTryIt = false;
           assert.isTrue(element.isNonHttpProtocol());
         });
-      })
+      });
+
+      describe('AsyncAPI', () => {
+        let amf;
+        let element;
+
+        before(async () => {
+          amf = await AmfLoader.load(asyncApi, compact);
+        });
+
+        beforeEach(async () => {
+          const [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, 'hello', 'publish');
+          element = await modelFixture(amf, endpoint, method);
+          // model change debouncer
+          await aTimeout(0);
+        });
+
+        it('should set security when security is defined in server node', () => {
+          assert.lengthOf(element.security, 2);
+        });
+      });
     });
   });
 });

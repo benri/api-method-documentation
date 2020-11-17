@@ -462,7 +462,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     this.hasCustomProperties = this._computeHasCustomProperties(method);
     this.expects = this._computeExpects(method);
     this.returns = this._computeReturns(method);
-    this.security = this._computeSecurity(method);
+    this.security = this._computeSecurity(method) || this._computeSecurity(this.server);
     const extendsTypes = this.extendsTypes = this._computeExtends(method);
     this.traits = this._computeTraits(extendsTypes);
     this.methodSummary = this._getValue(method, this.ns.aml.vocabularies.apiContract.guiSummary);
