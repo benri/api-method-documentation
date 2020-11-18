@@ -61,6 +61,7 @@
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@open-wc/testing": "^2.5.15",
+    "@open-wc/testing-karma": "^4.0.9",
     "@polymer/gen-typescript-declarations": "^1.6.2",
     "@polymer/iron-test-helpers": "^3.0.1",
     "@polymer/paper-toast": "^3.0.0",
