@@ -1906,3 +1906,12 @@
 * apic-470 add expanded or collapsed label to toggle button [8ad12cd](https://github.com/advanced-rest-client/api-method-documentation/commit/8ad12cde25e08f3c083923564388cbbb15fcb786) by Carolina Wright
 
 
+<a name="5.0.5"></a>
+## [5.0.5](https://github.com/advanced-rest-client/api-method-documentation/compare/5.0.3...5.0.5) (2020-11-19)
+
+### Update
+
+* [ci skip] automated merge master->stage. syncing main branches [26e33b4](https://github.com/advanced-rest-client/api-method-documentation/commit/26e33b4fa25bc6f04efabaede5c2956af122ea54) by Ci agent
+* [ci skip] automated merge master->stage. syncing main branches [786a082](https://github.com/advanced-rest-client/api-method-documentation/commit/786a0824336534e9c649ca84f9289b1beb1e8d42) by Ci agent
+
+
