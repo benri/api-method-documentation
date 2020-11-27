@@ -980,7 +980,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
 
   _getHeadersTemplate() {
     const { headers } = this;
-    if (!headers || !headers.length) {
+    if (!headers || (!headers.length && !Object.keys(headers).length)) {
       return '';
     }
     const {

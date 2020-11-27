@@ -854,6 +854,10 @@ describe('<api-method-documentation>', function() {
         it('should set security when security is defined in server node', () => {
           assert.lengthOf(element.security, 2);
         });
+
+        it('should render Headers section for AsyncAPI headers', () => {
+          assert.exists(element.shadowRoot.querySelector('api-headers-document'));
+        });
       });
     });
   });

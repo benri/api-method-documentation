@@ -39,7 +39,7 @@ class ComponentDemo extends ApiDemoPage {
   }
 
   setData(id) {
-    const webApi = this._computeWebApi(this.amf);
+    const webApi = this._computeApi(this.amf);
     const endpoint = this._computeMethodEndpoint(webApi, id);
     if (!endpoint) {
       this.endpoint = undefined;
