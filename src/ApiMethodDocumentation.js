@@ -359,6 +359,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       return;
     }
     this._baseUri = value;
+    this.requestUpdate('baseUri', old);
     this._processServerInfo();
   }
 

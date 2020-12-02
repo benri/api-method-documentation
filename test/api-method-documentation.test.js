@@ -859,6 +859,23 @@ describe('<api-method-documentation>', function() {
           assert.exists(element.shadowRoot.querySelector('api-headers-document'));
         });
       });
+
+      describe('<api-url/>', () => {
+        let element;
+
+        beforeEach(async () => {
+          element = await basicFixture();
+        });
+
+        it('should update baseUri in api-url', async () => {
+          element.baseUri = 'http://example.org';
+          await nextFrame();
+          assert.equal(element.shadowRoot.querySelector('api-url').url, 'http://example.org');
+          element.baseUri = 'https://domain.com';
+          await nextFrame();
+          assert.equal(element.shadowRoot.querySelector('api-url').url, 'https://domain.com');
+        });
+      });
     });
   });
 });
