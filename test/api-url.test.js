@@ -68,13 +68,6 @@ describe('<api-url>', function () {
 		it('should compute method', () => {
 		  assert.equal(element._method, 'GET');
 		});
-
-		it('should use base uri if available', async () => {
-		  element.baseUri = 'http://example.org';
-		  await nextFrame();
-		  assert.equal(element.url, 'http://example.org');
-		  assert.equal(element.shadowRoot.querySelector('.url-value').textContent, 'http://example.org');
-		});
 	  });
 
 	  describe('AsyncAPI', () => {

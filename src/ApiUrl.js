@@ -147,10 +147,7 @@ export class ApiUrl extends AmfHelperMixin(LitElement) {
   }
 
   get url() {
-    if (this.baseUri) {
-      return this.baseUri;
-    }
-    return this._url;
+    return this._url || this.baseUri;
   }
 
   render() {
