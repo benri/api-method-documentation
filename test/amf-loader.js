@@ -65,3 +65,8 @@ AmfLoader.lookupEndpointOperation = function(model, endpoint, operation) {
 AmfLoader.getEncodes = function(model) {
   return helper._computeEncodes(model)
 }
+
+AmfLoader.getServers = function(model) {
+  helper.amf = model;
+  return helper._getServers({});
+}

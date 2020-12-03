@@ -204,7 +204,7 @@ export class ApiUrl extends AmfHelperMixin(LitElement) {
     if (_protocol) {
       options.protocols = [_protocol];
     }
-    this._url = this._computeUri(_endpoint, options) + this._computeMethodParametersUri(this.operation);
+    this._url = this._computeUri(_endpoint, options);
     this._dispatchChangeEvent();
   }
 
@@ -235,54 +235,5 @@ export class ApiUrl extends AmfHelperMixin(LitElement) {
         }
       })
     );
-  }
-
-  _computeMethodParametersUri(method) {
-    let queryParams = '';
-    if (!method) {
-      return queryParams;
-    }
-
-    const expects = this._computeExpects(method);
-    const params = this._computeQueryParameters(expects);
-    if (params && Array.isArray(params)) {
-      params.forEach((param) => {
-        const paramExample = this._computeMethodParameterUri(param);
-        if (paramExample) {
-          if (paramExample.example) {
-            queryParams += `${queryParams ? '&' : '?'}${paramExample.name}=${paramExample.example}`;
-          } else {
-            const examples = paramExample.examples.map((e) => `${paramExample.name}=${e}`).join('&');
-            queryParams += `${queryParams ? '&' : '?'}${examples}`;
-          }
-        }
-      });
-    }
-    return queryParams;
-  }
-
-  _computeMethodParameterUri(param) {
-    if (!this._getValue(param, this.ns.aml.vocabularies.apiContract.required)) {
-      return;
-    }
-
-    const paramName = this._getValue(param, this.ns.aml.vocabularies.apiContract.paramName);
-    const paramExample = this._computePropertyValue(param);
-
-    const skey = this._getAmfKey(this.ns.aml.vocabularies.shapes.schema);
-    let schema = param && param[skey];
-    if (schema) {
-      if (schema instanceof Array) {
-        schema = schema[0];
-      }
-      if (this._hasType(schema, this.ns.aml.vocabularies.shapes.ArrayShape)) {
-        const examples = paramExample.split(/\n/).map((e) => e.substr(1).trim());
-        return { name: paramName, examples };
-      }
-    }
-
-    if (paramName && paramExample) {
-      return { name: paramName, example: paramExample };
-    }
   }
 }

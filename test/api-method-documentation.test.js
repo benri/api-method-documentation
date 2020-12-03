@@ -321,6 +321,7 @@ describe('<api-method-documentation>', function() {
       const driveApi = 'google-drive-api';
       const callbacksApi = 'oas-callbacks';
       const asyncApi = 'async-api';
+      const apic553 = 'APIC-553';
 
       describe('Basic AMF computations', () => {
         let amf;
@@ -532,10 +533,10 @@ describe('<api-method-documentation>', function() {
             [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, '/mail', 'get');
           });
 
-          it('sets URL from base uri', async () => {
+          it('sets snippets URL from base uri', async () => {
             const element = await baseUriFixture(amf, endpoint, method);
             await aTimeout();
-            assert.equal(element.endpointUri, 'https://domain.com/mail?box=foo');
+            assert.equal(element.snippetsUri, 'https://domain.com/mail?box=foo');
           });
         })
 
@@ -544,13 +545,13 @@ describe('<api-method-documentation>', function() {
             [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, '/test-parameters/{feature}', 'get');
           });
 
-          it('sets URL from base uri', async () => {
+          it('sets snippets URL from base uri', async () => {
             const element = await baseUriFixture(amf, endpoint, method);
             await aTimeout();
             const expectedUri =
               'https://domain.com/test-parameters/{feature}' +
               '?testRepeatable=value1&testRepeatable=value2&numericRepeatable=123&numericRepeatable=456'
-            assert.equal(element.endpointUri, expectedUri);
+            assert.equal(element.snippetsUri, expectedUri);
           });
         })
       });
@@ -876,6 +877,54 @@ describe('<api-method-documentation>', function() {
           assert.equal(element.shadowRoot.querySelector('api-url').url, 'https://domain.com');
         });
       });
+    
+      describe('APIC-553', () => {
+        let amf;
+        let element;
+
+        before(async () => {
+          amf = await AmfLoader.load(apic553, compact);
+        });
+
+        beforeEach(async () => {
+          const [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, '/cmt', 'get');
+          const server = AmfLoader.getServers(amf)[0];
+          element = await codeSnippetsFixture(amf, endpoint, method);
+          element.server = server;
+          await nextFrame();
+        });
+
+        it('should set endpointUri', async () => {
+          assert.equal(element.endpointUri, 'http://domain.org/cmt');
+        });
+
+        it('should set code snippet with endpoint uri and no query params', async () => {
+          element._toggleSnippets();
+          await nextFrame();
+          assert.equal(element.shadowRoot.querySelector('http-code-snippets').url, 'http://domain.org/cmt');
+        });
+
+        describe('with query param example', () => {
+          beforeEach(async () => {
+            const [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, '/cmt-with-qp-example', 'get');
+            const server = AmfLoader.getServers(amf)[0];
+            element = await codeSnippetsFixture(amf, endpoint, method);
+            element.server = server;
+            await nextFrame();
+          });
+
+          it('should set endpointUri without query params', async () => {
+            assert.equal(element.endpointUri, 'http://domain.org/cmt-with-qp-example');
+          });
+
+          it('should set code snippet with endpoint uri and query param', async () => {
+            element._toggleSnippets();
+            await nextFrame();
+            const newLocal = element.shadowRoot.querySelector('http-code-snippets');
+            assert.equal(newLocal.url, 'http://domain.org/cmt-with-qp-example?orx=foo');
+          });
+        });
+      })
     });
   });
 });

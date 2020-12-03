@@ -418,6 +418,10 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     return methodName.toLowerCase() === httpMethod.toLowerCase();
   }
 
+  get snippetsUri() {
+    return this.endpointUri + this._computeMethodParametersUri(this.method);
+  }
+
   constructor() {
     super();
     this.callbacksOpened = false;
@@ -884,7 +888,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     const {
       _snippetsOpened,
       _renderSnippets,
-      endpointUri,
+      snippetsUri,
       httpMethod,
       headers,
       payload,
@@ -912,7 +916,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       ${_renderSnippets ? html`<http-code-snippets
         scrollable
         ?compatibility="${compatibility}"
-        .url="${endpointUri}"
+        .url="${snippetsUri}"
         .method="${httpMethod}"
         .headers="${this._computeSnippetsHeaders(headers)}"
         .payload="${this._computeSnippetsPayload(payload)}"></http-code-snippets>` : ''}
@@ -1147,6 +1151,55 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
         </anypoint-icon-button>
       </div>` : ''}
     </section>`;
+  }
+
+  _computeMethodParametersUri(method) {
+    let queryParams = '';
+    if (!method) {
+      return queryParams;
+    }
+
+    const expects = this._computeExpects(method);
+    const params = this._computeQueryParameters(expects);
+    if (params && Array.isArray(params)) {
+      params.forEach((param) => {
+        const paramExample = this._computeMethodParameterUri(param);
+        if (paramExample) {
+          if (paramExample.example) {
+            queryParams += `${queryParams ? '&' : '?'}${paramExample.name}=${paramExample.example}`;
+          } else {
+            const examples = paramExample.examples.map((e) => `${paramExample.name}=${e}`).join('&');
+            queryParams += `${queryParams ? '&' : '?'}${examples}`;
+          }
+        }
+      });
+    }
+    return queryParams;
+  }
+
+  _computeMethodParameterUri(param) {
+    if (!this._getValue(param, this.ns.aml.vocabularies.apiContract.required)) {
+      return;
+    }
+
+    const paramName = this._getValue(param, this.ns.aml.vocabularies.apiContract.paramName);
+    const paramExample = this._computePropertyValue(param);
+
+    const skey = this._getAmfKey(this.ns.aml.vocabularies.shapes.schema);
+    let schema = param && param[skey];
+    if (schema) {
+      if (schema instanceof Array) {
+        schema = schema[0];
+      }
+      if (paramExample && this._hasType(schema, this.ns.aml.vocabularies.shapes.ArrayShape)) {
+        const examples = paramExample.split(/\n/).map((e) => e.substr(1).trim());
+        return { name: paramName, examples };
+      }
+    }
+
+    if (paramName && paramExample) {
+      return { name: paramName, example: paramExample };
+    }
   }
 
   /**
