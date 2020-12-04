@@ -68,6 +68,16 @@ describe('<api-url>', function () {
 		it('should compute method', () => {
 		  assert.equal(element._method, 'GET');
 		});
+
+		it('should render method', () => {
+		  assert.exists(element.shadowRoot.querySelector('.method-value'));
+		});
+
+		it('should not render method if method is not present', async () => {
+		  element.operation = null;
+		  await nextFrame();
+		  assert.notExists(element.shadowRoot.querySelector('.method-value'));
+		});
 	  });
 
 	  describe('AsyncAPI', () => {

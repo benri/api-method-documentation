@@ -151,19 +151,26 @@ export class ApiUrl extends AmfHelperMixin(LitElement) {
   }
 
   render() {
-    const method = this._method;
     const url = this.url;
     return html`
       <style>
         ${this.styles}
       </style>
       <section class="url-area">
-        <div class="method-value"><span class="method-label" data-method="${method}">${method}</span></div>
+        ${this._getMethodTemplate()}
         ${this._getPathTemplate()}
         <div class="url-value">${url}</div>
       </section>
       <clipboard-copy id="urlCopy" .content="${url}"></clipboard-copy>
     `;
+  }
+
+  _getMethodTemplate() {
+    const method = this._method;
+    if (!method) {
+      return html``;
+    }
+    return html`<div class="method-value"><span class="method-label" data-method="${method}">${method}</span></div>`
   }
 
   _getPathTemplate() {
