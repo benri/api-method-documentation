@@ -150,6 +150,20 @@ export class ApiUrl extends AmfHelperMixin(LitElement) {
     return this._url || this.baseUri;
   }
 
+  set baseUri(value) {
+    const old = this._baseUri;
+    if (old === value) {
+      return;
+    }
+    this._baseUri = value;
+    this.requestUpdate('baseUri', old);
+    this._updateUrl();
+  }
+
+  get baseUri() {
+    return this._baseUri;
+  }
+
   render() {
     const url = this.url;
     return html`

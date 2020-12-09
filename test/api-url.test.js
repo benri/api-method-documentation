@@ -78,6 +78,11 @@ describe('<api-url>', function () {
 		  await nextFrame();
 		  assert.notExists(element.shadowRoot.querySelector('.method-value'));
 		});
+
+		it('should recompute url and keep endpoint path after baseUri change', () => {
+		  element.baseUri = 'http://example.com';
+		  assert.equal(element.url, 'http://example.com/people');
+		});
 	  });
 
 	  describe('AsyncAPI', () => {
