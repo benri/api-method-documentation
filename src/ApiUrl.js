@@ -172,8 +172,10 @@ export class ApiUrl extends AmfHelperMixin(LitElement) {
       </style>
       <section class="url-area">
         ${this._getMethodTemplate()}
-        ${this._getPathTemplate()}
-        <div class="url-value">${url}</div>
+        <div class="url-value">
+          ${this._getPathTemplate()}
+          ${this.getUrlTemplate()}
+        </div>
       </section>
       <clipboard-copy id="urlCopy" .content="${url}"></clipboard-copy>
     `;
@@ -189,11 +191,17 @@ export class ApiUrl extends AmfHelperMixin(LitElement) {
 
   _getPathTemplate() {
     if (this.isNotHttp) {
-      return html`
-        ${this.path}
-      `;
+      return html`<div class="url-channel-value"><span class="channel-url">Channel</span>${this.path}</div>`;
     }
     return undefined;
+  }
+
+  getUrlTemplate() {
+    const { url, isNotHttp } = this;
+    if (isNotHttp) {
+      return html`<div class="url-server-value"><span class="server-url">Server</span>${url}</div>`
+    }
+    return html`${url}`
   }
 
   _updateMethod() {

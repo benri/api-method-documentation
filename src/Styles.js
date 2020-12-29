@@ -104,6 +104,16 @@ export default css`
   word-break: break-all;
 }
 
+.channel-url, .server-url {
+  display: block;
+  font-size: var(--api-method-documentation-url-font-size, 0.70rem);
+  font-weight: bolder;
+}
+
+.url-server-value {
+  margin-top: 8px;
+}
+
 .method-value {
   text-transform: uppercase;
   white-space: nowrap;
