@@ -11,5 +11,6 @@
   "oas-callbacks/oas-callbacks.yaml": { "type": "OAS 3.0", "mime": "application/yaml" },
   "multi-server/multi-server.yaml": { "type": "OAS 3.0", "mime": "application/yaml" },
   "async-api/async-api.yaml": "ASYNC 2.0",
-  "APIC-553/APIC-553.raml": "RAML 1.0"
+  "APIC-553/APIC-553.raml": "RAML 1.0",
+  "APIC-560/APIC-560.yaml": "ASYNC 2.0"
 }
