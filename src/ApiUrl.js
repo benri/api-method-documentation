@@ -186,7 +186,8 @@ export class ApiUrl extends AmfHelperMixin(LitElement) {
     if (!method) {
       return html``;
     }
-    return html`<div class="method-value"><span class="method-label" data-method="${method}">${method}</span></div>`
+    const lowerCase = method.toLowerCase();
+    return html`<div class="method-value"><span class="method-label" data-method="${lowerCase}">${method}</span></div>`
   }
 
   _getPathTemplate() {

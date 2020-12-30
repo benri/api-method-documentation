@@ -1,7 +1,6 @@
 import { html, LitElement } from 'lit-element';
 import { AmfHelperMixin } from '@api-components/amf-helper-mixin/amf-helper-mixin.js';
 import markdownStyles from '@advanced-rest-client/markdown-styles/markdown-styles.js';
-import httpMethodStyles from '@api-components/http-method-label/http-method-label-common-styles.js';
 import { expandMore, chevronLeft, chevronRight } from '@advanced-rest-client/arc-icons/ArcIcons.js';
 import '@api-components/raml-aware/raml-aware.js';
 import '@api-components/api-annotation-document/api-annotation-document.js';
@@ -123,7 +122,6 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
   get styles() {
     return [
       markdownStyles,
-      httpMethodStyles,
       styles,
     ];
   }
