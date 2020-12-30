@@ -23,7 +23,7 @@ describe('<api-url>', function () {
 	  element.baseUri = 'http://example.org';
 	  await nextFrame();
 	  assert.equal(element.url, 'http://example.org');
-	  assert.equal(element.shadowRoot.querySelector('.url-value').textContent, 'http://example.org');
+	  assert.equal(element.shadowRoot.querySelector('.url-value').textContent.trim(), 'http://example.org');
 	});
   });
 
@@ -119,6 +119,40 @@ describe('<api-url>', function () {
 		  assert.equal(element._method, 'PUBLISH');
 		});
 	  });
+
+		describe('APIC-560', () => {
+			let amf;
+			let element;
+			let server;
+
+			before(async () => {
+				amf = await AmfLoader.load('APIC-560', compact);
+			});
+
+			beforeEach(async () => {
+				const endpointName = 'smartylighting/streetlights/1/0/event/{streetlightId}/lighting/measured'
+				const [endpoint, operation] = AmfLoader.lookupEndpointOperation(amf, endpointName, 'subscribe');
+				element = await basicFixture();
+				element.amf = amf;
+				server = AmfLoader.getEncodes(amf)[element._getAmfKey(element.ns.aml.vocabularies.apiContract.server)];
+				if (Array.isArray(server)) {
+					server = server[0];
+				}
+				element = await operationFixture({ amf, endpoint, operation, server });
+				// model change debouncer
+				await nextFrame();
+			});
+
+			it('should render channel', () => {
+				const channel = 'Channelsmartylighting/streetlights/1/0/event/{streetlightId}/lighting/measured'
+				assert.equal(element.shadowRoot.querySelector('.url-channel-value').textContent, channel);
+			});
+
+			it('should render server', () => {
+				const server = 'Servermqtt://api.streetlights.smartylighting.com:{port}'
+				assert.equal(element.shadowRoot.querySelector('.url-server-value').textContent, server);
+			});
+		});
 	});
   });
 });
