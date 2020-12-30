@@ -1978,3 +1978,27 @@
 * [ci skip] automated merge master->stage. syncing main branches [8801d69](https://github.com/advanced-rest-client/api-method-documentation/commit/8801d694d9897480410bdf19902f71078f538fde) by Ci agent
 
 
+<a name="5.1.6"></a>
+## [5.1.6](https://github.com/advanced-rest-client/api-method-documentation/compare/5.1.4...5.1.6) (2020-12-30)
+
+### Build
+
+* bump version [bd26ba4](https://github.com/advanced-rest-client/api-method-documentation/commit/bd26ba4cbaf8572f2cb571346ff88f29b33fb263) by Carolina Wright
+
+
+### Update
+
+* [ci skip] automated merge master->stage. syncing main branches [9ddb6c9](https://github.com/advanced-rest-client/api-method-documentation/commit/9ddb6c94e8e1c3eb62518e450ecce97b0bea3240) by Ci agent
+* [ci skip] automated merge master->stage. syncing main branches [80e5903](https://github.com/advanced-rest-client/api-method-documentation/commit/80e5903d8be29aa7312cc927f668c64c07bca468) by Ci agent
+
+
+### Bug Fixes
+
+* channel url overlapping with server url [2ffe389](https://github.com/advanced-rest-client/api-method-documentation/commit/2ffe38904ab63478cf74cbd48e9cc88b7f7e58fa) by Carolina Wright
+
+
+### Testing
+
+* channel and sever are rendered [36da5f9](https://github.com/advanced-rest-client/api-method-documentation/commit/36da5f9ea5e16b09b0e44217c96d8e178339a545) by Carolina Wright
+
+
