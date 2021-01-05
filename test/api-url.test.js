@@ -131,7 +131,7 @@ describe('<api-url>', function () {
 
 			beforeEach(async () => {
 				const endpointName = 'smartylighting/streetlights/1/0/event/{streetlightId}/lighting/measured'
-				const [endpoint, operation] = AmfLoader.lookupEndpointOperation(amf, endpointName, 'subscribe');
+				const [endpoint, operation] = AmfLoader.lookupEndpointOperation(amf, endpointName, 'kafka');
 				element = await basicFixture();
 				element.amf = amf;
 				server = AmfLoader.getEncodes(amf)[element._getAmfKey(element.ns.aml.vocabularies.apiContract.server)];
@@ -151,6 +151,17 @@ describe('<api-url>', function () {
 			it('should render server', () => {
 				const server = 'Servermqtt://api.streetlights.smartylighting.com:{port}'
 				assert.equal(element.shadowRoot.querySelector('.url-server-value').textContent, server);
+			});
+
+			it('should only render url value when no operation selected', async () => {
+				element.amf = amf
+				element.operation = undefined
+				element.endpoint = undefined
+				await nextFrame();
+				await nextFrame();
+
+				const url = 'mqtt://api.streetlights.smartylighting.com:{port}'
+				assert.equal(element.shadowRoot.querySelector('.url-value').textContent.trim(), url);
 			});
 		});
 	});
