@@ -191,15 +191,15 @@ export class ApiUrl extends AmfHelperMixin(LitElement) {
   }
 
   _getPathTemplate() {
-    if (this.isNotHttp) {
+    if (this.isNotHttp && !!this._method) {
       return html`<div class="url-channel-value"><span class="channel-url">Channel</span>${this.path}</div>`;
     }
     return undefined;
   }
 
   getUrlTemplate() {
-    const { url, isNotHttp } = this;
-    if (isNotHttp) {
+    const { url, isNotHttp, _method } = this;
+    if (isNotHttp && !!_method) {
       return html`<div class="url-server-value"><span class="server-url">Server</span>${url}</div>`
     }
     return html`${url}`
