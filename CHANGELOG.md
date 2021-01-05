@@ -2026,3 +2026,27 @@
 * channel and sever are rendered [36da5f9](https://github.com/advanced-rest-client/api-method-documentation/commit/36da5f9ea5e16b09b0e44217c96d8e178339a545) by Carolina Wright
 
 
+<a name="5.1.8"></a>
+## [5.1.8](https://github.com/advanced-rest-client/api-method-documentation/compare/5.1.6...5.1.8) (2021-01-05)
+
+### Build
+
+* bump version [31cf89f](https://github.com/advanced-rest-client/api-method-documentation/commit/31cf89fd4ac04d4b0a8a2b76675ac57ee7f3e6f7) by Carolina Wright
+
+
+### Update
+
+* [ci skip] automated merge master->stage. syncing main branches [f67cfb8](https://github.com/advanced-rest-client/api-method-documentation/commit/f67cfb8aeda7fab020728fd877b861ba0f171585) by Ci agent
+* [ci skip] automated merge master->stage. syncing main branches [0bf356a](https://github.com/advanced-rest-client/api-method-documentation/commit/0bf356a64838f42007d0e0f952d614f0d381627a) by Ci agent
+
+
+### Bug Fixes
+
+* show channel and server when selected operation [ba363f2](https://github.com/advanced-rest-client/api-method-documentation/commit/ba363f2aa0b60ebf54660535d281859a47a34f88) by Carolina Wright
+
+
+### Testing
+
+* show only url when no operation [d1848c2](https://github.com/advanced-rest-client/api-method-documentation/commit/d1848c29430b76ab62cab09da66c40d5f6c51f19) by Carolina Wright
+
+
