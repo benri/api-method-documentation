@@ -1,55 +1,50 @@
 import { fixture, assert, html, aTimeout, nextFrame } from '@open-wc/testing';
-import * as sinon from 'sinon';
-import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
+import sinon from 'sinon';
 import { AmfLoader } from './amf-loader.js';
 import '../api-method-documentation.js';
 
-describe('<api-method-documentation>', function() {
+describe('<api-method-documentation>', () => {
   async function basicFixture() {
-    return (await fixture(`<api-method-documentation></api-method-documentation>`));
+    return (fixture(`<api-method-documentation></api-method-documentation>`));
   }
 
   async function modelFixture(amf, endpoint, method) {
-    return (await fixture(html`<api-method-documentation
+    return (fixture(html`<api-method-documentation
       .amf="${amf}"
       .endpoint="${endpoint}"
       .method="${method}"></api-method-documentation>`));
   }
 
-  async function awareFixture() {
-    return (await fixture(`<api-method-documentation aware="test"></api-method-documentation>`));
-  }
-
   async function noTryitFixture() {
-    return (await fixture(`<api-method-documentation notryit></api-method-documentation>`));
+    return (fixture(`<api-method-documentation noTryit></api-method-documentation>`));
   }
 
   async function baseUriFixture(amf, endpoint, method) {
-    return (await fixture(html`<api-method-documentation
-      baseuri="https://domain.com"
+    return (fixture(html`<api-method-documentation
+      baseUri="https://domain.com"
       .amf="${amf}"
       .endpoint="${endpoint}"
       .method="${method}"></api-method-documentation>`));
   }
 
   async function renderSecurityFixture(amf, endpoint, method) {
-    return (await fixture(html`<api-method-documentation
-      rendersecurity
+    return (fixture(html`<api-method-documentation
+      renderSecurity
       .amf="${amf}"
       .endpoint="${endpoint}"
       .method="${method}"></api-method-documentation>`));
   }
 
   async function codeSnippetsFixture(amf, endpoint, method) {
-    return (await fixture(html`<api-method-documentation
-      rendercodesnippets
+    return (fixture(html`<api-method-documentation
+      renderCodeSnippets
       .amf="${amf}"
       .endpoint="${endpoint}"
       .method="${method}"></api-method-documentation>`));
   }
 
   async function noNavigationFixture(amf, endpoint, method) {
-    return (await fixture(html`<api-method-documentation
+    return (fixture(html`<api-method-documentation
       noNavigation
       .amf="${amf}"
       .endpoint="${endpoint}"
@@ -57,26 +52,6 @@ describe('<api-method-documentation>', function() {
   }
 
   describe('Basic tests', () => {
-    it('Adds raml-aware to the DOM if aware is set', async () => {
-      const element = await awareFixture();
-      const node = element.shadowRoot.querySelector('raml-aware');
-      assert.ok(node);
-    });
-
-    it('passes AMF model', async () => {
-      const element = await awareFixture();
-      const aware = document.createElement('raml-aware');
-      aware.scope = 'test';
-      aware.api = [{}];
-      assert.deepEqual(element.amf, [{}]);
-    });
-
-    it('raml-aware is not in the DOM by default', async () => {
-      const element = await basicFixture();
-      const node = element.shadowRoot.querySelector('raml-aware');
-      assert.notOk(node);
-    });
-
     it('api-annotation-document is not in the DOM', async () => {
       const element = await basicFixture();
       const node = element.shadowRoot.querySelector('api-annotation-document');
@@ -127,31 +102,16 @@ describe('<api-method-documentation>', function() {
       const spy = sinon.spy();
       element.addEventListener('tryit-requested', spy);
       const button = element.shadowRoot.querySelector('.action-button');
-      MockInteractions.tap(button);
+      /** @type HTMLElement */ (button).click();
       const e = spy.args[0][0];
       assert.isTrue(e.bubbles);
       assert.equal(e.detail.id, 'test');
     });
 
-    it('Try it is not in the DOM when notryit is set', async () => {
+    it('Try it is not in the DOM when noTryit is set', async () => {
       const element = await noTryitFixture();
       const node = element.shadowRoot.querySelector('.action-button');
       assert.notOk(node);
-    });
-  });
-
-  describe('compatibility mode', () => {
-    it('sets compatibility on item when setting legacy', async () => {
-      const element = await basicFixture();
-      element.legacy = true;
-      assert.isTrue(element.legacy, 'legacy is set');
-      assert.isTrue(element.compatibility, 'compatibility is set');
-    });
-
-    it('returns compatibility value from item when getting legacy', async () => {
-      const element = await basicFixture();
-      element.compatibility = true;
-      assert.isTrue(element.legacy, 'legacy is set');
     });
   });
 
@@ -467,7 +427,7 @@ describe('<api-method-documentation>', function() {
         beforeEach(async () => {
           const [prevEndpoint, prevMethod] = AmfLoader.lookupEndpointOperation(amf, '/people', 'get');
           element = await modelFixture(amf, prevEndpoint, prevMethod);
-          await aTimeout();
+          await aTimeout(0);
         });
 
         it('method-name label is rendered', () => {
@@ -567,7 +527,7 @@ describe('<api-method-documentation>', function() {
           const [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, '/people', 'get');
           element = await codeSnippetsFixture(amf, endpoint, method);
           // model change debouncer
-          await aTimeout();
+          await aTimeout(0);
         });
 
         it('renders snippets section', async () => {
@@ -577,21 +537,21 @@ describe('<api-method-documentation>', function() {
 
         it('sets _renderSnippets when opening snippets', async () => {
           const button = element.shadowRoot.querySelector('.snippets .title-area-actions anypoint-button');
-          MockInteractions.tap(button);
+          /** @type HTMLElement */ (button).click();
           assert.isTrue(element._renderSnippets);
         });
 
         it('eventually sets _snippetsOpened', async () => {
           const button = element.shadowRoot.querySelector('.snippets .title-area-actions anypoint-button');
-          MockInteractions.tap(button);
-          await aTimeout();
+          /** @type HTMLElement */ (button).click();
+          await aTimeout(0);
           assert.isTrue(element._snippetsOpened);
         });
 
         it('renders code snippets', async () => {
           const button = element.shadowRoot.querySelector('.snippets .title-area-actions anypoint-button');
-          MockInteractions.tap(button);
-          await aTimeout();
+          /** @type HTMLElement */ (button).click();
+          await aTimeout(0);
           const node = element.shadowRoot.querySelector('http-code-snippets');
           assert.ok(node);
         });
@@ -644,7 +604,7 @@ describe('<api-method-documentation>', function() {
 
         it('Uses application/json as default media type', () => {
           const payload = AmfLoader.lookupPayload(amf, '/people', 'post')[0];
-          const key = element._getAmfKey(element.ns.raml.vocabularies.http + 'mediaType');
+          const key = element._getAmfKey(`${element.ns.raml.vocabularies.http  }mediaType`);
           delete payload[key];
           const result = element._computeSnippetsPayload(payload);
           assert.equal(result,
@@ -686,7 +646,7 @@ describe('<api-method-documentation>', function() {
 
         it('toggle button toggles the state', () => {
           const section = element.shadowRoot.querySelector('.security .section-title-area');
-          MockInteractions.tap(section);
+          /** @type HTMLElement */ (section).click();
           assert.isTrue(element.securityOpened);
         });
       });
@@ -699,7 +659,7 @@ describe('<api-method-documentation>', function() {
           const [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, '/files', 'post');
           element = await renderSecurityFixture(amf, endpoint, method);
           // model change debouncer
-          await aTimeout();
+          await aTimeout(0);
         });
 
         it('renders traits section', () => {
@@ -712,8 +672,8 @@ describe('<api-method-documentation>', function() {
         });
 
         it('render names', () => {
-          const label = element.shadowRoot.querySelector('.extensions .trait-name');
-          assert.equal(label.textContent.trim(), 'file and visibility');
+          const lbl = element.shadowRoot.querySelector('.extensions .trait-name');
+          assert.equal(lbl.textContent.trim(), 'file and visibility');
         });
       });
 
@@ -762,7 +722,7 @@ describe('<api-method-documentation>', function() {
 
         it('callbacks section can be opened with a click', async () => {
           const node = element.shadowRoot.querySelector('.callbacks .section-title-area');
-          MockInteractions.tap(node);
+          /** @type HTMLElement */ (node).click();
           await nextFrame();
           assert.isTrue(element.callbacksOpened);
         });

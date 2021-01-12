@@ -1,5 +1,6 @@
+/* eslint-disable class-methods-use-this */
 import { html, LitElement } from 'lit-element';
-import { AmfHelperMixin } from '@api-components/amf-helper-mixin/amf-helper-mixin.js';
+import { AmfHelperMixin } from '@api-components/amf-helper-mixin';
 import markdownStyles from '@advanced-rest-client/markdown-styles/markdown-styles.js';
 import httpMethodStyles from '@api-components/http-method-label/http-method-label-common-styles.js';
 import styles from './Styles.js';
@@ -71,7 +72,7 @@ export class ApiUrl extends AmfHelperMixin(LitElement) {
     const { server } = this;
     if (server) {
       const key = this._getAmfKey(this.ns.aml.vocabularies.apiContract.protocol);
-      const protocol = this._getValue(server, key);
+      const protocol = /** @type string */ (this._getValue(server, key));
       if (!protocol) {
         return false;
       }
@@ -165,11 +166,9 @@ export class ApiUrl extends AmfHelperMixin(LitElement) {
   }
 
   render() {
-    const url = this.url;
+    const { url } = this;
     return html`
-      <style>
-        ${this.styles}
-      </style>
+      <style>${this.styles}</style>
       <section class="url-area">
         ${this._getMethodTemplate()}
         <div class="url-value">
@@ -194,7 +193,7 @@ export class ApiUrl extends AmfHelperMixin(LitElement) {
     if (this.isNotHttp && !!this._method) {
       return html`<div class="url-channel-value"><span class="channel-url">Channel</span>${this.path}</div>`;
     }
-    return undefined;
+    return '';
   }
 
   getUrlTemplate() {
@@ -243,7 +242,7 @@ export class ApiUrl extends AmfHelperMixin(LitElement) {
    */
   _computeMethod(operation) {
     const methodKey = this.ns.aml.vocabularies.apiContract.method;
-    let name = this._getValue(operation, methodKey);
+    let name = /** @type string */ (this._getValue(operation, methodKey));
     if (name) {
       name = name.toUpperCase();
     }
@@ -252,7 +251,7 @@ export class ApiUrl extends AmfHelperMixin(LitElement) {
 
   _dispatchChangeEvent() {
     this.dispatchEvent(
-      new CustomEvent('onchange', {
+      new CustomEvent('change', {
         bubbles: true,
         composed: true,
         detail: {
