@@ -1,4 +1,4 @@
-import { fixture, assert, nextFrame, html } from '@open-wc/testing';
+import { fixture, assert, nextFrame, html, waitUntil } from '@open-wc/testing';
 import { AmfLoader } from './amf-loader.js';
 import '../api-url.js';
 
@@ -143,13 +143,15 @@ describe('<api-url>', function () {
 				await nextFrame();
 			});
 
-			it('should render channel', () => {
+			it('should render channel', async () => {
 				const channel = 'Channelsmartylighting/streetlights/1/0/event/{streetlightId}/lighting/measured'
+				await waitUntil(() => element.shadowRoot.querySelector('.url-channel-value'));
 				assert.equal(element.shadowRoot.querySelector('.url-channel-value').textContent, channel);
 			});
 
-			it('should render server', () => {
+			it('should render server', async () => {
 				const server = 'Servermqtt://api.streetlights.smartylighting.com:{port}'
+				await waitUntil(() => element.shadowRoot.querySelector('.url-server-value'));
 				assert.equal(element.shadowRoot.querySelector('.url-server-value').textContent, server);
 			});
 
