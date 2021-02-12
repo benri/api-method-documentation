@@ -321,6 +321,10 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     return this.endpointUri + this._computeMethodParametersUri(this.method);
   }
 
+  get message() {
+    return this._getMessageForMethod(this.methodName);
+  }
+
   constructor() {
     super();
     this.callbacksOpened = false;
@@ -376,6 +380,9 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     this.hasCustomProperties = this._computeHasCustomProperties(method);
     this.expects = this._computeExpects(method);
     this.returns = this._computeReturns(method);
+    if (this._isAsyncAPI(this.amf)) {
+      this._overwriteExpects();
+    }
     this.security = this._computeSecurity(method) || this._computeSecurity(this.server);
     const extendsTypes = this._computeExtends(method);
     this.extendsTypes = extendsTypes;
@@ -383,6 +390,14 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     this.methodSummary = this._getValue(method, this.ns.aml.vocabularies.apiContract.guiSummary);
     this.operationId = this._getValue(method, this.ns.aml.vocabularies.apiContract.operationId);
     this.callbacks = this._computeCallbacks(method);
+  }
+
+  _overwriteExpects() {
+    let expects = this.message;
+    if (Array.isArray(expects)) {
+      [expects] = expects;
+    }
+    this.expects = expects;
   }
 
   _processEndpointChange() {
@@ -733,14 +748,7 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
     ${this._getTraitsTemplate()}
     ${hasCustomProperties ? html`<api-annotation-document .shape="${method}"></api-annotation-document>` : ''}
     ${this._getDescriptionTemplate()}
-    <section class="request-documentation">
-      ${this._getCodeSnippetsTemplate()}
-      ${this._getSecurityTemplate()}
-      ${this._getParametersTemplate()}
-      ${this._getHeadersTemplate()}
-      ${this._getBodyTemplate()}
-      ${this._callbacksTemplate()}
-    </section>
+    ${this._getRequestTemplate()}
     ${this._getReturnsTemplate()}
     ${this._getNavigationTemplate()}`;
   }
@@ -955,9 +963,20 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       .body="${payload}"></api-body-document>`;
   }
 
+  _getRequestTemplate() {
+    return html`<section class="request-documentation">
+      ${this._getCodeSnippetsTemplate()}
+      ${this._getSecurityTemplate()}
+      ${this._getParametersTemplate()}
+      ${this._getHeadersTemplate()}
+      ${this._getBodyTemplate()}
+      ${this._callbacksTemplate()}
+    </section>`
+  }
+
   _getReturnsTemplate() {
     const { returns } = this;
-    if (!returns || !returns.length) {
+    if (!returns || !returns.length || this._isAsyncAPI(this.amf)) {
       return '';
     }
     const {
@@ -1133,6 +1152,27 @@ export class ApiMethodDocumentation extends AmfHelperMixin(LitElement) {
       return { name: paramName, example: paramExample };
     }
     return undefined;
+  }
+
+  /**
+   * Returns message value depending on operation node method
+   * Subscribe -> returns
+   * Publish -> expects
+   * `undefined` otherwise
+   * @param {String} method Operation method
+   */
+  _getMessageForMethod(method) {
+    if (!method) {
+      return undefined;
+    }
+    switch(method.toLowerCase()) {
+      case 'subscribe':
+        return this.returns;
+      case 'publish':
+        return this.expects;
+      default:
+        return undefined;
+    }
   }
 
   /**

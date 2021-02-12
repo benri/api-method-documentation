@@ -2,7 +2,7 @@ import { fixture, assert, nextFrame, html, waitUntil } from '@open-wc/testing';
 import { AmfLoader } from './amf-loader.js';
 import '../api-url.js';
 
-describe('<api-url>', function () {
+describe('<api-url>', () => {
   async function basicFixture() {
 	return fixture(`<api-url></api-url>`);
   }
@@ -50,7 +50,7 @@ describe('<api-url>', function () {
 		  element.amf = amf;
 		  server = AmfLoader.getEncodes(amf)[element._getAmfKey(element.ns.aml.vocabularies.apiContract.server)];
 		  if (Array.isArray(server)) {
-			server = server[0];
+			[server] = server;
 		  }
 		  element = await operationFixture({ amf, endpoint, operation, server });
 		  // model change debouncer
@@ -100,7 +100,7 @@ describe('<api-url>', function () {
 		  element.amf = amf;
 		  server = AmfLoader.getEncodes(amf)[element._getAmfKey(element.ns.aml.vocabularies.apiContract.server)];
 		  if (Array.isArray(server)) {
-			server = server[0];
+			[server] = server;
 		  }
 		  element = await operationFixture({ amf, endpoint, operation, server });
 		  // model change debouncer
@@ -131,12 +131,12 @@ describe('<api-url>', function () {
 
 			beforeEach(async () => {
 				const endpointName = 'smartylighting/streetlights/1/0/event/{streetlightId}/lighting/measured'
-				const [endpoint, operation] = AmfLoader.lookupEndpointOperation(amf, endpointName, 'kafka');
+				const [endpoint, operation] = AmfLoader.lookupEndpointOperation(amf, endpointName, 'subscribe');
 				element = await basicFixture();
 				element.amf = amf;
 				server = AmfLoader.getEncodes(amf)[element._getAmfKey(element.ns.aml.vocabularies.apiContract.server)];
 				if (Array.isArray(server)) {
-					server = server[0];
+					[server] = server;
 				}
 				element = await operationFixture({ amf, endpoint, operation, server });
 				// model change debouncer
@@ -150,9 +150,9 @@ describe('<api-url>', function () {
 			});
 
 			it('should render server', async () => {
-				const server = 'Servermqtt://api.streetlights.smartylighting.com:{port}'
+				const expectedServer = 'Servermqtt://api.streetlights.smartylighting.com:{port}'
 				await waitUntil(() => element.shadowRoot.querySelector('.url-server-value'));
-				assert.equal(element.shadowRoot.querySelector('.url-server-value').textContent, server);
+				assert.equal(element.shadowRoot.querySelector('.url-server-value').textContent, expectedServer);
 			});
 
 			it('should only render url value when no operation selected', async () => {

@@ -282,6 +282,7 @@ describe('<api-method-documentation>', () => {
       const callbacksApi = 'oas-callbacks';
       const asyncApi = 'async-api';
       const apic553 = 'APIC-553';
+      const apic582 = 'APIC-582';
 
       describe('Basic AMF computations', () => {
         let amf;
@@ -888,7 +889,27 @@ describe('<api-method-documentation>', () => {
             assert.equal(newLocal.url, 'http://domain.org/cmt-with-qp-example?orx=foo');
           });
         });
-      })
+      });
+
+      describe('APIC-582', () => {
+        let amf;
+        let element;
+
+        before(async () => {
+          amf = await AmfLoader.load(apic582, compact);
+        });
+
+        beforeEach(async () => {
+          const [endpoint, method] = AmfLoader.lookupEndpointOperation(amf, 'user/signedup', 'subscribe');
+          element = await modelFixture(amf, endpoint, method);
+          await nextFrame();
+        });
+
+        it('should render channel message in request documentation section', async () => {
+          await waitUntil(() => !!element.shadowRoot.querySelector('.request-documentation'), 'request documentation section not rendered');
+          await waitUntil(() => !!element.shadowRoot.querySelector('api-body-document'), 'api-body-document not rendered');
+        });
+      });
     });
   });
 });
