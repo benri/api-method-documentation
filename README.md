@@ -1,12 +1,10 @@
-[![Published on NPM](https://img.shields.io/npm/v/@api-components/api-method-documentation.svg)](https://www.npmjs.com/package/@api-components/api-method-documentation)
-
-[![Build Status](https://travis-ci.com/advanced-rest-client/api-method-documentation.svg)](https://travis-ci.org/api-components/api-method-documentation)
-
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/advanced-rest-client/api-method-documentation)
-
-## &lt;api-method-documentation&gt;
+# &lt;api-method-documentation&gt;
 
 A HTTP method documentation generated from an AMF model.
+
+[![Published on NPM](https://img.shields.io/npm/v/@api-components/api-method-documentation.svg)](https://www.npmjs.com/package/@api-components/api-method-documentation)
+
+[![Tests and publishing](https://github.com/advanced-rest-client/api-method-documentation/actions/workflows/deployment.yml/badge.svg)](https://github.com/advanced-rest-client/api-method-documentation/actions/workflows/deployment.yml)
 
 ## Version compatibility
 
@@ -16,7 +14,8 @@ For compatibility with previous model version use `3.x.x` version of the compone
 ## Usage
 
 ### Installation
-```
+
+```sh
 npm install --save @api-components/api-method-documentation
 ```
 
@@ -51,7 +50,7 @@ class SampleElement extends PolymerElement {
       .method="${this.method}"
       .previous="${this.previous}"
       .next="${this.next}"
-      ?rendercodesnippets="${this.codeSnippets}"
+      ?renderCodeSnippets="${this.codeSnippets}"
       ?narrow="${this.narrow}"
       .renderSecurity="${this.renderSecurity}"
       .noTryIt="${this.noTryit}"
@@ -82,10 +81,7 @@ npm start
 ```
 
 ### Running the tests
+
 ```sh
 npm test
 ```
-
-### API components
-
-This components is a part of [API components ecosystem](https://elements.advancedrestclient.com/)
