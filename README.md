@@ -13,10 +13,46 @@ A HTTP method documentation generated from an AMF model.
 This version only works with AMF model version 2 (AMF parser >= 4.0.0).
 For compatibility with previous model version use `3.x.x` version of the component.
 
+## Styling
+
+`<api-method-documentation>` provides the following custom properties and mixins for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--arc-font-headline-color` | Color of the method title | ``
+`--arc-font-headline-font-size` | Font size of the method title | ``
+`--arc-font-headline-letter-spacing` | Letter spacing of the method title | ``
+`--arc-font-headline-line-height` | Line height of the method title | ``
+`--arc-font-headline-narrow-font-size` | Font size of the method title in mobile-friendly view | ``
+`--arc-font-title-color` | Color of the overview section title | ``
+`--arc-font-title-font-size` | Font size of the overview section title | ``
+`--arc-font-title-line-height` | Line height of the overview section title | ``
+`--arc-font-title-narrow-font-size` | Font size of the overview section title in mobile-friendly view | ``
+`--arc-font-subhead-color` | Color of the collapsible section title | ``
+`--arc-font-subhead-font-size` | Font size of the collapsible section title | ``
+`--arc-font-subhead-line-height` | Line height of the collapsible section title | ``
+`--arc-font-subhead-narrow-font-size` | Font size of the collapsible section title in mobile-friendly view | ``
+`--arc-font-code-family` |  | ``
+`--api-method-documentation-url-font-size` |  | `1.07rem`
+`--api-method-documentation-url-border-radius` |  | `4px`
+`--api-parameters-document-title-border-color` | Border color of the collapsible section title area | `#e5e5e5`
+`--api-method-documentation-description-color` |  | `rgba(0, 0, 0, 0.74)`
+`--api-method-documentation-operation-id-color` |  | `rgba(0, 0, 0, 0.61)`
+`--api-method-documentation-http-method-label-font-size` |  | `inherit`
+`--api-method-documentation-http-method-label-width` |  | `inherit`
+`--api-method-documentation-bottom-navigation-border-color` |  | `#cfd8dc`
+`--api-method-documentation-bottom-navigation-color` |  | `#000`
+`--api-method-documentation-section-background-color` |  | `initial`
+`--api-method-documentation-section-padding` |  | `0px`
+`--api-method-documentation-callback-background-color` |  | `#f7f7f7`
+`--code-background-color` |  | ``
+`--code-color` |  | ``
+
 ## Usage
 
 ### Installation
-```
+
+```sh
 npm install --save @api-components/api-method-documentation
 ```
 
@@ -82,10 +118,11 @@ npm start
 ```
 
 ### Running the tests
+
 ```sh
 npm test
 ```
 
-### API components
+## API components
 
-This components is a part of [API components ecosystem](https://elements.advancedrestclient.com/)
+This component is a part of [API components ecosystem](https://elements.advancedrestclient.com/)
