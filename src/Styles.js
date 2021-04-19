@@ -20,19 +20,21 @@ export default css`
 }
 
 .heading2 {
-  font-size: var(--arc-font-title-font-size);
-  font-weight: var(--arc-font-title-font-weight);
-  line-height: var(--arc-font-title-line-height);
-  color: var(--arc-font-title-color);
+  font-family: var(--api-method-documentation-h2-font-family, var(--arc-font-title-font-family));
+  font-size: var(--api-method-documentation-h2-font-size, var(--arc-font-title-font-size));
+  font-weight: var(--api-method-documentation-h2-font-weight, var(--arc-font-title-font-weight));
+  line-height: var(--api-method-documentation-h2-line-height, var(--arc-font-title-line-height));
+  color: var(--api-method-documentation-h2-font-color, var(--arc-font-title-color));
   margin: 0.84em 0;
 }
 
 .heading3 {
   flex: 1;
-  font-size: var(--arc-font-subhead-font-size);
-  font-weight: var(--arc-font-subhead-font-weight);
-  line-height: var(--arc-font-subhead-line-height);
-  color: var(--arc-font-subhead-color);
+  font-family: var(--api-method-documentation-h3-font-family, var(--arc-font-subhead-font-family));
+  font-size: var(--api-method-documentation-h3-font-size, var(--arc-font-subhead-font-size));
+  font-weight: var(--api-method-documentation-h3-font-weight, var(--arc-font-subhead-font-weight));
+  line-height: var(--api-method-documentation-h3-line-height, var(--arc-font-subhead-line-height));
+  color: var(--api-method-documentation-h3-font-color, var(--arc-font-subhead-color));
 }
 
 .heading4 {
@@ -76,13 +78,22 @@ export default css`
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-family: var(--arc-font-code-family);
+  font-family: var(
+    --api-method-documentation-url-font-family,
+    var(--arc-font-code-family)
+  );
   font-size: var(--api-method-documentation-url-font-size, 1.07rem);
+  font-weight: var(--api-method-documentation-url-font-weight);
+  line-height: var(--api-method-documentation-url-line-height);
   margin-bottom: 40px;
   margin-top: 20px;
-  background-color: var(--code-background-color);
-  color: var(--code-color);
-  padding: 8px;
+  margin: var(--api-method-documentation-url-margin);
+  background-color: var(--api-method-documentation-url-background-color, var(--code-background-color));
+  color: var(
+    --api-method-documentation-url-font-color,
+    var(--code-color)
+  );
+  padding: var(--api-method-documentation-url-padding, 8px);
   border-radius: var(--api-method-documentation-url-border-radius, 4px);
   position: relative;
 }
@@ -92,6 +103,7 @@ export default css`
   flex-direction: row;
   align-items: center;
   border-bottom: 1px var(--api-parameters-document-title-border-color, #e5e5e5) solid;
+  border: var(--api-parameters-document-title-border);
   cursor: pointer;
   user-select: none;
   transition: border-bottom-color 0.15s ease-in-out;
@@ -104,6 +116,7 @@ export default css`
 .url-value {
   flex: 1;
   margin-left: 12px;
+  margin: var(--api-method-documentation-url-value-margin);
   word-break: break-all;
 }
 
@@ -166,6 +179,8 @@ arc-marked {
 .method-label {
   margin-bottom: 0;
   font-size: var(--api-method-documentation-http-method-label-font-size, inherit);
+  font-family: var(--api-method-documentation-http-method-label-font-family);
+  font-weight: var(--api-method-documentation-http-method-label-font-weight);
   min-width: var(--api-method-documentation-http-method-label-min-width, inherit);
 }
 
