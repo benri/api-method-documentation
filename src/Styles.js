@@ -131,6 +131,7 @@ export default css`
 }
 
 .method-value {
+  align-self: baseline;
   text-transform: uppercase;
   white-space: nowrap;
 }
