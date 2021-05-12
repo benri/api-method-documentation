@@ -249,7 +249,8 @@ export class ApiUrl extends AmfHelperMixin(LitElement) {
     return name;
   }
 
-  _dispatchChangeEvent() {
+  async _dispatchChangeEvent() {
+    await this.updateComplete
     this.dispatchEvent(
       new CustomEvent('change', {
         bubbles: true,
