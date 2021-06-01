@@ -85,9 +85,7 @@ export default css`
   font-size: var(--api-method-documentation-url-font-size, 1.07rem);
   font-weight: var(--api-method-documentation-url-font-weight);
   line-height: var(--api-method-documentation-url-line-height);
-  margin-bottom: 40px;
-  margin-top: 20px;
-  margin: var(--api-method-documentation-url-margin);
+  margin: var(--api-method-documentation-url-margin, 20px 0 40px 0);
   background-color: var(--api-method-documentation-url-background-color, var(--code-background-color));
   color: var(
     --api-method-documentation-url-font-color,
